@@ -1,0 +1,695 @@
+# Hungarian translation for receiver
+msgid ""
+msgstr ""
+"Project-Id-Version: receiver\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-18 22:00+0100\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/utils/languages.vala:7
+msgid "Afrikaans"
+msgstr "afrikaans"
+
+#: src/utils/languages.vala:8
+msgid "Akan"
+msgstr "akan"
+
+#: src/utils/languages.vala:9
+msgid "Amharic"
+msgstr "amhara"
+
+#: src/utils/languages.vala:10
+msgid "Arabic"
+msgstr "arab"
+
+#: src/utils/languages.vala:11
+msgid "Assamese"
+msgstr "asszámi"
+
+#: src/utils/languages.vala:12
+msgid "Spanish (Asturian)"
+msgstr "spanyol (asztúriai)"
+
+#: src/utils/languages.vala:13
+msgid "Aymara"
+msgstr "ajmara"
+
+#: src/utils/languages.vala:14
+msgid "Azerbaijani"
+msgstr "azerbajdzsáni"
+
+#: src/utils/languages.vala:15
+msgid "Bavarian"
+msgstr "német (bajor)"
+
+#: src/utils/languages.vala:16
+msgid "Belarusian"
+msgstr "belarusz"
+
+#: src/utils/languages.vala:17
+msgid "Bulgarian"
+msgstr "bolgár"
+
+#: src/utils/languages.vala:18
+msgid "Bislama"
+msgstr "bislama"
+
+#: src/utils/languages.vala:19
+msgid "Bambara"
+msgstr "bambara"
+
+#: src/utils/languages.vala:20
+msgid "Bengali"
+msgstr "bengáli"
+
+#: src/utils/languages.vala:21
+msgid "Tibetan"
+msgstr "tibeti"
+
+#: src/utils/languages.vala:22
+msgid "Breton"
+msgstr "breton"
+
+#: src/utils/languages.vala:23
+msgid "Bosnian"
+msgstr "bosnyák"
+
+#: src/utils/languages.vala:24
+msgid "Catalan"
+msgstr "katalán"
+
+#: src/utils/languages.vala:25
+msgid "Chinese (Mandarin)"
+msgstr "kínai (mandarin)"
+
+#: src/utils/languages.vala:26
+msgid "Cree"
+msgstr "krí"
+
+#: src/utils/languages.vala:27
+msgid "Czech"
+msgstr "cseh"
+
+#: src/utils/languages.vala:28
+msgid "Welsh"
+msgstr "walesi"
+
+#: src/utils/languages.vala:29
+msgid "Danish"
+msgstr "dán"
+
+#: src/utils/languages.vala:30
+msgid "German"
+msgstr "német"
+
+#: src/utils/languages.vala:31
+msgid "Greek"
+msgstr "görög"
+
+#: src/utils/languages.vala:32
+msgid "English"
+msgstr "angol"
+
+#: src/utils/languages.vala:33
+msgid "Esperanto"
+msgstr "eszperantó"
+
+#: src/utils/languages.vala:34
+msgid "Spanish"
+msgstr "spanyol"
+
+#: src/utils/languages.vala:35
+msgid "Spanish (Latin American)"
+msgstr "spanyol (latin-amerikai)"
+
+#: src/utils/languages.vala:36
+msgid "Estonian"
+msgstr "észt"
+
+#: src/utils/languages.vala:37
+msgid "Basque"
+msgstr "baszk"
+
+#: src/utils/languages.vala:38
+msgid "Persian"
+msgstr "perzsa"
+
+#: src/utils/languages.vala:39
+msgid "Finnish"
+msgstr "finn"
+
+#: src/utils/languages.vala:40
+msgid "Filipino"
+msgstr "filippínó"
+
+#: src/utils/languages.vala:41
+msgid "Fijian"
+msgstr "fidzsi"
+
+#: src/utils/languages.vala:42
+msgid "Faroese"
+msgstr "feröeri"
+
+#: src/utils/languages.vala:43
+msgid "French"
+msgstr "francia"
+
+#: src/utils/languages.vala:44
+msgid "Irish"
+msgstr "ír"
+
+#: src/utils/languages.vala:45
+msgid "Scottish Gaelic"
+msgstr "skót gael"
+
+#: src/utils/languages.vala:46
+msgid "Galician"
+msgstr "galíciai"
+
+#: src/utils/languages.vala:47
+msgid "Guarani"
+msgstr "guaraní"
+
+#: src/utils/languages.vala:48
+msgid "German (Swiss)"
+msgstr "német (svájci)"
+
+#: src/utils/languages.vala:49
+msgid "Gujarati"
+msgstr "gudzsaráti"
+
+#: src/utils/languages.vala:50
+msgid "Manx"
+msgstr "manx"
+
+#: src/utils/languages.vala:51
+msgid "Hausa"
+msgstr "hausza"
+
+#: src/utils/languages.vala:52
+msgid "Chinese (Hakka)"
+msgstr "kínai (hakka)"
+
+#: src/utils/languages.vala:53
+msgid "Hebrew"
+msgstr "héber"
+
+#: src/utils/languages.vala:54
+msgid "Hindi"
+msgstr "hindi"
+
+#: src/utils/languages.vala:55
+msgid "Croatian"
+msgstr "horvát"
+
+#: src/utils/languages.vala:56
+msgid "Hungarian"
+msgstr "magyar"
+
+#: src/utils/languages.vala:57
+msgid "Armenian"
+msgstr "örmény"
+
+#: src/utils/languages.vala:58
+msgid "Indonesian"
+msgstr "indonéz"
+
+#: src/utils/languages.vala:59
+msgid "Icelandic"
+msgstr "izlandi"
+
+#: src/utils/languages.vala:60
+msgid "Italian"
+msgstr "olasz"
+
+#: src/utils/languages.vala:61
+msgid "Japanese"
+msgstr "japán"
+
+#: src/utils/languages.vala:62
+msgid "Javanese"
+msgstr "jávai"
+
+#: src/utils/languages.vala:63
+msgid "Georgian"
+msgstr "grúz"
+
+#: src/utils/languages.vala:64
+msgid "Kazakh"
+msgstr "kazah"
+
+#: src/utils/languages.vala:65
+msgid "Khmer"
+msgstr "khmer"
+
+#: src/utils/languages.vala:66
+msgid "Kannada"
+msgstr "kannada"
+
+#: src/utils/languages.vala:67
+msgid "Korean"
+msgstr "koreai"
+
+#: src/utils/languages.vala:68
+msgid "Kashmiri"
+msgstr "kasmíri"
+
+#: src/utils/languages.vala:69
+msgid "Kurdish"
+msgstr "kurd"
+
+#: src/utils/languages.vala:70
+msgid "Komi"
+msgstr "komi"
+
+#: src/utils/languages.vala:71
+msgid "Cornish"
+msgstr "korni"
+
+#: src/utils/languages.vala:72
+msgid "Latin"
+msgstr "latin"
+
+#: src/utils/languages.vala:73
+msgid "Luxembourgish"
+msgstr "luxemburgi"
+
+#: src/utils/languages.vala:74
+msgid "Lingala"
+msgstr "lingala"
+
+#: src/utils/languages.vala:75
+msgid "Lithuanian"
+msgstr "litván"
+
+#: src/utils/languages.vala:76
+msgid "Latvian"
+msgstr "lett"
+
+#: src/utils/languages.vala:77
+msgid "Malagasy"
+msgstr "malagaszi"
+
+#: src/utils/languages.vala:78
+msgid "Māori"
+msgstr "maori"
+
+#: src/utils/languages.vala:79
+msgid "Macedonian"
+msgstr "macedón"
+
+#: src/utils/languages.vala:80
+msgid "Malayalam"
+msgstr "malajálam"
+
+#: src/utils/languages.vala:81
+msgid "Mongolian"
+msgstr "mongol"
+
+#: src/utils/languages.vala:82
+msgid "Marathi"
+msgstr "maráthi"
+
+#: src/utils/languages.vala:83
+msgid "Malay"
+msgstr "maláj"
+
+#: src/utils/languages.vala:84
+msgid "Maltese"
+msgstr "máltai"
+
+#: src/utils/languages.vala:85
+msgid "Burmese"
+msgstr "burmai"
+
+#: src/utils/languages.vala:86
+msgid "German (Low)"
+msgstr "német (alnémet)"
+
+#: src/utils/languages.vala:87
+msgid "Nepali"
+msgstr "nepáli"
+
+#: src/utils/languages.vala:88
+msgid "Dutch"
+msgstr "holland"
+
+#: src/utils/languages.vala:89
+msgid "Norwegian"
+msgstr "norvég"
+
+#: src/utils/languages.vala:90
+msgid "Navajo"
+msgstr "navahó"
+
+#: src/utils/languages.vala:91
+msgid "Occitan"
+msgstr "okcitán"
+
+#: src/utils/languages.vala:92
+msgid "Oromo"
+msgstr "oromo"
+
+#: src/utils/languages.vala:93
+msgid "Punjabi"
+msgstr "pandzsábi"
+
+#: src/utils/languages.vala:94
+msgid "Pali"
+msgstr "páli"
+
+#: src/utils/languages.vala:95
+msgid "Polish"
+msgstr "lengyel"
+
+#: src/utils/languages.vala:96
+msgid "Portuguese"
+msgstr "portugál"
+
+#: src/utils/languages.vala:97
+msgid "Quechua"
+msgstr "kecsua"
+
+#: src/utils/languages.vala:98
+msgid "Romansh"
+msgstr "romans"
+
+#: src/utils/languages.vala:99
+msgid "Romanian"
+msgstr "román"
+
+#: src/utils/languages.vala:100
+msgid "Russian"
+msgstr "orosz"
+
+#: src/utils/languages.vala:101
+msgid "Sanskrit"
+msgstr "szanszkrit"
+
+#: src/utils/languages.vala:102
+msgid "Sardinian"
+msgstr "szardíniai"
+
+#: src/utils/languages.vala:103
+msgid "Sindhi"
+msgstr "szindhi"
+
+#: src/utils/languages.vala:104
+msgid "Sinhala"
+msgstr "szingaléz"
+
+#: src/utils/languages.vala:105
+msgid "Slovak"
+msgstr "szlovák"
+
+#: src/utils/languages.vala:106
+msgid "Slovenian"
+msgstr "szlovén"
+
+#: src/utils/languages.vala:107
+msgid "Samoan"
+msgstr "szamoai"
+
+#: src/utils/languages.vala:108
+msgid "Shona"
+msgstr "sona"
+
+#: src/utils/languages.vala:109
+msgid "Somali"
+msgstr "szomáli"
+
+#: src/utils/languages.vala:110
+msgid "Albanian"
+msgstr "albán"
+
+#: src/utils/languages.vala:111
+msgid "Serbian"
+msgstr "szerb"
+
+#: src/utils/languages.vala:112
+msgid "Swedish"
+msgstr "svéd"
+
+#: src/utils/languages.vala:113
+msgid "Swahili"
+msgstr "szuahéli"
+
+#: src/utils/languages.vala:114
+msgid "German (Swabian)"
+msgstr "német (sváb)"
+
+#: src/utils/languages.vala:115
+msgid "Tamil"
+msgstr "tamil"
+
+#: src/utils/languages.vala:116
+msgid "Telugu"
+msgstr "telugu"
+
+#: src/utils/languages.vala:117
+msgid "Thai"
+msgstr "thai"
+
+#: src/utils/languages.vala:118
+msgid "Turkmen"
+msgstr "türkmén"
+
+#: src/utils/languages.vala:119
+msgid "Tongan"
+msgstr "tongai"
+
+#: src/utils/languages.vala:120
+msgid "Turkish"
+msgstr "török"
+
+#: src/utils/languages.vala:121
+msgid "Tatar"
+msgstr "tatár"
+
+#: src/utils/languages.vala:122
+msgid "Twi"
+msgstr "tvi"
+
+#: src/utils/languages.vala:123
+msgid "Tahitian"
+msgstr "tahiti"
+
+#: src/utils/languages.vala:124
+msgid "Ukrainian"
+msgstr "ukrán"
+
+#: src/utils/languages.vala:125
+msgid "Urdu"
+msgstr "urdu"
+
+#: src/utils/languages.vala:126
+msgid "Uzbek"
+msgstr "üzbég"
+
+#: src/utils/languages.vala:127
+msgid "Vietnamese"
+msgstr "vietnámi"
+
+#: src/utils/languages.vala:128
+msgid "German (Sorbian)"
+msgstr "német (szorb)"
+
+#: src/utils/languages.vala:129
+msgid "Xhosa"
+msgstr "xhosza"
+
+#: src/utils/languages.vala:130
+msgid "Yiddish"
+msgstr "jiddis"
+
+#: src/utils/languages.vala:131
+msgid "Yoruba"
+msgstr "joruba"
+
+#: src/utils/languages.vala:132
+msgid "Chinese (Cantonese)"
+msgstr "kínai (kantoni)"
+
+#: src/utils/languages.vala:133
+msgid "Chinese"
+msgstr "kínai"
+
+#: src/utils/languages.vala:134
+msgid "Zulu"
+msgstr "zulu"
+
+#: src/widgets/window.vala:31
+msgid "Search stations"
+msgstr "Állomások keresése"
+
+#: src/widgets/window.vala:33 src/widgets/window.vala:65
+msgid "Search"
+msgstr "Keresés"
+
+#: src/widgets/window.vala:39
+msgid "Home"
+msgstr "Kezdőlap"
+
+#: src/widgets/window.vala:72
+#, c-format
+msgid "Loaded %d stations"
+msgstr "%d állomás betöltve"
+
+#. User dismissed the dialog — no toast needed
+#: src/widgets/window.vala:77 src/services/song_downloader.vala:70
+#: src/services/song_downloader.vala:147
+#, c-format
+msgid "Error: %s"
+msgstr "Hiba: %s"
+
+#: src/widgets/window.vala:81
+#, c-format
+msgid "Playback error: %s"
+msgstr "Lejátszási hiba: %s"
+
+#: src/widgets/window.vala:89
+#, c-format
+msgid "Now playing: %s"
+msgstr "Most játszik: %s"
+
+#: src/widgets/window.vala:106
+#, c-format
+msgid "Resuming: %s"
+msgstr "Folytatás: %s"
+
+#: src/widgets/home_screen.vala:43
+msgid "Featured Stations"
+msgstr "Kiemelt állomások"
+
+#: src/widgets/home_screen.vala:105
+msgid "Favourite Stations"
+msgstr "Kedvenc állomások"
+
+#: src/widgets/home_screen.vala:256
+msgid "Browse by Genre"
+msgstr "Böngészés műfaj szerint"
+
+#: src/widgets/home_screen.vala:261
+msgid "View All"
+msgstr "Összes megtekintése"
+
+#: src/widgets/station_list.vala:34
+msgid "Search stations…"
+msgstr "Állomások keresése…"
+
+#: src/widgets/station_list.vala:37 src/widgets/station_list.vala:156
+msgid "All Languages"
+msgstr "Minden nyelv"
+
+#: src/widgets/station_list.vala:38
+msgid "Filter by language"
+msgstr "Szűrés nyelv szerint"
+
+#: src/widgets/station_list.vala:54 src/widgets/station_list.vala:199
+msgid "No Stations"
+msgstr "Nincsenek állomások"
+
+#: src/widgets/station_list.vala:119
+msgid "Loading…"
+msgstr "Betöltés…"
+
+#: src/widgets/station_list.vala:185
+#, c-format
+msgid "%u of %d stations"
+msgstr "%u / %d állomás"
+
+#: src/widgets/station_list.vala:186
+#, c-format
+msgid "Stations: %d"
+msgstr "Állomások: %d"
+
+#: src/widgets/station_list.vala:198
+msgid "Loading Stations"
+msgstr "Állomások betöltése"
+
+#: src/widgets/station_list.vala:199
+msgid "No Results"
+msgstr "Nincs találat"
+
+#: src/widgets/station_list.vala:201
+msgid "Please wait…"
+msgstr "Kérem, várjon…"
+
+#: src/widgets/station_list.vala:202
+msgid "No stations match your search"
+msgstr "Nincs a keresésnek megfelelő állomás"
+
+#: src/widgets/station_list.vala:202
+msgid "Could not load stations"
+msgstr "Nem sikerült betölteni az állomásokat"
+
+#. Controls row
+#: src/widgets/player_bar.vala:72 src/widgets/player_bar.vala:263
+msgid "Not Playing"
+msgstr "Nem játszik"
+
+#: src/widgets/player_bar.vala:141 src/widgets/player_bar.vala:264
+msgid "Select a station"
+msgstr "Válasszon állomást"
+
+#: src/widgets/player_bar.vala:154
+msgid "Download song"
+msgstr "Dal letöltése"
+
+#: src/widgets/player_bar.vala:182
+msgid "Cancel download"
+msgstr "Letöltés megszakítása"
+
+#: src/widgets/player_bar.vala:253
+msgid "Paused"
+msgstr "Szüneteltetve"
+
+#: src/widgets/player_bar.vala:258
+msgid "Reconnecting…"
+msgstr "Újracsatlakozás…"
+
+#: src/widgets/player_bar.vala:281
+msgid "Now playing"
+msgstr "Most játszik"
+
+#. indeterminate while searching
+#: src/services/song_downloader.vala:29
+msgid "Searching YouTube…"
+msgstr "Keresés a YouTube-on…"
+
+#: src/services/song_downloader.vala:43
+#, c-format
+msgid "Search failed: %s"
+msgstr "A keresés sikertelen: %s"
+
+#: src/services/song_downloader.vala:49
+msgid "No YouTube results found"
+msgstr "Nincs találat a YouTube-on"
+
+#: src/services/song_downloader.vala:63
+msgid "All results unavailable"
+msgstr "Minden találat elérhetetlen"
+
+#: src/services/song_downloader.vala:93
+#, c-format
+msgid "Downloading: %s"
+msgstr "Letöltés: %s"
+
+#. Clean up partial file
+#: src/services/song_downloader.vala:130
+msgid "Cancelled"
+msgstr "Megszakítva"
+
+#: src/services/song_downloader.vala:139
+#, c-format
+msgid "Download failed: %s"
+msgstr "A letöltés sikertelen: %s"
+
+#: src/services/song_downloader.vala:141
+#, c-format
+msgid "Saved: %s"
+msgstr "Mentve: %s"

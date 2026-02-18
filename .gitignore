@@ -1,0 +1,18 @@
+# Build directories
+builddir/
+obj-x86_64-linux-gnu/
+.flatpak-builder
+repo/
+
+# Compiled schemas
+gschemas.compiled
+
+# Debian build artifacts
+debian/.debhelper/
+debian/receiver/
+debian/debhelper-build-stamp
+debian/files
+debian/*.substvars
+debian/*.log
+*.buildinfo
+*.changes

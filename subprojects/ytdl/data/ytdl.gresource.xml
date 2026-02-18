@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/ytdl">
+    <file compressed="true">yt.solver.lib.js</file>
+    <file compressed="true">yt.solver.core.js</file>
+  </gresource>
+</gresources>

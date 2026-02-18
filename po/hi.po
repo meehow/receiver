@@ -1,0 +1,695 @@
+# Hindi translation for receiver
+msgid ""
+msgstr ""
+"Project-Id-Version: receiver\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-18 22:00+0100\n"
+"Language: hi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/utils/languages.vala:7
+msgid "Afrikaans"
+msgstr "افریقی"
+
+#: src/utils/languages.vala:8
+msgid "Akan"
+msgstr "اکان"
+
+#: src/utils/languages.vala:9
+msgid "Amharic"
+msgstr "امہاری"
+
+#: src/utils/languages.vala:10
+msgid "Arabic"
+msgstr "عربی"
+
+#: src/utils/languages.vala:11
+msgid "Assamese"
+msgstr "آسامی"
+
+#: src/utils/languages.vala:12
+msgid "Spanish (Asturian)"
+msgstr "ہسپانوی (آستورین)"
+
+#: src/utils/languages.vala:13
+msgid "Aymara"
+msgstr "ایمارا"
+
+#: src/utils/languages.vala:14
+msgid "Azerbaijani"
+msgstr "آذربائیجانی"
+
+#: src/utils/languages.vala:15
+msgid "Bavarian"
+msgstr "جرمن (باویرین)"
+
+#: src/utils/languages.vala:16
+msgid "Belarusian"
+msgstr "بیلاروسی"
+
+#: src/utils/languages.vala:17
+msgid "Bulgarian"
+msgstr "بلغاریائی"
+
+#: src/utils/languages.vala:18
+msgid "Bislama"
+msgstr "بسلاما"
+
+#: src/utils/languages.vala:19
+msgid "Bambara"
+msgstr "بمبارا"
+
+#: src/utils/languages.vala:20
+msgid "Bengali"
+msgstr "بنگالی"
+
+#: src/utils/languages.vala:21
+msgid "Tibetan"
+msgstr "تبتی"
+
+#: src/utils/languages.vala:22
+msgid "Breton"
+msgstr "بریٹن"
+
+#: src/utils/languages.vala:23
+msgid "Bosnian"
+msgstr "بوسنیائی"
+
+#: src/utils/languages.vala:24
+msgid "Catalan"
+msgstr "کیٹلینی"
+
+#: src/utils/languages.vala:25
+msgid "Chinese (Mandarin)"
+msgstr "چینی (مینڈارن)"
+
+#: src/utils/languages.vala:26
+msgid "Cree"
+msgstr "کری"
+
+#: src/utils/languages.vala:27
+msgid "Czech"
+msgstr "چیک"
+
+#: src/utils/languages.vala:28
+msgid "Welsh"
+msgstr "ویلش"
+
+#: src/utils/languages.vala:29
+msgid "Danish"
+msgstr "ڈینش"
+
+#: src/utils/languages.vala:30
+msgid "German"
+msgstr "جرمن"
+
+#: src/utils/languages.vala:31
+msgid "Greek"
+msgstr "یونانی"
+
+#: src/utils/languages.vala:32
+msgid "English"
+msgstr "انگریزی"
+
+#: src/utils/languages.vala:33
+msgid "Esperanto"
+msgstr "ایسپرانٹو"
+
+#: src/utils/languages.vala:34
+msgid "Spanish"
+msgstr "ہسپانوی"
+
+#: src/utils/languages.vala:35
+msgid "Spanish (Latin American)"
+msgstr "ہسپانوی (لاطینی امریکی)"
+
+#: src/utils/languages.vala:36
+msgid "Estonian"
+msgstr "اسٹونین"
+
+#: src/utils/languages.vala:37
+msgid "Basque"
+msgstr "باسک"
+
+#: src/utils/languages.vala:38
+msgid "Persian"
+msgstr "فارسی"
+
+#: src/utils/languages.vala:39
+msgid "Finnish"
+msgstr "فینیش"
+
+#: src/utils/languages.vala:40
+msgid "Filipino"
+msgstr "فلپائنی"
+
+#: src/utils/languages.vala:41
+msgid "Fijian"
+msgstr "فیجی"
+
+#: src/utils/languages.vala:42
+msgid "Faroese"
+msgstr "فاروی"
+
+#: src/utils/languages.vala:43
+msgid "French"
+msgstr "فرانسیسی"
+
+#: src/utils/languages.vala:44
+msgid "Irish"
+msgstr "آئرش"
+
+#: src/utils/languages.vala:45
+msgid "Scottish Gaelic"
+msgstr "سکاٹش گیلک"
+
+#: src/utils/languages.vala:46
+msgid "Galician"
+msgstr "گیلشین"
+
+#: src/utils/languages.vala:47
+msgid "Guarani"
+msgstr "گوارانی"
+
+#: src/utils/languages.vala:48
+msgid "German (Swiss)"
+msgstr "جرمن (سوئس)"
+
+#: src/utils/languages.vala:49
+msgid "Gujarati"
+msgstr "گجراتی"
+
+#: src/utils/languages.vala:50
+msgid "Manx"
+msgstr "مانکس"
+
+#: src/utils/languages.vala:51
+msgid "Hausa"
+msgstr "ہائوسا"
+
+#: src/utils/languages.vala:52
+msgid "Chinese (Hakka)"
+msgstr "چینی (ہاکا)"
+
+#: src/utils/languages.vala:53
+msgid "Hebrew"
+msgstr "عبرانی"
+
+#: src/utils/languages.vala:54
+msgid "Hindi"
+msgstr "ہندی"
+
+#: src/utils/languages.vala:55
+msgid "Croatian"
+msgstr "کروشین"
+
+#: src/utils/languages.vala:56
+msgid "Hungarian"
+msgstr "ہنگیرین"
+
+#: src/utils/languages.vala:57
+msgid "Armenian"
+msgstr "آرمینیائی"
+
+#: src/utils/languages.vala:58
+msgid "Indonesian"
+msgstr "انڈونیشین"
+
+#: src/utils/languages.vala:59
+msgid "Icelandic"
+msgstr "آئس لینڈی"
+
+#: src/utils/languages.vala:60
+msgid "Italian"
+msgstr "اطالوی"
+
+#: src/utils/languages.vala:61
+msgid "Japanese"
+msgstr "جاپانی"
+
+#: src/utils/languages.vala:62
+msgid "Javanese"
+msgstr "جاوی"
+
+#: src/utils/languages.vala:63
+msgid "Georgian"
+msgstr "جارجیائی"
+
+#: src/utils/languages.vala:64
+msgid "Kazakh"
+msgstr "قازق"
+
+#: src/utils/languages.vala:65
+msgid "Khmer"
+msgstr "خمیر"
+
+#: src/utils/languages.vala:66
+msgid "Kannada"
+msgstr "کنڑ"
+
+#: src/utils/languages.vala:67
+msgid "Korean"
+msgstr "کورین"
+
+#: src/utils/languages.vala:68
+msgid "Kashmiri"
+msgstr "کشمیری"
+
+#: src/utils/languages.vala:69
+msgid "Kurdish"
+msgstr "کرد"
+
+#: src/utils/languages.vala:70
+msgid "Komi"
+msgstr "کومی"
+
+#: src/utils/languages.vala:71
+msgid "Cornish"
+msgstr "کورنش"
+
+#: src/utils/languages.vala:72
+msgid "Latin"
+msgstr "لاطینی"
+
+#: src/utils/languages.vala:73
+msgid "Luxembourgish"
+msgstr "لگزمبرگش"
+
+#: src/utils/languages.vala:74
+msgid "Lingala"
+msgstr "لنگالا"
+
+#: src/utils/languages.vala:75
+msgid "Lithuanian"
+msgstr "لتھوانیائی"
+
+#: src/utils/languages.vala:76
+msgid "Latvian"
+msgstr "لیٹوین"
+
+#: src/utils/languages.vala:77
+msgid "Malagasy"
+msgstr "ملاگاسی"
+
+#: src/utils/languages.vala:78
+msgid "Māori"
+msgstr "ماوری"
+
+#: src/utils/languages.vala:79
+msgid "Macedonian"
+msgstr "مقدونیائی"
+
+#: src/utils/languages.vala:80
+msgid "Malayalam"
+msgstr "ملیالم"
+
+#: src/utils/languages.vala:81
+msgid "Mongolian"
+msgstr "منگولی"
+
+#: src/utils/languages.vala:82
+msgid "Marathi"
+msgstr "مراٹھی"
+
+#: src/utils/languages.vala:83
+msgid "Malay"
+msgstr "مالے"
+
+#: src/utils/languages.vala:84
+msgid "Maltese"
+msgstr "مالٹی"
+
+#: src/utils/languages.vala:85
+msgid "Burmese"
+msgstr "برمی"
+
+#: src/utils/languages.vala:86
+msgid "German (Low)"
+msgstr "جرمن (لو)"
+
+#: src/utils/languages.vala:87
+msgid "Nepali"
+msgstr "نیپالی"
+
+#: src/utils/languages.vala:88
+msgid "Dutch"
+msgstr "ڈچ"
+
+#: src/utils/languages.vala:89
+msgid "Norwegian"
+msgstr "ناروے"
+
+#: src/utils/languages.vala:90
+msgid "Navajo"
+msgstr "نواجو"
+
+#: src/utils/languages.vala:91
+msgid "Occitan"
+msgstr "آکسیٹن"
+
+#: src/utils/languages.vala:92
+msgid "Oromo"
+msgstr "اورومو"
+
+#: src/utils/languages.vala:93
+msgid "Punjabi"
+msgstr "پنجابی"
+
+#: src/utils/languages.vala:94
+msgid "Pali"
+msgstr "پالی"
+
+#: src/utils/languages.vala:95
+msgid "Polish"
+msgstr "پولش"
+
+#: src/utils/languages.vala:96
+msgid "Portuguese"
+msgstr "پرتگالی"
+
+#: src/utils/languages.vala:97
+msgid "Quechua"
+msgstr "کیچوا"
+
+#: src/utils/languages.vala:98
+msgid "Romansh"
+msgstr "رومانش"
+
+#: src/utils/languages.vala:99
+msgid "Romanian"
+msgstr "رومانی"
+
+#: src/utils/languages.vala:100
+msgid "Russian"
+msgstr "روسی"
+
+#: src/utils/languages.vala:101
+msgid "Sanskrit"
+msgstr "سنسکرت"
+
+#: src/utils/languages.vala:102
+msgid "Sardinian"
+msgstr "سارڈینین"
+
+#: src/utils/languages.vala:103
+msgid "Sindhi"
+msgstr "سندھی"
+
+#: src/utils/languages.vala:104
+msgid "Sinhala"
+msgstr "سنہالی"
+
+#: src/utils/languages.vala:105
+msgid "Slovak"
+msgstr "سلوواک"
+
+#: src/utils/languages.vala:106
+msgid "Slovenian"
+msgstr "سلووینیائی"
+
+#: src/utils/languages.vala:107
+msgid "Samoan"
+msgstr "ساموائی"
+
+#: src/utils/languages.vala:108
+msgid "Shona"
+msgstr "شونا"
+
+#: src/utils/languages.vala:109
+msgid "Somali"
+msgstr "صومالی"
+
+#: src/utils/languages.vala:110
+msgid "Albanian"
+msgstr "البانوی"
+
+#: src/utils/languages.vala:111
+msgid "Serbian"
+msgstr "سربین"
+
+#: src/utils/languages.vala:112
+msgid "Swedish"
+msgstr "سویڈش"
+
+#: src/utils/languages.vala:113
+msgid "Swahili"
+msgstr "سواحلی"
+
+#: src/utils/languages.vala:114
+msgid "German (Swabian)"
+msgstr "جرمن (سوابین)"
+
+#: src/utils/languages.vala:115
+msgid "Tamil"
+msgstr "تامل"
+
+#: src/utils/languages.vala:116
+msgid "Telugu"
+msgstr "تیلگو"
+
+#: src/utils/languages.vala:117
+msgid "Thai"
+msgstr "تھائی"
+
+#: src/utils/languages.vala:118
+msgid "Turkmen"
+msgstr "ترکمان"
+
+#: src/utils/languages.vala:119
+msgid "Tongan"
+msgstr "ٹونگن"
+
+#: src/utils/languages.vala:120
+msgid "Turkish"
+msgstr "ترکش"
+
+#: src/utils/languages.vala:121
+msgid "Tatar"
+msgstr "تاتار"
+
+#: src/utils/languages.vala:122
+msgid "Twi"
+msgstr "توی"
+
+#: src/utils/languages.vala:123
+msgid "Tahitian"
+msgstr "تہیتی"
+
+#: src/utils/languages.vala:124
+msgid "Ukrainian"
+msgstr "یوکرینی"
+
+#: src/utils/languages.vala:125
+msgid "Urdu"
+msgstr "اردو"
+
+#: src/utils/languages.vala:126
+msgid "Uzbek"
+msgstr "ازبک"
+
+#: src/utils/languages.vala:127
+msgid "Vietnamese"
+msgstr "ویتنامی"
+
+#: src/utils/languages.vala:128
+msgid "German (Sorbian)"
+msgstr "جرمن (سوربین)"
+
+#: src/utils/languages.vala:129
+msgid "Xhosa"
+msgstr "ژوسا"
+
+#: src/utils/languages.vala:130
+msgid "Yiddish"
+msgstr "یدیش"
+
+#: src/utils/languages.vala:131
+msgid "Yoruba"
+msgstr "یوروبا"
+
+#: src/utils/languages.vala:132
+msgid "Chinese (Cantonese)"
+msgstr "چینی (کینٹونیز)"
+
+#: src/utils/languages.vala:133
+msgid "Chinese"
+msgstr "چینی"
+
+#: src/utils/languages.vala:134
+msgid "Zulu"
+msgstr "زولو"
+
+#: src/widgets/window.vala:31
+msgid "Search stations"
+msgstr "اسٹیشنز تلاش کریں"
+
+#: src/widgets/window.vala:33 src/widgets/window.vala:65
+msgid "Search"
+msgstr "تلاش"
+
+#: src/widgets/window.vala:39
+msgid "Home"
+msgstr "ہوم"
+
+#: src/widgets/window.vala:72
+#, c-format
+msgid "Loaded %d stations"
+msgstr "%d اسٹیشنز لوڈ ہو گئے"
+
+#. User dismissed the dialog — no toast needed
+#: src/widgets/window.vala:77 src/services/song_downloader.vala:70
+#: src/services/song_downloader.vala:147
+#, c-format
+msgid "Error: %s"
+msgstr "غلطی: %s"
+
+#: src/widgets/window.vala:81
+#, c-format
+msgid "Playback error: %s"
+msgstr "پلے بیک کی غلطی: %s"
+
+#: src/widgets/window.vala:89
+#, c-format
+msgid "Now playing: %s"
+msgstr "ابھی چل رہا ہے: %s"
+
+#: src/widgets/window.vala:106
+#, c-format
+msgid "Resuming: %s"
+msgstr "دوبارہ شروع ہو رہا ہے: %s"
+
+#: src/widgets/home_screen.vala:43
+msgid "Featured Stations"
+msgstr "نمایاں اسٹیشنز"
+
+#: src/widgets/home_screen.vala:105
+msgid "Favourite Stations"
+msgstr "پسندیدہ اسٹیشنز"
+
+#: src/widgets/home_screen.vala:256
+msgid "Browse by Genre"
+msgstr "قسم کے لحاظ سے براؤز کریں"
+
+#: src/widgets/home_screen.vala:261
+msgid "View All"
+msgstr "سب دیکھیں"
+
+#: src/widgets/station_list.vala:34
+msgid "Search stations…"
+msgstr "اسٹیشنز تلاش کریں..."
+
+#: src/widgets/station_list.vala:37 src/widgets/station_list.vala:156
+msgid "All Languages"
+msgstr "تمام زبانیں"
+
+#: src/widgets/station_list.vala:38
+msgid "Filter by language"
+msgstr "زبان کے لحاظ سے فلٹر کریں"
+
+#: src/widgets/station_list.vala:54 src/widgets/station_list.vala:199
+msgid "No Stations"
+msgstr "کوئی اسٹیشن نہیں"
+
+#: src/widgets/station_list.vala:119
+msgid "Loading…"
+msgstr "لوڈ ہو رہا ہے..."
+
+#: src/widgets/station_list.vala:185
+#, c-format
+msgid "%u of %d stations"
+msgstr "%d میں سے %u اسٹیشنز"
+
+#: src/widgets/station_list.vala:186
+#, c-format
+msgid "Stations: %d"
+msgstr "اسٹیشنز: %d"
+
+#: src/widgets/station_list.vala:198
+msgid "Loading Stations"
+msgstr "اسٹیشنز لوڈ ہو رہے ہیں"
+
+#: src/widgets/station_list.vala:199
+msgid "No Results"
+msgstr "کوئی نتائج نہیں"
+
+#: src/widgets/station_list.vala:201
+msgid "Please wait…"
+msgstr "براہ کرم انتظار کریں..."
+
+#: src/widgets/station_list.vala:202
+msgid "No stations match your search"
+msgstr "آپ کی تلاش سے کوئی اسٹیشن میل نہیں کھاتا"
+
+#: src/widgets/station_list.vala:202
+msgid "Could not load stations"
+msgstr "اسٹیشنز لوڈ نہیں ہو سکے"
+
+#. Controls row
+#: src/widgets/player_bar.vala:72 src/widgets/player_bar.vala:263
+msgid "Not Playing"
+msgstr "نہیں چل رہا"
+
+#: src/widgets/player_bar.vala:141 src/widgets/player_bar.vala:264
+msgid "Select a station"
+msgstr "ایک اسٹیشن منتخب کریں"
+
+#: src/widgets/player_bar.vala:154
+msgid "Download song"
+msgstr "गाना डाउनलोड करें"
+
+#: src/widgets/player_bar.vala:182
+msgid "Cancel download"
+msgstr "डाउनलोड रद्द करें"
+
+#: src/widgets/player_bar.vala:253
+msgid "Paused"
+msgstr "موقوف"
+
+#: src/widgets/player_bar.vala:258
+msgid "Reconnecting…"
+msgstr "फिर से कनेक्ट हो रहा है…"
+
+#: src/widgets/player_bar.vala:281
+msgid "Now playing"
+msgstr "ابھی چل رہا ہے"
+
+#. indeterminate while searching
+#: src/services/song_downloader.vala:29
+msgid "Searching YouTube…"
+msgstr "YouTube पर खोज रहे हैं…"
+
+#: src/services/song_downloader.vala:43
+#, c-format
+msgid "Search failed: %s"
+msgstr "खोज विफल: %s"
+
+#: src/services/song_downloader.vala:49
+msgid "No YouTube results found"
+msgstr "कोई YouTube परिणाम नहीं मिला"
+
+#: src/services/song_downloader.vala:63
+msgid "All results unavailable"
+msgstr "सभी परिणाम अनुपलब्ध हैं"
+
+#: src/services/song_downloader.vala:93
+#, c-format
+msgid "Downloading: %s"
+msgstr "डाउनलोड हो रहा है: %s"
+
+#. Clean up partial file
+#: src/services/song_downloader.vala:130
+msgid "Cancelled"
+msgstr "रद्द"
+
+#: src/services/song_downloader.vala:139
+#, c-format
+msgid "Download failed: %s"
+msgstr "डाउनलोड विफल: %s"
+
+#: src/services/song_downloader.vala:141
+#, c-format
+msgid "Saved: %s"
+msgstr "सहेja gaya: %s"

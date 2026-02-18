@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Receiver
+Comment=Internet radio player
+Keywords=radio;streaming;internet;music;
+Exec=receiver
+Icon=io.github.meehow.Receiver
+Terminal=false
+Categories=Audio;Music;Player;GTK;
+StartupNotify=true

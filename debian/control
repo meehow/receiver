@@ -1,0 +1,35 @@
+Source: receiver
+Section: sound
+Priority: optional
+Maintainer: Michał Adamski <michal.adamski@808bits.com>
+Build-Depends: debhelper-compat (= 13),
+               meson (>= 0.59),
+               valac,
+               libgtk-4-dev,
+               libadwaita-1-dev,
+               libgstreamer1.0-dev,
+               libsoup-3.0-dev,
+               libjson-glib-dev,
+               libjavascriptcoregtk-6.0-dev,
+               libsqlite3-dev
+Standards-Version: 4.6.2
+Homepage: https://github.com/meehow/receiver
+Rules-Requires-Root: no
+
+Package: receiver
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         gstreamer1.0-plugins-base,
+         gstreamer1.0-plugins-good
+Description: Internet radio player for GNOME
+ Receiver is a modern internet radio player for GNOME, featuring a curated
+ collection of over 30,000 stations from around the world.
+ .
+ Features:
+  * All stations pre-scanned and verified for reliability
+  * Browse stations by genre, country, or search
+  * Save your favourite stations for quick access
+  * Beautiful native GNOME interface
+  * Support for MP3, AAC, Ogg, and HLS streams
+  * Session persistence - resume where you left off
