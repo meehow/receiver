@@ -55,6 +55,7 @@
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/meehow/receiver/master/data/screenshot1.png</image>
+      <caption>Main Window</caption>
     </screenshot>
   </screenshots>
   
@@ -62,21 +63,6 @@
     <release version="0.3.0" date="2026-02-18">
       <description>
         <p>First open source release! 🎉</p>
-        <p>New features and improvements:</p>
-        <ul>
-          <li>Added "dch" and "bumpversion" support for release management</li>
-          <li>Fixed missing translations in song downloader</li>
-          <li>Unified version management</li>
-        </ul>
-      </description>
-    </release>
-    <release version="0.2.0" date="2026-02-16">
-      <description>
-        <p>First public release:</p>
-        <ul>
-          <li>Translation support for 19 languages</li>
-          <li>Added new stations</li>
-        </ul>
       </description>
     </release>
     <release version="0.1.0" date="2026-02-04">
