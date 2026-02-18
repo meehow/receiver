@@ -42,6 +42,7 @@ sudo apt install \
     libgstreamer1.0-dev \
     libsoup-3.0-dev \
     libjson-glib-dev \
+    libjavascriptcoregtk-6.0-dev \
     libsqlite3-dev \
     gstreamer1.0-plugins-base \
     gstreamer1.0-plugins-good
