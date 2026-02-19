@@ -1,3 +1,11 @@
+receiver (0.3.2-1) unstable; urgency=medium
+
+  * Add translations for 138 languages
+  * Remove redundant locale variants (es_MX, en_AU, en_CA, en_GB)
+  * Swiss German (de_CH) uses distinct vocabulary
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Wed, 19 Feb 2026 20:53:00 +0100
+
 receiver (0.3.1-1) unstable; urgency=medium
 
   * Fix GResource loading in installed builds (link_whole)

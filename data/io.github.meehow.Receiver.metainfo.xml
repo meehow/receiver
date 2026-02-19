@@ -69,6 +69,18 @@
   </screenshots>
   
   <releases>
+    <release version="0.3.2" date="2026-02-19">
+      <description>
+        <p>Massive translation update! Added translations for 138 languages covering:</p>
+        <ul>
+          <li>Germanic, Romance, Slavic, and Celtic language families</li>
+          <li>Turkic, Caucasian, and Central Asian languages</li>
+          <li>Arabic script, Semitic, and Iranian languages</li>
+          <li>South and Southeast Asian languages</li>
+          <li>European languages including Greek, Finnish, Estonian, Basque, and Albanian</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.1" date="2026-02-19">
       <description>
         <p>Fix GResource loading in installed builds and prepare for Flathub submission.</p>
