@@ -1,3 +1,10 @@
+receiver (0.3.1-1) unstable; urgency=medium
+
+  * Fix GResource loading in installed builds (link_whole)
+  * Update Flatpak manifest for Flathub submission
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Wed, 19 Feb 2026 09:53:00 +0100
+
 receiver (0.3.0-1) unstable; urgency=medium
 
   * Initial open source release

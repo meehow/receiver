@@ -60,6 +60,11 @@
   </screenshots>
   
   <releases>
+    <release version="0.3.1" date="2026-02-19">
+      <description>
+        <p>Fix GResource loading in installed builds and prepare for Flathub submission.</p>
+      </description>
+    </release>
     <release version="0.3.0" date="2026-02-18">
       <description>
         <p>First open source release! 🎉</p>
