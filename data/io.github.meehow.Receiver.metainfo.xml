@@ -26,6 +26,7 @@
   
   <url type="homepage">https://github.com/meehow/receiver</url>
   <url type="bugtracker">https://github.com/meehow/receiver/issues</url>
+  <url type="vcs-browser">https://github.com/meehow/receiver</url>
   
   <developer id="io.github.meehow">
     <name>meehow</name>
@@ -54,8 +55,16 @@
   
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/meehow/receiver/master/data/screenshot1.png</image>
+      <image>https://receiver.808bits.com/screenshot1.png</image>
       <caption>Main Window</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://receiver.808bits.com/screenshot2.png</image>
+      <caption>Station list</caption>
+    </screenshot>
+    <screenshot>
+      <video container="webm" codec="vp9">https://receiver.808bits.com/screencast1.webm</video>
+      <caption>Receiver in action</caption>
     </screenshot>
   </screenshots>
   

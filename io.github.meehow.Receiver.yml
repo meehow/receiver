@@ -18,6 +18,5 @@ modules:
     config-opts:
       - --buildtype=release
     sources:
-      - type: git
-        url: https://github.com/meehow/receiver.git
-        tag: v0.3.1
+      - type: dir
+        path: .

@@ -37,5 +37,5 @@ executable('ytdl',
   'src/main.vala',
   dependencies: deps,
   link_with: libytdl,
-  install: true,
+  install: false,
 )
