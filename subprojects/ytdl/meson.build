@@ -28,7 +28,7 @@ libytdl = static_library('ytdl',
 )
 
 ytdl_dep = declare_dependency(
-  link_with: libytdl,
+  link_whole: libytdl,
   dependencies: deps,
   include_directories: include_directories('.'),
 )
