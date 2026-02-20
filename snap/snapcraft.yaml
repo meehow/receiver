@@ -1,6 +1,6 @@
 name: receiver
 base: core24
-version: '0.3.2'
+version: '0.3.3'
 title: Receiver
 summary: Internet radio player for GNOME
 description: |

@@ -69,6 +69,14 @@
   </screenshots>
   
   <releases>
+    <release version="0.3.3" date="2026-02-20">
+      <description>
+        <ul>
+          <li>Add Snap packaging support</li>
+          <li>Persist download directory using GSettings</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.2" date="2026-02-19">
       <description>
         <p>Massive translation update! Added translations for 138 languages covering:</p>
