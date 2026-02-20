@@ -9,7 +9,7 @@ namespace Receiver {
         public Application() {
             Object(
                 application_id: "io.github.meehow.Receiver",
-                flags: ApplicationFlags.DEFAULT_FLAGS
+                flags: ApplicationFlags.DEFAULT_FLAGS | ApplicationFlags.NON_UNIQUE
             );
         }
 

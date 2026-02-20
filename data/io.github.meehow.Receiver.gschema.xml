@@ -21,6 +21,11 @@
       <summary>Language filter</summary>
       <description>The language code used to filter the station list.</description>
     </key>
+    <key name="download-dir" type="s">
+      <default>''</default>
+      <summary>Download directory</summary>
+      <description>The last directory used to save downloaded songs.</description>
+    </key>
 
   </schema>
 </schemalist>

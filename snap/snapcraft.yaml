@@ -1,0 +1,63 @@
+name: receiver
+base: core24
+version: '0.3.2'
+title: Receiver
+summary: Internet radio player for GNOME
+description: |
+  Receiver is a modern internet radio player built with GTK 4 and
+  Libadwaita, featuring a curated collection of over 30,000 pre-scanned
+  and verified stations from around the world.
+license: GPL-3.0-or-later
+contact: https://github.com/meehow/receiver/issues
+issues: https://github.com/meehow/receiver/issues
+source-code: https://github.com/meehow/receiver
+website: https://github.com/meehow/receiver
+
+grade: stable
+confinement: strict
+icon: data/icons/hicolor/512x512/apps/io.github.meehow.Receiver.png
+
+slots:
+  receiver-mpris:
+    interface: mpris
+
+apps:
+  receiver:
+    command: usr/bin/receiver
+    extensions: [gnome]
+    plugs:
+      - network
+      - audio-playback
+      - desktop
+    slots:
+      - receiver-mpris
+
+layout:
+  /usr/share/receiver:
+    bind: $SNAP/usr/share/receiver
+
+parts:
+  receiver:
+    plugin: meson
+    source: .
+    meson-parameters:
+      - --prefix=/usr
+      - --buildtype=release
+    build-packages:
+      - valac
+      - libgtk-4-dev
+      - libadwaita-1-dev
+      - libgstreamer1.0-dev
+      - libsoup-3.0-dev
+      - libjson-glib-dev
+      - libjavascriptcoregtk-6.0-dev
+      - libsqlite3-dev
+      - gettext
+    stage-packages:
+      - gstreamer1.0-plugins-base
+      - gstreamer1.0-plugins-good
+      - libsoup-3.0-0
+      - libjson-glib-1.0-0
+      - libjavascriptcoregtk-6.0-1
+      - libsqlite3-0
+      - webp-pixbuf-loader

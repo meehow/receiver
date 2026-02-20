@@ -2,6 +2,7 @@
 
 **Internet radio player for GNOME**
 
+[![Snapcraft](https://snapcraft.io/receiver/badge.svg)](https://snapcraft.io/receiver)
 [![Release](https://img.shields.io/github/v/release/meehow/receiver?style=flat-square)](https://github.com/meehow/receiver/releases)
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-blue?style=flat-square)](LICENSE)
 

@@ -5,7 +5,6 @@ namespace Receiver {
         public signal void progress_updated(double fraction);
 
         private bool downloading = false;
-        private File? last_save_dir = File.new_for_path(Environment.get_user_special_dir(UserDirectory.VIDEOS));
         private weak Gtk.Window? window;
         private Cancellable? cancellable;
 
@@ -79,9 +78,11 @@ namespace Receiver {
             // Show save dialog
             var dialog = new Gtk.FileDialog();
             dialog.initial_name = filename;
-            if (last_save_dir != null) {
-                dialog.initial_folder = last_save_dir;
+            var saved_dir = AppState.get_default().settings.get_string("download-dir");
+            if (saved_dir != "") {
+                dialog.initial_folder = File.new_for_path(saved_dir);
             }
+
 
             try {
                 var file = yield dialog.save(parent_window, null);
@@ -139,7 +140,7 @@ namespace Receiver {
                     show_toast(_("Download failed: %s").printf(dl_error));
                 } else {
                     show_toast(_("Saved: %s").printf(dest.get_basename()));
-                    last_save_dir = dest.get_parent();
+                    AppState.get_default().settings.set_string("download-dir", dest.get_parent().get_path());
                 }
             } catch (Error e) {
                 // User dismissed the dialog — no toast needed

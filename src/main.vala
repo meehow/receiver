@@ -19,6 +19,9 @@ int main(string[] args) {
     Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
     Intl.textdomain(GETTEXT_PACKAGE);
 
+    // Use GNOME gsettings proxy resolver (avoids portal denial in sandboxes)
+    Environment.set_variable("GIO_USE_PROXY_RESOLVER", "gnome", false);
+
     Gst.init(ref args);
 
     // Disable AV1 video parser — it crashes on AAC audio data during auto-detection

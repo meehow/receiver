@@ -18,6 +18,7 @@ clean:
 	rm -rf builddir
 
 run: build
+	glib-compile-schemas data/
 	GSETTINGS_SCHEMA_DIR=$(CURDIR)/data \
 	XDG_DATA_DIRS=$(CURDIR)/data:/usr/share \
 	LOCALEDIR=$(CURDIR)/builddir/po \

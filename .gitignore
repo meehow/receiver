@@ -16,3 +16,4 @@ debian/*.substvars
 debian/*.log
 *.buildinfo
 *.changes
+*.snap
