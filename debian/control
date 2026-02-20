@@ -23,6 +23,7 @@ Depends: ${shlibs:Depends},
          gstreamer1.0-plugins-base,
          gstreamer1.0-plugins-good,
          webp-pixbuf-loader
+Recommends: gstreamer1.0-plugins-bad
 Description: Internet radio player for GNOME
  Receiver is a modern internet radio player for GNOME, featuring a curated
  collection of over 30,000 stations from around the world.

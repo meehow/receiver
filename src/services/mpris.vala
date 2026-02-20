@@ -186,7 +186,7 @@ namespace Receiver {
         public MprisService(Gtk.Application app, Player player) {
             owner_id = Bus.own_name(
                 BusType.SESSION,
-                "org.mpris.MediaPlayer2.receiver",
+                "org.mpris.MediaPlayer2.io.github.meehow.Receiver",
                 BusNameOwnerFlags.NONE,
                 (conn) => {
                     try {

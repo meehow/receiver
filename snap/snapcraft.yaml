@@ -56,8 +56,13 @@ parts:
     stage-packages:
       - gstreamer1.0-plugins-base
       - gstreamer1.0-plugins-good
+      - gstreamer1.0-plugins-bad
       - libsoup-3.0-0
       - libjson-glib-1.0-0
       - libjavascriptcoregtk-6.0-1
       - libsqlite3-0
       - webp-pixbuf-loader
+    stage:
+      - -usr/lib/*/libharfbuzz*
+      - -usr/lib/*/libpango*
+      - -usr/lib/*/librsvg*

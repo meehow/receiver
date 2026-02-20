@@ -10,7 +10,6 @@ finish-args:
   - --socket=wayland
   - --socket=pulseaudio
   - --device=dri
-  - --own-name=org.mpris.MediaPlayer2.receiver
 
 modules:
   - name: receiver
