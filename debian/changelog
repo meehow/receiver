@@ -1,3 +1,11 @@
+receiver (0.3.4-1) unstable; urgency=medium
+
+  * Harden Flatpak sandbox by using app ID for MPRIS bus name
+  * Remove unnecessary D-Bus own-name permission
+  * Drop gstreamer-plugins-ugly from Recommends
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Thu, 20 Feb 2026 20:55:00 +0100
+
 receiver (0.3.3-1) unstable; urgency=medium
 
   * Add Snap packaging support

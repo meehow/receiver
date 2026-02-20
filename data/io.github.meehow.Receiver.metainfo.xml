@@ -69,6 +69,15 @@
   </screenshots>
   
   <releases>
+    <release version="0.3.4" date="2026-02-20">
+      <description>
+        <ul>
+          <li>Harden Flatpak sandbox by using app ID for MPRIS bus name</li>
+          <li>Remove unnecessary D-Bus own-name permission</li>
+          <li>Drop gstreamer-plugins-ugly from Debian recommends</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.3" date="2026-02-20">
       <description>
         <ul>
