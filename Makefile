@@ -7,6 +7,7 @@ LINUXDEPLOY_GTK_URL = https://raw.githubusercontent.com/linuxdeploy/linuxdeploy-
 APPDIR = AppDir
 GST_LIBDIR = /usr/lib/x86_64-linux-gnu/gstreamer-1.0
 GST_SCANNER = /usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner
+VERSION = $(shell grep "version:" meson.build | head -1 | sed "s/.*'\(.*\)'.*/\1/")
 
 .PHONY: build install clean deb run appimage \
         flatpak-build flatpak-run flatpak-lint-manifest flatpak-lint-repo flatpak-submit \
@@ -106,7 +107,7 @@ appimage: build $(LINUXDEPLOY) $(LINUXDEPLOY_GTK)
 	cp /usr/share/icons/Adwaita/index.theme $(APPDIR)/usr/share/icons/Adwaita/
 	cp -r /usr/share/icons/Adwaita/symbolic $(APPDIR)/usr/share/icons/Adwaita/
 	-cp -r /usr/share/icons/Adwaita/symbolic-up-to-32 $(APPDIR)/usr/share/icons/Adwaita/
-	DEPLOY_GTK_VERSION=4 ./$(LINUXDEPLOY) \
+	VERSION=$(VERSION) DEPLOY_GTK_VERSION=4 ./$(LINUXDEPLOY) \
 		--appdir $(APPDIR) \
 		--plugin gtk \
 		--desktop-file $(APPDIR)/usr/share/applications/$(APP_ID).desktop \
