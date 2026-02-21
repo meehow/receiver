@@ -1,6 +1,7 @@
 name: Build & Package
 
 on:
+  workflow_dispatch:
   push:
     branches: [master]
     tags: ['v*']
@@ -55,3 +56,46 @@ jobs:
           gh release create ${{ github.ref_name }}
           receiver_*.deb
           --generate-notes
+
+  build-appimage:
+    name: Build AppImage
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            meson \
+            valac \
+            libgtk-4-dev \
+            libadwaita-1-dev \
+            libgstreamer1.0-dev \
+            libsoup-3.0-dev \
+            libjson-glib-dev \
+            libjavascriptcoregtk-6.0-dev \
+            libsqlite3-dev \
+            gstreamer1.0-plugins-good \
+            gstreamer1.0-plugins-bad \
+            librsvg2-dev
+
+      - name: Build AppImage
+        run: make appimage
+
+      - name: Upload AppImage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: receiver-appimage
+          path: Receiver-*.AppImage
+
+      - name: Attach AppImage to release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          gh release upload ${{ github.ref_name }}
+          Receiver-*.AppImage
+          --clobber
