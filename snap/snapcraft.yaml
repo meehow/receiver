@@ -2,11 +2,15 @@ name: receiver
 base: core24
 version: '0.3.4'
 title: Receiver
-summary: Internet radio player for GNOME
+summary: Discover 30,000+ verified radio stations from around the world
 description: |
-  Receiver is a modern internet radio player built with GTK 4 and
-  Libadwaita, featuring a curated collection of over 30,000 pre-scanned
-  and verified stations from around the world.
+  Most radio apps make you search for stations by name or paste in a stream
+  URL. Receiver ships with over 30,000 stations ready to explore — each one
+  individually scanned and verified, with duplicates removed and logos
+  fetched in proper resolution. Just open the app and start discovering.
+
+  No sign-up. No ads. No popularity rankings deciding what you hear.
+  Just radio.
 license: GPL-3.0-or-later
 contact: https://github.com/meehow/receiver/issues
 issues: https://github.com/meehow/receiver/issues

@@ -5,20 +5,27 @@
   <project_license>GPL-3.0-or-later</project_license>
   
   <name>Receiver</name>
-  <summary>Internet radio player for GNOME</summary>
+  <summary>Discover 30,000+ verified radio stations from around the world</summary>
   
   <description>
     <p>
-      Receiver is a modern internet radio player for GNOME, featuring a curated collection of over 30,000 stations from around the world.
+      Most radio apps make you search for stations by name or paste in a stream URL.
+      Receiver ships with over 30,000 stations ready to explore — each one individually
+      scanned and verified, with duplicates removed and logos fetched in proper resolution.
+      Just open the app and start discovering.
     </p>
-    <p>Features:</p>
+    <p>
+      No sign-up. No ads. No popularity rankings deciding what you hear. Just radio.
+    </p>
     <ul>
-      <li>All stations pre-scanned and verified for reliability</li>
-      <li>Browse stations by genre, country, or search</li>
+      <li>30,000+ curated stations — deduplicated, scanned, and verified</li>
+      <li>High-quality logos for a clean browsing experience</li>
+      <li>Browse and search by tags, country, or language</li>
       <li>Save your favourite stations for quick access</li>
-      <li>Beautiful native GNOME interface</li>
-      <li>Support for MP3, AAC, Ogg, and HLS streams</li>
-      <li>Session persistence - resume where you left off</li>
+      <li>MP3, AAC, Ogg, and HLS stream support</li>
+      <li>MPRIS integration — control playback from your desktop</li>
+      <li>Session persistence — resume where you left off</li>
+      <li>Translated into 130 languages</li>
     </ul>
   </description>
   

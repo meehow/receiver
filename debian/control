@@ -24,14 +24,19 @@ Depends: ${shlibs:Depends},
          gstreamer1.0-plugins-good,
          webp-pixbuf-loader
 Recommends: gstreamer1.0-plugins-bad
-Description: Internet radio player for GNOME
- Receiver is a modern internet radio player for GNOME, featuring a curated
- collection of over 30,000 stations from around the world.
+Description: Discover 30,000+ verified radio stations from around the world
+ Most radio apps make you search for stations by name or paste in a stream
+ URL. Receiver ships with over 30,000 stations ready to explore — each one
+ individually scanned and verified, with duplicates removed and logos fetched
+ in proper resolution. Just open the app and start discovering.
  .
- Features:
-  * All stations pre-scanned and verified for reliability
-  * Browse stations by genre, country, or search
+ No sign-up. No ads. No popularity rankings deciding what you hear. Just radio.
+ .
+  * 30,000+ curated stations — deduplicated, scanned, and verified
+  * High-quality logos for a clean browsing experience
+  * Browse and search by tags, country, or language
   * Save your favourite stations for quick access
-  * Beautiful native GNOME interface
-  * Support for MP3, AAC, Ogg, and HLS streams
-  * Session persistence - resume where you left off
+  * MP3, AAC, Ogg, and HLS stream support
+  * MPRIS integration — control playback from your desktop
+  * Session persistence — resume where you left off
+  * Translated into 130 languages
