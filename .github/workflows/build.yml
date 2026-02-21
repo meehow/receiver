@@ -82,7 +82,8 @@ jobs:
             gstreamer1.0-plugins-bad \
             gstreamer1.0-alsa \
             gstreamer1.0-pulseaudio \
-            librsvg2-dev
+            librsvg2-dev \
+            webp-pixbuf-loader
 
       - name: Build AppImage
         run: make appimage
