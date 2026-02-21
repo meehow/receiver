@@ -83,7 +83,8 @@ jobs:
             gstreamer1.0-alsa \
             gstreamer1.0-pulseaudio \
             librsvg2-dev \
-            webp-pixbuf-loader
+            webp-pixbuf-loader \
+            gettext
 
       - name: Build AppImage
         run: make appimage
