@@ -1,26 +1,41 @@
 # Receiver
 
-**Internet radio player for GNOME**
+**Discover radio stations you'd never find on your own.**
+
+Most radio apps make you search for stations by name or paste in a stream URL. Receiver flips that around — it ships with **30,000+ stations** ready to explore, each one verified and working, with clean logos, organized by tags, country and language. Just open the app and start discovering.
 
 [![Snapcraft](https://snapcraft.io/receiver/badge.svg)](https://snapcraft.io/receiver)
 [![Release](https://img.shields.io/github/v/release/meehow/receiver?style=flat-square)](https://github.com/meehow/receiver/releases)
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-blue?style=flat-square)](LICENSE)
 
-Receiver is a modern internet radio player built with GTK 4 and Libadwaita, featuring a curated collection of over 30,000 pre-scanned and verified stations from around the world.
+![Receiver — browsing stations](data/screenshot1.png)
 
-![Receiver screenshot](data/screenshot1.png)
+## Why Receiver?
+
+Every station in Receiver has been **individually scanned** to verify it's reachable and actually streaming. Duplicates have been removed, broken streams filtered out, and logos fetched in proper resolution — so what you see is a clean, reliable station list, not a dump of 50,000 half-dead URLs.
+
+No sign-up. No ads. No popularity rankings deciding what you hear. Just radio.
 
 ## Features
 
-- 📻 **30,000+ curated stations** — all pre-scanned and verified for reliability
-- 🔍 **Browse & search** — find stations by genre, country, or keyword
+- 📻 **30,000+ curated stations** — deduplicated, scanned, and verified
+- 🎨 **High-quality logos** — prioritized stations with a clean, properly sized icon
+- 🔍 **Browse & search** — find stations by tags, country or language
 - ⭐ **Favourites** — save stations for quick access
 - 🎵 **Wide format support** — MP3, AAC, Ogg, and HLS streams
 - 💾 **Session persistence** — resume where you left off
-- 🌍 **Translations** — Czech, German, Spanish, French, Hindi, Hungarian, Indonesian, Italian, Japanese, Korean, Dutch, Polish, Portuguese, Swedish, Turkish, Ukrainian, Chinese (Simplified & Traditional)
 - 🎛️ **MPRIS integration** — control playback from your desktop environment
+- 🌍 **130 languages** — translated for users around the world
 
-## Installation
+## Install
+
+### Snap Store
+
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/receiver)
+
+```sh
+sudo snap install receiver
+```
 
 ### Debian / Ubuntu
 
@@ -32,27 +47,9 @@ sudo apt install ./receiver_*.deb
 
 ### From source
 
-#### Dependencies
+See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions and development setup.
 
-```sh
-sudo apt install \
-    meson \
-    valac \
-    libgtk-4-dev \
-    libadwaita-1-dev \
-    libgstreamer1.0-dev \
-    libsoup-3.0-dev \
-    libjson-glib-dev \
-    libjavascriptcoregtk-6.0-dev \
-    libsqlite3-dev \
-    gstreamer1.0-plugins-base \
-    gstreamer1.0-plugins-good
-```
+## Links
 
-#### Build & install
+- [Report a bug](https://github.com/meehow/receiver/issues)
 
-```sh
-meson setup builddir
-meson compile -C builddir
-sudo meson install -C builddir
-```
