@@ -2,7 +2,7 @@
 const string GETTEXT_PACKAGE = "receiver";
 
 int main(string[] args) {
-    // Set locale — if not installed, fall back so gettext still works
+    // Set locale — if not installed, fall back to C.UTF-8 so gettext still works
     if (Intl.setlocale(LocaleCategory.ALL, "") == null) {
         if (Environment.get_variable("LANGUAGE") == null) {
             var lang = Environment.get_variable("LANG");
@@ -10,8 +10,7 @@ int main(string[] args) {
                 Environment.set_variable("LANGUAGE", lang.split(".")[0], true);
             }
         }
-        Environment.set_variable("LC_ALL", "en_US.UTF-8", true);
-        Intl.setlocale(LocaleCategory.ALL, "en_US.UTF-8");
+        Intl.setlocale(LocaleCategory.ALL, "C.UTF-8");
     }
 
     var localedir = Environment.get_variable("LOCALEDIR") ?? "/usr/share/locale";
