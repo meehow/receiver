@@ -7,6 +7,9 @@ export GST_PLUGIN_SYSTEM_PATH="${APPDIR}/usr/lib/x86_64-linux-gnu/gstreamer-1.0"
 export GST_PLUGIN_SCANNER="${APPDIR}/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner"
 export GST_REGISTRY="${HOME}/.cache/receiver-gst-registry"
 
+# Point gettext to bundled translations
+export LOCALEDIR="${APPDIR}/usr/share/locale"
+
 # Override linuxdeploy-plugin-gtk's forced GDK_BACKEND=x11
 # GTK 4.14+ handles Wayland natively; x11 causes visual differences
 unset GDK_BACKEND
