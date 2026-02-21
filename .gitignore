@@ -17,3 +17,6 @@ debian/*.log
 *.buildinfo
 *.changes
 *.snap
+*.AppImage
+linuxdeploy-plugin-gtk.sh
+AppDir/
