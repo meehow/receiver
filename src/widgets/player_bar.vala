@@ -309,7 +309,7 @@ namespace Receiver {
 
 
         private bool looks_like_song(string t) {
-            return t.contains("- ");
+            return t.contains(" \u02d7 ") || t.contains(" - ");
         }
 
         private string format_now_playing(string title) {
