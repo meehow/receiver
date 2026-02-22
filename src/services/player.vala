@@ -95,6 +95,14 @@ namespace Receiver {
                 // Close immediately — we only need the final resolved URI
                 try { stream.close(); } catch {}
                 resolved = msg.get_uri().to_string();
+
+                // Reject non-audio responses (e.g. HTML error pages)
+                var ct = msg.response_headers.get_content_type(null);
+                if (ct != null && ct.has_prefix("text/html")) {
+                    error_occurred("Station returned a web page, not an audio stream");
+                    session.abort();
+                    return;
+                }
                 session.abort();
             } catch (Error e) {
                 if (cancel.is_cancelled()) return;
