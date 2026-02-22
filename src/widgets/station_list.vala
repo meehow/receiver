@@ -254,14 +254,12 @@ namespace Receiver {
             title_label.xalign = 0;
             title_label.ellipsize = Pango.EllipsizeMode.END;
             title_label.lines = 1;
-            title_label.max_width_chars = 1;
             title_label.add_css_class("heading");
             text.append(title_label);
             subtitle_label = new Gtk.Label("");
             subtitle_label.xalign = 0;
             subtitle_label.ellipsize = Pango.EllipsizeMode.END;
             subtitle_label.lines = 1;
-            subtitle_label.max_width_chars = 1;
             subtitle_label.add_css_class("dim-label");
             subtitle_label.add_css_class("caption");
             text.append(subtitle_label);
