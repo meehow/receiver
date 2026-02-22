@@ -230,6 +230,7 @@ namespace Receiver {
         private void schedule_retry(string error_msg) {
             if (current_station == null || retry_count >= MAX_RETRIES) {
                 error_occurred(error_msg);
+                stop();
                 return;
             }
 
@@ -301,7 +302,13 @@ namespace Receiver {
 
                 // Resolve relative URLs (common in HLS)
                 if (stream_url != null && !stream_url.has_prefix("http")) {
-                    stream_url = base_url + stream_url;
+                    if (stream_url.has_prefix("/")) {
+                        // Absolute path — use origin (scheme + host)
+                        var uri = Uri.parse(url, UriFlags.NONE);
+                        stream_url = "%s://%s%s".printf(uri.get_scheme(), uri.get_host(), stream_url);
+                    } else {
+                        stream_url = base_url + stream_url;
+                    }
                 }
 
                 if (cancel.is_cancelled()) return;
