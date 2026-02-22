@@ -69,12 +69,10 @@ namespace Receiver {
             last_raw_title = null;
             metadata_changed(station.name);
 
-            // Resolve playlists, otherwise resolve redirects and play
+            // Resolve playlists (.pls, .m3u, .m3u8), otherwise resolve redirects
             var cancel = play_cancellable;
-            if (url.has_suffix(".pls") || (url.has_suffix(".m3u") && !url.has_suffix(".m3u8"))) {
+            if (url.has_suffix(".pls") || url.has_suffix(".m3u") || url.has_suffix(".m3u8")) {
                 resolve_playlist.begin(url, cancel);
-            } else if (url.has_suffix(".m3u8")) {
-                resolve_hls.begin(url, cancel);
             } else {
                 resolve_redirects.begin(url, cancel);
             }
@@ -254,10 +252,8 @@ namespace Receiver {
                     var url = current_station.get_stream_url();
                     if (url != null && url != "") {
                         var cancel = play_cancellable;
-                        if (url.has_suffix(".pls") || (url.has_suffix(".m3u") && !url.has_suffix(".m3u8"))) {
+                        if (url.has_suffix(".pls") || url.has_suffix(".m3u") || url.has_suffix(".m3u8")) {
                             resolve_playlist.begin(url, cancel);
-                        } else if (url.has_suffix(".m3u8")) {
-                            resolve_hls.begin(url, cancel);
                         } else {
                             resolve_redirects.begin(url, cancel);
                         }
@@ -274,37 +270,7 @@ namespace Receiver {
             }
         }
 
-        // Pre-resolve HLS master playlists — GStreamer's hlsdemux can choke
-        // on some master playlists, so we extract the media playlist URL ourselves.
-        private async void resolve_hls(string url, Cancellable cancel) {
-            try {
-                var session = new Soup.Session();
-                session.timeout = 10;
-                var msg = new Soup.Message("GET", url);
-                var bytes = yield session.send_and_read_async(msg, Priority.DEFAULT, cancel);
-                if (cancel.is_cancelled()) return;
-
-                var content = (string) bytes.get_data();
-                bool next_is_uri = false;
-                foreach (var line in content.split("\n")) {
-                    var l = line.strip();
-                    if (l.has_prefix("#EXT-X-STREAM-INF")) {
-                        next_is_uri = true;
-                    } else if (next_is_uri && l != "" && !l.has_prefix("#")) {
-                        if (!l.has_prefix("http")) {
-                            l = url.substring(0, url.last_index_of("/") + 1) + l;
-                        }
-                        message("HLS resolved: %s -> %s", url, l);
-                        start(l);
-                        return;
-                    }
-                }
-            } catch (Error e) {
-                if (cancel.is_cancelled()) return;
-            }
-            start(url);
-        }
-
+        // Resolve .pls, .m3u, and .m3u8 playlists to a stream URL
         private async void resolve_playlist(string url, Cancellable cancel) {
             try {
                 var session = new Soup.Session();
@@ -317,29 +283,50 @@ namespace Receiver {
                     return;
                 }
                 var content = (string) bytes.get_data();
+                var base_url = url.substring(0, url.last_index_of("/") + 1);
 
                 string? stream_url = null;
-                foreach (var l in content.split("\n")) {
-                    var t = l.strip();
-                    if (url.has_suffix(".pls") && t.has_prefix("File") && t.contains("=")) {
-                        stream_url = t.split("=", 2)[1];
+                bool next_is_uri = false;
+                foreach (var line in content.split("\n")) {
+                    var l = line.strip();
+                    // PLS: File1=http://...
+                    if (url.has_suffix(".pls") && l.has_prefix("File") && l.contains("=")) {
+                        stream_url = l.split("=", 2)[1];
                         break;
                     }
-                    if (t.has_prefix("http://") || t.has_prefix("https://")) {
-                        stream_url = t;
+                    // HLS master playlist: line after #EXT-X-STREAM-INF
+                    if (l.has_prefix("#EXT-X-STREAM-INF")) {
+                        next_is_uri = true;
+                        continue;
+                    }
+                    if (l == "" || l.has_prefix("#")) continue;
+                    // Non-comment, non-empty line — it's a URL
+                    if (next_is_uri || l.has_prefix("http://") || l.has_prefix("https://")) {
+                        stream_url = l;
                         break;
                     }
                 }
 
+                // Resolve relative URLs (common in HLS)
+                if (stream_url != null && !stream_url.has_prefix("http")) {
+                    stream_url = base_url + stream_url;
+                }
+
                 if (cancel.is_cancelled()) return;
                 if (stream_url != null) {
+                    message("Playlist resolved: %s -> %s", url, stream_url);
                     start(stream_url);
                 } else {
                     error_occurred("No stream URL in playlist");
                 }
             } catch (Error e) {
                 if (cancel.is_cancelled()) return;
-                error_occurred("Playlist error: " + e.message);
+                // HLS: fall back to original URL; others: report error
+                if (url.has_suffix(".m3u8")) {
+                    start(url);
+                } else {
+                    error_occurred("Playlist error: " + e.message);
+                }
             }
         }
     }
