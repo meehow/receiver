@@ -73,6 +73,8 @@ namespace Receiver {
             var cancel = play_cancellable;
             if (url.has_suffix(".pls") || (url.has_suffix(".m3u") && !url.has_suffix(".m3u8"))) {
                 resolve_playlist.begin(url, cancel);
+            } else if (url.has_suffix(".m3u8")) {
+                resolve_hls.begin(url, cancel);
             } else {
                 resolve_redirects.begin(url, cancel);
             }
@@ -246,6 +248,8 @@ namespace Receiver {
                         var cancel = play_cancellable;
                         if (url.has_suffix(".pls") || (url.has_suffix(".m3u") && !url.has_suffix(".m3u8"))) {
                             resolve_playlist.begin(url, cancel);
+                        } else if (url.has_suffix(".m3u8")) {
+                            resolve_hls.begin(url, cancel);
                         } else {
                             resolve_redirects.begin(url, cancel);
                         }
@@ -260,6 +264,37 @@ namespace Receiver {
                 Source.remove(retry_timeout);
                 retry_timeout = 0;
             }
+        }
+
+        // Pre-resolve HLS master playlists — GStreamer's hlsdemux can choke
+        // on some master playlists, so we extract the media playlist URL ourselves.
+        private async void resolve_hls(string url, Cancellable cancel) {
+            try {
+                var session = new Soup.Session();
+                session.timeout = 10;
+                var msg = new Soup.Message("GET", url);
+                var bytes = yield session.send_and_read_async(msg, Priority.DEFAULT, cancel);
+                if (cancel.is_cancelled()) return;
+
+                var content = (string) bytes.get_data();
+                bool next_is_uri = false;
+                foreach (var line in content.split("\n")) {
+                    var l = line.strip();
+                    if (l.has_prefix("#EXT-X-STREAM-INF")) {
+                        next_is_uri = true;
+                    } else if (next_is_uri && l != "" && !l.has_prefix("#")) {
+                        if (!l.has_prefix("http")) {
+                            l = url.substring(0, url.last_index_of("/") + 1) + l;
+                        }
+                        message("HLS resolved: %s -> %s", url, l);
+                        start(l);
+                        return;
+                    }
+                }
+            } catch (Error e) {
+                if (cancel.is_cancelled()) return;
+            }
+            start(url);
         }
 
         private async void resolve_playlist(string url, Cancellable cancel) {
