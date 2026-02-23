@@ -25,7 +25,7 @@ No sign-up. No ads. No popularity rankings deciding what you hear. Just radio.
 - 🎵 **Wide format support** — MP3, AAC, Ogg, and HLS streams
 - 💾 **Session persistence** — resume where you left off
 - 🎛️ **MPRIS integration** — control playback from your desktop environment
-- 🌍 **130 languages** — translated for users around the world
+- 🌍 **120 languages** — translated for users around the world
 
 ## Install
 

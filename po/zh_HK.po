@@ -3,524 +3,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-18 22:00+0100\n"
+"POT-Creation-Date: 2026-02-23 23:07+0100\n"
 "Language: zh_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: src/utils/languages.vala:7
-msgid "Afrikaans"
-msgstr "南非荷蘭語"
-
-#: src/utils/languages.vala:8
-msgid "Akan"
-msgstr "阿坎語"
-
-#: src/utils/languages.vala:9
-msgid "Amharic"
-msgstr "阿姆哈拉語"
-
-#: src/utils/languages.vala:10
-msgid "Arabic"
-msgstr "阿拉伯語"
-
-#: src/utils/languages.vala:11
-msgid "Assamese"
-msgstr "阿薩姆語"
-
-#: src/utils/languages.vala:12
-msgid "Spanish (Asturian)"
-msgstr "西班牙語（阿斯圖里亞斯語）"
-
-#: src/utils/languages.vala:13
-msgid "Aymara"
-msgstr "艾馬拉語"
-
-#: src/utils/languages.vala:14
-msgid "Azerbaijani"
-msgstr "亞塞拜然語"
-
-#: src/utils/languages.vala:15
-msgid "Bavarian"
-msgstr "德語（巴伐利亞語）"
-
-#: src/utils/languages.vala:16
-msgid "Belarusian"
-msgstr "白俄羅斯語"
-
-#: src/utils/languages.vala:17
-msgid "Bulgarian"
-msgstr "保加利亞語"
-
-#: src/utils/languages.vala:18
-msgid "Bislama"
-msgstr "比斯拉馬語"
-
-#: src/utils/languages.vala:19
-msgid "Bambara"
-msgstr "班巴拉語"
-
-#: src/utils/languages.vala:20
-msgid "Bengali"
-msgstr "孟加拉語"
-
-#: src/utils/languages.vala:21
-msgid "Tibetan"
-msgstr "藏語"
-
-#: src/utils/languages.vala:22
-msgid "Breton"
-msgstr "布列塔尼語"
-
-#: src/utils/languages.vala:23
-msgid "Bosnian"
-msgstr "波士尼亞語"
-
-#: src/utils/languages.vala:24
-msgid "Catalan"
-msgstr "加泰隆尼亞語"
-
-#: src/utils/languages.vala:25
-msgid "Chinese (Mandarin)"
-msgstr "中文（普通話）"
-
-#: src/utils/languages.vala:26
-msgid "Cree"
-msgstr "克里語"
-
-#: src/utils/languages.vala:27
-msgid "Czech"
-msgstr "捷克語"
-
-#: src/utils/languages.vala:28
-msgid "Welsh"
-msgstr "威爾斯語"
-
-#: src/utils/languages.vala:29
-msgid "Danish"
-msgstr "丹麥語"
-
-#: src/utils/languages.vala:30
-msgid "German"
-msgstr "德語"
-
-#: src/utils/languages.vala:31
-msgid "Greek"
-msgstr "希臘語"
-
-#: src/utils/languages.vala:32
-msgid "English"
-msgstr "英語"
-
-#: src/utils/languages.vala:33
-msgid "Esperanto"
-msgstr "世界語"
-
-#: src/utils/languages.vala:34
-msgid "Spanish"
-msgstr "西班牙語"
-
-#: src/utils/languages.vala:35
-msgid "Spanish (Latin American)"
-msgstr "西班牙語（拉丁美洲）"
-
-#: src/utils/languages.vala:36
-msgid "Estonian"
-msgstr "愛沙尼亞語"
-
-#: src/utils/languages.vala:37
-msgid "Basque"
-msgstr "巴斯克語"
-
-#: src/utils/languages.vala:38
-msgid "Persian"
-msgstr "波斯語"
-
-#: src/utils/languages.vala:39
-msgid "Finnish"
-msgstr "芬蘭語"
-
-#: src/utils/languages.vala:40
-msgid "Filipino"
-msgstr "菲律賓語"
-
-#: src/utils/languages.vala:41
-msgid "Fijian"
-msgstr "斐濟語"
-
-#: src/utils/languages.vala:42
-msgid "Faroese"
-msgstr "法羅語"
-
-#: src/utils/languages.vala:43
-msgid "French"
-msgstr "法語"
-
-#: src/utils/languages.vala:44
-msgid "Irish"
-msgstr "愛爾蘭語"
-
-#: src/utils/languages.vala:45
-msgid "Scottish Gaelic"
-msgstr "蘇格蘭蓋爾語"
-
-#: src/utils/languages.vala:46
-msgid "Galician"
-msgstr "加利西亞語"
-
-#: src/utils/languages.vala:47
-msgid "Guarani"
-msgstr "瓜拉尼語"
-
-#: src/utils/languages.vala:48
-msgid "German (Swiss)"
-msgstr "德語（瑞士）"
-
-#: src/utils/languages.vala:49
-msgid "Gujarati"
-msgstr "古吉拉特語"
-
-#: src/utils/languages.vala:50
-msgid "Manx"
-msgstr "曼島語"
-
-#: src/utils/languages.vala:51
-msgid "Hausa"
-msgstr "豪薩語"
-
-#: src/utils/languages.vala:52
-msgid "Chinese (Hakka)"
-msgstr "中文（客家話）"
-
-#: src/utils/languages.vala:53
-msgid "Hebrew"
-msgstr "希伯來語"
-
-#: src/utils/languages.vala:54
-msgid "Hindi"
-msgstr "印地語"
-
-#: src/utils/languages.vala:55
-msgid "Croatian"
-msgstr "克羅埃西亞語"
-
-#: src/utils/languages.vala:56
-msgid "Hungarian"
-msgstr "匈牙利語"
-
-#: src/utils/languages.vala:57
-msgid "Armenian"
-msgstr "亞美尼亞語"
-
-#: src/utils/languages.vala:58
-msgid "Indonesian"
-msgstr "印尼語"
-
-#: src/utils/languages.vala:59
-msgid "Icelandic"
-msgstr "冰島語"
-
-#: src/utils/languages.vala:60
-msgid "Italian"
-msgstr "義大利語"
-
-#: src/utils/languages.vala:61
-msgid "Japanese"
-msgstr "日語"
-
-#: src/utils/languages.vala:62
-msgid "Javanese"
-msgstr "爪哇語"
-
-#: src/utils/languages.vala:63
-msgid "Georgian"
-msgstr "喬治亞語"
-
-#: src/utils/languages.vala:64
-msgid "Kazakh"
-msgstr "哈薩克語"
-
-#: src/utils/languages.vala:65
-msgid "Khmer"
-msgstr "高棉語"
-
-#: src/utils/languages.vala:66
-msgid "Kannada"
-msgstr "卡納達語"
-
-#: src/utils/languages.vala:67
-msgid "Korean"
-msgstr "韓語"
-
-#: src/utils/languages.vala:68
-msgid "Kashmiri"
-msgstr "喀什米爾語"
-
-#: src/utils/languages.vala:69
-msgid "Kurdish"
-msgstr "庫德語"
-
-#: src/utils/languages.vala:70
-msgid "Komi"
-msgstr "科米語"
-
-#: src/utils/languages.vala:71
-msgid "Cornish"
-msgstr "康瓦爾語"
-
-#: src/utils/languages.vala:72
-msgid "Latin"
-msgstr "拉丁語"
-
-#: src/utils/languages.vala:73
-msgid "Luxembourgish"
-msgstr "盧森堡語"
-
-#: src/utils/languages.vala:74
-msgid "Lingala"
-msgstr "林加拉語"
-
-#: src/utils/languages.vala:75
-msgid "Lithuanian"
-msgstr "立陶宛語"
-
-#: src/utils/languages.vala:76
-msgid "Latvian"
-msgstr "拉脫維亞語"
-
-#: src/utils/languages.vala:77
-msgid "Malagasy"
-msgstr "馬達加斯加語"
-
-#: src/utils/languages.vala:78
-msgid "Māori"
-msgstr "毛利語"
-
-#: src/utils/languages.vala:79
-msgid "Macedonian"
-msgstr "馬其頓語"
-
-#: src/utils/languages.vala:80
-msgid "Malayalam"
-msgstr "馬拉雅拉姆語"
-
-#: src/utils/languages.vala:81
-msgid "Mongolian"
-msgstr "蒙古語"
-
-#: src/utils/languages.vala:82
-msgid "Marathi"
-msgstr "馬拉地語"
-
-#: src/utils/languages.vala:83
-msgid "Malay"
-msgstr "馬來語"
-
-#: src/utils/languages.vala:84
-msgid "Maltese"
-msgstr "馬爾他語"
-
-#: src/utils/languages.vala:85
-msgid "Burmese"
-msgstr "緬甸語"
-
-#: src/utils/languages.vala:86
-msgid "German (Low)"
-msgstr "德語（低地德語）"
-
-#: src/utils/languages.vala:87
-msgid "Nepali"
-msgstr "尼泊爾語"
-
-#: src/utils/languages.vala:88
-msgid "Dutch"
-msgstr "荷蘭語"
-
-#: src/utils/languages.vala:89
-msgid "Norwegian"
-msgstr "挪威語"
-
-#: src/utils/languages.vala:90
-msgid "Navajo"
-msgstr "納瓦霍語"
-
-#: src/utils/languages.vala:91
-msgid "Occitan"
-msgstr "奧克語"
-
-#: src/utils/languages.vala:92
-msgid "Oromo"
-msgstr "奧羅莫語"
-
-#: src/utils/languages.vala:93
-msgid "Punjabi"
-msgstr "旁遮普語"
-
-#: src/utils/languages.vala:94
-msgid "Pali"
-msgstr "巴利語"
-
-#: src/utils/languages.vala:95
-msgid "Polish"
-msgstr "波蘭語"
-
-#: src/utils/languages.vala:96
-msgid "Portuguese"
-msgstr "葡萄牙語"
-
-#: src/utils/languages.vala:97
-msgid "Quechua"
-msgstr "克丘亞語"
-
-#: src/utils/languages.vala:98
-msgid "Romansh"
-msgstr "羅曼什語"
-
-#: src/utils/languages.vala:99
-msgid "Romanian"
-msgstr "羅馬尼亞語"
-
-#: src/utils/languages.vala:100
-msgid "Russian"
-msgstr "俄語"
-
-#: src/utils/languages.vala:101
-msgid "Sanskrit"
-msgstr "梵語"
-
-#: src/utils/languages.vala:102
-msgid "Sardinian"
-msgstr "薩丁尼亞語"
-
-#: src/utils/languages.vala:103
-msgid "Sindhi"
-msgstr "信德語"
-
-#: src/utils/languages.vala:104
-msgid "Sinhala"
-msgstr "僧伽羅語"
-
-#: src/utils/languages.vala:105
-msgid "Slovak"
-msgstr "斯洛伐克語"
-
-#: src/utils/languages.vala:106
-msgid "Slovenian"
-msgstr "斯洛維尼亞語"
-
-#: src/utils/languages.vala:107
-msgid "Samoan"
-msgstr "薩摩亞語"
-
-#: src/utils/languages.vala:108
-msgid "Shona"
-msgstr "修納語"
-
-#: src/utils/languages.vala:109
-msgid "Somali"
-msgstr "索馬利亞語"
-
-#: src/utils/languages.vala:110
-msgid "Albanian"
-msgstr "阿爾巴尼亞語"
-
-#: src/utils/languages.vala:111
-msgid "Serbian"
-msgstr "塞爾維亞語"
-
-#: src/utils/languages.vala:112
-msgid "Swedish"
-msgstr "瑞典語"
-
-#: src/utils/languages.vala:113
-msgid "Swahili"
-msgstr "斯瓦希里語"
-
-#: src/utils/languages.vala:114
-msgid "German (Swabian)"
-msgstr "德語（施瓦本語）"
-
-#: src/utils/languages.vala:115
-msgid "Tamil"
-msgstr "泰米爾語"
-
-#: src/utils/languages.vala:116
-msgid "Telugu"
-msgstr "泰盧固語"
-
-#: src/utils/languages.vala:117
-msgid "Thai"
-msgstr "泰語"
-
-#: src/utils/languages.vala:118
-msgid "Turkmen"
-msgstr "土庫曼語"
-
-#: src/utils/languages.vala:119
-msgid "Tongan"
-msgstr "東加語"
-
-#: src/utils/languages.vala:120
-msgid "Turkish"
-msgstr "土耳其語"
-
-#: src/utils/languages.vala:121
-msgid "Tatar"
-msgstr "韃靼語"
-
-#: src/utils/languages.vala:122
-msgid "Twi"
-msgstr "而威語"
-
-#: src/utils/languages.vala:123
-msgid "Tahitian"
-msgstr "大溪地語"
-
-#: src/utils/languages.vala:124
-msgid "Ukrainian"
-msgstr "烏克蘭語"
-
-#: src/utils/languages.vala:125
-msgid "Urdu"
-msgstr "烏爾都語"
-
-#: src/utils/languages.vala:126
-msgid "Uzbek"
-msgstr "烏茲別克語"
-
-#: src/utils/languages.vala:127
-msgid "Vietnamese"
-msgstr "越南語"
-
-#: src/utils/languages.vala:128
-msgid "German (Sorbian)"
-msgstr "德語（索布語）"
-
-#: src/utils/languages.vala:129
-msgid "Xhosa"
-msgstr "科薩語"
-
-#: src/utils/languages.vala:130
-msgid "Yiddish"
-msgstr "意第緒語"
-
-#: src/utils/languages.vala:131
-msgid "Yoruba"
-msgstr "約魯巴語"
-
-#: src/utils/languages.vala:132
-msgid "Chinese (Cantonese)"
-msgstr "中文（廣東話）"
-
-#: src/utils/languages.vala:133
-msgid "Chinese"
-msgstr "中文"
-
-#: src/utils/languages.vala:134
-msgid "Zulu"
-msgstr "祖魯語"
 
 #: src/widgets/window.vala:31
 msgid "Search stations"
@@ -540,8 +28,8 @@ msgid "Loaded %d stations"
 msgstr "已載入 %d 個電台"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:77 src/services/song_downloader.vala:70
-#: src/services/song_downloader.vala:147
+#: src/widgets/window.vala:77 src/services/song_downloader.vala:69
+#: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "錯誤：%s"
@@ -657,39 +145,39 @@ msgid "Now playing"
 msgstr "正在播放"
 
 #. indeterminate while searching
-#: src/services/song_downloader.vala:29
+#: src/services/song_downloader.vala:28
 msgid "Searching YouTube…"
 msgstr "正在搜尋 YouTube…"
 
-#: src/services/song_downloader.vala:43
+#: src/services/song_downloader.vala:42
 #, c-format
 msgid "Search failed: %s"
 msgstr "搜尋失敗: %s"
 
-#: src/services/song_downloader.vala:49
+#: src/services/song_downloader.vala:48
 msgid "No YouTube results found"
 msgstr "未找到 YouTube 結果"
 
-#: src/services/song_downloader.vala:63
+#: src/services/song_downloader.vala:62
 msgid "All results unavailable"
 msgstr "所有結果均不可用"
 
-#: src/services/song_downloader.vala:93
+#: src/services/song_downloader.vala:94
 #, c-format
 msgid "Downloading: %s"
 msgstr "正在下載: %s"
 
 #. Clean up partial file
-#: src/services/song_downloader.vala:130
+#: src/services/song_downloader.vala:131
 msgid "Cancelled"
 msgstr "已取消"
 
-#: src/services/song_downloader.vala:139
+#: src/services/song_downloader.vala:140
 #, c-format
 msgid "Download failed: %s"
 msgstr "下載失敗: %s"
 
-#: src/services/song_downloader.vala:141
+#: src/services/song_downloader.vala:142
 #, c-format
 msgid "Saved: %s"
 msgstr "已儲存: %s"

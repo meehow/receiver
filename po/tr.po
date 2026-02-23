@@ -3,524 +3,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-18 22:00+0100\n"
+"POT-Creation-Date: 2026-02-23 23:07+0100\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: src/utils/languages.vala:7
-msgid "Afrikaans"
-msgstr "Afrikaanca"
-
-#: src/utils/languages.vala:8
-msgid "Akan"
-msgstr "Akanca"
-
-#: src/utils/languages.vala:9
-msgid "Amharic"
-msgstr "Amharca"
-
-#: src/utils/languages.vala:10
-msgid "Arabic"
-msgstr "Arapça"
-
-#: src/utils/languages.vala:11
-msgid "Assamese"
-msgstr "Asamca"
-
-#: src/utils/languages.vala:12
-msgid "Spanish (Asturian)"
-msgstr "İspanyolca (Asturyaca)"
-
-#: src/utils/languages.vala:13
-msgid "Aymara"
-msgstr "Aymaraca"
-
-#: src/utils/languages.vala:14
-msgid "Azerbaijani"
-msgstr "Azerice"
-
-#: src/utils/languages.vala:15
-msgid "Bavarian"
-msgstr "Almanca (Bavyeraca)"
-
-#: src/utils/languages.vala:16
-msgid "Belarusian"
-msgstr "Belarusça"
-
-#: src/utils/languages.vala:17
-msgid "Bulgarian"
-msgstr "Bulgarca"
-
-#: src/utils/languages.vala:18
-msgid "Bislama"
-msgstr "Bislama"
-
-#: src/utils/languages.vala:19
-msgid "Bambara"
-msgstr "Bambaraca"
-
-#: src/utils/languages.vala:20
-msgid "Bengali"
-msgstr "Bengalce"
-
-#: src/utils/languages.vala:21
-msgid "Tibetan"
-msgstr "Tibetçe"
-
-#: src/utils/languages.vala:22
-msgid "Breton"
-msgstr "Bretonca"
-
-#: src/utils/languages.vala:23
-msgid "Bosnian"
-msgstr "Boşnakça"
-
-#: src/utils/languages.vala:24
-msgid "Catalan"
-msgstr "Katalanca"
-
-#: src/utils/languages.vala:25
-msgid "Chinese (Mandarin)"
-msgstr "Çince (Mandarin)"
-
-#: src/utils/languages.vala:26
-msgid "Cree"
-msgstr "Krice"
-
-#: src/utils/languages.vala:27
-msgid "Czech"
-msgstr "Çekçe"
-
-#: src/utils/languages.vala:28
-msgid "Welsh"
-msgstr "Galce"
-
-#: src/utils/languages.vala:29
-msgid "Danish"
-msgstr "Danca"
-
-#: src/utils/languages.vala:30
-msgid "German"
-msgstr "Almanca"
-
-#: src/utils/languages.vala:31
-msgid "Greek"
-msgstr "Yunanca"
-
-#: src/utils/languages.vala:32
-msgid "English"
-msgstr "İngilizce"
-
-#: src/utils/languages.vala:33
-msgid "Esperanto"
-msgstr "Esperanto"
-
-#: src/utils/languages.vala:34
-msgid "Spanish"
-msgstr "İspanyolca"
-
-#: src/utils/languages.vala:35
-msgid "Spanish (Latin American)"
-msgstr "İspanyolca (Latin Amerika)"
-
-#: src/utils/languages.vala:36
-msgid "Estonian"
-msgstr "Estonca"
-
-#: src/utils/languages.vala:37
-msgid "Basque"
-msgstr "Baskça"
-
-#: src/utils/languages.vala:38
-msgid "Persian"
-msgstr "Farsça"
-
-#: src/utils/languages.vala:39
-msgid "Finnish"
-msgstr "Fince"
-
-#: src/utils/languages.vala:40
-msgid "Filipino"
-msgstr "Filipince"
-
-#: src/utils/languages.vala:41
-msgid "Fijian"
-msgstr "Fijice"
-
-#: src/utils/languages.vala:42
-msgid "Faroese"
-msgstr "Faroece"
-
-#: src/utils/languages.vala:43
-msgid "French"
-msgstr "Fransızca"
-
-#: src/utils/languages.vala:44
-msgid "Irish"
-msgstr "İrlandaca"
-
-#: src/utils/languages.vala:45
-msgid "Scottish Gaelic"
-msgstr "İskoç Galcesi"
-
-#: src/utils/languages.vala:46
-msgid "Galician"
-msgstr "Galiçyaca"
-
-#: src/utils/languages.vala:47
-msgid "Guarani"
-msgstr "Guaranice"
-
-#: src/utils/languages.vala:48
-msgid "German (Swiss)"
-msgstr "Almanca (İsviçre)"
-
-#: src/utils/languages.vala:49
-msgid "Gujarati"
-msgstr "Güceratça"
-
-#: src/utils/languages.vala:50
-msgid "Manx"
-msgstr "Manksça"
-
-#: src/utils/languages.vala:51
-msgid "Hausa"
-msgstr "Hausaca"
-
-#: src/utils/languages.vala:52
-msgid "Chinese (Hakka)"
-msgstr "Çince (Hakka)"
-
-#: src/utils/languages.vala:53
-msgid "Hebrew"
-msgstr "İbranice"
-
-#: src/utils/languages.vala:54
-msgid "Hindi"
-msgstr "Hintçe"
-
-#: src/utils/languages.vala:55
-msgid "Croatian"
-msgstr "Hırvatça"
-
-#: src/utils/languages.vala:56
-msgid "Hungarian"
-msgstr "Macarca"
-
-#: src/utils/languages.vala:57
-msgid "Armenian"
-msgstr "Ermenice"
-
-#: src/utils/languages.vala:58
-msgid "Indonesian"
-msgstr "Endonezce"
-
-#: src/utils/languages.vala:59
-msgid "Icelandic"
-msgstr "İzlandaca"
-
-#: src/utils/languages.vala:60
-msgid "Italian"
-msgstr "İtalyanca"
-
-#: src/utils/languages.vala:61
-msgid "Japanese"
-msgstr "Japonca"
-
-#: src/utils/languages.vala:62
-msgid "Javanese"
-msgstr "Cavaca"
-
-#: src/utils/languages.vala:63
-msgid "Georgian"
-msgstr "Gürcüce"
-
-#: src/utils/languages.vala:64
-msgid "Kazakh"
-msgstr "Kazakça"
-
-#: src/utils/languages.vala:65
-msgid "Khmer"
-msgstr "Kmerce"
-
-#: src/utils/languages.vala:66
-msgid "Kannada"
-msgstr "Kannadaca"
-
-#: src/utils/languages.vala:67
-msgid "Korean"
-msgstr "Korece"
-
-#: src/utils/languages.vala:68
-msgid "Kashmiri"
-msgstr "Keşmirce"
-
-#: src/utils/languages.vala:69
-msgid "Kurdish"
-msgstr "Kürtçe"
-
-#: src/utils/languages.vala:70
-msgid "Komi"
-msgstr "Komice"
-
-#: src/utils/languages.vala:71
-msgid "Cornish"
-msgstr "Kernevekçe"
-
-#: src/utils/languages.vala:72
-msgid "Latin"
-msgstr "Latince"
-
-#: src/utils/languages.vala:73
-msgid "Luxembourgish"
-msgstr "Lüksemburgca"
-
-#: src/utils/languages.vala:74
-msgid "Lingala"
-msgstr "Lingalaca"
-
-#: src/utils/languages.vala:75
-msgid "Lithuanian"
-msgstr "Litvanca"
-
-#: src/utils/languages.vala:76
-msgid "Latvian"
-msgstr "Letonca"
-
-#: src/utils/languages.vala:77
-msgid "Malagasy"
-msgstr "Malgaşça"
-
-#: src/utils/languages.vala:78
-msgid "Māori"
-msgstr "Maorice"
-
-#: src/utils/languages.vala:79
-msgid "Macedonian"
-msgstr "Makedonca"
-
-#: src/utils/languages.vala:80
-msgid "Malayalam"
-msgstr "Malayalamca"
-
-#: src/utils/languages.vala:81
-msgid "Mongolian"
-msgstr "Moğolca"
-
-#: src/utils/languages.vala:82
-msgid "Marathi"
-msgstr "Maratça"
-
-#: src/utils/languages.vala:83
-msgid "Malay"
-msgstr "Malayca"
-
-#: src/utils/languages.vala:84
-msgid "Maltese"
-msgstr "Maltaca"
-
-#: src/utils/languages.vala:85
-msgid "Burmese"
-msgstr "Birmanca"
-
-#: src/utils/languages.vala:86
-msgid "German (Low)"
-msgstr "Almanca (Aşağı Almanca)"
-
-#: src/utils/languages.vala:87
-msgid "Nepali"
-msgstr "Nepalce"
-
-#: src/utils/languages.vala:88
-msgid "Dutch"
-msgstr "Felemenkçe"
-
-#: src/utils/languages.vala:89
-msgid "Norwegian"
-msgstr "Norveççe"
-
-#: src/utils/languages.vala:90
-msgid "Navajo"
-msgstr "Navahoca"
-
-#: src/utils/languages.vala:91
-msgid "Occitan"
-msgstr "Oksitanca"
-
-#: src/utils/languages.vala:92
-msgid "Oromo"
-msgstr "Oromoca"
-
-#: src/utils/languages.vala:93
-msgid "Punjabi"
-msgstr "Pencapça"
-
-#: src/utils/languages.vala:94
-msgid "Pali"
-msgstr "Palice"
-
-#: src/utils/languages.vala:95
-msgid "Polish"
-msgstr "Lehçe"
-
-#: src/utils/languages.vala:96
-msgid "Portuguese"
-msgstr "Portekizce"
-
-#: src/utils/languages.vala:97
-msgid "Quechua"
-msgstr "Keçuaca"
-
-#: src/utils/languages.vala:98
-msgid "Romansh"
-msgstr "Romanca"
-
-#: src/utils/languages.vala:99
-msgid "Romanian"
-msgstr "Rumence"
-
-#: src/utils/languages.vala:100
-msgid "Russian"
-msgstr "Rusça"
-
-#: src/utils/languages.vala:101
-msgid "Sanskrit"
-msgstr "Sanskritçe"
-
-#: src/utils/languages.vala:102
-msgid "Sardinian"
-msgstr "Sarduca"
-
-#: src/utils/languages.vala:103
-msgid "Sindhi"
-msgstr "Sintçe"
-
-#: src/utils/languages.vala:104
-msgid "Sinhala"
-msgstr "Sinhala"
-
-#: src/utils/languages.vala:105
-msgid "Slovak"
-msgstr "Slovakça"
-
-#: src/utils/languages.vala:106
-msgid "Slovenian"
-msgstr "Slovence"
-
-#: src/utils/languages.vala:107
-msgid "Samoan"
-msgstr "Samoaca"
-
-#: src/utils/languages.vala:108
-msgid "Shona"
-msgstr "Şonaca"
-
-#: src/utils/languages.vala:109
-msgid "Somali"
-msgstr "Somalice"
-
-#: src/utils/languages.vala:110
-msgid "Albanian"
-msgstr "Arnavutça"
-
-#: src/utils/languages.vala:111
-msgid "Serbian"
-msgstr "Sırpça"
-
-#: src/utils/languages.vala:112
-msgid "Swedish"
-msgstr "İsveççe"
-
-#: src/utils/languages.vala:113
-msgid "Swahili"
-msgstr "Svahilice"
-
-#: src/utils/languages.vala:114
-msgid "German (Swabian)"
-msgstr "Almanca (Svabya)"
-
-#: src/utils/languages.vala:115
-msgid "Tamil"
-msgstr "Tamilce"
-
-#: src/utils/languages.vala:116
-msgid "Telugu"
-msgstr "Teluguca"
-
-#: src/utils/languages.vala:117
-msgid "Thai"
-msgstr "Tayca"
-
-#: src/utils/languages.vala:118
-msgid "Turkmen"
-msgstr "Türkmence"
-
-#: src/utils/languages.vala:119
-msgid "Tongan"
-msgstr "Tongaca"
-
-#: src/utils/languages.vala:120
-msgid "Turkish"
-msgstr "Türkçe"
-
-#: src/utils/languages.vala:121
-msgid "Tatar"
-msgstr "Tatarca"
-
-#: src/utils/languages.vala:122
-msgid "Twi"
-msgstr "Tvice"
-
-#: src/utils/languages.vala:123
-msgid "Tahitian"
-msgstr "Tahitice"
-
-#: src/utils/languages.vala:124
-msgid "Ukrainian"
-msgstr "Ukraynaca"
-
-#: src/utils/languages.vala:125
-msgid "Urdu"
-msgstr "Urduca"
-
-#: src/utils/languages.vala:126
-msgid "Uzbek"
-msgstr "Özbekçe"
-
-#: src/utils/languages.vala:127
-msgid "Vietnamese"
-msgstr "Vietnamca"
-
-#: src/utils/languages.vala:128
-msgid "German (Sorbian)"
-msgstr "Almanca (Sorbca)"
-
-#: src/utils/languages.vala:129
-msgid "Xhosa"
-msgstr "Zuluca"
-
-#: src/utils/languages.vala:130
-msgid "Yiddish"
-msgstr "Yidiş"
-
-#: src/utils/languages.vala:131
-msgid "Yoruba"
-msgstr "Yorubaca"
-
-#: src/utils/languages.vala:132
-msgid "Chinese (Cantonese)"
-msgstr "Çince (Kantonca)"
-
-#: src/utils/languages.vala:133
-msgid "Chinese"
-msgstr "Çince"
-
-#: src/utils/languages.vala:134
-msgid "Zulu"
-msgstr "Zuluca"
 
 #: src/widgets/window.vala:31
 msgid "Search stations"
@@ -540,8 +28,8 @@ msgid "Loaded %d stations"
 msgstr "%d istasyon yüklendi"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:77 src/services/song_downloader.vala:70
-#: src/services/song_downloader.vala:147
+#: src/widgets/window.vala:77 src/services/song_downloader.vala:69
+#: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Hata: %s"
@@ -657,39 +145,39 @@ msgid "Now playing"
 msgstr "Şimdi çalıyor"
 
 #. indeterminate while searching
-#: src/services/song_downloader.vala:29
+#: src/services/song_downloader.vala:28
 msgid "Searching YouTube…"
 msgstr "YouTube'da aranıyor…"
 
-#: src/services/song_downloader.vala:43
+#: src/services/song_downloader.vala:42
 #, c-format
 msgid "Search failed: %s"
 msgstr "Arama başarısız: %s"
 
-#: src/services/song_downloader.vala:49
+#: src/services/song_downloader.vala:48
 msgid "No YouTube results found"
 msgstr "YouTube sonucu bulunamadı"
 
-#: src/services/song_downloader.vala:63
+#: src/services/song_downloader.vala:62
 msgid "All results unavailable"
 msgstr "Tüm sonuçlar kullanılamıyor"
 
-#: src/services/song_downloader.vala:93
+#: src/services/song_downloader.vala:94
 #, c-format
 msgid "Downloading: %s"
 msgstr "İndiriliyor: %s"
 
 #. Clean up partial file
-#: src/services/song_downloader.vala:130
+#: src/services/song_downloader.vala:131
 msgid "Cancelled"
 msgstr "İptal edildi"
 
-#: src/services/song_downloader.vala:139
+#: src/services/song_downloader.vala:140
 #, c-format
 msgid "Download failed: %s"
 msgstr "İndirme başarısız: %s"
 
-#: src/services/song_downloader.vala:141
+#: src/services/song_downloader.vala:142
 #, c-format
 msgid "Saved: %s"
 msgstr "Kaydedildi: %s"
