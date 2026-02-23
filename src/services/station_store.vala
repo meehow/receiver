@@ -316,7 +316,7 @@ namespace Receiver {
                         if (fts.len > 0) {
                             fts.append(" ");
                         }
-                        fts.append(p).append("*");
+                        fts.append(p.replace("&", " ")).append("*");
                     }
                 }
                 stmt.bind_text(idx++, fts.str);
