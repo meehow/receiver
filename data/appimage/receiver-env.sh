@@ -2,6 +2,9 @@
 # This hook runs AFTER linuxdeploy-plugin-gtk.sh (alphabetical order)
 # to override settings that break GTK4/Libadwaita apps.
 
+# Ensure bundled libraries (GStreamer core, etc.) are found before system ones
+export LD_LIBRARY_PATH="${APPDIR}/usr/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH}"
+
 # GStreamer: use bundled plugins and scanner
 export GST_PLUGIN_SYSTEM_PATH="${APPDIR}/usr/lib/x86_64-linux-gnu/gstreamer-1.0"
 export GST_PLUGIN_SCANNER="${APPDIR}/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner"

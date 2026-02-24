@@ -59,6 +59,7 @@ jobs:
 
   build-appimage:
     name: Build AppImage
+    needs: build-deb
     runs-on: ubuntu-24.04
 
     steps:
