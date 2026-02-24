@@ -44,7 +44,7 @@ namespace Receiver {
         private string fix_encoding(string text) {
             if (!text.validate()) {
                 // Raw non-UTF-8 bytes: try common charsets directly
-                string[] charsets = { "ISO-8859-2", "WINDOWS-1252", "ISO-8859-1" };
+                string[] charsets = { "WINDOWS-1250", "ISO-8859-2", "WINDOWS-1252", "ISO-8859-1" };
                 foreach (var charset in charsets) {
                     try {
                         return GLib.convert(text, (ssize_t) text.length,
@@ -54,21 +54,30 @@ namespace Receiver {
                 return text;
             }
 
-            // Valid UTF-8 but possibly Latin-1 mis-interpretation of ISO-8859-2.
-            // Check: does the string have chars in U+0080–U+00FF?
+            // Valid UTF-8 but possibly Latin-1 mis-interpretation of a legacy
+            // Central/Eastern European encoding. Check: does the string have
+            // chars in U+0080–U+00FF?
             if (!has_latin1_supplement(text)) return text;
 
-            // Round-trip: UTF-8 → Latin-1 raw bytes → re-decode as ISO-8859-2
+            // Round-trip: UTF-8 → Latin-1 raw bytes → re-decode.
+            // Try Windows-1250 first: it's a superset of ISO-8859-2 that also
+            // defines the 0x80–0x9F range (e.g. 0x9C = ś) which ISO-8859-2
+            // leaves as C1 control characters.
+            string[] round_trip_charsets = { "WINDOWS-1250", "ISO-8859-2" };
             try {
                 var raw = GLib.convert(text, (ssize_t) text.length,
                                        "ISO-8859-1", "UTF-8");
-                var fixed = GLib.convert(raw, (ssize_t) raw.length,
-                                         "UTF-8", "ISO-8859-2");
-                // Accept only if re-interpretation produced Latin Extended chars
-                // (ł ę ś ź ň etc. are U+0100–U+024F) — strong signal it was
-                // Central/Eastern European text
-                if (fixed.validate() && has_extended_latin(fixed)) {
-                    return fixed;
+                foreach (var charset in round_trip_charsets) {
+                    try {
+                        var fixed = GLib.convert(raw, (ssize_t) raw.length,
+                                                 "UTF-8", charset);
+                        // Accept only if re-interpretation produced Latin Extended
+                        // chars (ł ę ś ź ň etc. are U+0100–U+024F) — strong
+                        // signal it was Central/Eastern European text
+                        if (fixed.validate() && has_extended_latin(fixed)) {
+                            return fixed;
+                        }
+                    } catch {}
                 }
             } catch {}
 
