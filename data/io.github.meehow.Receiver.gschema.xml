@@ -26,6 +26,11 @@
       <summary>Download directory</summary>
       <description>The last directory used to save downloaded songs.</description>
     </key>
+    <key name="show-featured" type="b">
+      <default>true</default>
+      <summary>Show featured stations</summary>
+      <description>Whether to show the featured stations carousel on the home screen.</description>
+    </key>
 
   </schema>
 </schemalist>

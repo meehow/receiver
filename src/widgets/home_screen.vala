@@ -3,7 +3,10 @@ namespace Receiver {
 
     public class HomeScreen : Gtk.Box {
         private StationStore store;
+        private GLib.Settings settings;
         private Adw.Carousel featured_carousel;
+        private Gtk.Box? featured_section;
+        private Gtk.Button? featured_toggle;
         private Gtk.Box? favourites_section;
         private Gtk.FlowBox? favourites_flow;
         private const int FEATURED_LIMIT = 30;
@@ -18,6 +21,7 @@ namespace Receiver {
         public HomeScreen(StationStore station_store) {
             Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
             this.store = station_store;
+            this.settings = AppState.get_default().settings;
             build_ui();
             store.favourites_changed.connect(update_favourites);
         }
@@ -39,11 +43,24 @@ namespace Receiver {
         }
 
         private void build_featured(Gtk.Box parent) {
-            var section = new Gtk.Box(Gtk.Orientation.VERTICAL, 12);
+            featured_section = new Gtk.Box(Gtk.Orientation.VERTICAL, 12);
+
+            var hdr = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
             var header = new Gtk.Label(_("Featured Stations"));
             header.xalign = 0;
+            header.hexpand = true;
             header.add_css_class("title-2");
-            section.append(header);
+            hdr.append(header);
+
+            bool visible_initial = settings.get_boolean("show-featured");
+            featured_toggle = new Gtk.Button.from_icon_name(
+                visible_initial ? "view-conceal-symbolic" : "view-reveal-symbolic"
+            );
+            featured_toggle.add_css_class("flat");
+            featured_toggle.tooltip_text = visible_initial ? _("Hide") : _("Show");
+            featured_toggle.clicked.connect(on_featured_toggled);
+            hdr.append(featured_toggle);
+            featured_section.append(hdr);
 
             featured_carousel = new Adw.Carousel();
             featured_carousel.interactive = true;
@@ -77,14 +94,42 @@ namespace Receiver {
             dots.halign = Gtk.Align.CENTER;
             dots.margin_top = 8;
 
-            section.append(featured_carousel);
-            section.append(dots);
-            parent.append(section);
+            featured_carousel.visible = visible_initial;
+            dots.visible = visible_initial;
+
+            featured_section.append(featured_carousel);
+            featured_section.append(dots);
+            parent.append(featured_section);
 
             store.loading_finished.connect((c) => {
-                load_featured.begin();
+                if (settings.get_boolean("show-featured")) {
+                    load_featured.begin();
+                }
                 update_favourites();
             });
+        }
+
+        private void on_featured_toggled() {
+            bool show = !settings.get_boolean("show-featured");
+            settings.set_boolean("show-featured", show);
+            featured_toggle.icon_name = show ? "view-conceal-symbolic" : "view-reveal-symbolic";
+            featured_toggle.tooltip_text = show ? _("Hide") : _("Show");
+
+            // Toggle carousel + dots visibility
+            if (featured_section != null) {
+                // Children: [0]=header, [1]=carousel, [2]=dots
+                var carousel = featured_section.get_first_child().get_next_sibling();
+                if (carousel != null) {
+                    carousel.visible = show;
+                    var dots = carousel.get_next_sibling();
+                    if (dots != null) dots.visible = show;
+                }
+            }
+
+            // Load artwork if turning on and carousel is empty
+            if (show && featured_carousel.n_pages == 0) {
+                load_featured.begin();
+            }
         }
 
         private async void load_featured() {
