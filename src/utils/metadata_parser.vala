@@ -35,7 +35,7 @@ namespace Receiver {
                 }
             }
 
-            return decode_entities(title);
+            return strip_script_artifacts(decode_entities(title));
         }
 
         // ICY metadata often arrives in legacy encodings. GStreamer tends to
@@ -98,6 +98,44 @@ namespace Receiver {
                 if (c >= 0x100 && c <= 0x024F) return true;
             }
             return false;
+        }
+
+        // When raw stream bytes coincidentally form valid UTF-8, they can
+        // decode to characters from unrelated scripts (e.g. Arabic U+076F
+        // from Windows-1250 bytes 0xDD 0xAF). Strip such artifacts when
+        // the text is predominantly Latin.
+        private string strip_script_artifacts(string text) {
+            int latin = 0;
+            int foreign = 0;
+            unichar c;
+            for (int i = 0; text.get_next_char(ref i, out c);) {
+                if (is_latin_letter(c)) {
+                    latin++;
+                } else if (c > 0x024F && c.isalpha()) {
+                    foreign++;
+                }
+            }
+
+            // Only strip when text is clearly Latin with a few stray chars
+            if (latin < 3 || foreign == 0 || foreign * 4 > latin) {
+                return text;
+            }
+
+            var sb = new StringBuilder.sized(text.length);
+            for (int i = 0; text.get_next_char(ref i, out c);) {
+                if (!(c > 0x024F && c.isalpha())) {
+                    sb.append_unichar(c);
+                }
+            }
+            return sb.str;
+        }
+
+        private bool is_latin_letter(unichar c) {
+            return (c >= 'A' && c <= 'Z') ||
+                   (c >= 'a' && c <= 'z') ||
+                   (c >= 0x00C0 && c <= 0x00FF && c != 0x00D7 && c != 0x00F7) ||
+                   (c >= 0x0100 && c <= 0x024F) ||
+                   (c >= 0x1E00 && c <= 0x1EFF);
         }
 
         private string strip_bom(string text) {
