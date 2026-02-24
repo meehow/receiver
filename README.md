@@ -4,6 +4,7 @@
 
 Most radio apps make you search for stations by name or paste in a stream URL. Receiver flips that around — it ships with **30,000+ stations** ready to explore, each one verified and working, with clean logos, organized by tags, country and language. Just open the app and start discovering.
 
+[![Flathub](https://img.shields.io/flathub/v/io.github.meehow.Receiver?style=flat-square)](https://flathub.org/apps/io.github.meehow.Receiver)
 [![Snapcraft](https://snapcraft.io/receiver/badge.svg)](https://snapcraft.io/receiver)
 [![Release](https://img.shields.io/github/v/release/meehow/receiver?style=flat-square)](https://github.com/meehow/receiver/releases)
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-blue?style=flat-square)](LICENSE)
@@ -28,6 +29,15 @@ No sign-up. No ads. No popularity rankings deciding what you hear. Just radio.
 - 🌍 **120 languages** — translated for users around the world
 
 ## Install
+
+### Flathub
+
+[![Get it on Flathub](https://flathub.org/api/badge)](https://flathub.org/apps/io.github.meehow.Receiver)
+
+```sh
+flatpak install flathub io.github.meehow.Receiver
+flatpak run io.github.meehow.Receiver
+```
 
 ### Snap Store
 
