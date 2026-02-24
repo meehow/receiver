@@ -27,6 +27,12 @@ namespace Receiver {
             store.search_query = text;
         }
 
+        public void reset_language_filter() {
+            restoring = true;
+            language_dropdown.selected = 0;
+            restoring = false;
+        }
+
         private void build_ui() {
             var header = new Adw.HeaderBar();
             header.add_css_class("flat");

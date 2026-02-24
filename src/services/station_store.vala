@@ -212,25 +212,25 @@ namespace Receiver {
         private string? locale_to_language_code(string? lang, string? country) {
             if (lang == null) return null;
             // Map specific locale combinations to database language codes
-            if (lang == "DE" && country == "CH") return "GSW";  // Swiss German
-            if (lang == "ZH" && country == "HK") return "YUE";  // Cantonese
-            if (lang == "ES" && country != null && country != "ES") {
+            if (lang == "de" && country == "CH") return "gsw";  // Swiss German
+            if (lang == "zh" && country == "HK") return "yue";  // Cantonese
+            if (lang == "es" && country != null && country != "ES") {
                 // Latin American Spanish
                 switch (country) {
                     case "MX": case "AR": case "CO": case "CL": case "PE":
                     case "VE": case "EC": case "GT": case "CU": case "BO":
                     case "DO": case "HN": case "PY": case "SV": case "NI":
                     case "CR": case "PA": case "UY":
-                        return "ES-419";
+                        return "es-419";
                 }
             }
             // Map locale codes to database language codes
             switch (lang) {
-                case "NB": return "NO";   // Norwegian Bokmål
-                case "NN": return "NO";   // Norwegian Nynorsk
-                case "HSB": return "WEN"; // Upper Sorbian
-                case "DSB": return "WEN"; // Lower Sorbian
-                case "TL": return "FIL";  // legacy Tagalog → Filipino
+                case "nb": return "no";   // Norwegian Bokmål
+                case "nn": return "no";   // Norwegian Nynorsk
+                case "hsb": return "wen"; // Upper Sorbian
+                case "dsb": return "wen"; // Lower Sorbian
+                case "tl": return "fil";  // legacy Tagalog → Filipino
             }
             return lang;
         }
@@ -242,8 +242,8 @@ namespace Receiver {
             if (locale == null) return;
             int sep = locale.index_of_char('_');
             if (sep < 2 || locale.length < sep + 3) return;
-            language = locale.substring(0, sep).up();   // "de" → "DE", "fil" → "FIL"
-            country = locale.substring(sep + 1, 2);     // "DE" from de_DE
+            language = locale.substring(0, sep).down();  // "de" stays "de"
+            country = locale.substring(sep + 1, 2);      // "CH" from de_CH
         }
 
         public GenericArray<Station> get_favourite_stations() {

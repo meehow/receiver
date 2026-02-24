@@ -55,6 +55,8 @@ namespace Receiver {
             home_screen.station_activated.connect(play_station);
 
             home_screen.genre_selected.connect((g) => {
+                app.store.language_filter = "all";
+                station_list.reset_language_filter();
                 station_list.set_search_text(g);
                 search_page.title = g.substring(0, 1).up() + g.substring(1);
                 nav_view.push(search_page);
