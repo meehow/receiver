@@ -1,3 +1,18 @@
+receiver (0.3.5-1) unstable; urgency=medium
+
+  * Fix ICY stream metadata encoding for Central/Eastern European languages
+  * Strip encoding artifacts from non-Latin scripts in station metadata
+  * Add toggle to hide/show Featured Stations on the home screen
+  * Add HLS master playlist resolution for .m3u8 streams
+  * Consolidate playlist resolution into a single function
+  * Reject HTML responses when an audio stream is expected
+  * Add AppImage packaging support with GitHub Actions workflow
+  * Fix locale fallback and standardize language codes
+  * Stop player when retry limit is exceeded
+  * Clean up unused translation files
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Mon, 24 Feb 2026 23:10:00 +0100
+
 receiver (0.3.4-1) unstable; urgency=medium
 
   * Harden Flatpak sandbox by using app ID for MPRIS bus name

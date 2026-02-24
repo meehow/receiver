@@ -76,6 +76,18 @@
   </screenshots>
   
   <releases>
+    <release version="0.3.5" date="2026-02-24">
+      <description>
+        <ul>
+          <li>Fix ICY stream metadata encoding for Central/Eastern European languages</li>
+          <li>Strip encoding artifacts from non-Latin scripts in station metadata</li>
+          <li>Add toggle to hide/show Featured Stations on the home screen</li>
+          <li>Add HLS master playlist resolution for .m3u8 streams</li>
+          <li>Add AppImage packaging support</li>
+          <li>Fix locale fallback and standardize language codes</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.4" date="2026-02-20">
       <description>
         <ul>
