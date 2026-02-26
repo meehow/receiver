@@ -31,6 +31,11 @@
       <summary>Show featured stations</summary>
       <description>Whether to show the featured stations carousel on the home screen.</description>
     </key>
+    <key name="lastfm-session-key" type="s">
+      <default>''</default>
+      <summary>Last.fm session</summary>
+      <description>Last.fm username and session key (username:key). Empty to disable scrobbling.</description>
+    </key>
 
   </schema>
 </schemalist>
