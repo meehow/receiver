@@ -44,6 +44,8 @@ namespace Receiver {
             player.state_changed.connect(on_state_changed);
             player.metadata_changed.connect(on_metadata_changed);
             player.notify["volume"].connect(on_volume_changed);
+
+            AppState.get_default().favourites_changed.connect(on_favourites_changed);
         }
 
         // Properties
@@ -67,8 +69,8 @@ namespace Receiver {
         }
 
         public int64 position { get { return 0; } }
-        public bool can_go_next { get { return false; } }
-        public bool can_go_previous { get { return false; } }
+        public bool can_go_next { get { return has_favourites(); } }
+        public bool can_go_previous { get { return has_favourites(); } }
         public bool can_play { get { return player.current_station != null; } }
         public bool can_pause { get { return player.state == PlayerState.PLAYING; } }
         public bool can_seek { get { return false; } }
@@ -116,8 +118,13 @@ namespace Receiver {
             player.stop();
         }
 
-        public void next() throws GLib.Error {}
-        public void previous() throws GLib.Error {}
+        public void next() throws GLib.Error {
+            cycle_favourite(1);
+        }
+
+        public void previous() throws GLib.Error {
+            cycle_favourite(-1);
+        }
         public void seek(int64 offset) throws GLib.Error {}
         public void set_position(ObjectPath track_id, int64 position) throws GLib.Error {}
         public void open_uri(string uri) throws GLib.Error {}
@@ -154,6 +161,47 @@ namespace Receiver {
             emit_properties_changed(changed);
         }
 
+        private bool has_favourites() {
+            return AppState.get_default().get_favourite_stations().length > 0;
+        }
+
+        private void cycle_favourite(int direction) {
+            var favs = AppState.get_default().get_favourite_stations();
+            if (favs.length == 0) return;
+
+            var current = player.current_station;
+            int current_idx = -1;
+
+            if (current != null) {
+                for (int i = 0; i < favs.length; i++) {
+                    if (favs[i].id == current.id) {
+                        current_idx = i;
+                        break;
+                    }
+                }
+            }
+
+            Station target;
+            if (current_idx >= 0) {
+                // Current is a favourite — cycle in order
+                int next_idx = (current_idx + direction + favs.length) % favs.length;
+                target = favs[next_idx];
+            } else {
+                // Not a favourite (or nothing playing) — pick random
+                target = favs[Random.int_range(0, (int32) favs.length)];
+            }
+
+            player.play(target);
+            AppState.get_default().settings.set_int64("last-station-id", target.id);
+        }
+
+        private void on_favourites_changed() {
+            var changed = new HashTable<string, Variant>(str_hash, str_equal);
+            changed.insert("CanGoNext", can_go_next);
+            changed.insert("CanGoPrevious", can_go_previous);
+            emit_properties_changed(changed);
+        }
+
         private void emit_properties_changed(HashTable<string, Variant> changed) {
             try {
                 var builder = new VariantBuilder(VariantType.ARRAY);
@@ -184,9 +232,15 @@ namespace Receiver {
         private uint owner_id;
 
         public MprisService(Gtk.Application app, Player player) {
+            // Snap only allows simple names; Flatpak requires reverse-DNS
+            var snap = Environment.get_variable("SNAP_NAME");
+            var bus_name = snap != null
+                ? "org.mpris.MediaPlayer2.%s".printf(snap)
+                : "org.mpris.MediaPlayer2.io.github.meehow.Receiver";
+
             owner_id = Bus.own_name(
                 BusType.SESSION,
-                "org.mpris.MediaPlayer2.io.github.meehow.Receiver",
+                bus_name,
                 BusNameOwnerFlags.NONE,
                 (conn) => {
                     try {
