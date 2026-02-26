@@ -76,6 +76,14 @@
   </screenshots>
   
   <releases>
+    <release version="0.3.6" date="2026-02-26">
+      <description>
+        <ul>
+          <li>Add MPRIS next/previous actions to cycle through favourite stations</li>
+          <li>Fix AppImage library loading</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.5" date="2026-02-24">
       <description>
         <ul>

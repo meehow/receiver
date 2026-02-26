@@ -1,6 +1,6 @@
 name: receiver
 base: core24
-version: '0.3.5'
+version: '0.3.6'
 title: Receiver
 summary: Discover 30,000+ verified radio stations from around the world
 description: |
