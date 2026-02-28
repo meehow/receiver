@@ -186,6 +186,8 @@ namespace Receiver {
 
                 tags.get_string(Gst.Tags.ARTIST, out artist);
                 title = MetadataParser.get_default().clean_metadata(title, artist);
+                debug("ICY: %s", title);
+                title = MetadataExtractor.get_default().clean(title);
 
                 if (title.has_prefix("{")) return;  // Skip JSON metadata
 

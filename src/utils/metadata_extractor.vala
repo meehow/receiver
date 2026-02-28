@@ -44,6 +44,7 @@ namespace Receiver {
         private Regex featuring_re;
         // Title cleanup
         private Regex title_suffix_re;
+        private Regex dj_suffix_re;
 
         private static MetadataExtractor? _instance;
 
@@ -100,7 +101,7 @@ namespace Receiver {
                 new Regex("^now\\s+playing\\\\?:\\s*", RegexCompileFlags.CASELESS),
                 new Regex("^NOW:\\s*"),
                 new Regex("^track:\\s*", RegexCompileFlags.CASELESS),
-                new Regex("^TERAZ:\\s*", RegexCompileFlags.CASELESS),
+                new Regex("^TERAZ(?:\\s+GRAMY)?:\\s*", RegexCompileFlags.CASELESS),
                 new Regex("^Jetzt\\s+l[aä]uft:\\s*", RegexCompileFlags.CASELESS),
                 new Regex("^AutoDJ:\\s*", RegexCompileFlags.CASELESS),
                 new Regex("^LUGARADIO\\\\\\\\\\s*", RegexCompileFlags.CASELESS),
@@ -168,6 +169,11 @@ namespace Receiver {
             // Title suffixes to strip for cleaner scrobbles
             title_suffix_re = new Regex(
                 "\\s*\\((?:Live|Remaster(?:ed)?|Bonus Track|Radio Edit|Single Version|Album Version|Acoustic)[^)]*\\)\\s*$",
+                RegexCompileFlags.CASELESS);
+
+            // DJ metadata: trailing "- <Camelot key> - <BPM>" e.g. "- 3A - 100"
+            dj_suffix_re = new Regex(
+                "(?:\\s+-\\s+\\d{1,2}[AB])?\\s+-\\s+\\d{2,3}\\s*$",
                 RegexCompileFlags.CASELESS);
 
             // Title-only non-song patterns
@@ -241,6 +247,9 @@ namespace Receiver {
             try { text = trailing_pipe_url_re.replace(text, -1, 0, ""); } catch {}
             try { text = trailing_paren_domain_re.replace(text, -1, 0, ""); } catch {}
             try { text = next_re.replace(text, -1, 0, ""); } catch {}
+
+            // Strip trailing DJ metadata (Camelot key + BPM): "- 3A - 100"
+            try { text = dj_suffix_re.replace(text, -1, 0, ""); } catch {}
 
             // Strip leading ". - " or "- "
             if (text.has_prefix(". - ")) {
@@ -426,6 +435,7 @@ namespace Receiver {
         private string clean_title(string title) {
             try {
                 var cleaned = title_suffix_re.replace(title, -1, 0, "").strip();
+                cleaned = dj_suffix_re.replace(cleaned, -1, 0, "").strip();
                 return cleaned != "" ? cleaned : title;
             } catch {
                 return title;
