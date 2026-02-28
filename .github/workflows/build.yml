@@ -3,10 +3,8 @@ name: Build & Package
 on:
   workflow_dispatch:
   push:
-    branches: [master]
     tags: ['v*']
   pull_request:
-    branches: [master]
 
 permissions:
   contents: write
