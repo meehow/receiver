@@ -4,6 +4,7 @@ namespace Receiver {
     public class Application : Adw.Application {
         public StationStore store { get; private set; }
         public Player player { get; private set; }
+        public Scrobbler scrobbler { get; private set; }
         private MprisService mpris;
 
         public Application() {
@@ -20,6 +21,7 @@ namespace Receiver {
             store = new StationStore();
             player = new Player();
             mpris = new MprisService(this, player);
+            scrobbler = new Scrobbler(player);
 
             // Restore saved state and bind volume
             var state = AppState.get_default();

@@ -9,6 +9,8 @@ namespace Receiver {
         private Adw.NavigationView nav_view;
         private Adw.NavigationPage search_page;
         private Adw.ToastOverlay toast_overlay;
+        private Gtk.Button lastfm_btn;
+        private uint auth_poll_timer = 0;
 
         public MainWindow(Application application) {
             Object(application: application, title: "Receiver", default_width: 580, default_height: 1000);
@@ -33,7 +35,17 @@ namespace Receiver {
                 search_page.title = _("Search");
                 nav_view.push(search_page);
             });
+
+            // Last.fm button
+            lastfm_btn = new Gtk.Button.with_label("Last.fm");
+            lastfm_btn.add_css_class("flat");
+            lastfm_btn.add_css_class("caption");
+            update_lastfm_button();
+            lastfm_btn.clicked.connect(on_lastfm_clicked);
+            app.scrobbler.status_changed.connect(update_lastfm_button);
+
             home_header.pack_end(search_btn);
+            home_header.pack_end(lastfm_btn);
             home_content.append(home_header);
             home_content.append(home_screen);
             var home_page = new Adw.NavigationPage(home_content, _("Home"));
@@ -107,6 +119,79 @@ namespace Receiver {
                 app.player.play(s);
                 toast(_("Resuming: %s").printf(s.name));
             }
+        }
+
+        private void update_lastfm_button() {
+            if (app.scrobbler.is_enabled()) {
+                lastfm_btn.tooltip_text = _("Connected to Last.fm (click to disconnect)");
+                lastfm_btn.add_css_class("success");
+            } else {
+                lastfm_btn.tooltip_text = _("Connect to Last.fm");
+                lastfm_btn.remove_css_class("success");
+            }
+        }
+
+        private void on_lastfm_clicked() {
+            if (auth_poll_timer > 0) {
+                // Polling in progress — cancel it
+                cancel_auth_poll();
+                toast(_("Last.fm authorization cancelled"));
+                return;
+            }
+
+            if (app.scrobbler.is_enabled()) {
+                // Already connected — disconnect
+                app.scrobbler.disconnect_lastfm();
+                toast(_("Disconnected from Last.fm"));
+                return;
+            }
+
+            // Start auth flow
+            toast(_("Connecting to Last.fm…"));
+            app.scrobbler.start_auth.begin((obj, res) => {
+                var url = app.scrobbler.start_auth.end(res);
+                if (url == null) {
+                    toast(_("Failed to connect to Last.fm"));
+                    return;
+                }
+
+                // Open browser for authorization
+                var launcher = new Gtk.UriLauncher(url);
+                launcher.launch.begin(this, null);
+
+                toast(_("Grant access in your browser…"));
+                lastfm_btn.tooltip_text = _("Click to cancel Last.fm authorization");
+                lastfm_btn.add_css_class("warning");
+
+                // Poll every 3 seconds until auth succeeds or 2 minutes timeout
+                var attempts = 0;
+                auth_poll_timer = Timeout.add_seconds(3, () => {
+                    attempts++;
+                    if (attempts > 40) {  // 40 × 3s = 2 min timeout
+                        cancel_auth_poll();
+                        toast(_("Last.fm authorization timed out"));
+                        return false;
+                    }
+
+                    app.scrobbler.complete_auth.begin((o, r) => {
+                        var ok = app.scrobbler.complete_auth.end(r);
+                        if (ok) {
+                            cancel_auth_poll();
+                            toast(_("Connected to Last.fm"));
+                        }
+                    });
+                    return auth_poll_timer > 0;  // keep polling until cancelled
+                });
+            });
+        }
+
+        private void cancel_auth_poll() {
+            if (auth_poll_timer > 0) {
+                Source.remove(auth_poll_timer);
+                auth_poll_timer = 0;
+            }
+            lastfm_btn.remove_css_class("warning");
+            update_lastfm_button();
         }
     }
 }
