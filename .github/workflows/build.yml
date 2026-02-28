@@ -76,6 +76,7 @@ jobs:
             gstreamer1.0-pulseaudio \
             librsvg2-dev \
             webp-pixbuf-loader \
+            glib-networking \
             gettext
 
       - name: Build AppImage

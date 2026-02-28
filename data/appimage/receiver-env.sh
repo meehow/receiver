@@ -5,6 +5,9 @@
 # Ensure bundled libraries (GStreamer core, etc.) are found before system ones
 export LD_LIBRARY_PATH="${APPDIR}/usr/lib/x86_64-linux-gnu:${LD_LIBRARY_PATH}"
 
+# GIO modules: bundled TLS (glib-networking) and proxy modules
+export GIO_EXTRA_MODULES="${APPDIR}/usr/lib/x86_64-linux-gnu/gio/modules"
+
 # GStreamer: use bundled plugins and scanner
 export GST_PLUGIN_SYSTEM_PATH="${APPDIR}/usr/lib/x86_64-linux-gnu/gstreamer-1.0"
 export GST_PLUGIN_SCANNER="${APPDIR}/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner"

@@ -102,6 +102,14 @@ appimage: build $(LINUXDEPLOY) $(LINUXDEPLOY_GTK)
 	@# Create AppRun hook for GStreamer environment
 	mkdir -p $(APPDIR)/apprun-hooks
 	cp data/appimage/receiver-env.sh $(APPDIR)/apprun-hooks/
+	@# Bundle GIO modules (TLS via glib-networking, proxy)
+	mkdir -p $(APPDIR)/usr/lib/x86_64-linux-gnu/gio/modules
+	cp /usr/lib/x86_64-linux-gnu/gio/modules/libgiognutls.so \
+	   $(APPDIR)/usr/lib/x86_64-linux-gnu/gio/modules/
+	-cp /usr/lib/x86_64-linux-gnu/gio/modules/libgiognomeproxy.so \
+	    /usr/lib/x86_64-linux-gnu/gio/modules/libgiolibproxy.so \
+	    $(APPDIR)/usr/lib/x86_64-linux-gnu/gio/modules/
+	gio-querymodules $(APPDIR)/usr/lib/x86_64-linux-gnu/gio/modules
 	@# Bundle only Adwaita symbolic icons (needed by GTK4/Libadwaita)
 	mkdir -p $(APPDIR)/usr/share/icons/Adwaita
 	cp /usr/share/icons/Adwaita/index.theme $(APPDIR)/usr/share/icons/Adwaita/
