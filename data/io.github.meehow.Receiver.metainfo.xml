@@ -76,6 +76,15 @@
   </screenshots>
   
   <releases>
+    <release version="0.3.7" date="2026-02-28">
+      <description>
+        <ul>
+          <li>Add Last.fm scrobbling support</li>
+          <li>Normalize Unicode dashes in metadata extraction</li>
+          <li>Bundle GIO modules for TLS and proxy support in AppImage</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.6" date="2026-02-26">
       <description>
         <ul>

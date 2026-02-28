@@ -1,3 +1,12 @@
+receiver (0.3.7-1) unstable; urgency=medium
+
+  * Add Last.fm scrobbling support
+  * Normalize Unicode dashes in metadata extraction
+  * Bundle GIO modules for TLS and proxy support in AppImage
+  * Consolidate GitHub release workflow
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Sat, 28 Feb 2026 23:20:00 +0100
+
 receiver (0.3.6-1) unstable; urgency=medium
 
   * Add MPRIS next/previous actions to cycle through favourite stations
