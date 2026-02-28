@@ -39,6 +39,7 @@ namespace Receiver {
             // Last.fm button
             lastfm_btn = new Gtk.Button.with_label("Last.fm");
             lastfm_btn.add_css_class("flat");
+            lastfm_btn.add_css_class("caption");
             update_lastfm_button();
             lastfm_btn.clicked.connect(on_lastfm_clicked);
             app.scrobbler.status_changed.connect(update_lastfm_button);
