@@ -21,6 +21,7 @@ namespace Receiver {
         private Regex trailing_station_re;
         private Regex trailing_url_re;
         private Regex trailing_pipe_url_re;
+        private Regex trailing_paren_domain_re;
         private Regex next_re;
         private Regex trailing_junk_re;
         private Regex trailing_dashes_re;
@@ -116,6 +117,7 @@ namespace Receiver {
                 RegexCompileFlags.CASELESS);
             trailing_url_re = new Regex("\\s*\\(?\\s*www\\.\\S+\\)?\\s*$", RegexCompileFlags.CASELESS);
             trailing_pipe_url_re = new Regex("\\s*\\|\\s*https?://\\S+.*$", RegexCompileFlags.CASELESS);
+            trailing_paren_domain_re = new Regex("\\s*\\([^)]*\\.[a-z]{2,}\\)\\s*$", RegexCompileFlags.CASELESS);
             next_re = new Regex("\\s*[-*]*\\s*NEXT:.*$", RegexCompileFlags.CASELESS);
             trailing_junk_re = new Regex("[\\s*~]+$");
             trailing_dashes_re = new Regex("(?:\\s+-)+\\s*$");
@@ -191,6 +193,13 @@ namespace Receiver {
 
             var text = raw.strip();
 
+            // Normalize Unicode dashes to ASCII hyphen-minus
+            text = text.replace("˗", "-")  // U+02D7 modifier letter minus
+                       .replace("–", "-")  // U+2013 en-dash
+                       .replace("—", "-")  // U+2014 em-dash
+                       .replace("―", "-")  // U+2015 horizontal bar
+                       .replace("−", "-"); // U+2212 minus sign
+
             // Handle tilde-delimited: "Title~Artist~~Year~~BPM~..."
             MatchInfo m;
             if (tilde_re.match(text, 0, out m)) {
@@ -230,6 +239,7 @@ namespace Receiver {
             try { text = trailing_station_re.replace(text, -1, 0, ""); } catch {}
             try { text = trailing_url_re.replace(text, -1, 0, ""); } catch {}
             try { text = trailing_pipe_url_re.replace(text, -1, 0, ""); } catch {}
+            try { text = trailing_paren_domain_re.replace(text, -1, 0, ""); } catch {}
             try { text = next_re.replace(text, -1, 0, ""); } catch {}
 
             // Strip leading ". - " or "- "
