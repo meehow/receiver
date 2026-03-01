@@ -35,6 +35,8 @@ apps:
   receiver:
     command: usr/bin/receiver
     extensions: [gnome]
+    environment:
+      GIO_USE_PROXY_RESOLVER: gnome
     plugs:
       - network
       - audio-playback
