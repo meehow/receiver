@@ -26,6 +26,7 @@ No sign-up. No ads. No popularity rankings deciding what you hear. Just radio.
 - 🎵 **Wide format support** — MP3, AAC, Ogg, and HLS streams
 - 💾 **Session persistence** — resume where you left off
 - 🎛️ **MPRIS integration** — control playback from your desktop environment
+- 🔗 **Last.fm scrobbling** — track what you listen to on your [Last.fm](https://last.fm/) profile
 - 🌍 **120 languages** — translated for users around the world
 
 ## Install
