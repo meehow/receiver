@@ -75,6 +75,7 @@ parts:
       - libsqlite3-0
       - webp-pixbuf-loader
     stage:
+      - -usr/lib/*/libdirect*
       - -usr/lib/*/libharfbuzz*
       - -usr/lib/*/libpango*
       - -usr/lib/*/librsvg*
