@@ -21,6 +21,12 @@ grade: stable
 confinement: strict
 icon: data/icons/hicolor/512x512/apps/io.github.meehow.Receiver.png
 
+platforms:
+  amd64:
+  arm64:
+  armhf:
+  riscv64:
+
 slots:
   receiver-mpris:
     interface: mpris
