@@ -77,6 +77,15 @@
   </screenshots>
   
   <releases>
+    <release version="0.3.8" date="2026-03-04">
+      <description>
+        <ul>
+          <li>Fix YouTube stream downloads</li>
+          <li>Make station name clickable to open its homepage</li>
+          <li>Improve metadata cleaning for DJ suffixes and title prefixes</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.7" date="2026-02-28">
       <description>
         <ul>

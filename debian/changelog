@@ -1,3 +1,11 @@
+receiver (0.3.8-1) unstable; urgency=medium
+
+  * Fix YouTube stream downloads
+  * Make station name clickable to open its homepage
+  * Improve metadata cleaning for DJ suffixes and title prefixes
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Tue, 04 Mar 2026 22:18:00 +0100
+
 receiver (0.3.7-1) unstable; urgency=medium
 
   * Add Last.fm scrobbling support

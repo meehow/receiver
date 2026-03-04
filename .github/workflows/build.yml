@@ -115,3 +115,4 @@ jobs:
           receiver_*.deb
           Receiver-*.AppImage
           --generate-notes
+          --prerelease
