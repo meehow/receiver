@@ -6,13 +6,13 @@ namespace Receiver {
         private Gtk.Picture artwork;
         private Gtk.Stack image_stack;
         private Gtk.Label title_label;
+        private Gtk.Button title_button;
         private Gtk.Label subtitle_label;
         private Gtk.Button play_button;
         private Gtk.Image play_icon;
         private Gtk.Scale volume_scale;
 
         private Gtk.Revealer revealer;
-        private Gtk.Button website_button;
         private Gtk.Button favourite_button;
         private Gtk.Button download_button;
         private Gtk.Stack download_stack;
@@ -74,22 +74,21 @@ namespace Receiver {
             title_label.hexpand = true;
             title_label.ellipsize = Pango.EllipsizeMode.END;
             title_label.add_css_class("heading");
-            controls.append(title_label);
 
-
-
-            website_button = new Gtk.Button.from_icon_name("web-browser-symbolic");
-            website_button.add_css_class("circular");
-            website_button.add_css_class("flat");
-            website_button.visible = false;
-            website_button.clicked.connect(() => {
+            title_button = new Gtk.Button();
+            title_button.can_target = false;
+            title_button.child = title_label;
+            title_button.add_css_class("flat");
+            title_button.hexpand = true;
+            title_button.halign = Gtk.Align.START;
+            title_button.clicked.connect(() => {
                 var s = player.current_station;
                 if (s != null && s.homepage != null) {
                     var launcher = new Gtk.UriLauncher(s.homepage);
                     launcher.launch.begin(get_root() as Gtk.Window, null);
                 }
             });
-            controls.append(website_button);
+            controls.append(title_button);
 
             favourite_button = new Gtk.Button.from_icon_name("non-starred-symbolic");
             favourite_button.add_css_class("circular");
@@ -259,8 +258,10 @@ namespace Receiver {
                     break;
                 default:
                     play_icon.icon_name = "media-playback-start-symbolic";
-                    website_button.visible = favourite_button.visible = download_stack.visible = false;
+                    favourite_button.visible = download_stack.visible = false;
                     title_label.label = _("Not Playing");
+                    title_label.tooltip_text = null;
+                    title_button.can_target = false;
                     subtitle_label.label = _("Select a station");
                     artwork.paintable = null;
                     image_stack.visible_child_name = "placeholder";
@@ -274,8 +275,8 @@ namespace Receiver {
                 return;
             }
             title_label.label = s.name;
-            website_button.visible = s.homepage != null;
-            website_button.tooltip_text = s.homepage;
+            title_label.tooltip_text = s.homepage;
+            title_button.can_target = s.homepage != null;
             update_fav();
             var np = player.now_playing;
             subtitle_label.label = (np != null && np != "") ? format_now_playing(np) : _("Now playing");
