@@ -36,6 +36,7 @@ No sign-up. No ads. No popularity rankings deciding what you hear. Just radio.
 [![Get it on Flathub](https://flathub.org/api/badge)](https://flathub.org/apps/io.github.meehow.Receiver)
 
 ```sh
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub io.github.meehow.Receiver
 flatpak run io.github.meehow.Receiver
 ```
@@ -59,8 +60,3 @@ sudo apt install ./receiver_*.deb
 ### From source
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions and development setup.
-
-## Links
-
-- [Report a bug](https://github.com/meehow/receiver/issues)
-

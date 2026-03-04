@@ -36,6 +36,6 @@ ytdl_dep = declare_dependency(
 executable('ytdl',
   'src/main.vala',
   dependencies: deps,
-  link_with: libytdl,
+  link_whole: libytdl,
   install: false,
 )

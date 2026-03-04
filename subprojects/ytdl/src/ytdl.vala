@@ -158,49 +158,30 @@ namespace Ytdl {
         var re_sts = new Regex ("signatureTimestamp[=:]\\s*(\\d+)");
         if (re_sts.match (base_js, 0, out mi)) sts = mi.fetch (1);
 
-        // 3. Call web_embedded API
-        string api_body = """
-        {
-            "context": {
-                "client": {
-                    "clientName": "WEB_EMBEDDED_PLAYER",
-                    "clientVersion": "1.20260115.01.00"
-                },
-                "thirdParty": { "embedUrl": "https://www.youtube.com/" }
-            },
-            "videoId": "%s",
-            "playbackContext": {
-                "contentPlaybackContext": { "signatureTimestamp": %s }
+        // 3. Try API clients: WEB_EMBEDDED_PLAYER first, then WEB as fallback
+        Json.Object? root = null;
+        Error? last_err = null;
+
+        // WEB_EMBEDDED_PLAYER (client 56)
+        try {
+            root = call_player_api (session, video_id, sts,
+                "WEB_EMBEDDED_PLAYER", "1.20260115.01.00", "56", true);
+        } catch (Error e) {
+            last_err = e;
+        }
+
+        // WEB fallback (client 1)
+        if (root == null) {
+            try {
+                root = call_player_api (session, video_id, sts,
+                    "WEB", "2.20260115.01.00", "1", false);
+            } catch (Error e) {
+                last_err = e;
             }
         }
-        """.printf (video_id, sts);
 
-        var msg = new Soup.Message ("POST",
-            "https://www.youtube.com/youtubei/v1/player?prettyPrint=false");
-        msg.request_headers.append ("User-Agent", UA);
-        msg.request_headers.append ("X-Youtube-Client-Name", "56");
-        msg.request_headers.append ("X-Youtube-Client-Version", "1.20260115.01.00");
-        msg.request_headers.append ("Origin", "https://www.youtube.com");
-        msg.set_request_body_from_bytes ("application/json", new Bytes (api_body.data));
-
-        var resp_bytes = session.send_and_read (msg, null);
-        if (msg.status_code != 200)
-            throw new IOError.FAILED ("API returned HTTP %u", msg.status_code);
-
-        var parser = new Json.Parser ();
-        parser.load_from_data ((string) resp_bytes.get_data ());
-        var root = parser.get_root ().get_object ();
-
-        // 4. Check playability
-        if (root.has_member ("playabilityStatus")) {
-            string status = root.get_object_member ("playabilityStatus")
-                .get_string_member_with_default ("status", "");
-            if (status != "OK") {
-                string reason = root.get_object_member ("playabilityStatus")
-                    .get_string_member_with_default ("reason", "unknown");
-                throw new IOError.FAILED ("%s: %s", status, reason);
-            }
-        }
+        if (root == null)
+            throw last_err ?? new IOError.FAILED ("All API clients failed");
 
         // 5. Extract title
         string title = "video";
@@ -292,6 +273,58 @@ namespace Ytdl {
     }
 
     // ── Private helpers ──
+
+    private Json.Object call_player_api (Soup.Session session, string video_id,
+                                          string sts, string client_name,
+                                          string client_version, string client_id,
+                                          bool is_embedded) throws Error {
+        string embed_part = is_embedded
+            ? ",\"thirdParty\": { \"embedUrl\": \"https://www.youtube.com/\" }"
+            : "";
+
+        string api_body = """
+        {
+            "context": {
+                "client": {
+                    "clientName": "%s",
+                    "clientVersion": "%s"
+                }%s
+            },
+            "videoId": "%s",
+            "playbackContext": {
+                "contentPlaybackContext": { "signatureTimestamp": %s }
+            }
+        }
+        """.printf (client_name, client_version, embed_part, video_id, sts);
+
+        var msg = new Soup.Message ("POST",
+            "https://www.youtube.com/youtubei/v1/player?prettyPrint=false");
+        msg.request_headers.append ("User-Agent", UA);
+        msg.request_headers.append ("X-Youtube-Client-Name", client_id);
+        msg.request_headers.append ("X-Youtube-Client-Version", client_version);
+        msg.request_headers.append ("Origin", "https://www.youtube.com");
+        msg.set_request_body_from_bytes ("application/json", new Bytes (api_body.data));
+
+        var resp_bytes = session.send_and_read (msg, null);
+        if (msg.status_code != 200)
+            throw new IOError.FAILED ("%s: HTTP %u", client_name, msg.status_code);
+
+        var parser = new Json.Parser ();
+        parser.load_from_data ((string) resp_bytes.get_data ());
+        var root = parser.get_root ().get_object ();
+
+        if (root.has_member ("playabilityStatus")) {
+            string status = root.get_object_member ("playabilityStatus")
+                .get_string_member_with_default ("status", "");
+            if (status != "OK") {
+                string reason = root.get_object_member ("playabilityStatus")
+                    .get_string_member_with_default ("reason", "unknown");
+                throw new IOError.FAILED ("%s: %s", status, reason);
+            }
+        }
+
+        return root;
+    }
 
     private string? http_get (Soup.Session session, string url) {
         var msg = new Soup.Message ("GET", url);

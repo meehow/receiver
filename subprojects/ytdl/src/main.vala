@@ -43,6 +43,8 @@ int main (string[] args) {
         var msg = new Soup.Message ("GET", info.url);
         msg.request_headers.append ("User-Agent",
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
+        msg.request_headers.append ("Referer", "https://www.youtube.com/");
+        msg.request_headers.append ("Origin", "https://www.youtube.com");
 
         var input = session.send (msg, null);
         if (msg.status_code != 200) {
