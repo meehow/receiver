@@ -118,8 +118,11 @@ namespace Receiver {
             }
 
             pipeline.set_property("uri", url);
-            pipeline.set_property("volume", _volume);
-            pipeline.set_property("flags", 0x02);  // Audio only
+            pipeline.set_property("volume", _volume * _volume * _volume);
+            
+            // Audio only flags: 0x02 is GST_PLAY_FLAG_AUDIO
+            pipeline.set_property("flags", 0x02);
+            pipeline.set_property("video-sink", Gst.ElementFactory.make("fakesink", "video_fake"));
             pipeline.set_property("buffer-duration", (int64) Gst.SECOND * 2);
 
             // Set User-Agent so Shoutcast/Icecast servers don't reject us
