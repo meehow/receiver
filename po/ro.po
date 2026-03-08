@@ -23,9 +23,8 @@ msgid "Menu"
 msgstr "Meniu"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "Posturi recomandate"
+msgstr "Afișează stațiile recomandate"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -89,9 +88,8 @@ msgid "Disconnected from Last.fm"
 msgstr "Deconectat de la Last.fm"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "Se reconectează…"
+msgstr "Se conectează la Last.fm…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -248,9 +246,8 @@ msgid "Cancel download"
 msgstr "Anulează descărcarea"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "Niciun post"
+msgstr "Nicio melodie încă"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"

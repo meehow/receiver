@@ -23,9 +23,8 @@ msgid "Menu"
 msgstr "메뉴"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "주요 방송국"
+msgstr "추천 방송국 표시"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -89,9 +88,8 @@ msgid "Disconnected from Last.fm"
 msgstr "Last.fm 연결이 끊어졌습니다"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "다시 연결 중…"
+msgstr "Last.fm에 연결 중…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -247,9 +245,8 @@ msgid "Cancel download"
 msgstr "다운로드 취소"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "방송국 없음"
+msgstr "아직 노래가 없습니다"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"

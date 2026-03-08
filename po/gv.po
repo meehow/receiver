@@ -23,9 +23,8 @@ msgid "Menu"
 msgstr "Fwirran"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "Stashoonyn er lheh"
+msgstr "Taishbyney stashoonyn ard-hoilshit"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -89,9 +88,8 @@ msgid "Disconnected from Last.fm"
 msgstr "Giarrit veih Last.fm"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "Kiangley reesht…"
+msgstr "Kiangley rish Last.fm…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -247,9 +245,8 @@ msgid "Cancel download"
 msgstr "Dolley magh laadey"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "Gyn stashoon"
+msgstr "Cha nel arraneyn foast"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"

@@ -23,9 +23,8 @@ msgid "Menu"
 msgstr "Mäzir"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "Tańdauly stantsııalar"
+msgstr "Tañdaýly stansıalarly körsety"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -89,9 +88,8 @@ msgid "Disconnected from Last.fm"
 msgstr "Last.fm-nen ajyratyldy"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "Qaıta qosyluda…"
+msgstr "Last.fm-ge qosylyda…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -247,9 +245,8 @@ msgid "Cancel download"
 msgstr "Júkteudi boldyrmau"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "Stantsııalar joq"
+msgstr "Äzirge än joq"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"

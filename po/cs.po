@@ -23,9 +23,8 @@ msgid "Menu"
 msgstr "Nabídka"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "Doporučené stanice"
+msgstr "Zobrazit doporučené stanice"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -89,9 +88,8 @@ msgid "Disconnected from Last.fm"
 msgstr "Odpojeno od Last.fm"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "Opětovné připojování…"
+msgstr "Připojování k Last.fm…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -247,9 +245,8 @@ msgid "Cancel download"
 msgstr "Zrušit stahování"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "Žádné stanice"
+msgstr "Zatím žádné skladby"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"

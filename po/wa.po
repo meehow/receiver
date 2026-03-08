@@ -23,9 +23,8 @@ msgid "Menu"
 msgstr "Mino"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "Ståcions rloukîyes"
+msgstr "Mostrer les ståcions è vedeye"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -89,9 +88,8 @@ msgid "Disconnected from Last.fm"
 msgstr "Discovî di Last.fm"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "Riconecsion…"
+msgstr "Conexion a Last.fm…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -247,9 +245,8 @@ msgid "Cancel download"
 msgstr "Disfé li distcherdjaedje"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "Nole ståcion"
+msgstr "Nole tchanson pol moumint"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"

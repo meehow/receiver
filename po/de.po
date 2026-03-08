@@ -29,9 +29,8 @@ msgid "Menu"
 msgstr "Menü"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "Empfohlene Sender"
+msgstr "Empfohlene Sender anzeigen"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -95,9 +94,8 @@ msgid "Disconnected from Last.fm"
 msgstr "Von Last.fm getrennt"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "Verbinde erneut…"
+msgstr "Verbinde mit Last.fm…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -253,9 +251,8 @@ msgid "Cancel download"
 msgstr "Download abbrechen"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "Keine Sender"
+msgstr "Noch keine Titel"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"

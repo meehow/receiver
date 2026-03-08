@@ -23,9 +23,8 @@ msgid "Menu"
 msgstr "Menu"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "Đài nổi bật"
+msgstr "Hiển thị đài nổi bật"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -89,9 +88,8 @@ msgid "Disconnected from Last.fm"
 msgstr "Đã ngắt kết nối Last.fm"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "Đang kết nối lại…"
+msgstr "Đang kết nối Last.fm…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -248,9 +246,8 @@ msgid "Cancel download"
 msgstr "Hủy tải"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "Không có đài"
+msgstr "Chưa có bài hát nào"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"

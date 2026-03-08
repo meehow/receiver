@@ -23,9 +23,8 @@ msgid "Menu"
 msgstr "مینو"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "نمایاں اسٹیشن"
+msgstr "نمایاں اسٹیشن دکھائیں"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -89,9 +88,8 @@ msgid "Disconnected from Last.fm"
 msgstr "Last.fm سے منقطع ہو گیا"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "دوبارہ جڑ رہا ہے…"
+msgstr "Last.fm سے جوڑ رہا ہے…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -247,9 +245,8 @@ msgid "Cancel download"
 msgstr "ڈاؤن لوڈ منسوخ کریں"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "کوئی اسٹیشن نہیں"
+msgstr "ابھی تک کوئی گانے نہیں"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"

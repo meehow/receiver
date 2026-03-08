@@ -23,9 +23,8 @@ msgid "Menu"
 msgstr "مێنیو"
 
 #: src/widgets/window.vala:55
-#, fuzzy
 msgid "Show Featured Stations"
-msgstr "وێستگە دیاریکراوەکان"
+msgstr "وێستگە بەرزەکان نیشان بدە"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -89,9 +88,8 @@ msgid "Disconnected from Last.fm"
 msgstr "پەیوەندی لە Last.fm پچڕا"
 
 #: src/widgets/window.vala:216
-#, fuzzy
 msgid "Connecting to Last.fm…"
-msgstr "دووبارە پەیوەندیکردنەوە…"
+msgstr "پەیوەستبوون بە Last.fm…"
 
 #: src/widgets/window.vala:220
 msgid "Failed to connect to Last.fm"
@@ -247,9 +245,8 @@ msgid "Cancel download"
 msgstr "دابەزاندن هەڵوەشێنەوە"
 
 #: src/widgets/history_page.vala:31
-#, fuzzy
 msgid "No Songs Yet"
-msgstr "هیچ وێستگەیەک نییە"
+msgstr "ھێشتا گۆرانی نییە"
 
 #: src/widgets/history_page.vala:32
 msgid "Songs will appear here as you listen to radio stations"
