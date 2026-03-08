@@ -11,6 +11,8 @@ namespace Receiver {
         private Adw.NavigationPage search_page;
         private Adw.ToastOverlay toast_overlay;
         private GLib.Menu lastfm_menu;
+        private HistoryPage history_page;
+        private Adw.NavigationPage history_nav_page;
         private uint auth_poll_timer = 0;
 
         public MainWindow(Application application) {
@@ -43,20 +45,18 @@ namespace Receiver {
             menu_button.tooltip_text = _("Menu");
             menu_button.primary = true;
             var menu = new GLib.Menu();
-            menu.append(_("Show Featured Stations"), "win.show-featured");
 
-            // Last.fm submenu — single item with dynamic label
+            // Last.fm — dynamic label (needs its own GLib.Menu for updates)
             lastfm_menu = new GLib.Menu();
             update_lastfm_label();
             menu.append_section(null, lastfm_menu);
             app.scrobbler.status_changed.connect(update_lastfm_label);
 
-            menu_button.menu_model = menu;
+            menu.append(_("Show Featured Stations"), "win.show-featured");
+            menu.append(_("Song History"), "win.history");
+            menu.append(_("About Receiver"), "win.about");
 
-            // About section
-            var about_section = new GLib.Menu();
-            about_section.append(_("About Receiver"), "win.about");
-            menu.append_section(null, about_section);
+            menu_button.menu_model = menu;
 
             home_header.pack_end(menu_button);
             home_header.pack_end(search_btn);
@@ -69,6 +69,12 @@ namespace Receiver {
             station_list = new StationList(app.store);
             search_page = new Adw.NavigationPage(station_list, "Search");
             search_page.tag = "search";
+
+            // History page
+            history_page = new HistoryPage();
+            history_nav_page = new Adw.NavigationPage(history_page, _("Song History"));
+            history_nav_page.tag = "history";
+
             toast_overlay.child = nav_view;
             main_box.append(toast_overlay);
 
@@ -98,6 +104,13 @@ namespace Receiver {
             });
 
             station_list.station_activated.connect(play_station);
+
+            history_page.station_requested.connect((id) => {
+                var s = app.store.get_station_by_id(id);
+                if (s != null) {
+                    play_station(s);
+                }
+            });
 
             app.store.loading_finished.connect((c) => {
                 toast(_("Loaded %d stations").printf(c));
@@ -162,6 +175,13 @@ namespace Receiver {
             var lastfm_action = new SimpleAction("lastfm-toggle", null);
             lastfm_action.activate.connect(on_lastfm_clicked);
             this.add_action(lastfm_action);
+
+            // History action
+            var history_action = new SimpleAction("history", null);
+            history_action.activate.connect(() => {
+                nav_view.push(history_nav_page);
+            });
+            this.add_action(history_action);
 
             // About action
             var about_action = new SimpleAction("about", null);

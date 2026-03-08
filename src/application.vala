@@ -41,6 +41,13 @@ namespace Receiver {
                 }
             });
 
+            // Record songs to history
+            player.metadata_changed.connect((title) => {
+                if (player.current_station != null && player.state == PlayerState.PLAYING) {
+                    HistoryStore.get_default().add(player.current_station, title);
+                }
+            });
+
             // Set up actions
             setup_actions();
         }

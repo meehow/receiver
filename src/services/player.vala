@@ -62,6 +62,7 @@ namespace Receiver {
             cancel_retry();
             if (play_cancellable != null) play_cancellable.cancel();
             play_cancellable = new Cancellable();
+            cleanup();  // Stop old pipeline immediately to prevent stale metadata
             retry_count = 0;
             current_station = station;
 

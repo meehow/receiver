@@ -14,15 +14,11 @@ namespace Receiver {
 
         private Gtk.Revealer revealer;
         private Gtk.Button favourite_button;
-        private Gtk.Button download_button;
-        private Gtk.Stack download_stack;
-        private Gtk.ProgressBar download_progress;
-        private SongDownloader downloader;
+        private DownloadButton download_button;
 
         public PlayerBar(Player audio_player) {
             Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
             this.player = audio_player;
-            this.downloader = new SongDownloader();
             build_ui();
             connect_signals();
         }
@@ -146,65 +142,14 @@ namespace Receiver {
             subtitle_label.add_css_class("caption");
             subtitle_row.append(subtitle_label);
 
-            download_button = new Gtk.Button.from_icon_name("document-save-symbolic");
-            download_button.add_css_class("flat");
-            download_button.add_css_class("circular");
-            download_button.add_css_class("dim-label");
-            download_button.tooltip_text = _("Download song");
-            download_button.valign = Gtk.Align.CENTER;
-            download_button.halign = Gtk.Align.END;
-            download_button.hexpand = false;
+            download_button = new DownloadButton();
+            download_button.visible = false;
             download_button.clicked.connect(() => {
-                if (!downloader.is_downloading) {
-                    var q = player.now_playing;
-                    var win = get_root() as Gtk.Window;
-                    download_button.sensitive = false;
-                    downloader.download_song.begin(q, win, (obj, res) => {
-                        downloader.download_song.end(res);
-                        download_stack.visible_child_name = "button";
-                        download_button.sensitive = true;
-                        download_progress.fraction = 0;
-                    });
-                }
+                var q = player.now_playing;
+                download_button.download(q);
             });
 
-            download_progress = new Gtk.ProgressBar();
-            download_progress.valign = Gtk.Align.CENTER;
-            download_progress.hexpand = true;
-            download_progress.set_size_request(64, -1);
-
-            var cancel_button = new Gtk.Button.from_icon_name("process-stop-symbolic");
-            cancel_button.add_css_class("circular");
-            cancel_button.add_css_class("flat");
-            cancel_button.add_css_class("dim-label");
-            cancel_button.valign = Gtk.Align.CENTER;
-            cancel_button.tooltip_text = _("Cancel download");
-            cancel_button.clicked.connect(() => {
-                downloader.cancel();
-            });
-
-            var progress_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 4);
-            progress_box.valign = Gtk.Align.CENTER;
-            progress_box.append(download_progress);
-            progress_box.append(cancel_button);
-
-            download_stack = new Gtk.Stack();
-            download_stack.hhomogeneous = false;
-            download_stack.transition_type = Gtk.StackTransitionType.CROSSFADE;
-            download_stack.add_named(download_button, "button");
-            download_stack.add_named(progress_box, "progress");
-            download_stack.visible_child_name = "button";
-            download_stack.visible = false;
-            download_stack.valign = Gtk.Align.CENTER;
-
-            downloader.progress_updated.connect((frac) => {
-                if (frac >= 0) {
-                    download_progress.fraction = frac;
-                    download_stack.visible_child_name = "progress";
-                }
-            });
-
-            subtitle_row.append(download_stack);
+            subtitle_row.append(download_button);
             right.append(subtitle_row);
 
             main.append(right);
@@ -228,7 +173,7 @@ namespace Receiver {
             player.metadata_changed.connect((t) => {
                 if (t != "" && player.state == PlayerState.PLAYING) {
                     subtitle_label.label = format_now_playing(t);
-                    download_stack.visible = looks_like_song(t);
+                    download_button.visible = looks_like_song(t);
                 }
             });
 
@@ -258,7 +203,7 @@ namespace Receiver {
                     break;
                 default:
                     play_icon.icon_name = "media-playback-start-symbolic";
-                    favourite_button.visible = download_stack.visible = false;
+                    favourite_button.visible = download_button.visible = false;
                     title_label.label = _("Not Playing");
                     title_label.tooltip_text = null;
                     title_button.can_target = false;
@@ -280,7 +225,7 @@ namespace Receiver {
             update_fav();
             var np = player.now_playing;
             subtitle_label.label = (np != null && np != "") ? format_now_playing(np) : _("Now playing");
-            download_stack.visible = np != null && looks_like_song(np);
+            download_button.visible = np != null && looks_like_song(np);
             load_artwork.begin(s);
         }
 

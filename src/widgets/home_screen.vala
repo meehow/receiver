@@ -85,8 +85,6 @@ namespace Receiver {
             dots.margin_top = 8;
 
             bool visible_initial = settings.get_boolean("show-featured");
-            featured_carousel.visible = visible_initial;
-            dots.visible = visible_initial;
             featured_section.visible = visible_initial;
 
             featured_section.append(featured_carousel);

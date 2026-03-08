@@ -40,10 +40,13 @@ sources = files(
   'src/services/song_downloader.vala',
   'src/services/lastfm.vala',
   'src/services/scrobbler.vala',
+  'src/services/history_store.vala',
   'src/widgets/window.vala',
   'src/widgets/home_screen.vala',
   'src/widgets/station_list.vala',
   'src/widgets/player_bar.vala',
+  'src/widgets/history_page.vala',
+  'src/widgets/download_button.vala',
 )
 
 # Vala compiler arguments
