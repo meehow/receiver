@@ -284,6 +284,13 @@ namespace Receiver {
                 var content = (string) bytes.get_data();
                 var base_url = url.substring(0, url.last_index_of("/") + 1);
 
+                // HLS media playlist (has #EXTINF segments) — GStreamer handles it natively
+                if (url.has_suffix(".m3u8") && (content.contains("#EXTINF") || content.contains("#EXT-X-TARGETDURATION"))) {
+                    message("HLS media playlist, passing to GStreamer: %s", url);
+                    start(url);
+                    return;
+                }
+
                 string? stream_url = null;
                 bool next_is_uri = false;
                 foreach (var line in content.split("\n")) {
@@ -299,8 +306,9 @@ namespace Receiver {
                         continue;
                     }
                     if (l == "" || l.has_prefix("#")) continue;
-                    // Non-comment, non-empty line — it's a URL
-                    if (next_is_uri || l.has_prefix("http://") || l.has_prefix("https://")) {
+                    // Non-comment, non-empty line — it's a URL (absolute or relative)
+                    if (next_is_uri || l.has_prefix("http://") || l.has_prefix("https://")
+                        || url.has_suffix(".m3u") || url.has_suffix(".m3u8")) {
                         stream_url = l;
                         break;
                     }
