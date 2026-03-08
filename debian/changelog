@@ -1,3 +1,15 @@
+receiver (0.3.9-1) unstable; urgency=medium
+
+  * Add song history page with relative timestamps
+  * Add About dialog with version info
+  * Add hamburger menu with Last.fm actions and Featured toggle
+  * Add dedicated download button widget with progress feedback
+  * Improve metadata cleaning: underscores, ampersands, and parentheses
+  * Fix audio-only playback volume and video fakesink handling
+  * Update translations for all 126 languages
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Sat, 08 Mar 2026 14:50:00 +0100
+
 receiver (0.3.8-1) unstable; urgency=medium
 
   * Fix YouTube stream downloads
