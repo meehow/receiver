@@ -5,3 +5,5 @@ src/widgets/home_screen.vala
 src/widgets/station_list.vala
 src/widgets/player_bar.vala
 src/services/song_downloader.vala
+src/widgets/download_button.vala
+src/widgets/history_page.vala

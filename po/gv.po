@@ -3,145 +3,200 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 23:07+0100\n"
+"POT-Creation-Date: 2026-03-08 13:51+0100\n"
 "Language: gv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1) ? 0 : (n%10==2) ? 1 : (n%20==0) ? "
-"2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1) ? 0 : (n%10==2) ? 1 : (n%20==0) ? 2 : 3;\n"
 
-#: src/widgets/window.vala:31
+#: src/widgets/window.vala:36
 msgid "Search stations"
 msgstr "Shir stashoonyn"
 
-#: src/widgets/window.vala:33 src/widgets/window.vala:65
+#: src/widgets/window.vala:38 src/widgets/window.vala:102
 msgid "Search"
 msgstr "Shir"
 
-#: src/widgets/window.vala:39
+#: src/widgets/window.vala:45
+msgid "Menu"
+msgstr "Fwirran"
+
+#: src/widgets/window.vala:55
+#, fuzzy
+msgid "Show Featured Stations"
+msgstr "Stashoonyn er lheh"
+
+#. History page
+#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#: src/widgets/history_page.vala:21
+msgid "Song History"
+msgstr "Shennaghys ny garraghyn"
+
+#: src/widgets/window.vala:57
+msgid "About Receiver"
+msgstr "Mychione Receiver"
+
+#: src/widgets/window.vala:65
 msgid "Home"
 msgstr "Thie"
 
-#: src/widgets/window.vala:72
+#: src/widgets/window.vala:116
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d stashoon laadrit"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:77 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:121 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Fallo: %s"
 
-#: src/widgets/window.vala:81
+#: src/widgets/window.vala:125
 #, c-format
 msgid "Playback error: %s"
 msgstr "Fallo cloie: %s"
 
-#: src/widgets/window.vala:89
+#: src/widgets/window.vala:133
 #, c-format
 msgid "Now playing: %s"
 msgstr "Cloie nish: %s"
 
-#: src/widgets/window.vala:106
+#: src/widgets/window.vala:150
 #, c-format
 msgid "Resuming: %s"
 msgstr "Goll er oai: %s"
 
-#: src/widgets/home_screen.vala:43
+#: src/widgets/window.vala:195
+msgid "Cancel Last.fm Authorization"
+msgstr "Scuirr jeh barrantys Last.fm"
+
+#: src/widgets/window.vala:197
+msgid "Disconnect from Last.fm"
+msgstr "Giarr veih Last.fm"
+
+#: src/widgets/window.vala:199
+msgid "Connect to Last.fm"
+msgstr "Kiangle rish Last.fm"
+
+#: src/widgets/window.vala:206
+msgid "Last.fm authorization cancelled"
+msgstr "Barrantys Last.fm er ny scuirr"
+
+#: src/widgets/window.vala:212
+msgid "Disconnected from Last.fm"
+msgstr "Giarrit veih Last.fm"
+
+#: src/widgets/window.vala:216
+#, fuzzy
+msgid "Connecting to Last.fm…"
+msgstr "Kiangley reesht…"
+
+#: src/widgets/window.vala:220
+msgid "Failed to connect to Last.fm"
+msgstr "Cha dod kiangley rish Last.fm"
+
+#: src/widgets/window.vala:227
+msgid "Grant access in your browser…"
+msgstr "Cur roshtyn ayns dty vrowsar…"
+
+#: src/widgets/window.vala:235
+msgid "Last.fm authorization timed out"
+msgstr "Hie barrantys Last.fm harrish traa"
+
+#: src/widgets/window.vala:243
+msgid "Connected to Last.fm"
+msgstr "Kianglt rish Last.fm"
+
+#: src/widgets/window.vala:264
+msgid "Discover 30,000+ verified radio stations from around the world"
+msgstr "Fow magh 30,000+ stashoonyn raidio feerit veih mygeayrt y theihll"
+
+#: src/widgets/home_screen.vala:48
 msgid "Featured Stations"
 msgstr "Stashoonyn er lheh"
 
-#: src/widgets/home_screen.vala:105
+#: src/widgets/home_screen.vala:132
 msgid "Favourite Stations"
 msgstr "Stashoonyn share lhiat"
 
-#: src/widgets/home_screen.vala:256
+#: src/widgets/home_screen.vala:283
 msgid "Browse by Genre"
 msgstr "Ronsagh rere dooghys"
 
-#: src/widgets/home_screen.vala:261
+#: src/widgets/home_screen.vala:288
 msgid "View All"
 msgstr "Jeeagh er ooilley"
 
-#: src/widgets/station_list.vala:34
+#: src/widgets/station_list.vala:40
 msgid "Search stations…"
 msgstr "Shir stashoonyn…"
 
-#: src/widgets/station_list.vala:37 src/widgets/station_list.vala:156
+#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
 msgid "All Languages"
 msgstr "Dy chooilley hengey"
 
-#: src/widgets/station_list.vala:38
+#: src/widgets/station_list.vala:44
 msgid "Filter by language"
 msgstr "Sheshagh rere chengey"
 
-#: src/widgets/station_list.vala:54 src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
 msgid "No Stations"
 msgstr "Gyn stashoon"
 
-#: src/widgets/station_list.vala:119
+#: src/widgets/station_list.vala:125
 msgid "Loading…"
 msgstr "Laadey…"
 
-#: src/widgets/station_list.vala:185
+#: src/widgets/station_list.vala:191
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u jeh %d stashoon"
 
-#: src/widgets/station_list.vala:186
+#: src/widgets/station_list.vala:192
 #, c-format
 msgid "Stations: %d"
 msgstr "Stashoonyn: %d"
 
-#: src/widgets/station_list.vala:198
+#: src/widgets/station_list.vala:204
 msgid "Loading Stations"
 msgstr "Laadey stashoonyn"
 
-#: src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:205
 msgid "No Results"
 msgstr "Gyn eiyrtys"
 
-#: src/widgets/station_list.vala:201
+#: src/widgets/station_list.vala:207
 msgid "Please wait…"
 msgstr "Fuirree my sailt…"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "No stations match your search"
 msgstr "Cha nel stashoon erbee coardail rish yn shirrey ayd"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "Could not load stations"
 msgstr "Cha voddagh stashoonyn ve laadrit"
 
 #. Controls row
-#: src/widgets/player_bar.vala:72 src/widgets/player_bar.vala:263
+#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
 msgid "Not Playing"
 msgstr "Cha nel cloie"
 
-#: src/widgets/player_bar.vala:141 src/widgets/player_bar.vala:264
+#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
 msgid "Select a station"
 msgstr "Reih stashoon"
 
-#: src/widgets/player_bar.vala:154
-msgid "Download song"
-msgstr "Laad neose arrane"
-
-#: src/widgets/player_bar.vala:182
-msgid "Cancel download"
-msgstr "Dolley magh laadey"
-
-#: src/widgets/player_bar.vala:253
+#: src/widgets/player_bar.vala:197
 msgid "Paused"
 msgstr "Scuirrit"
 
-#: src/widgets/player_bar.vala:258
+#: src/widgets/player_bar.vala:202
 msgid "Reconnecting…"
 msgstr "Kiangley reesht…"
 
-#: src/widgets/player_bar.vala:281
+#: src/widgets/player_bar.vala:227
 msgid "Now playing"
 msgstr "Cloie nish"
 
@@ -182,3 +237,52 @@ msgstr "Ren y laadey failleil: %s"
 #, c-format
 msgid "Saved: %s"
 msgstr "Sauailit: %s"
+
+#: src/widgets/download_button.vala:30
+msgid "Download song"
+msgstr "Laad neose arrane"
+
+#: src/widgets/download_button.vala:46
+msgid "Cancel download"
+msgstr "Dolley magh laadey"
+
+#: src/widgets/history_page.vala:31
+#, fuzzy
+msgid "No Songs Yet"
+msgstr "Gyn stashoon"
+
+#: src/widgets/history_page.vala:32
+msgid "Songs will appear here as you listen to radio stations"
+msgstr ""
+"Hig arrane kionfenish ayns shoh myr t'ou geaishtagh rish stashoonyn raidio"
+
+#: src/widgets/history_page.vala:97
+msgid "Just now"
+msgstr "Nish hene"
+
+#: src/widgets/history_page.vala:98
+#, c-format
+msgid "%d min ago"
+msgid_plural "%d min ago"
+msgstr[0] "%d vinnid er dy henney"
+msgstr[1] "%d vinnidyn er dy henney"
+msgstr[2] "%d vinnidyn er dy henney"
+msgstr[3] "%d vinnidyn er dy henney"
+
+#: src/widgets/history_page.vala:99
+#, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d oor er dy henney"
+msgstr[1] "%d ooryn er dy henney"
+msgstr[2] "%d ooryn er dy henney"
+msgstr[3] "%d ooryn er dy henney"
+
+#: src/widgets/history_page.vala:100
+#, c-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d laa er dy henney"
+msgstr[1] "%d laghyn er dy henney"
+msgstr[2] "%d laghyn er dy henney"
+msgstr[3] "%d laghyn er dy henney"

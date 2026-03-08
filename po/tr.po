@@ -3,144 +3,201 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 23:07+0100\n"
+"POT-Creation-Date: 2026-03-08 13:51+0100\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/widgets/window.vala:31
+#: src/widgets/window.vala:36
 msgid "Search stations"
 msgstr "İstasyon ara"
 
-#: src/widgets/window.vala:33 src/widgets/window.vala:65
+#: src/widgets/window.vala:38 src/widgets/window.vala:102
 msgid "Search"
 msgstr "Ara"
 
-#: src/widgets/window.vala:39
+#: src/widgets/window.vala:45
+msgid "Menu"
+msgstr "Menü"
+
+#: src/widgets/window.vala:55
+#, fuzzy
+msgid "Show Featured Stations"
+msgstr "Öne çıkan istasyonlar"
+
+#. History page
+#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#: src/widgets/history_page.vala:21
+msgid "Song History"
+msgstr "Şarkı Geçmişi"
+
+#: src/widgets/window.vala:57
+msgid "About Receiver"
+msgstr "Receiver Hakkında"
+
+#: src/widgets/window.vala:65
 msgid "Home"
 msgstr "Ana Sayfa"
 
-#: src/widgets/window.vala:72
+#: src/widgets/window.vala:116
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d istasyon yüklendi"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:77 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:121 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Hata: %s"
 
-#: src/widgets/window.vala:81
+#: src/widgets/window.vala:125
 #, c-format
 msgid "Playback error: %s"
 msgstr "Oynatma hatası: %s"
 
-#: src/widgets/window.vala:89
+#: src/widgets/window.vala:133
 #, c-format
 msgid "Now playing: %s"
 msgstr "Şimdi çalıyor: %s"
 
-#: src/widgets/window.vala:106
+#: src/widgets/window.vala:150
 #, c-format
 msgid "Resuming: %s"
 msgstr "Devam ediliyor: %s"
 
-#: src/widgets/home_screen.vala:43
+#: src/widgets/window.vala:195
+msgid "Cancel Last.fm Authorization"
+msgstr "Last.fm yetkilendirmesini iptal et"
+
+#: src/widgets/window.vala:197
+msgid "Disconnect from Last.fm"
+msgstr "Last.fm bağlantısını kes"
+
+#: src/widgets/window.vala:199
+msgid "Connect to Last.fm"
+msgstr "Last.fm'e bağlan"
+
+#: src/widgets/window.vala:206
+msgid "Last.fm authorization cancelled"
+msgstr "Last.fm yetkilendirmesi iptal edildi"
+
+#: src/widgets/window.vala:212
+msgid "Disconnected from Last.fm"
+msgstr "Last.fm bağlantısı kesildi"
+
+#: src/widgets/window.vala:216
+#, fuzzy
+msgid "Connecting to Last.fm…"
+msgstr "Yeniden bağlanılıyor…"
+
+#: src/widgets/window.vala:220
+msgid "Failed to connect to Last.fm"
+msgstr "Last.fm'e bağlanılamadı"
+
+#: src/widgets/window.vala:227
+msgid "Grant access in your browser…"
+msgstr "Tarayıcınızda erişim izni verin…"
+
+#: src/widgets/window.vala:235
+msgid "Last.fm authorization timed out"
+msgstr "Last.fm yetkilendirmesi zaman aşımına uğradı"
+
+#: src/widgets/window.vala:243
+msgid "Connected to Last.fm"
+msgstr "Last.fm'e bağlandı"
+
+#: src/widgets/window.vala:264
+msgid "Discover 30,000+ verified radio stations from around the world"
+msgstr ""
+"Dünya genelinden 30.000'den fazla doğrulanmış radyo istasyonunu keşfedin"
+
+#: src/widgets/home_screen.vala:48
 msgid "Featured Stations"
 msgstr "Öne çıkan istasyonlar"
 
-#: src/widgets/home_screen.vala:105
+#: src/widgets/home_screen.vala:132
 msgid "Favourite Stations"
 msgstr "Favori istasyonlar"
 
-#: src/widgets/home_screen.vala:256
+#: src/widgets/home_screen.vala:283
 msgid "Browse by Genre"
 msgstr "Türe göre göz at"
 
-#: src/widgets/home_screen.vala:261
+#: src/widgets/home_screen.vala:288
 msgid "View All"
 msgstr "Tümünü göster"
 
-#: src/widgets/station_list.vala:34
+#: src/widgets/station_list.vala:40
 msgid "Search stations…"
 msgstr "İstasyon ara…"
 
-#: src/widgets/station_list.vala:37 src/widgets/station_list.vala:156
+#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
 msgid "All Languages"
 msgstr "Tüm diller"
 
-#: src/widgets/station_list.vala:38
+#: src/widgets/station_list.vala:44
 msgid "Filter by language"
 msgstr "Dile göre filtrele"
 
-#: src/widgets/station_list.vala:54 src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
 msgid "No Stations"
 msgstr "İstasyon yok"
 
-#: src/widgets/station_list.vala:119
+#: src/widgets/station_list.vala:125
 msgid "Loading…"
 msgstr "Yükleniyor…"
 
-#: src/widgets/station_list.vala:185
+#: src/widgets/station_list.vala:191
 #, c-format
 msgid "%u of %d stations"
 msgstr "%d istasyondan %u"
 
-#: src/widgets/station_list.vala:186
+#: src/widgets/station_list.vala:192
 #, c-format
 msgid "Stations: %d"
 msgstr "İstasyon: %d"
 
-#: src/widgets/station_list.vala:198
+#: src/widgets/station_list.vala:204
 msgid "Loading Stations"
 msgstr "İstasyonlar yükleniyor"
 
-#: src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:205
 msgid "No Results"
 msgstr "Sonuç yok"
 
-#: src/widgets/station_list.vala:201
+#: src/widgets/station_list.vala:207
 msgid "Please wait…"
 msgstr "Lütfen bekleyin…"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "No stations match your search"
 msgstr "Aramanızla eşleşen istasyon yok"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "Could not load stations"
 msgstr "İstasyonlar yüklenemedi"
 
 #. Controls row
-#: src/widgets/player_bar.vala:72 src/widgets/player_bar.vala:263
+#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
 msgid "Not Playing"
 msgstr "Çalmıyor"
 
-#: src/widgets/player_bar.vala:141 src/widgets/player_bar.vala:264
+#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
 msgid "Select a station"
 msgstr "Bir istasyon seçin"
 
-#: src/widgets/player_bar.vala:154
-msgid "Download song"
-msgstr "Şarkıyı indir"
-
-#: src/widgets/player_bar.vala:182
-msgid "Cancel download"
-msgstr "İndirmeyi iptal et"
-
-#: src/widgets/player_bar.vala:253
+#: src/widgets/player_bar.vala:197
 msgid "Paused"
 msgstr "Duraklatıldı"
 
-#: src/widgets/player_bar.vala:258
+#: src/widgets/player_bar.vala:202
 msgid "Reconnecting…"
 msgstr "Yeniden bağlanılıyor…"
 
-#: src/widgets/player_bar.vala:281
+#: src/widgets/player_bar.vala:227
 msgid "Now playing"
 msgstr "Şimdi çalıyor"
 
@@ -181,3 +238,45 @@ msgstr "İndirme başarısız: %s"
 #, c-format
 msgid "Saved: %s"
 msgstr "Kaydedildi: %s"
+
+#: src/widgets/download_button.vala:30
+msgid "Download song"
+msgstr "Şarkıyı indir"
+
+#: src/widgets/download_button.vala:46
+msgid "Cancel download"
+msgstr "İndirmeyi iptal et"
+
+#: src/widgets/history_page.vala:31
+#, fuzzy
+msgid "No Songs Yet"
+msgstr "İstasyon yok"
+
+#: src/widgets/history_page.vala:32
+msgid "Songs will appear here as you listen to radio stations"
+msgstr "Radyo istasyonlarını dinlerken şarkılar burada görünecek"
+
+#: src/widgets/history_page.vala:97
+msgid "Just now"
+msgstr "Az önce"
+
+#: src/widgets/history_page.vala:98
+#, c-format
+msgid "%d min ago"
+msgid_plural "%d min ago"
+msgstr[0] "%d dk önce"
+msgstr[1] "%d dk önce"
+
+#: src/widgets/history_page.vala:99
+#, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d saat önce"
+msgstr[1] "%d saat önce"
+
+#: src/widgets/history_page.vala:100
+#, c-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d gün önce"
+msgstr[1] "%d gün önce"

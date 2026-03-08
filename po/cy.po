@@ -3,145 +3,200 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 23:07+0100\n"
+"POT-Creation-Date: 2026-03-08 13:51+0100\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n!=8 && n!=11) "
-"? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n!=8 && n!=11) ? 2 : 3;\n"
 
-#: src/widgets/window.vala:31
+#: src/widgets/window.vala:36
 msgid "Search stations"
 msgstr "Chwilio gorsafoedd"
 
-#: src/widgets/window.vala:33 src/widgets/window.vala:65
+#: src/widgets/window.vala:38 src/widgets/window.vala:102
 msgid "Search"
 msgstr "Chwilio"
 
-#: src/widgets/window.vala:39
+#: src/widgets/window.vala:45
+msgid "Menu"
+msgstr "Dewislen"
+
+#: src/widgets/window.vala:55
+#, fuzzy
+msgid "Show Featured Stations"
+msgstr "Gorsafoedd dan Sylw"
+
+#. History page
+#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#: src/widgets/history_page.vala:21
+msgid "Song History"
+msgstr "Hanes Caneuon"
+
+#: src/widgets/window.vala:57
+msgid "About Receiver"
+msgstr "Ynglŷn â Receiver"
+
+#: src/widgets/window.vala:65
 msgid "Home"
 msgstr "Hafan"
 
-#: src/widgets/window.vala:72
+#: src/widgets/window.vala:116
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Llwythwyd %d gorsaf"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:77 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:121 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Gwall: %s"
 
-#: src/widgets/window.vala:81
+#: src/widgets/window.vala:125
 #, c-format
 msgid "Playback error: %s"
 msgstr "Gwall chwarae: %s"
 
-#: src/widgets/window.vala:89
+#: src/widgets/window.vala:133
 #, c-format
 msgid "Now playing: %s"
 msgstr "Yn chwarae nawr: %s"
 
-#: src/widgets/window.vala:106
+#: src/widgets/window.vala:150
 #, c-format
 msgid "Resuming: %s"
 msgstr "Ailddechrau: %s"
 
-#: src/widgets/home_screen.vala:43
+#: src/widgets/window.vala:195
+msgid "Cancel Last.fm Authorization"
+msgstr "Canslo awdurdodiad Last.fm"
+
+#: src/widgets/window.vala:197
+msgid "Disconnect from Last.fm"
+msgstr "Datgysylltu o Last.fm"
+
+#: src/widgets/window.vala:199
+msgid "Connect to Last.fm"
+msgstr "Cysylltu â Last.fm"
+
+#: src/widgets/window.vala:206
+msgid "Last.fm authorization cancelled"
+msgstr "Canslwyd awdurdodiad Last.fm"
+
+#: src/widgets/window.vala:212
+msgid "Disconnected from Last.fm"
+msgstr "Datgysylltwyd o Last.fm"
+
+#: src/widgets/window.vala:216
+#, fuzzy
+msgid "Connecting to Last.fm…"
+msgstr "Yn ailgysylltu…"
+
+#: src/widgets/window.vala:220
+msgid "Failed to connect to Last.fm"
+msgstr "Methwyd cysylltu â Last.fm"
+
+#: src/widgets/window.vala:227
+msgid "Grant access in your browser…"
+msgstr "Rhowch fynediad yn eich porwr…"
+
+#: src/widgets/window.vala:235
+msgid "Last.fm authorization timed out"
+msgstr "Amser awdurdodiad Last.fm wedi dod i ben"
+
+#: src/widgets/window.vala:243
+msgid "Connected to Last.fm"
+msgstr "Wedi cysylltu â Last.fm"
+
+#: src/widgets/window.vala:264
+msgid "Discover 30,000+ verified radio stations from around the world"
+msgstr "Darganfyddwch 30,000+ o orsafoedd radio dilys o bob cwr o'r byd"
+
+#: src/widgets/home_screen.vala:48
 msgid "Featured Stations"
 msgstr "Gorsafoedd dan Sylw"
 
-#: src/widgets/home_screen.vala:105
+#: src/widgets/home_screen.vala:132
 msgid "Favourite Stations"
 msgstr "Hoff Orsafoedd"
 
-#: src/widgets/home_screen.vala:256
+#: src/widgets/home_screen.vala:283
 msgid "Browse by Genre"
 msgstr "Pori yn ôl Genre"
 
-#: src/widgets/home_screen.vala:261
+#: src/widgets/home_screen.vala:288
 msgid "View All"
 msgstr "Gweld y Cyfan"
 
-#: src/widgets/station_list.vala:34
+#: src/widgets/station_list.vala:40
 msgid "Search stations…"
 msgstr "Chwilio gorsafoedd…"
 
-#: src/widgets/station_list.vala:37 src/widgets/station_list.vala:156
+#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
 msgid "All Languages"
 msgstr "Pob Iaith"
 
-#: src/widgets/station_list.vala:38
+#: src/widgets/station_list.vala:44
 msgid "Filter by language"
 msgstr "Hidlo yn ôl iaith"
 
-#: src/widgets/station_list.vala:54 src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
 msgid "No Stations"
 msgstr "Dim Gorsafoedd"
 
-#: src/widgets/station_list.vala:119
+#: src/widgets/station_list.vala:125
 msgid "Loading…"
 msgstr "Yn llwytho…"
 
-#: src/widgets/station_list.vala:185
+#: src/widgets/station_list.vala:191
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u o %d gorsaf"
 
-#: src/widgets/station_list.vala:186
+#: src/widgets/station_list.vala:192
 #, c-format
 msgid "Stations: %d"
 msgstr "Gorsafoedd: %d"
 
-#: src/widgets/station_list.vala:198
+#: src/widgets/station_list.vala:204
 msgid "Loading Stations"
 msgstr "Yn Llwytho Gorsafoedd"
 
-#: src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:205
 msgid "No Results"
 msgstr "Dim Canlyniadau"
 
-#: src/widgets/station_list.vala:201
+#: src/widgets/station_list.vala:207
 msgid "Please wait…"
 msgstr "Arhoswch…"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "No stations match your search"
 msgstr "Dim gorsafoedd yn cyfateb i'ch chwiliad"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "Could not load stations"
 msgstr "Methu llwytho gorsafoedd"
 
 #. Controls row
-#: src/widgets/player_bar.vala:72 src/widgets/player_bar.vala:263
+#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
 msgid "Not Playing"
 msgstr "Ddim yn Chwarae"
 
-#: src/widgets/player_bar.vala:141 src/widgets/player_bar.vala:264
+#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
 msgid "Select a station"
 msgstr "Dewiswch orsaf"
 
-#: src/widgets/player_bar.vala:154
-msgid "Download song"
-msgstr "Lawrlwytho cân"
-
-#: src/widgets/player_bar.vala:182
-msgid "Cancel download"
-msgstr "Canslo lawrlwytho"
-
-#: src/widgets/player_bar.vala:253
+#: src/widgets/player_bar.vala:197
 msgid "Paused"
 msgstr "Wedi Oedi"
 
-#: src/widgets/player_bar.vala:258
+#: src/widgets/player_bar.vala:202
 msgid "Reconnecting…"
 msgstr "Yn ailgysylltu…"
 
-#: src/widgets/player_bar.vala:281
+#: src/widgets/player_bar.vala:227
 msgid "Now playing"
 msgstr "Yn chwarae nawr"
 
@@ -182,3 +237,51 @@ msgstr "Lawrlwytho wedi methu: %s"
 #, c-format
 msgid "Saved: %s"
 msgstr "Wedi cadw: %s"
+
+#: src/widgets/download_button.vala:30
+msgid "Download song"
+msgstr "Lawrlwytho cân"
+
+#: src/widgets/download_button.vala:46
+msgid "Cancel download"
+msgstr "Canslo lawrlwytho"
+
+#: src/widgets/history_page.vala:31
+#, fuzzy
+msgid "No Songs Yet"
+msgstr "Dim Gorsafoedd"
+
+#: src/widgets/history_page.vala:32
+msgid "Songs will appear here as you listen to radio stations"
+msgstr "Bydd caneuon yn ymddangos yma wrth i chi wrando ar orsafoedd radio"
+
+#: src/widgets/history_page.vala:97
+msgid "Just now"
+msgstr "Nawr"
+
+#: src/widgets/history_page.vala:98
+#, c-format
+msgid "%d min ago"
+msgid_plural "%d min ago"
+msgstr[0] "%d munud yn ôl"
+msgstr[1] "%d funud yn ôl"
+msgstr[2] "%d munud yn ôl"
+msgstr[3] "%d munud yn ôl"
+
+#: src/widgets/history_page.vala:99
+#, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d awr yn ôl"
+msgstr[1] "%d awr yn ôl"
+msgstr[2] "%d awr yn ôl"
+msgstr[3] "%d awr yn ôl"
+
+#: src/widgets/history_page.vala:100
+#, c-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d diwrnod yn ôl"
+msgstr[1] "%d ddiwrnod yn ôl"
+msgstr[2] "%d diwrnod yn ôl"
+msgstr[3] "%d diwrnod yn ôl"

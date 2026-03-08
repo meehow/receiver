@@ -3,145 +3,200 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 23:07+0100\n"
+"POT-Creation-Date: 2026-03-08 13:51+0100\n"
 "Language: ga\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : "
-"4);\n"
+"Plural-Forms: nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);\n"
 
-#: src/widgets/window.vala:31
+#: src/widgets/window.vala:36
 msgid "Search stations"
 msgstr "Cuardaigh stáisiúin"
 
-#: src/widgets/window.vala:33 src/widgets/window.vala:65
+#: src/widgets/window.vala:38 src/widgets/window.vala:102
 msgid "Search"
 msgstr "Cuardaigh"
 
-#: src/widgets/window.vala:39
+#: src/widgets/window.vala:45
+msgid "Menu"
+msgstr "Roghchlár"
+
+#: src/widgets/window.vala:55
+#, fuzzy
+msgid "Show Featured Stations"
+msgstr "Stáisiúin roghnaithe"
+
+#. History page
+#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#: src/widgets/history_page.vala:21
+msgid "Song History"
+msgstr "Stair na nAmhrán"
+
+#: src/widgets/window.vala:57
+msgid "About Receiver"
+msgstr "Maidir le Receiver"
+
+#: src/widgets/window.vala:65
 msgid "Home"
 msgstr "Baile"
 
-#: src/widgets/window.vala:72
+#: src/widgets/window.vala:116
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d stáisiún luchtaithe"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:77 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:121 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Earráid: %s"
 
-#: src/widgets/window.vala:81
+#: src/widgets/window.vala:125
 #, c-format
 msgid "Playback error: %s"
 msgstr "Earráid athsheinnte: %s"
 
-#: src/widgets/window.vala:89
+#: src/widgets/window.vala:133
 #, c-format
 msgid "Now playing: %s"
 msgstr "Á sheinm anois: %s"
 
-#: src/widgets/window.vala:106
+#: src/widgets/window.vala:150
 #, c-format
 msgid "Resuming: %s"
 msgstr "Ag atosú: %s"
 
-#: src/widgets/home_screen.vala:43
+#: src/widgets/window.vala:195
+msgid "Cancel Last.fm Authorization"
+msgstr "Cealaigh údarú Last.fm"
+
+#: src/widgets/window.vala:197
+msgid "Disconnect from Last.fm"
+msgstr "Dícheangail ó Last.fm"
+
+#: src/widgets/window.vala:199
+msgid "Connect to Last.fm"
+msgstr "Ceangail le Last.fm"
+
+#: src/widgets/window.vala:206
+msgid "Last.fm authorization cancelled"
+msgstr "Cealaithe údarú Last.fm"
+
+#: src/widgets/window.vala:212
+msgid "Disconnected from Last.fm"
+msgstr "Díchiangailte ó Last.fm"
+
+#: src/widgets/window.vala:216
+#, fuzzy
+msgid "Connecting to Last.fm…"
+msgstr "Ag athcheangal…"
+
+#: src/widgets/window.vala:220
+msgid "Failed to connect to Last.fm"
+msgstr "Theip ar cheangal le Last.fm"
+
+#: src/widgets/window.vala:227
+msgid "Grant access in your browser…"
+msgstr "Tabhair rochtain i do bhrabhsálaí…"
+
+#: src/widgets/window.vala:235
+msgid "Last.fm authorization timed out"
+msgstr "Chuaigh údarú Last.fm in éag"
+
+#: src/widgets/window.vala:243
+msgid "Connected to Last.fm"
+msgstr "Ceangailte le Last.fm"
+
+#: src/widgets/window.vala:264
+msgid "Discover 30,000+ verified radio stations from around the world"
+msgstr "Aimsigh 30,000+ stáisiún raidió fíoraithe ó gach cearn den domhan"
+
+#: src/widgets/home_screen.vala:48
 msgid "Featured Stations"
 msgstr "Stáisiúin roghnaithe"
 
-#: src/widgets/home_screen.vala:105
+#: src/widgets/home_screen.vala:132
 msgid "Favourite Stations"
 msgstr "Stáisiúin is fearr leat"
 
-#: src/widgets/home_screen.vala:256
+#: src/widgets/home_screen.vala:283
 msgid "Browse by Genre"
 msgstr "Brabhsáil de réir seánra"
 
-#: src/widgets/home_screen.vala:261
+#: src/widgets/home_screen.vala:288
 msgid "View All"
 msgstr "Féach ar gach ceann"
 
-#: src/widgets/station_list.vala:34
+#: src/widgets/station_list.vala:40
 msgid "Search stations…"
 msgstr "Cuardaigh stáisiúin…"
 
-#: src/widgets/station_list.vala:37 src/widgets/station_list.vala:156
+#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
 msgid "All Languages"
 msgstr "Gach teanga"
 
-#: src/widgets/station_list.vala:38
+#: src/widgets/station_list.vala:44
 msgid "Filter by language"
 msgstr "Scag de réir teanga"
 
-#: src/widgets/station_list.vala:54 src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
 msgid "No Stations"
 msgstr "Gan stáisiúin"
 
-#: src/widgets/station_list.vala:119
+#: src/widgets/station_list.vala:125
 msgid "Loading…"
 msgstr "Ag luchtú…"
 
-#: src/widgets/station_list.vala:185
+#: src/widgets/station_list.vala:191
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u as %d stáisiún"
 
-#: src/widgets/station_list.vala:186
+#: src/widgets/station_list.vala:192
 #, c-format
 msgid "Stations: %d"
 msgstr "Stáisiúin: %d"
 
-#: src/widgets/station_list.vala:198
+#: src/widgets/station_list.vala:204
 msgid "Loading Stations"
 msgstr "Stáisiúin á luchtú"
 
-#: src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:205
 msgid "No Results"
 msgstr "Gan torthaí"
 
-#: src/widgets/station_list.vala:201
+#: src/widgets/station_list.vala:207
 msgid "Please wait…"
 msgstr "Fan le do thoil…"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "No stations match your search"
 msgstr "Níl aon stáisiún ag teacht le do chuardach"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "Could not load stations"
 msgstr "Níorbh fhéidir stáisiúin a luchtú"
 
 #. Controls row
-#: src/widgets/player_bar.vala:72 src/widgets/player_bar.vala:263
+#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
 msgid "Not Playing"
 msgstr "Gan seinm"
 
-#: src/widgets/player_bar.vala:141 src/widgets/player_bar.vala:264
+#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
 msgid "Select a station"
 msgstr "Roghnaigh stáisiún"
 
-#: src/widgets/player_bar.vala:154
-msgid "Download song"
-msgstr "Íoslódáil amhrán"
-
-#: src/widgets/player_bar.vala:182
-msgid "Cancel download"
-msgstr "Cealaigh íoslódáil"
-
-#: src/widgets/player_bar.vala:253
+#: src/widgets/player_bar.vala:197
 msgid "Paused"
 msgstr "Ar sos"
 
-#: src/widgets/player_bar.vala:258
+#: src/widgets/player_bar.vala:202
 msgid "Reconnecting…"
 msgstr "Ag athcheangal…"
 
-#: src/widgets/player_bar.vala:281
+#: src/widgets/player_bar.vala:227
 msgid "Now playing"
 msgstr "Á sheinm anois"
 
@@ -182,3 +237,55 @@ msgstr "Theip ar an íoslódáil: %s"
 #, c-format
 msgid "Saved: %s"
 msgstr "Sábháilte: %s"
+
+#: src/widgets/download_button.vala:30
+msgid "Download song"
+msgstr "Íoslódáil amhrán"
+
+#: src/widgets/download_button.vala:46
+msgid "Cancel download"
+msgstr "Cealaigh íoslódáil"
+
+#: src/widgets/history_page.vala:31
+#, fuzzy
+msgid "No Songs Yet"
+msgstr "Gan stáisiúin"
+
+#: src/widgets/history_page.vala:32
+msgid "Songs will appear here as you listen to radio stations"
+msgstr ""
+"Beidh amhráin le feiceáil anseo agus tú ag éisteacht le stáisiúin raidió"
+
+#: src/widgets/history_page.vala:97
+msgid "Just now"
+msgstr "Díreach anois"
+
+#: src/widgets/history_page.vala:98
+#, c-format
+msgid "%d min ago"
+msgid_plural "%d min ago"
+msgstr[0] "%d nóim ó shin"
+msgstr[1] "%d nóim ó shin"
+msgstr[2] "%d nóim ó shin"
+msgstr[3] "%d nóim ó shin"
+msgstr[4] "%d nóim ó shin"
+
+#: src/widgets/history_page.vala:99
+#, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d uair ó shin"
+msgstr[1] "%d uair ó shin"
+msgstr[2] "%d uair ó shin"
+msgstr[3] "%d uair ó shin"
+msgstr[4] "%d uair ó shin"
+
+#: src/widgets/history_page.vala:100
+#, c-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d lá ó shin"
+msgstr[1] "%d lá ó shin"
+msgstr[2] "%d lá ó shin"
+msgstr[3] "%d lá ó shin"
+msgstr[4] "%d lá ó shin"

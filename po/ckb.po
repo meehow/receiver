@@ -3,144 +3,200 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-23 23:07+0100\n"
+"POT-Creation-Date: 2026-03-08 13:51+0100\n"
 "Language: ckb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:31
+#: src/widgets/window.vala:36
 msgid "Search stations"
 msgstr "گەڕان بۆ وێستگەکان"
 
-#: src/widgets/window.vala:33 src/widgets/window.vala:65
+#: src/widgets/window.vala:38 src/widgets/window.vala:102
 msgid "Search"
 msgstr "گەڕان"
 
-#: src/widgets/window.vala:39
+#: src/widgets/window.vala:45
+msgid "Menu"
+msgstr "مێنیو"
+
+#: src/widgets/window.vala:55
+#, fuzzy
+msgid "Show Featured Stations"
+msgstr "وێستگە دیاریکراوەکان"
+
+#. History page
+#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#: src/widgets/history_page.vala:21
+msgid "Song History"
+msgstr "مێژووی گۆرانی"
+
+#: src/widgets/window.vala:57
+msgid "About Receiver"
+msgstr "دەربارەی Receiver"
+
+#: src/widgets/window.vala:65
 msgid "Home"
 msgstr "سەرەتا"
 
-#: src/widgets/window.vala:72
+#: src/widgets/window.vala:116
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d وێستگە بارکرا"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:77 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:121 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "هەڵە: %s"
 
-#: src/widgets/window.vala:81
+#: src/widgets/window.vala:125
 #, c-format
 msgid "Playback error: %s"
 msgstr "هەڵەی لێدان: %s"
 
-#: src/widgets/window.vala:89
+#: src/widgets/window.vala:133
 #, c-format
 msgid "Now playing: %s"
 msgstr "ئێستا دەخوێنرێتەوە: %s"
 
-#: src/widgets/window.vala:106
+#: src/widgets/window.vala:150
 #, c-format
 msgid "Resuming: %s"
 msgstr "بەردەوامبوونەوە: %s"
 
-#: src/widgets/home_screen.vala:43
+#: src/widgets/window.vala:195
+msgid "Cancel Last.fm Authorization"
+msgstr "ھەڵوەشاندنەوەی ڕێگەپێدانی Last.fm"
+
+#: src/widgets/window.vala:197
+msgid "Disconnect from Last.fm"
+msgstr "پچڕاندنی پەیوەندی لە Last.fm"
+
+#: src/widgets/window.vala:199
+msgid "Connect to Last.fm"
+msgstr "پەیوەستبوون بە Last.fm"
+
+#: src/widgets/window.vala:206
+msgid "Last.fm authorization cancelled"
+msgstr "ڕێگەپێدانی Last.fm ھەڵوەشایەوە"
+
+#: src/widgets/window.vala:212
+msgid "Disconnected from Last.fm"
+msgstr "پەیوەندی لە Last.fm پچڕا"
+
+#: src/widgets/window.vala:216
+#, fuzzy
+msgid "Connecting to Last.fm…"
+msgstr "دووبارە پەیوەندیکردنەوە…"
+
+#: src/widgets/window.vala:220
+msgid "Failed to connect to Last.fm"
+msgstr "پەیوەستبوون بە Last.fm سەرنەکەوت"
+
+#: src/widgets/window.vala:227
+msgid "Grant access in your browser…"
+msgstr "لە وێبگەڕەکەتدا ڕێگەپێبدە…"
+
+#: src/widgets/window.vala:235
+msgid "Last.fm authorization timed out"
+msgstr "کات بەسەرچوونی ڕێگەپێدانی Last.fm"
+
+#: src/widgets/window.vala:243
+msgid "Connected to Last.fm"
+msgstr "پەیوەستبوو بە Last.fm"
+
+#: src/widgets/window.vala:264
+msgid "Discover 30,000+ verified radio stations from around the world"
+msgstr "دۆزینەوەی ٣٠٬٠٠٠+ وێستگەی ڕادیۆی پشتڕاستکراوە لە سەرانسەری جیھان"
+
+#: src/widgets/home_screen.vala:48
 msgid "Featured Stations"
 msgstr "وێستگە دیاریکراوەکان"
 
-#: src/widgets/home_screen.vala:105
+#: src/widgets/home_screen.vala:132
 msgid "Favourite Stations"
 msgstr "وێستگە دڵخوازەکان"
 
-#: src/widgets/home_screen.vala:256
+#: src/widgets/home_screen.vala:283
 msgid "Browse by Genre"
 msgstr "بگەڕێ بەپێی جۆر"
 
-#: src/widgets/home_screen.vala:261
+#: src/widgets/home_screen.vala:288
 msgid "View All"
 msgstr "هەموو ببینە"
 
-#: src/widgets/station_list.vala:34
+#: src/widgets/station_list.vala:40
 msgid "Search stations…"
 msgstr "گەڕان بۆ وێستگەکان…"
 
-#: src/widgets/station_list.vala:37 src/widgets/station_list.vala:156
+#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
 msgid "All Languages"
 msgstr "هەموو زمانەکان"
 
-#: src/widgets/station_list.vala:38
+#: src/widgets/station_list.vala:44
 msgid "Filter by language"
 msgstr "پاڵاوتن بەپێی زمان"
 
-#: src/widgets/station_list.vala:54 src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
 msgid "No Stations"
 msgstr "هیچ وێستگەیەک نییە"
 
-#: src/widgets/station_list.vala:119
+#: src/widgets/station_list.vala:125
 msgid "Loading…"
 msgstr "بارکردن…"
 
-#: src/widgets/station_list.vala:185
+#: src/widgets/station_list.vala:191
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u لە %d وێستگە"
 
-#: src/widgets/station_list.vala:186
+#: src/widgets/station_list.vala:192
 #, c-format
 msgid "Stations: %d"
 msgstr "وێستگەکان: %d"
 
-#: src/widgets/station_list.vala:198
+#: src/widgets/station_list.vala:204
 msgid "Loading Stations"
 msgstr "بارکردنی وێستگەکان"
 
-#: src/widgets/station_list.vala:199
+#: src/widgets/station_list.vala:205
 msgid "No Results"
 msgstr "هیچ ئەنجامێک نییە"
 
-#: src/widgets/station_list.vala:201
+#: src/widgets/station_list.vala:207
 msgid "Please wait…"
 msgstr "تکایە چاوەڕوان بە…"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "No stations match your search"
 msgstr "هیچ وێستگەیەک لەگەڵ گەڕانەکەت ناگونجێت"
 
-#: src/widgets/station_list.vala:202
+#: src/widgets/station_list.vala:208
 msgid "Could not load stations"
 msgstr "وێستگەکان بارنەکران"
 
 #. Controls row
-#: src/widgets/player_bar.vala:72 src/widgets/player_bar.vala:263
+#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
 msgid "Not Playing"
 msgstr "لێنادرێت"
 
-#: src/widgets/player_bar.vala:141 src/widgets/player_bar.vala:264
+#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
 msgid "Select a station"
 msgstr "وێستگەیەک هەڵبژێرە"
 
-#: src/widgets/player_bar.vala:154
-msgid "Download song"
-msgstr "گۆرانی دابەزێنە"
-
-#: src/widgets/player_bar.vala:182
-msgid "Cancel download"
-msgstr "دابەزاندن هەڵوەشێنەوە"
-
-#: src/widgets/player_bar.vala:253
+#: src/widgets/player_bar.vala:197
 msgid "Paused"
 msgstr "وەستێنرا"
 
-#: src/widgets/player_bar.vala:258
+#: src/widgets/player_bar.vala:202
 msgid "Reconnecting…"
 msgstr "دووبارە پەیوەندیکردنەوە…"
 
-#: src/widgets/player_bar.vala:281
+#: src/widgets/player_bar.vala:227
 msgid "Now playing"
 msgstr "ئێستا دەخوێنرێتەوە"
 
@@ -181,3 +237,45 @@ msgstr "دابەزاندن سەرکەوتوو نەبوو: %s"
 #, c-format
 msgid "Saved: %s"
 msgstr "پاشەکەوتکرا: %s"
+
+#: src/widgets/download_button.vala:30
+msgid "Download song"
+msgstr "گۆرانی دابەزێنە"
+
+#: src/widgets/download_button.vala:46
+msgid "Cancel download"
+msgstr "دابەزاندن هەڵوەشێنەوە"
+
+#: src/widgets/history_page.vala:31
+#, fuzzy
+msgid "No Songs Yet"
+msgstr "هیچ وێستگەیەک نییە"
+
+#: src/widgets/history_page.vala:32
+msgid "Songs will appear here as you listen to radio stations"
+msgstr "گۆرانییەکان ئێرە دەردەکەون کاتێک گوێ لە وێستگەی ڕادیۆ دەگریت"
+
+#: src/widgets/history_page.vala:97
+msgid "Just now"
+msgstr "ئێستا"
+
+#: src/widgets/history_page.vala:98
+#, c-format
+msgid "%d min ago"
+msgid_plural "%d min ago"
+msgstr[0] "%d خولەک لەمەوبەر"
+msgstr[1] "%d خولەک لەمەوبەر"
+
+#: src/widgets/history_page.vala:99
+#, c-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d کاتژمێر لەمەوبەر"
+msgstr[1] "%d کاتژمێر لەمەوبەر"
+
+#: src/widgets/history_page.vala:100
+#, c-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d ڕۆژ لەمەوبەر"
+msgstr[1] "%d ڕۆژ لەمەوبەر"
