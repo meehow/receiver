@@ -55,6 +55,7 @@ add_project_arguments([
 ], language: 'vala')
 
 add_project_arguments('-DRECEIVER_APP_VERSION="' + meson.project_version() + '"', language: 'c')
+add_project_arguments('-DLOCALEDIR="' + get_option('prefix') / get_option('localedir') + '"', language: 'c')
 
 # Build executable
 executable('receiver',

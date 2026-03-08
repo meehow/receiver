@@ -1,5 +1,6 @@
 // Entry point
 const string GETTEXT_PACKAGE = "receiver";
+extern const string LOCALEDIR;
 
 int main(string[] args) {
     // Set locale — if not installed, fall back to C.UTF-8 so gettext still works
@@ -13,7 +14,7 @@ int main(string[] args) {
         Intl.setlocale(LocaleCategory.ALL, "C.UTF-8");
     }
 
-    var localedir = Environment.get_variable("LOCALEDIR") ?? "/usr/share/locale";
+    var localedir = Environment.get_variable("LOCALEDIR") ?? LOCALEDIR;
     Intl.bindtextdomain(GETTEXT_PACKAGE, localedir);
     Intl.bind_textdomain_codeset(GETTEXT_PACKAGE, "UTF-8");
     Intl.textdomain(GETTEXT_PACKAGE);
