@@ -199,6 +199,17 @@ namespace Receiver {
 
             var text = raw.strip();
 
+            // Replace underscores with spaces (URL-encoded metadata)
+            text = text.replace("_", " ");
+
+            // Replace bare HTML entity names (e.g. " amp " → " & ")
+            text = text.replace(" amp ", " & ");
+
+            // Insert space before parenthesis: "Felicita(Remix)" → "Felicita (Remix)"
+            try {
+                text = /(\w)\(/.replace(text, -1, 0, "\\1 (");
+            } catch {}
+
             // Normalize Unicode dashes to ASCII hyphen-minus
             text = text.replace("˗", "-")  // U+02D7 modifier letter minus
                        .replace("–", "-")  // U+2013 en-dash
