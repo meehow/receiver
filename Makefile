@@ -86,6 +86,7 @@ appimage: build $(LINUXDEPLOY) $(LINUXDEPLOY_GTK)
 	   $(GST_LIBDIR)/libgstmpg123.so \
 	   $(GST_LIBDIR)/libgstfaad.so \
 	   $(GST_LIBDIR)/libgsthls.so \
+	   $(GST_LIBDIR)/libgstmpegtsdemux.so \
 	   $(GST_LIBDIR)/libgstadaptivedemux2.so \
 	   $(GST_LIBDIR)/libgsticydemux.so \
 	   $(GST_LIBDIR)/libgstid3demux.so \
