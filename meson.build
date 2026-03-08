@@ -51,6 +51,8 @@ add_project_arguments([
   '--target-glib=2.76',
 ], language: 'vala')
 
+add_project_arguments('-DRECEIVER_APP_VERSION="' + meson.project_version() + '"', language: 'c')
+
 # Build executable
 executable('receiver',
   sources,

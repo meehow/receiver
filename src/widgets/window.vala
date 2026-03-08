@@ -1,5 +1,6 @@
 // Main application window
 namespace Receiver {
+    private extern const string APP_VERSION;
 
     public class MainWindow : Adw.ApplicationWindow {
         private Application app;
@@ -51,6 +52,11 @@ namespace Receiver {
             app.scrobbler.status_changed.connect(update_lastfm_label);
 
             menu_button.menu_model = menu;
+
+            // About section
+            var about_section = new GLib.Menu();
+            about_section.append(_("About Receiver"), "win.about");
+            menu.append_section(null, about_section);
 
             home_header.pack_end(menu_button);
             home_header.pack_end(search_btn);
@@ -156,6 +162,11 @@ namespace Receiver {
             var lastfm_action = new SimpleAction("lastfm-toggle", null);
             lastfm_action.activate.connect(on_lastfm_clicked);
             this.add_action(lastfm_action);
+
+            // About action
+            var about_action = new SimpleAction("about", null);
+            about_action.activate.connect(show_about);
+            this.add_action(about_action);
         }
 
         private void update_lastfm_label() {
@@ -223,6 +234,21 @@ namespace Receiver {
                 auth_poll_timer = 0;
             }
             update_lastfm_label();
+        }
+
+        private void show_about() {
+            var about = new Adw.AboutDialog();
+            about.application_name = "Receiver";
+            about.application_icon = "io.github.meehow.Receiver";
+            about.version = APP_VERSION;
+            about.comments = _("Discover 30,000+ verified radio stations from around the world");
+            about.website = "https://github.com/meehow/receiver";
+            about.issue_url = "https://github.com/meehow/receiver/issues";
+            about.developer_name = "meehow";
+            about.developers = {"meehow https://github.com/meehow"};
+            about.copyright = "© 2026 meehow";
+            about.license_type = Gtk.License.GPL_3_0;
+            about.present(this);
         }
     }
 }
