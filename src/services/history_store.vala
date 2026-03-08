@@ -39,7 +39,7 @@ namespace Receiver {
 
         public void add(Station station, string song_title) {
             // Skip if not a song (must contain separator)
-            if (!looks_like_song(song_title)) return;
+            if (!MetadataExtractor.get_default().extract_artist_title(song_title).is_song()) return;
 
             // Deduplicate: skip if last entry is same station + song
             if (entries.length > 0) {
@@ -73,9 +73,6 @@ namespace Receiver {
             schedule_save();
         }
 
-        private bool looks_like_song(string t) {
-            return t.contains(" \u02d7 ") || t.contains(" - ");
-        }
 
         // --- JSON persistence ---
 

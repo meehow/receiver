@@ -173,7 +173,7 @@ namespace Receiver {
             player.metadata_changed.connect((t) => {
                 if (t != "" && player.state == PlayerState.PLAYING) {
                     subtitle_label.label = format_now_playing(t);
-                    download_button.visible = looks_like_song(t);
+                    download_button.visible = MetadataExtractor.get_default().extract_artist_title(t).is_song();
                 }
             });
 
@@ -225,7 +225,7 @@ namespace Receiver {
             update_fav();
             var np = player.now_playing;
             subtitle_label.label = (np != null && np != "") ? format_now_playing(np) : _("Now playing");
-            download_button.visible = np != null && looks_like_song(np);
+            download_button.visible = np != null && MetadataExtractor.get_default().extract_artist_title(np).is_song();
             load_artwork.begin(s);
         }
 
@@ -253,10 +253,6 @@ namespace Receiver {
             favourite_button.icon_name = is_fav ? "starred-symbolic" : "non-starred-symbolic";
         }
 
-
-        private bool looks_like_song(string t) {
-            return t.contains(" \u02d7 ") || t.contains(" - ");
-        }
 
         private string format_now_playing(string title) {
             return "♪ " + title;
