@@ -70,12 +70,12 @@ namespace Receiver {
             last_raw_title = null;
             metadata_changed(station.name);
 
-            // Resolve playlists (.pls, .m3u); HLS (.m3u8) goes to GStreamer directly
-            var cancel = play_cancellable;
+            // playbin handles .m3u8 (HLS) natively; .pls and .m3u must be
+            // pre-parsed — GStreamer treats them as opaque text and fails.
             if (url.has_suffix(".pls") || url.has_suffix(".m3u")) {
-                resolve_playlist.begin(url, cancel);
+                resolve_playlist.begin(url, play_cancellable);
             } else {
-                resolve_redirects.begin(url, cancel);
+                resolve_redirects.begin(url, play_cancellable);
             }
         }
 
@@ -250,11 +250,10 @@ namespace Receiver {
                     message("Retry attempt %d for %s", retry_count, current_station.name);
                     var url = current_station.get_stream_url();
                     if (url != null && url != "") {
-                        var cancel = play_cancellable;
                         if (url.has_suffix(".pls") || url.has_suffix(".m3u")) {
-                            resolve_playlist.begin(url, cancel);
+                            resolve_playlist.begin(url, play_cancellable);
                         } else {
-                            resolve_redirects.begin(url, cancel);
+                            resolve_redirects.begin(url, play_cancellable);
                         }
                     }
                 }
@@ -269,7 +268,10 @@ namespace Receiver {
             }
         }
 
-        // Resolve .pls, .m3u, and .m3u8 playlists to a stream URL
+
+        // Resolve .pls and .m3u playlists to a bare stream URL.
+        // playbin cannot handle these — it treats them as text files.
+        // .m3u8 (HLS) is passed directly to GStreamer which handles it natively.
         private async void resolve_playlist(string url, Cancellable cancel) {
             try {
                 var session = new Soup.Session();

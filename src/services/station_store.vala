@@ -178,7 +178,7 @@ namespace Receiver {
                 return get_featured_stations(limit);
             }
 
-            var img_filter = "image_width >= 200 AND image_height >= 200 AND CAST(image_width AS REAL) / image_height BETWEEN 0.8 AND 1.2";
+            var img_filter = "image_width >= 200 AND image_width = image_height";
             Sqlite.Statement stmt;
             db.prepare_v2(
                 "SELECT " + COLS + " FROM stations"

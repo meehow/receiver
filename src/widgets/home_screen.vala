@@ -229,9 +229,15 @@ namespace Receiver {
             bg.set_size_request(-1, 60);
             bg.valign = Gtk.Align.END;
             bg.set_draw_func((a, cr, w, h) => {
+                var dark = Adw.StyleManager.get_default().dark;
                 var grad = new Cairo.Pattern.linear(0, 0, 0, h);
-                grad.add_color_stop_rgba(0, 0, 0, 0, 0.4);
-                grad.add_color_stop_rgba(1, 0, 0, 0, 0.9);
+                if (dark) {
+                    grad.add_color_stop_rgba(0, 0, 0, 0, 0.4);
+                    grad.add_color_stop_rgba(1, 0, 0, 0, 0.9);
+                } else {
+                    grad.add_color_stop_rgba(0, 1, 1, 1, 0.4);
+                    grad.add_color_stop_rgba(1, 1, 1, 1, 0.9);
+                }
                 cr.set_source(grad);
                 cr.rectangle(0, 0, w, h);
                 cr.fill();
@@ -245,7 +251,6 @@ namespace Receiver {
             title.xalign = 0;
             title.ellipsize = Pango.EllipsizeMode.END;
             title.add_css_class("title-4");
-            title.add_css_class("white-text");
             text.append(title);
             var subtitle = s.get_subtitle();
             if (subtitle != "") {
@@ -253,7 +258,6 @@ namespace Receiver {
                 sub.xalign = 0;
                 sub.ellipsize = Pango.EllipsizeMode.END;
                 sub.add_css_class("caption");
-                sub.add_css_class("white-text");
                 text.append(sub);
             }
             overlay.add_overlay(text);
