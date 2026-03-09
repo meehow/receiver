@@ -40,11 +40,16 @@ namespace Receiver {
 
         // ICY metadata often arrives in legacy encodings. GStreamer tends to
         // interpret raw bytes as Latin-1 and emit valid UTF-8 — but with wrong
-        // characters (e.g. ³ instead of ł). Detect and fix both cases.
+        // characters (e.g. ³ instead of ł, ąÚą®żµ instead of Korean Hangul).
+        // Detect and fix both cases.
         private string fix_encoding(string text) {
             if (!text.validate()) {
-                // Raw non-UTF-8 bytes: try common charsets directly
-                string[] charsets = { "WINDOWS-1250", "ISO-8859-2", "WINDOWS-1252", "ISO-8859-1" };
+                // Raw non-UTF-8 bytes: try East Asian charsets first (they're
+                // more distinctive), then fall back to Western European ones.
+                string[] charsets = {
+                    "EUC-KR", "CP949", "EUC-JP", "SHIFT_JIS", "GB18030",
+                    "WINDOWS-1250", "ISO-8859-2", "WINDOWS-1252", "ISO-8859-1"
+                };
                 foreach (var charset in charsets) {
                     try {
                         return GLib.convert(text, (ssize_t) text.length,
@@ -55,25 +60,35 @@ namespace Receiver {
             }
 
             // Valid UTF-8 but possibly Latin-1 mis-interpretation of a legacy
-            // Central/Eastern European encoding. Check: does the string have
-            // chars in U+0080–U+00FF?
+            // encoding. Check: does the string have chars in U+0080–U+00FF?
             if (!has_latin1_supplement(text)) return text;
 
-            // Round-trip: UTF-8 → Latin-1 raw bytes → re-decode.
-            // Try Windows-1250 first: it's a superset of ISO-8859-2 that also
-            // defines the 0x80–0x9F range (e.g. 0x9C = ś) which ISO-8859-2
-            // leaves as C1 control characters.
-            string[] round_trip_charsets = { "WINDOWS-1250", "ISO-8859-2" };
+            // Round-trip: UTF-8 → Latin-1 raw bytes → re-decode as candidate charsets.
             try {
                 var raw = GLib.convert(text, (ssize_t) text.length,
                                        "ISO-8859-1", "UTF-8");
-                foreach (var charset in round_trip_charsets) {
+
+                // East Asian charsets: EUC-KR/CP949 (Korean), EUC-JP/Shift-JIS (Japanese),
+                // GB18030 (Chinese). Accept if result contains CJK/Hangul characters.
+                string[] ea_charsets = { "EUC-KR", "CP949", "EUC-JP", "SHIFT_JIS", "GB18030" };
+                foreach (var charset in ea_charsets) {
                     try {
                         var fixed = GLib.convert(raw, (ssize_t) raw.length,
                                                  "UTF-8", charset);
-                        // Accept only if re-interpretation produced Latin Extended
-                        // chars (ł ę ś ź ň etc. are U+0100–U+024F) — strong
-                        // signal it was Central/Eastern European text
+                        if (fixed.validate() && has_cjk(fixed)) {
+                            return fixed;
+                        }
+                    } catch {}
+                }
+
+                // Central/Eastern European: Windows-1250 is a superset of ISO-8859-2
+                // that also defines the 0x80–0x9F range (e.g. 0x9C = ś).
+                // Accept if result contains Latin Extended chars (U+0100–U+024F).
+                string[] ce_charsets = { "WINDOWS-1250", "ISO-8859-2" };
+                foreach (var charset in ce_charsets) {
+                    try {
+                        var fixed = GLib.convert(raw, (ssize_t) raw.length,
+                                                 "UTF-8", charset);
                         if (fixed.validate() && has_extended_latin(fixed)) {
                             return fixed;
                         }
@@ -96,6 +111,22 @@ namespace Receiver {
             unichar c;
             for (int i = 0; text.get_next_char(ref i, out c);) {
                 if (c >= 0x100 && c <= 0x024F) return true;
+            }
+            return false;
+        }
+
+        // Returns true if text contains CJK Unified Ideographs, Hangul, or
+        // Hiragana/Katakana — strong signal for East Asian encoding.
+        private bool has_cjk(string text) {
+            unichar c;
+            for (int i = 0; text.get_next_char(ref i, out c);) {
+                // Hangul syllables (AC00–D7A3), Hangul Jamo (1100–11FF)
+                if (c >= 0xAC00 && c <= 0xD7A3) return true;
+                if (c >= 0x1100 && c <= 0x11FF) return true;
+                // CJK Unified Ideographs (4E00–9FFF) + Extension A (3400–4DBF)
+                if (c >= 0x3400 && c <= 0x9FFF) return true;
+                // Hiragana (3040–309F) + Katakana (30A0–30FF)
+                if (c >= 0x3040 && c <= 0x30FF) return true;
             }
             return false;
         }
