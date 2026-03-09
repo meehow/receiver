@@ -70,9 +70,9 @@ namespace Receiver {
             last_raw_title = null;
             metadata_changed(station.name);
 
-            // Resolve playlists (.pls, .m3u, .m3u8), otherwise resolve redirects
+            // Resolve playlists (.pls, .m3u); HLS (.m3u8) goes to GStreamer directly
             var cancel = play_cancellable;
-            if (url.has_suffix(".pls") || url.has_suffix(".m3u") || url.has_suffix(".m3u8")) {
+            if (url.has_suffix(".pls") || url.has_suffix(".m3u")) {
                 resolve_playlist.begin(url, cancel);
             } else {
                 resolve_redirects.begin(url, cancel);
@@ -251,7 +251,7 @@ namespace Receiver {
                     var url = current_station.get_stream_url();
                     if (url != null && url != "") {
                         var cancel = play_cancellable;
-                        if (url.has_suffix(".pls") || url.has_suffix(".m3u") || url.has_suffix(".m3u8")) {
+                        if (url.has_suffix(".pls") || url.has_suffix(".m3u")) {
                             resolve_playlist.begin(url, cancel);
                         } else {
                             resolve_redirects.begin(url, cancel);
@@ -282,17 +282,8 @@ namespace Receiver {
                     return;
                 }
                 var content = (string) bytes.get_data();
-                var base_url = url.substring(0, url.last_index_of("/") + 1);
-
-                // HLS media playlist (has #EXTINF segments) — GStreamer handles it natively
-                if (url.has_suffix(".m3u8") && (content.contains("#EXTINF") || content.contains("#EXT-X-TARGETDURATION"))) {
-                    message("HLS media playlist, passing to GStreamer: %s", url);
-                    start(url);
-                    return;
-                }
 
                 string? stream_url = null;
-                bool next_is_uri = false;
                 foreach (var line in content.split("\n")) {
                     var l = line.strip();
                     // PLS: File1=http://...
@@ -300,28 +291,11 @@ namespace Receiver {
                         stream_url = l.split("=", 2)[1];
                         break;
                     }
-                    // HLS master playlist: line after #EXT-X-STREAM-INF
-                    if (l.has_prefix("#EXT-X-STREAM-INF")) {
-                        next_is_uri = true;
-                        continue;
-                    }
                     if (l == "" || l.has_prefix("#")) continue;
-                    // Non-comment, non-empty line — it's a URL (absolute or relative)
-                    if (next_is_uri || l.has_prefix("http://") || l.has_prefix("https://")
-                        || url.has_suffix(".m3u") || url.has_suffix(".m3u8")) {
+                    // M3U: first non-comment, non-empty line is the stream URL
+                    if (l.has_prefix("http://") || l.has_prefix("https://")) {
                         stream_url = l;
                         break;
-                    }
-                }
-
-                // Resolve relative URLs (common in HLS)
-                if (stream_url != null && !stream_url.has_prefix("http")) {
-                    if (stream_url.has_prefix("/")) {
-                        // Absolute path — use origin (scheme + host)
-                        var uri = Uri.parse(url, UriFlags.NONE);
-                        stream_url = "%s://%s%s".printf(uri.get_scheme(), uri.get_host(), stream_url);
-                    } else {
-                        stream_url = base_url + stream_url;
                     }
                 }
 
@@ -334,12 +308,7 @@ namespace Receiver {
                 }
             } catch (Error e) {
                 if (cancel.is_cancelled()) return;
-                // HLS: fall back to original URL; others: report error
-                if (url.has_suffix(".m3u8")) {
-                    start(url);
-                } else {
-                    error_occurred("Playlist error: " + e.message);
-                }
+                error_occurred("Playlist error: " + e.message);
             }
         }
     }
