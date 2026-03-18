@@ -130,10 +130,6 @@ namespace Ytdl {
 
     private const string UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
 
-    // Forced player version — must match what the EJS solver can handle.
-    // Update this when yt-dlp updates _DEFAULT_PLAYER_JS_VERSION.
-    private const string FORCED_PLAYER_ID = "9f4cc5e4";
-
     /**
      * Extract a playable download URL for a YouTube video.
      * Returns a VideoInfo with title and direct download URL.
@@ -146,26 +142,13 @@ namespace Ytdl {
         string? page = http_get (session, "https://www.youtube.com/watch?v=" + video_id);
         if (page == null) throw new IOError.FAILED ("Could not fetch watch page");
 
-        // 2. Extract player JS URL from watch page as fallback
-        string? page_player_url = null;
+        // 2. Download the actual player JS from the watch page.
+        //    yt-dlp now uses 'actual' player version (not pinned), so we do the same.
+        string? base_js = null;
         var re = new Regex ("/s/player/[a-f0-9]+/[^\"]+(?:base|tv-player-ias)\\.js");
         MatchInfo mi;
         if (re.match (page, 0, out mi)) {
-            page_player_url = "https://www.youtube.com" + mi.fetch (0);
-        }
-
-        // Force known-good player version (tv variant) — yt-dlp does the same
-        string forced_player_url = "https://www.youtube.com/s/player/" + FORCED_PLAYER_ID
-            + "/tv-player-ias.vflset/tv-player-ias.js";
-        string? player_url = null;
-
-        // Try forced player first, then fallback to page player
-        string? base_js = http_get (session, forced_player_url);
-        if (base_js != null) {
-            player_url = forced_player_url;
-        } else if (page_player_url != null) {
-            base_js = http_get (session, page_player_url);
-            player_url = page_player_url;
+            base_js = http_get (session, "https://www.youtube.com" + mi.fetch (0));
         }
         if (base_js == null) throw new IOError.FAILED ("Could not download player JS");
 
