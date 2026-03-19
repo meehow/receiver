@@ -52,7 +52,7 @@ namespace Receiver {
             menu.append_section(null, lastfm_menu);
             app.scrobbler.status_changed.connect(update_lastfm_label);
 
-            menu.append(_("Show Featured Stations"), "win.show-featured");
+
             menu.append(_("Song History"), "win.history");
             menu.append(_("About Receiver"), "win.about");
 
@@ -94,6 +94,12 @@ namespace Receiver {
                 station_list.reset_language_filter();
                 station_list.set_search_text(g);
                 search_page.title = g.substring(0, 1).up() + g.substring(1);
+                nav_view.push(search_page);
+            });
+
+            home_screen.local_selected.connect((country_name) => {
+                station_list.set_search_text(country_name);
+                search_page.title = country_name;
                 nav_view.push(search_page);
             });
 
@@ -152,24 +158,6 @@ namespace Receiver {
         }
 
         private void setup_win_actions() {
-            var settings = AppState.get_default().settings;
-            var show_featured = new SimpleAction.stateful(
-                "show-featured", null,
-                new Variant.boolean(settings.get_boolean("show-featured"))
-            );
-            show_featured.activate.connect(() => {
-                var current = show_featured.get_state().get_boolean();
-                var next = !current;
-                show_featured.set_state(new Variant.boolean(next));
-                settings.set_boolean("show-featured", next);
-            });
-            // Keep action in sync if setting changes externally
-            settings.changed["show-featured"].connect(() => {
-                show_featured.set_state(
-                    new Variant.boolean(settings.get_boolean("show-featured"))
-                );
-            });
-            this.add_action(show_featured);
 
             // Last.fm action
             var lastfm_action = new SimpleAction("lastfm-toggle", null);

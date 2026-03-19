@@ -1,28 +1,35 @@
-// Home screen with featured stations and genre browsing
+// Home screen with favourites and genre browsing
 namespace Receiver {
 
     public class HomeScreen : Gtk.Box {
         private StationStore store;
-        private GLib.Settings settings;
-        private Adw.Carousel featured_carousel;
-        private Gtk.Box? featured_section;
         private Gtk.Box? favourites_section;
         private Gtk.FlowBox? favourites_flow;
-        private const int FEATURED_LIMIT = 30;
-
+        private Gtk.FlowBox? genres_flow;
 
         public signal void station_activated(Station station);
         public signal void genre_selected(string genre);
+        public signal void local_selected(string country_name);
         public signal void view_all_clicked();
 
-        private const string[] GENRES = {"pop", "rock", "jazz", "classical", "80s", "dance", "news", "oldies", "hits", "talk", "chill", "electronic"};
+        private const string[] GENRES = {
+            "pop", "kpop", "rock", "jazz", "classical", "electronic", "dance",
+            "hits", "70s", "80s", "90s", "oldies", "chill",
+            "news", "talk", "sports",
+            "alternative", "indie", "metal", "punk",
+            "house", "hiphop", "latin", "soul", "blues", "folk",
+            "country", "reggae", "disco"
+        };
 
         public HomeScreen(StationStore station_store) {
             Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
             this.store = station_store;
-            this.settings = AppState.get_default().settings;
             build_ui();
             store.favourites_changed.connect(update_favourites);
+            store.loading_finished.connect(() => {
+                update_favourites();
+                add_local_pill();
+            });
         }
 
         private void build_ui() {
@@ -33,98 +40,11 @@ namespace Receiver {
             var content = new Gtk.Box(Gtk.Orientation.VERTICAL, 24);
             content.margin_start = content.margin_end = content.margin_top = content.margin_bottom = 16;
 
-            build_featured(content);
             build_favourites(content);
             build_genres(content);
 
             scrolled.child = content;
             this.append(scrolled);
-        }
-
-        private void build_featured(Gtk.Box parent) {
-            featured_section = new Gtk.Box(Gtk.Orientation.VERTICAL, 12);
-
-            var hdr = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-            var header = new Gtk.Label(_("Featured Stations"));
-            header.xalign = 0;
-            header.hexpand = true;
-            header.add_css_class("title-2");
-            hdr.append(header);
-            featured_section.append(hdr);
-
-            featured_carousel = new Adw.Carousel();
-            featured_carousel.interactive = true;
-            featured_carousel.spacing = 12;
-            featured_carousel.vexpand = false;
-            featured_carousel.set_size_request(-1, 200);
-
-            // Capture mouse wheel so it moves the carousel without scrolling the page
-            var scroll_ctl = new Gtk.EventControllerScroll(
-                Gtk.EventControllerScrollFlags.VERTICAL |
-                Gtk.EventControllerScrollFlags.DISCRETE
-            );
-            scroll_ctl.scroll.connect((dx, dy) => {
-                if (featured_carousel.n_pages < 2) {
-                    return false;
-                }
-                uint current = (uint) (featured_carousel.position + 0.5);
-                if (dy > 0 && current < featured_carousel.n_pages - 1) {
-                    featured_carousel.scroll_to(featured_carousel.get_nth_page(current + 1), true);
-                    return true;
-                } else if (dy < 0 && current > 0) {
-                    featured_carousel.scroll_to(featured_carousel.get_nth_page(current - 1), true);
-                    return true;
-                }
-                return false;  // at boundary, let page scroll
-            });
-            featured_carousel.add_controller(scroll_ctl);
-
-            var dots = new Adw.CarouselIndicatorDots();
-            dots.carousel = featured_carousel;
-            dots.halign = Gtk.Align.CENTER;
-            dots.margin_top = 8;
-
-            bool visible_initial = settings.get_boolean("show-featured");
-            featured_section.visible = visible_initial;
-
-            featured_section.append(featured_carousel);
-            featured_section.append(dots);
-            parent.append(featured_section);
-
-            // React to setting changes (from hamburger menu action)
-            settings.changed["show-featured"].connect(() => {
-                apply_featured_visibility(settings.get_boolean("show-featured"));
-            });
-
-            store.loading_finished.connect((c) => {
-                if (settings.get_boolean("show-featured")) {
-                    load_featured.begin();
-                }
-                update_favourites();
-            });
-        }
-
-        private void apply_featured_visibility(bool show) {
-            if (featured_section == null) return;
-            featured_section.visible = show;
-
-            // Load artwork if turning on and carousel is empty
-            if (show && featured_carousel.n_pages == 0) {
-                load_featured.begin();
-            }
-        }
-
-        private async void load_featured() {
-            var stations = store.get_local_stations(FEATURED_LIMIT);
-            for (int i = 0; i < stations.length; i++) {
-                load_featured_artwork.begin(stations[i]);
-            }
-        }
-
-        private async void load_featured_artwork(Station station) {
-            var tex = yield ImageLoader.get_default().load(station.image_hash);
-            if (tex == null) return;
-            featured_carousel.append(create_featured_card_with_texture(station, tex));
         }
 
         private void build_favourites(Gtk.Box parent) {
@@ -210,68 +130,7 @@ namespace Receiver {
             return card;
         }
 
-        private Gtk.Widget create_featured_card_with_texture(Station s, Gdk.Texture tex) {
-            var card = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            card.add_css_class("card");
-            card.set_size_request(200, 200);
-            card.halign = Gtk.Align.CENTER;
-            card.valign = Gtk.Align.CENTER;
-            card.overflow = Gtk.Overflow.HIDDEN;
 
-            var overlay = new Gtk.Overlay();
-
-            var art = new Gtk.Picture();
-            art.paintable = tex;
-            art.content_fit = Gtk.ContentFit.COVER;
-            overlay.child = art;
-
-            var bg = new Gtk.DrawingArea();
-            bg.set_size_request(-1, 60);
-            bg.valign = Gtk.Align.END;
-            bg.set_draw_func((a, cr, w, h) => {
-                var dark = Adw.StyleManager.get_default().dark;
-                var grad = new Cairo.Pattern.linear(0, 0, 0, h);
-                if (dark) {
-                    grad.add_color_stop_rgba(0, 0, 0, 0, 0.4);
-                    grad.add_color_stop_rgba(1, 0, 0, 0, 0.9);
-                } else {
-                    grad.add_color_stop_rgba(0, 1, 1, 1, 0.4);
-                    grad.add_color_stop_rgba(1, 1, 1, 1, 0.9);
-                }
-                cr.set_source(grad);
-                cr.rectangle(0, 0, w, h);
-                cr.fill();
-            });
-            overlay.add_overlay(bg);
-
-            var text = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
-            text.valign = Gtk.Align.END;
-            text.margin_start = text.margin_end = text.margin_bottom = 10;
-            var title = new Gtk.Label(s.name);
-            title.xalign = 0;
-            title.ellipsize = Pango.EllipsizeMode.END;
-            title.add_css_class("title-4");
-            text.append(title);
-            var subtitle = s.get_subtitle();
-            if (subtitle != "") {
-                var sub = new Gtk.Label(subtitle);
-                sub.xalign = 0;
-                sub.ellipsize = Pango.EllipsizeMode.END;
-                sub.add_css_class("caption");
-                text.append(sub);
-            }
-            overlay.add_overlay(text);
-            card.append(overlay);
-
-            var clamp = new Adw.Clamp();
-            clamp.maximum_size = 200;
-            clamp.child = card;
-
-            var g = new Gtk.GestureClick();
-            g.released.connect(() => station_activated(s));
-            clamp.add_controller(g);
-            return clamp;
-        }
 
         private async void load_artwork(Station s, Gtk.Picture art, Gtk.Stack stack) {
             var tex = yield ImageLoader.get_default().load(s.image_hash);
@@ -297,12 +156,14 @@ namespace Receiver {
             hdr.append(btn);
             section.append(hdr);
 
-            var flow = new Gtk.FlowBox();
+            genres_flow = new Gtk.FlowBox();
+            var flow = genres_flow;
             flow.selection_mode = Gtk.SelectionMode.NONE;
             flow.homogeneous = true;
             flow.max_children_per_line = 6;
             flow.min_children_per_line = 2;
             flow.row_spacing = flow.column_spacing = 8;
+
             foreach (var g in GENRES) {
                 var tile = new Gtk.Button();
                 tile.add_css_class("pill");
@@ -316,6 +177,21 @@ namespace Receiver {
             }
             section.append(flow);
             parent.append(section);
+        }
+
+        private void add_local_pill() {
+            if (genres_flow == null) return;
+            var country_name = store.get_locale_country_name();
+            if (country_name == null) return;
+            var local_tile = new Gtk.Button();
+            local_tile.add_css_class("pill");
+            local_tile.add_css_class("suggested-action");
+            local_tile.set_size_request(80, 40);
+            local_tile.child = new Gtk.Label(country_name);
+            local_tile.clicked.connect(() => {
+                local_selected(country_name);
+            });
+            genres_flow.insert(local_tile, 0);
         }
     }
 }

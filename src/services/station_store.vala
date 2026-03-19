@@ -9,7 +9,7 @@ namespace Receiver {
         private string[] _available_languages;
         private HashTable<int64?, bool> failed_stations;
 
-        private const string COLS = "id, source, name, homepage, country, streams_raw, tags_raw, image_width, image_hash";
+        private const string COLS = "id, source, name, homepage, country, streams_raw, tags_raw, image_hash";
 
         public string search_query {
             get { return _search_query; }
@@ -146,68 +146,7 @@ namespace Receiver {
             return null;
         }
 
-        public GenericArray<Station> get_featured_stations(int limit = 10) {
-            var result = new GenericArray<Station>();
-            if (db == null) {
-                return result;
-            }
-            Sqlite.Statement stmt;
-            db.prepare_v2(
-                "SELECT " + COLS + " FROM stations WHERE source = 2 ORDER BY RANDOM() LIMIT ?",
-                -1,
-                out stmt
-            );
-            stmt.bind_int(1, limit);
-            while (stmt.step() == Sqlite.ROW) {
-                result.add(parse(stmt));
-            }
-            return result;
-        }
 
-        public GenericArray<Station> get_local_stations(int limit = 50) {
-            var result = new GenericArray<Station>();
-            if (db == null) {
-                return result;
-            }
-
-            string? country;
-            string? language;
-            detect_locale(out country, out language);
-
-            if (country == null) {
-                return get_featured_stations(limit);
-            }
-
-            var img_filter = "image_width >= 200 AND image_width = image_height";
-            Sqlite.Statement stmt;
-            db.prepare_v2(
-                "SELECT " + COLS + " FROM stations"
-                + " WHERE (country_code = ? OR languages_raw LIKE ?) AND " + img_filter
-                + " ORDER BY CASE"
-                + "   WHEN country_code = ? AND languages_raw LIKE ? THEN 0"
-                + "   WHEN country_code = ? THEN 1"
-                + "   ELSE 2 END, RANDOM()"
-                + " LIMIT ?",
-                -1,
-                out stmt
-            );
-            var lang_pattern = "%" + (language ?? country) + "%";
-            stmt.bind_text(1, country);         // WHERE country_code = ?
-            stmt.bind_text(2, lang_pattern);    // WHERE languages_raw LIKE ?
-            stmt.bind_text(3, country);         // CASE: country_code = ?
-            stmt.bind_text(4, lang_pattern);    // CASE: languages_raw LIKE ?
-            stmt.bind_text(5, country);         // CASE: country_code = ?
-            stmt.bind_int(6, limit);            // LIMIT ?
-            while (stmt.step() == Sqlite.ROW) {
-                result.add(parse(stmt));
-            }
-
-            // Fallback to SomaFM if no local stations found
-            if (result.length == 0) {
-                return get_featured_stations(limit);
-            }
-            return result;
-        }
 
         private string? locale_to_language_code(string? lang, string? country) {
             if (lang == null) return null;
@@ -238,8 +177,18 @@ namespace Receiver {
         private void detect_locale(out string? country, out string? language) {
             country = null;
             language = null;
-            string? locale = Environment.get_variable("LANG");
+            // Cascade through locale variables in gettext priority order
+            string? locale = null;
+            foreach (var key in new string[] {"LANGUAGE", "LC_ALL", "LC_MESSAGES", "LANG"}) {
+                var val = Environment.get_variable(key);
+                if (val == null || val == "" || val == "C" || val == "POSIX") continue;
+                // LANGUAGE can be colon-separated (e.g. "de_CH:de:en"); use first entry
+                locale = val.split(":")[0];
+                break;
+            }
             if (locale == null) return;
+            // Strip encoding suffix (e.g. ".UTF-8")
+            locale = locale.split(".")[0];
             int sep = locale.index_of_char('_');
             if (sep < 2 || locale.length < sep + 3) return;
             language = locale.substring(0, sep).down();  // "de" stays "de"
@@ -248,6 +197,20 @@ namespace Receiver {
 
         public GenericArray<Station> get_favourite_stations() {
             return AppState.get_default().get_favourite_stations();
+        }
+
+        public string? get_locale_country_name() {
+            string? code;
+            string? lang;
+            detect_locale(out code, out lang);
+            if (code == null || db == null) return null;
+            Sqlite.Statement stmt;
+            db.prepare_v2("SELECT DISTINCT country FROM stations WHERE country_code = ?", -1, out stmt);
+            stmt.bind_text(1, code);
+            if (stmt.step() == Sqlite.ROW) {
+                return stmt.column_text(0);
+            }
+            return null;
         }
 
         public string[] get_available_languages() {
@@ -280,25 +243,24 @@ namespace Receiver {
             }
             string fav_list = fav_ids.length > 0 ? string.joinv(",", fav_parts) : "0";
 
-            // Tier sort: 1=favourite, 2=somafm, 3=image>=48px, 4=any image, 5=other
+            // Tier sort: 1=favourite, 2=somafm, 3=has image, 4=other
             var order_clause = "ORDER BY CASE"
                 + " WHEN id IN (" + fav_list + ") THEN 1"
                 + " WHEN source = " + SOURCE_SOMAFM.to_string() + " THEN 2"
-                + " WHEN image_width >= 48 THEN 3"
-                + " WHEN image_width > 0 THEN 4"
-                + " ELSE 5 END, RANDOM()";
+                + " WHEN image_hash != 0 THEN 3"
+                + " ELSE 4 END, RANDOM()";
 
             var sql = new StringBuilder();
             bool use_fts = _search_query != "";
 
+            var prefix = use_fts ? "s." : "";
             if (use_fts) {
                 sql.append("SELECT s.").append(COLS.replace(", ", ", s."));
                 sql.append(" FROM stations s JOIN stations_fts f ON s.rowid = f.rowid WHERE stations_fts MATCH ?");
-                if (_language_filter != "all") sql.append(" AND s.languages_raw LIKE ?");
             } else {
                 sql.append("SELECT ").append(COLS).append(" FROM stations WHERE 1=1");
-                if (_language_filter != "all") sql.append(" AND languages_raw LIKE ?");
             }
+            if (_language_filter != "all") sql.append(" AND " + prefix + "languages_raw LIKE ?");
 
             sql.append(" ").append(order_clause);
 
@@ -342,8 +304,7 @@ namespace Receiver {
             st.country = s.column_text(4);
             st.streams_raw = s.column_text(5);
             st.tags_raw = s.column_text(6);
-            st.image_width = s.column_int(7);
-            st.image_hash = s.column_int64(8);
+            st.image_hash = s.column_int64(7);
             return st;
         }
     }

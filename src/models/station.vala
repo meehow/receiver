@@ -9,7 +9,7 @@ namespace Receiver {
         public int source { get; set; }
         public string name { get; set; }
         public string homepage { get; set; }
-        public int image_width { get; set; }
+
         public int64 image_hash { get; set; }
         public string tags_raw { get; set; }
         public string country { get; set; }

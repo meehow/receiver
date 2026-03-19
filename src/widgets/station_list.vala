@@ -333,7 +333,7 @@ namespace Receiver {
                 });
             }
 
-            if (s.image_width > 0) {
+            if (s.image_hash != 0) {
                 // Try sync disk cache first to avoid placeholder flash on rebind
                 var cached_path = ImageLoader.get_default().get_cache_path(s.image_hash);
                 if (FileUtils.test(cached_path, FileTest.EXISTS)) {
