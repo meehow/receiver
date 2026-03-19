@@ -143,7 +143,7 @@ namespace Receiver {
         private void build_genres(Gtk.Box parent) {
             var section = new Gtk.Box(Gtk.Orientation.VERTICAL, 12);
             var hdr = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
-            var lbl = new Gtk.Label(_("Browse by Genre"));
+            var lbl = new Gtk.Label(_("Discover"));
             lbl.xalign = 0;
             lbl.hexpand = true;
             lbl.add_css_class("title-2");

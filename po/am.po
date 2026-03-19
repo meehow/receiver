@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-08 13:51+0100\n"
+"POT-Creation-Date: 2026-03-19 23:42+0100\n"
 "Language: am\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,17 +14,13 @@ msgstr ""
 msgid "Search stations"
 msgstr "ጣቢያዎችን ፈልግ"
 
-#: src/widgets/window.vala:38 src/widgets/window.vala:102
+#: src/widgets/window.vala:38 src/widgets/window.vala:108
 msgid "Search"
 msgstr "ፈልግ"
 
 #: src/widgets/window.vala:45
 msgid "Menu"
 msgstr "ምናሌ"
-
-#: src/widgets/window.vala:55
-msgid "Show Featured Stations"
-msgstr "ተመራጭ ጣቢያዎችን አሳይ"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -40,90 +36,86 @@ msgstr "ስለ Receiver"
 msgid "Home"
 msgstr "መነሻ"
 
-#: src/widgets/window.vala:116
+#: src/widgets/window.vala:122
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d ጣቢያዎች ተጭነዋል"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:121 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "ስህተት: %s"
 
-#: src/widgets/window.vala:125
+#: src/widgets/window.vala:131
 #, c-format
 msgid "Playback error: %s"
 msgstr "የማጫወቻ ስህተት: %s"
 
-#: src/widgets/window.vala:133
+#: src/widgets/window.vala:139
 #, c-format
 msgid "Now playing: %s"
 msgstr "አሁን እየተጫወተ ነው: %s"
 
-#: src/widgets/window.vala:150
+#: src/widgets/window.vala:156
 #, c-format
 msgid "Resuming: %s"
 msgstr "እየቀጠለ: %s"
 
-#: src/widgets/window.vala:195
+#: src/widgets/window.vala:183
 msgid "Cancel Last.fm Authorization"
 msgstr "የLast.fm ፈቃድ ሰርዝ"
 
-#: src/widgets/window.vala:197
+#: src/widgets/window.vala:185
 msgid "Disconnect from Last.fm"
 msgstr "ከLast.fm ግንኙነት አቋርጥ"
 
-#: src/widgets/window.vala:199
+#: src/widgets/window.vala:187
 msgid "Connect to Last.fm"
 msgstr "ከLast.fm ጋር ተገናኝ"
 
-#: src/widgets/window.vala:206
+#: src/widgets/window.vala:194
 msgid "Last.fm authorization cancelled"
 msgstr "የLast.fm ፈቃድ ተሰርዟል"
 
-#: src/widgets/window.vala:212
+#: src/widgets/window.vala:200
 msgid "Disconnected from Last.fm"
 msgstr "ከLast.fm ተለያይቷል"
 
-#: src/widgets/window.vala:216
+#: src/widgets/window.vala:204
 msgid "Connecting to Last.fm…"
 msgstr "ከLast.fm ጋር በመገናኘት ላይ…"
 
-#: src/widgets/window.vala:220
+#: src/widgets/window.vala:208
 msgid "Failed to connect to Last.fm"
 msgstr "ከLast.fm ጋር መገናኘት አልተቻለም"
 
-#: src/widgets/window.vala:227
+#: src/widgets/window.vala:215
 msgid "Grant access in your browser…"
 msgstr "በአሳሽዎ ውስጥ ፈቃድ ይስጡ…"
 
-#: src/widgets/window.vala:235
+#: src/widgets/window.vala:223
 msgid "Last.fm authorization timed out"
 msgstr "የLast.fm ፈቃድ ጊዜው አልፏል"
 
-#: src/widgets/window.vala:243
+#: src/widgets/window.vala:231
 msgid "Connected to Last.fm"
 msgstr "ከLast.fm ጋር ተገናኝቷል"
 
-#: src/widgets/window.vala:264
+#: src/widgets/window.vala:252
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "ከመላው ዓለም ከ30,000 በላይ የተረጋገጡ የሬዲዮ ጣቢያዎችን ያግኙ"
 
-#: src/widgets/home_screen.vala:48
-msgid "Featured Stations"
-msgstr "ተለይተው የቀረቡ ጣቢያዎች"
-
-#: src/widgets/home_screen.vala:132
+#: src/widgets/home_screen.vala:52
 msgid "Favourite Stations"
 msgstr "ተወዳጅ ጣቢያዎች"
 
-#: src/widgets/home_screen.vala:283
-msgid "Browse by Genre"
-msgstr "በዘውግ ያስሱ"
+#: src/widgets/home_screen.vala:146
+msgid "Discover"
+msgstr "አግኝ"
 
-#: src/widgets/home_screen.vala:288
+#: src/widgets/home_screen.vala:151
 msgid "View All"
 msgstr "ሁሉንም ይመልከቱ"
 
@@ -276,3 +268,12 @@ msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "ከ%d ቀን በፊት"
 msgstr[1] "ከ%d ቀናት በፊት"
+
+#~ msgid "Show Featured Stations"
+#~ msgstr "ተመራጭ ጣቢያዎችን አሳይ"
+
+#~ msgid "Featured Stations"
+#~ msgstr "ተለይተው የቀረቡ ጣቢያዎች"
+
+#~ msgid "Browse by Genre"
+#~ msgstr "በዘውግ ያስሱ"

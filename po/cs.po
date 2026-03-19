@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-08 13:51+0100\n"
+"POT-Creation-Date: 2026-03-19 23:42+0100\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,17 +14,13 @@ msgstr ""
 msgid "Search stations"
 msgstr "Hledat stanice"
 
-#: src/widgets/window.vala:38 src/widgets/window.vala:102
+#: src/widgets/window.vala:38 src/widgets/window.vala:108
 msgid "Search"
 msgstr "Hledat"
 
 #: src/widgets/window.vala:45
 msgid "Menu"
 msgstr "Nabídka"
-
-#: src/widgets/window.vala:55
-msgid "Show Featured Stations"
-msgstr "Zobrazit doporučené stanice"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -40,90 +36,86 @@ msgstr "O aplikaci Receiver"
 msgid "Home"
 msgstr "Domů"
 
-#: src/widgets/window.vala:116
+#: src/widgets/window.vala:122
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Načteno %d stanic"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:121 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Chyba: %s"
 
-#: src/widgets/window.vala:125
+#: src/widgets/window.vala:131
 #, c-format
 msgid "Playback error: %s"
 msgstr "Chyba přehrávání: %s"
 
-#: src/widgets/window.vala:133
+#: src/widgets/window.vala:139
 #, c-format
 msgid "Now playing: %s"
 msgstr "Nyní hraje: %s"
 
-#: src/widgets/window.vala:150
+#: src/widgets/window.vala:156
 #, c-format
 msgid "Resuming: %s"
 msgstr "Obnovení: %s"
 
-#: src/widgets/window.vala:195
+#: src/widgets/window.vala:183
 msgid "Cancel Last.fm Authorization"
 msgstr "Zrušit autorizaci Last.fm"
 
-#: src/widgets/window.vala:197
+#: src/widgets/window.vala:185
 msgid "Disconnect from Last.fm"
 msgstr "Odpojit od Last.fm"
 
-#: src/widgets/window.vala:199
+#: src/widgets/window.vala:187
 msgid "Connect to Last.fm"
 msgstr "Připojit k Last.fm"
 
-#: src/widgets/window.vala:206
+#: src/widgets/window.vala:194
 msgid "Last.fm authorization cancelled"
 msgstr "Autorizace Last.fm zrušena"
 
-#: src/widgets/window.vala:212
+#: src/widgets/window.vala:200
 msgid "Disconnected from Last.fm"
 msgstr "Odpojeno od Last.fm"
 
-#: src/widgets/window.vala:216
+#: src/widgets/window.vala:204
 msgid "Connecting to Last.fm…"
 msgstr "Připojování k Last.fm…"
 
-#: src/widgets/window.vala:220
+#: src/widgets/window.vala:208
 msgid "Failed to connect to Last.fm"
 msgstr "Nepodařilo se připojit k Last.fm"
 
-#: src/widgets/window.vala:227
+#: src/widgets/window.vala:215
 msgid "Grant access in your browser…"
 msgstr "Udělte přístup ve svém prohlížeči…"
 
-#: src/widgets/window.vala:235
+#: src/widgets/window.vala:223
 msgid "Last.fm authorization timed out"
 msgstr "Autorizace Last.fm vypršela"
 
-#: src/widgets/window.vala:243
+#: src/widgets/window.vala:231
 msgid "Connected to Last.fm"
 msgstr "Připojeno k Last.fm"
 
-#: src/widgets/window.vala:264
+#: src/widgets/window.vala:252
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Objevte více než 30 000 ověřených rozhlasových stanic z celého světa"
 
-#: src/widgets/home_screen.vala:48
-msgid "Featured Stations"
-msgstr "Doporučené stanice"
-
-#: src/widgets/home_screen.vala:132
+#: src/widgets/home_screen.vala:52
 msgid "Favourite Stations"
 msgstr "Oblíbené stanice"
 
-#: src/widgets/home_screen.vala:283
-msgid "Browse by Genre"
-msgstr "Procházet podle žánru"
+#: src/widgets/home_screen.vala:146
+msgid "Discover"
+msgstr "Objevujte"
 
-#: src/widgets/home_screen.vala:288
+#: src/widgets/home_screen.vala:151
 msgid "View All"
 msgstr "Zobrazit vše"
 
@@ -279,3 +271,12 @@ msgid_plural "%d days ago"
 msgstr[0] "před %d dnem"
 msgstr[1] "před %d dny"
 msgstr[2] "před %d dny"
+
+#~ msgid "Show Featured Stations"
+#~ msgstr "Zobrazit doporučené stanice"
+
+#~ msgid "Featured Stations"
+#~ msgstr "Doporučené stanice"
+
+#~ msgid "Browse by Genre"
+#~ msgstr "Procházet podle žánru"

@@ -3,28 +3,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-08 13:51+0100\n"
+"POT-Creation-Date: 2026-03-19 23:42+0100\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/widgets/window.vala:36
 msgid "Search stations"
 msgstr "Шукаць станцыі"
 
-#: src/widgets/window.vala:38 src/widgets/window.vala:102
+#: src/widgets/window.vala:38 src/widgets/window.vala:108
 msgid "Search"
 msgstr "Шукаць"
 
 #: src/widgets/window.vala:45
 msgid "Menu"
 msgstr "Меню"
-
-#: src/widgets/window.vala:55
-msgid "Show Featured Stations"
-msgstr "Паказаць рэкамендаваныя станцыі"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -40,90 +37,86 @@ msgstr "Пра Receiver"
 msgid "Home"
 msgstr "Галоўная"
 
-#: src/widgets/window.vala:116
+#: src/widgets/window.vala:122
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Загружана %d станцый"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:121 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Памылка: %s"
 
-#: src/widgets/window.vala:125
+#: src/widgets/window.vala:131
 #, c-format
 msgid "Playback error: %s"
 msgstr "Памылка прайгравання: %s"
 
-#: src/widgets/window.vala:133
+#: src/widgets/window.vala:139
 #, c-format
 msgid "Now playing: %s"
 msgstr "Зараз іграе: %s"
 
-#: src/widgets/window.vala:150
+#: src/widgets/window.vala:156
 #, c-format
 msgid "Resuming: %s"
 msgstr "Аднаўленне: %s"
 
-#: src/widgets/window.vala:195
+#: src/widgets/window.vala:183
 msgid "Cancel Last.fm Authorization"
 msgstr "Скасаваць аўтарызацыю Last.fm"
 
-#: src/widgets/window.vala:197
+#: src/widgets/window.vala:185
 msgid "Disconnect from Last.fm"
 msgstr "Адключыцца ад Last.fm"
 
-#: src/widgets/window.vala:199
+#: src/widgets/window.vala:187
 msgid "Connect to Last.fm"
 msgstr "Падключыцца да Last.fm"
 
-#: src/widgets/window.vala:206
+#: src/widgets/window.vala:194
 msgid "Last.fm authorization cancelled"
 msgstr "Аўтарызацыя Last.fm скасавана"
 
-#: src/widgets/window.vala:212
+#: src/widgets/window.vala:200
 msgid "Disconnected from Last.fm"
 msgstr "Адключана ад Last.fm"
 
-#: src/widgets/window.vala:216
+#: src/widgets/window.vala:204
 msgid "Connecting to Last.fm…"
 msgstr "Падключэнне да Last.fm…"
 
-#: src/widgets/window.vala:220
+#: src/widgets/window.vala:208
 msgid "Failed to connect to Last.fm"
 msgstr "Не ўдалося падключыцца да Last.fm"
 
-#: src/widgets/window.vala:227
+#: src/widgets/window.vala:215
 msgid "Grant access in your browser…"
 msgstr "Дайце доступ у вашым браўзеры…"
 
-#: src/widgets/window.vala:235
+#: src/widgets/window.vala:223
 msgid "Last.fm authorization timed out"
 msgstr "Час аўтарызацыі Last.fm выйшаў"
 
-#: src/widgets/window.vala:243
+#: src/widgets/window.vala:231
 msgid "Connected to Last.fm"
 msgstr "Падключана да Last.fm"
 
-#: src/widgets/window.vala:264
+#: src/widgets/window.vala:252
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Адкрыйце 30,000+ правераных радыёстанцый з усяго свету"
 
-#: src/widgets/home_screen.vala:48
-msgid "Featured Stations"
-msgstr "Выбраныя станцыі"
-
-#: src/widgets/home_screen.vala:132
+#: src/widgets/home_screen.vala:52
 msgid "Favourite Stations"
 msgstr "Улюбёныя станцыі"
 
-#: src/widgets/home_screen.vala:283
-msgid "Browse by Genre"
-msgstr "Агляд па жанры"
+#: src/widgets/home_screen.vala:146
+msgid "Discover"
+msgstr "Адкрыйце"
 
-#: src/widgets/home_screen.vala:288
+#: src/widgets/home_screen.vala:151
 msgid "View All"
 msgstr "Паказаць усе"
 
@@ -279,3 +272,12 @@ msgid_plural "%d days ago"
 msgstr[0] "%d дзень таму"
 msgstr[1] "%d дні таму"
 msgstr[2] "%d дзён таму"
+
+#~ msgid "Show Featured Stations"
+#~ msgstr "Паказаць рэкамендаваныя станцыі"
+
+#~ msgid "Featured Stations"
+#~ msgstr "Выбраныя станцыі"
+
+#~ msgid "Browse by Genre"
+#~ msgstr "Агляд па жанры"

@@ -112,7 +112,11 @@ namespace Receiver {
             cleanup();
             state = PlayerState.STOPPED;  // Reset so STATE_CHANGED is processed
 
-            pipeline = Gst.ElementFactory.make("playbin", "player");
+            pipeline = Gst.ElementFactory.make("playbin3", "player");
+            if (pipeline == null) {
+                // Fallback to playbin if playbin3 is not available
+                pipeline = Gst.ElementFactory.make("playbin", "player");
+            }
             if (pipeline == null) {
                 error_occurred("Failed to create player");
                 return;
@@ -120,11 +124,7 @@ namespace Receiver {
 
             pipeline.set_property("uri", url);
             pipeline.set_property("volume", _volume * _volume * _volume);
-            
-            // Audio only flags: 0x02 is GST_PLAY_FLAG_AUDIO
-            pipeline.set_property("flags", 0x02);
             pipeline.set_property("video-sink", Gst.ElementFactory.make("fakesink", "video_fake"));
-            pipeline.set_property("buffer-duration", (int64) Gst.SECOND * 2);
 
             // Set User-Agent so Shoutcast/Icecast servers don't reject us
             //  ((Gst.Bin) pipeline).deep_element_added.connect((bin, element) => {

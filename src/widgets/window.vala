@@ -16,7 +16,7 @@ namespace Receiver {
         private uint auth_poll_timer = 0;
 
         public MainWindow(Application application) {
-            Object(application: application, title: "Receiver", default_width: 580, default_height: 1000);
+            Object(application: application, title: "Receiver", default_width: 580, default_height: 800);
             this.app = application;
             build_ui();
             connect_signals();

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-08 13:51+0100\n"
+"POT-Creation-Date: 2026-03-19 23:42+0100\n"
 "Language: dz\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -14,17 +14,13 @@ msgstr ""
 msgid "Search stations"
 msgstr "རླུང་འཕྲིན་འཐུས་སྒྲིག་འཚོལ"
 
-#: src/widgets/window.vala:38 src/widgets/window.vala:102
+#: src/widgets/window.vala:38 src/widgets/window.vala:108
 msgid "Search"
 msgstr "འཚོལ"
 
 #: src/widgets/window.vala:45
 msgid "Menu"
 msgstr "དཀར་ཆག"
-
-#: src/widgets/window.vala:55
-msgid "Show Featured Stations"
-msgstr "འོས་སྦྱོར་ས་ཚིགས་སྟོན"
 
 #. History page
 #: src/widgets/window.vala:56 src/widgets/window.vala:75
@@ -40,90 +36,86 @@ msgstr "Receiver སྐོར་ལས"
 msgid "Home"
 msgstr "གཙོ་ངོས"
 
-#: src/widgets/window.vala:116
+#: src/widgets/window.vala:122
 #, c-format
 msgid "Loaded %d stations"
 msgstr "རླུང་འཕྲིན་འཐུས་སྒྲིག %d ཐོན་ཡོད"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:121 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "འཛོལ་བ: %s"
 
-#: src/widgets/window.vala:125
+#: src/widgets/window.vala:131
 #, c-format
 msgid "Playback error: %s"
 msgstr "སྒྲ་སྐྱོན: %s"
 
-#: src/widgets/window.vala:133
+#: src/widgets/window.vala:139
 #, c-format
 msgid "Now playing: %s"
 msgstr "ད་ལྟ་གཏོང་བཞིན་པ: %s"
 
-#: src/widgets/window.vala:150
+#: src/widgets/window.vala:156
 #, c-format
 msgid "Resuming: %s"
 msgstr "བསྐྱར་གཏོང: %s"
 
-#: src/widgets/window.vala:195
+#: src/widgets/window.vala:183
 msgid "Cancel Last.fm Authorization"
 msgstr "Last.fm དབང་བསྐུར་ཆ་མེད་གཏང"
 
-#: src/widgets/window.vala:197
+#: src/widgets/window.vala:185
 msgid "Disconnect from Last.fm"
 msgstr "Last.fm ལས་བཅད"
 
-#: src/widgets/window.vala:199
+#: src/widgets/window.vala:187
 msgid "Connect to Last.fm"
 msgstr "Last.fm ལུ་འབྲེལ"
 
-#: src/widgets/window.vala:206
+#: src/widgets/window.vala:194
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm དབང་བསྐུར་ཆ་མེད་བཏང་ཡོདཔ"
 
-#: src/widgets/window.vala:212
+#: src/widgets/window.vala:200
 msgid "Disconnected from Last.fm"
 msgstr "Last.fm ལས་བཅད་ཡོདཔ"
 
-#: src/widgets/window.vala:216
+#: src/widgets/window.vala:204
 msgid "Connecting to Last.fm…"
 msgstr "Last.fm ལུ་འབྲེལ་བཞིན…"
 
-#: src/widgets/window.vala:220
+#: src/widgets/window.vala:208
 msgid "Failed to connect to Last.fm"
 msgstr "Last.fm ལུ་འབྲེལ་མ་ཚུགས"
 
-#: src/widgets/window.vala:227
+#: src/widgets/window.vala:215
 msgid "Grant access in your browser…"
 msgstr "ཁྱོད་ཀྱི་བཤར་ཆས་ནང་ལུ་ཆོག་མཆན་བྱིན…"
 
-#: src/widgets/window.vala:235
+#: src/widgets/window.vala:223
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm དབང་བསྐུར་དུས་ཚོད་ཚང་ཡོདཔ"
 
-#: src/widgets/window.vala:243
+#: src/widgets/window.vala:231
 msgid "Connected to Last.fm"
 msgstr "Last.fm ལུ་འབྲེལ་ཡོདཔ"
 
-#: src/widgets/window.vala:264
+#: src/widgets/window.vala:252
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "འཛམ་གླིང་ཡོངས་ལས་30,000+ བརྟག་ཞིབ་འབད་ཡོད་མི་རླུང་འཕྲིན་ས་ཚིགས་འཚོལ"
 
-#: src/widgets/home_screen.vala:48
-msgid "Featured Stations"
-msgstr "འོས་འཚམས་རླུང་འཕྲིན"
-
-#: src/widgets/home_screen.vala:132
+#: src/widgets/home_screen.vala:52
 msgid "Favourite Stations"
 msgstr "དགའ་ཤོས་རླུང་འཕྲིན"
 
-#: src/widgets/home_screen.vala:283
-msgid "Browse by Genre"
-msgstr "རིགས་ལྟར་བལྟ"
+#: src/widgets/home_screen.vala:146
+msgid "Discover"
+msgstr "འཚོལ།"
 
-#: src/widgets/home_screen.vala:288
+#: src/widgets/home_screen.vala:151
 msgid "View All"
 msgstr "ཚང་མ་བལྟ"
 
@@ -273,3 +265,12 @@ msgstr[0] "ཆུ་ཚོད་ %d ཧེ་མ"
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "ཉིན་ %d ཧེ་མ"
+
+#~ msgid "Show Featured Stations"
+#~ msgstr "འོས་སྦྱོར་ས་ཚིགས་སྟོན"
+
+#~ msgid "Featured Stations"
+#~ msgstr "འོས་འཚམས་རླུང་འཕྲིན"
+
+#~ msgid "Browse by Genre"
+#~ msgstr "རིགས་ལྟར་བལྟ"
