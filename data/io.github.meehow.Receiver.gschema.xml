@@ -31,6 +31,14 @@
       <summary>Last.fm session</summary>
       <description>Last.fm username and session key (username:key). Empty to disable scrobbling.</description>
     </key>
+    <key name="window-width" type="i">
+      <default>580</default>
+      <summary>Window width</summary>
+    </key>
+    <key name="window-height" type="i">
+      <default>800</default>
+      <summary>Window height</summary>
+    </key>
 
   </schema>
 </schemalist>

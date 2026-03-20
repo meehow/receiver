@@ -16,10 +16,19 @@ namespace Receiver {
         private uint auth_poll_timer = 0;
 
         public MainWindow(Application application) {
-            Object(application: application, title: "Receiver", default_width: 580, default_height: 800);
+            var s = AppState.get_default().settings;
+            Object(application: application, title: "Receiver",
+                default_width: s.get_int("window-width"),
+                default_height: s.get_int("window-height"));
             this.app = application;
             build_ui();
             connect_signals();
+
+            this.close_request.connect(() => {
+                s.set_int("window-width", this.default_width);
+                s.set_int("window-height", this.default_height);
+                return false;
+            });
         }
 
         private void build_ui() {
