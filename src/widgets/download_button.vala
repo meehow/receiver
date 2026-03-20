@@ -36,7 +36,6 @@ namespace Receiver {
 
             progress_bar = new Gtk.ProgressBar();
             progress_bar.valign = Gtk.Align.CENTER;
-            progress_bar.hexpand = true;
             progress_bar.set_size_request(64, -1);
 
             var cancel = new Gtk.Button.from_icon_name("process-stop-symbolic");

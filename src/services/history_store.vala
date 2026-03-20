@@ -8,20 +8,29 @@ namespace Receiver {
         public string played_at { get; set; default = ""; }
     }
 
-    public class HistoryStore : Object {
+    public class HistoryStore : Object, ListModel {
         private static HistoryStore? _instance;
         private GenericArray<HistoryEntry> entries;
         private string file_path;
         private bool save_pending = false;
         private const int MAX_ENTRIES = 500;
 
-        public signal void changed();
-
         public static HistoryStore get_default() {
             if (_instance == null) {
                 _instance = new HistoryStore();
             }
             return _instance;
+        }
+
+        // ListModel interface
+        public Object? get_item(uint pos) {
+            return pos < entries.length ? entries[(int)pos] : null;
+        }
+        public Type get_item_type() {
+            return typeof(HistoryEntry);
+        }
+        public uint get_n_items() {
+            return entries.length;
         }
 
         private HistoryStore() {
@@ -54,22 +63,27 @@ namespace Receiver {
             entry.played_at = new DateTime.now_local().format_iso8601();
             entries.insert(0, entry);
 
-            // Cap size
+            // Cap size + notify removals from the end
+            uint removed = 0;
             while (entries.length > MAX_ENTRIES) {
                 entries.remove_index(entries.length - 1);
+                removed++;
             }
 
-            changed();
+            // Notify: 1 item added at position 0
+            items_changed(0, 0, 1);
+            // Notify any trimmed items from the tail
+            if (removed > 0) {
+                items_changed(entries.length, removed, 0);
+            }
+
             schedule_save();
         }
 
-        public GenericArray<HistoryEntry> get_entries() {
-            return entries;
-        }
-
         public void clear() {
+            uint old_len = entries.length;
             entries = new GenericArray<HistoryEntry>();
-            changed();
+            items_changed(0, old_len, 0);
             schedule_save();
         }
 
