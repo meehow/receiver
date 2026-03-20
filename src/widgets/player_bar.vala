@@ -16,6 +16,8 @@ namespace Receiver {
         private Gtk.Button favourite_button;
         private DownloadButton download_button;
 
+        public signal void info_requested();
+
         public PlayerBar(Player audio_player) {
             Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
             this.player = audio_player;
@@ -50,8 +52,8 @@ namespace Receiver {
             image_stack.add_named(frame, "artwork");
             var artwork_click = new Gtk.GestureClick();
             artwork_click.released.connect(() => {
-                if (image_stack.visible_child_name == "artwork" && artwork.paintable != null) {
-                    show_artwork_dialog();
+                if (player.current_station != null) {
+                    info_requested();
                 }
             });
             image_stack.add_controller(artwork_click);
@@ -256,29 +258,6 @@ namespace Receiver {
 
         private string format_now_playing(string title) {
             return "♪ " + title;
-        }
-
-        private void show_artwork_dialog() {
-            var tex = artwork.paintable;
-            if (tex == null || tex.get_intrinsic_width() <= 64) return;
-
-            var win = new Gtk.Window();
-            win.decorated = false;
-            win.modal = true;
-            win.transient_for = get_root() as Gtk.Window;
-            win.default_width = tex.get_intrinsic_width();
-            win.default_height = tex.get_intrinsic_height();
-
-            var pic = new Gtk.Picture();
-            pic.paintable = tex;
-            pic.content_fit = Gtk.ContentFit.CONTAIN;
-            pic.can_shrink = true;
-            var click = new Gtk.GestureClick();
-            click.released.connect(() => win.close());
-            pic.add_controller(click);
-
-            win.child = pic;
-            win.present();
         }
     }
 }

@@ -46,6 +46,7 @@ sources = files(
   'src/widgets/station_list.vala',
   'src/widgets/player_bar.vala',
   'src/widgets/history_page.vala',
+  'src/widgets/station_info_page.vala',
   'src/widgets/download_button.vala',
 )
 

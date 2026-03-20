@@ -20,6 +20,12 @@ namespace Receiver {
 
         public string now_playing { get; private set; default = ""; }
 
+        // Stream info from GStreamer tags
+        public string stream_codec { get; private set; default = ""; }
+        public uint stream_bitrate { get; private set; default = 0; }
+        public uint stream_sample_rate { get; private set; default = 0; }
+        public uint stream_channels { get; private set; default = 0; }
+
         private double _volume = 1.0;
         public double volume {
             get { return _volume; }
@@ -31,8 +37,8 @@ namespace Receiver {
 
         public signal void state_changed(PlayerState new_state);
         public signal void error_occurred(string message);
-
         public signal void metadata_changed(string title);
+        public signal void stream_info_changed();
 
         ~Player() { stop(); }
 
@@ -68,6 +74,7 @@ namespace Receiver {
 
             now_playing = "";
             last_raw_title = null;
+            clear_stream_info();
             metadata_changed(station.name);
 
             // playbin handles .m3u8 (HLS) natively; .pls and .m3u must be
@@ -201,6 +208,35 @@ namespace Receiver {
                     message("Now playing: %s", title);
                 }
             }
+
+            // Extract stream info
+            bool info_changed = false;
+
+            string? codec = null;
+            if (tags.get_string(Gst.Tags.AUDIO_CODEC, out codec) && codec != null && codec != stream_codec) {
+                stream_codec = codec;
+                info_changed = true;
+            }
+
+            uint br = 0;
+            if (tags.get_uint(Gst.Tags.BITRATE, out br) && br > 0 && br != stream_bitrate) {
+                stream_bitrate = br;
+                info_changed = true;
+            } else if (stream_bitrate == 0 && tags.get_uint(Gst.Tags.NOMINAL_BITRATE, out br) && br > 0) {
+                stream_bitrate = br;
+                info_changed = true;
+            }
+
+            if (info_changed) {
+                stream_info_changed();
+            }
+        }
+
+        private void clear_stream_info() {
+            stream_codec = "";
+            stream_bitrate = 0;
+            stream_sample_rate = 0;
+            stream_channels = 0;
         }
 
         private void update_state(PlayerState s) {
@@ -216,6 +252,7 @@ namespace Receiver {
             cleanup();
             current_station = null;
             now_playing = "";
+            clear_stream_info();
             update_state(PlayerState.STOPPED);
         }
 

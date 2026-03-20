@@ -13,6 +13,8 @@ namespace Receiver {
         private GLib.Menu lastfm_menu;
         private HistoryPage history_page;
         private Adw.NavigationPage history_nav_page;
+        private StationInfoPage station_info_page;
+        private Adw.NavigationPage station_info_nav_page;
         private uint auth_poll_timer = 0;
 
         public MainWindow(Application application) {
@@ -102,6 +104,11 @@ namespace Receiver {
             history_nav_page = new Adw.NavigationPage(history_page, _("Song History"));
             history_nav_page.tag = "history";
 
+            // Station info page
+            station_info_page = new StationInfoPage(app.player);
+            station_info_nav_page = new Adw.NavigationPage(station_info_page, _("Station Info"));
+            station_info_nav_page.tag = "station-info";
+
             toast_overlay.child = nav_view;
             main_box.append(toast_overlay);
 
@@ -157,6 +164,11 @@ namespace Receiver {
             app.player.error_occurred.connect((m) => {
                 toast(_("Playback error: %s").printf(m));
                 warning("Playback error: " + m);
+            });
+
+            player_bar.info_requested.connect(() => {
+                station_info_page.refresh();
+                nav_view.push(station_info_nav_page);
             });
         }
 
