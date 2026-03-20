@@ -2,7 +2,7 @@ name: receiver
 base: core24
 version: '0.4.0'
 title: Receiver
-summary: Discover 30,000+ verified radio stations from around the world
+summary: 30,000+ verified radio stations
 description: |
   Most radio apps make you search for stations by name or paste in a stream
   URL. Receiver ships with over 30,000 stations ready to explore — each one

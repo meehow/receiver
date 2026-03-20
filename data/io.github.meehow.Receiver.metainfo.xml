@@ -5,7 +5,7 @@
   <project_license>GPL-3.0-or-later</project_license>
   
   <name>Receiver</name>
-  <summary>Discover 30,000+ verified radio stations from around the world</summary>
+  <summary>30,000+ verified radio stations</summary>
   
   <description>
     <p>
@@ -41,8 +41,8 @@
   </developer>
   
   <branding>
-    <color type="primary" scheme_preference="light">#f66151</color>
-    <color type="primary" scheme_preference="dark">#9141ac</color>
+    <color type="primary" scheme_preference="light">#c9a0dc</color>
+    <color type="primary" scheme_preference="dark">#452d62</color>
   </branding>
   
   <content_rating type="oars-1.1" />
