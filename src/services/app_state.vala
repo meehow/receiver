@@ -34,6 +34,7 @@ namespace Receiver {
             load_favourites();
         }
 
+
         public bool is_favourite(int64 id) {
             for (int i = 0; i < _favourite_stations.length; i++) {
                 if (_favourite_stations[i].id == id) {
@@ -55,6 +56,19 @@ namespace Receiver {
             } else {
                 _favourite_stations.add(station);
             }
+            favourites_changed();
+            save_favourites();
+        }
+
+        public void move_favourite(int from, int to) {
+            if (from == to) return;
+            if (from < 0 || from >= (int)_favourite_stations.length) return;
+            if (to < 0 || to >= (int)_favourite_stations.length) return;
+
+            var station = _favourite_stations[from];
+            _favourite_stations.remove_index(from);
+            _favourite_stations.insert(to, station);
+
             favourites_changed();
             save_favourites();
         }

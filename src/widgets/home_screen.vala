@@ -25,7 +25,7 @@ namespace Receiver {
             Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
             this.store = station_store;
             build_ui();
-            store.favourites_changed.connect(update_favourites);
+            AppState.get_default().favourites_changed.connect(update_favourites);
             store.loading_finished.connect(() => {
                 update_favourites();
                 add_local_pill();
@@ -73,14 +73,14 @@ namespace Receiver {
             while ((child = favourites_flow.get_first_child()) != null) {
                 favourites_flow.remove(child);
             }
-            var favs = store.get_favourite_stations();
+            var favs = AppState.get_default().get_favourite_stations();
             favourites_section.visible = favs.length > 0;
             for (int i = 0; i < favs.length; i++) {
-                favourites_flow.append(create_fav_card(favs[i]));
+                favourites_flow.append(create_fav_card(favs[i], i));
             }
         }
 
-        private Gtk.Widget create_fav_card(Station s) {
+        private Gtk.Widget create_fav_card(Station s, int index) {
             var card = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 8);
             card.add_css_class("card");
             card.set_size_request(180, 60);
@@ -122,11 +122,36 @@ namespace Receiver {
             card.append(text);
 
             load_artwork.begin(s, art, stack);
+
+            // Click to play
             var g = new Gtk.GestureClick();
             g.released.connect(() => {
                 station_activated(s);
             });
             card.add_controller(g);
+
+            // Drag source — carry the position index
+            var drag = new Gtk.DragSource();
+            drag.actions = Gdk.DragAction.MOVE;
+            drag.prepare.connect((src, x, y) => {
+                var val = Value(typeof(uint));
+                val.set_uint((uint) index);
+                return new Gdk.ContentProvider.for_value(val);
+            });
+            card.add_controller(drag);
+
+            // Drop target — reorder on drop
+            var drop = new Gtk.DropTarget(typeof(uint), Gdk.DragAction.MOVE);
+            drop.on_drop.connect((target, val, x, y) => {
+                var from = (int) val.get_uint();
+                var to = index;
+                if (from != to) {
+                    AppState.get_default().move_favourite(from, to);
+                }
+                return true;
+            });
+            card.add_controller(drop);
+
             return card;
         }
 
