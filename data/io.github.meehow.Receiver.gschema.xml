@@ -29,7 +29,11 @@
     <key name="lastfm-session-key" type="s">
       <default>''</default>
       <summary>Last.fm session</summary>
-      <description>Last.fm username and session key (username:key). Empty to disable scrobbling.</description>
+      <description>Last.fm session key. Empty to disable scrobbling.</description>
+    </key>
+    <key name="lastfm-username" type="s">
+      <default>''</default>
+      <summary>Last.fm username</summary>
     </key>
     <key name="window-width" type="i">
       <default>580</default>

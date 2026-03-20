@@ -67,8 +67,26 @@ namespace Receiver {
 
             menu_button.menu_model = menu;
 
+            // Last.fm indicator — visible only when connected
+            var lastfm_btn = new Gtk.Button.with_label("Last.fm");
+            lastfm_btn.add_css_class("flat");
+            lastfm_btn.add_css_class("success");
+            lastfm_btn.add_css_class("caption");
+            lastfm_btn.visible = app.scrobbler.is_enabled();
+            lastfm_btn.clicked.connect(() => {
+                var username = AppState.get_default().settings.get_string("lastfm-username");
+                var url = username != ""
+                    ? "https://www.last.fm/user/" + username
+                    : "https://www.last.fm";
+                var launcher = new Gtk.UriLauncher(url);
+                launcher.launch.begin(this, null);
+            });
+            app.scrobbler.status_changed.connect(() => {
+                lastfm_btn.visible = app.scrobbler.is_enabled();
+            });
             home_header.pack_end(menu_button);
             home_header.pack_end(search_btn);
+            home_header.pack_end(lastfm_btn);
             home_content.append(home_header);
             home_content.append(home_screen);
             var home_page = new Adw.NavigationPage(home_content, _("Home"));
@@ -196,6 +214,7 @@ namespace Receiver {
                 lastfm_menu.append(_("Connect to Last.fm"), "win.lastfm-toggle");
             }
         }
+
 
         private void on_lastfm_clicked() {
             if (auth_poll_timer > 0) {

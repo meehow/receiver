@@ -59,11 +59,15 @@ namespace Receiver {
         public async bool complete_auth() {
             if (auth_token == null) return false;
 
-            var result = yield lastfm.auth_get_session(auth_token);
+            string? username;
+            var key = yield lastfm.auth_get_session(auth_token, out username);
 
-            if (result != null) {
+            if (key != null) {
                 auth_token = null;
-                settings.set_string("lastfm-session-key", result);
+                settings.set_string("lastfm-session-key", key);
+                if (username != null) {
+                    settings.set_string("lastfm-username", username);
+                }
                 status_changed();
                 return true;
             }
@@ -75,6 +79,7 @@ namespace Receiver {
          */
         public void disconnect_lastfm() {
             settings.set_string("lastfm-session-key", "");
+            settings.set_string("lastfm-username", "");
             cancel_scrobble_timer();
             current_artist = null;
             current_title = null;

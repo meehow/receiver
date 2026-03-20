@@ -81,9 +81,10 @@ namespace Receiver {
 
         /**
          * Step 3: Exchange token for a session key after user authorizes.
-         * Returns "username:session_key" or null on failure.
+         * Returns the session key or null on failure.
          */
-        public async string? auth_get_session(string token) {
+        public async string? auth_get_session(string token, out string? username) {
+            username = null;
             var params = new HashTable<string, string>(str_hash, str_equal);
             params["method"] = "auth.getSession";
             params["api_key"] = LASTFM_API_KEY;
@@ -98,17 +99,15 @@ namespace Receiver {
                 var bytes = yield session.send_and_read_async(msg, Priority.DEFAULT, null);
                 var body = (string) bytes.get_data();
 
-                // Check for error
                 if (body.contains("<error")) {
-                    // Error 14 = token not authorized yet (expected during polling)
                     if (!body.contains("code=\"14\"")) {
                         warning("Last.fm auth.getSession error: %s", body);
                     }
                     return null;
                 }
 
-                // Parse <session><key>xxx</key></session>
                 string? key = extract_xml_value(body, "key");
+                username = extract_xml_value(body, "name");
                 if (key != null) {
                     return key;
                 }
