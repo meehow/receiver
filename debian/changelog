@@ -1,3 +1,19 @@
+receiver (0.4.0-1) unstable; urgency=medium
+
+  * Add station info page with detailed stream metadata
+  * Add drag-and-drop reordering for favourite stations
+  * Add persistent window dimensions
+  * Add Last.fm profile link in header bar
+  * Migrate history page to ListView with ListModel
+  * Remove featured stations carousel
+  * Remove custom HLS playlist resolution, delegate to GStreamer
+  * Improve locale-based local station discovery
+  * Improve East Asian charset detection in stream metadata
+  * Improve dark/light theme contrast on home screen
+  * Update translations
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Thu, 20 Mar 2026 16:10:00 +0100
+
 receiver (0.3.9-1) unstable; urgency=medium
 
   * Add song history page with relative timestamps

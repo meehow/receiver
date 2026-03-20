@@ -77,6 +77,21 @@
   </screenshots>
   
   <releases>
+    <release version="0.4.0" date="2026-03-20">
+      <description>
+        <ul>
+          <li>Add station info page with detailed stream metadata</li>
+          <li>Add drag-and-drop reordering for favourite stations</li>
+          <li>Add persistent window dimensions</li>
+          <li>Add Last.fm profile link in header bar</li>
+          <li>Migrate history page to ListView with ListModel</li>
+          <li>Remove featured stations carousel</li>
+          <li>Delegate HLS stream handling to GStreamer</li>
+          <li>Improve locale-based local station discovery</li>
+          <li>Improve East Asian charset detection in stream metadata</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.3.9" date="2026-03-08">
       <description>
         <ul>
