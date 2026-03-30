@@ -6,7 +6,10 @@ namespace Receiver {
         private GenericArray<Station> filtered_stations;
         private string _search_query = "";
         private string _language_filter = "";
+        private string _country_filter = "";
         private string[] _available_languages;
+        private string[] _available_country_codes;
+        private string[] _available_country_names;
         private HashTable<int64?, bool> failed_stations;
 
         private const string COLS = "id, source, name, homepage, country, streams_raw, tags_raw, image_hash";
@@ -17,7 +20,6 @@ namespace Receiver {
                 if (_search_query != value) {
                     _search_query = value;
                     apply_filter();
-                    notify_property("search-query");
                 }
             }
         }
@@ -29,6 +31,17 @@ namespace Receiver {
                     _language_filter = value;
                     apply_filter();
                     notify_property("language-filter");
+                }
+            }
+        }
+
+        public string country_filter {
+            get { return _country_filter; }
+            set {
+                if (_country_filter != value) {
+                    _country_filter = value;
+                    apply_filter();
+                    notify_property("country-filter");
                 }
             }
         }
@@ -45,6 +58,8 @@ namespace Receiver {
         public StationStore() {
             filtered_stations = new GenericArray<Station>();
             _available_languages = {};
+            _available_country_codes = {};
+            _available_country_names = {};
             failed_stations = new HashTable<int64?, bool>(int64_hash, int64_equal);
         }
 
@@ -106,26 +121,7 @@ namespace Receiver {
             }
 
             _available_languages = load_languages();
-
-            // Default to user's locale language on first launch only
-            if (_language_filter == "") {
-                string? country;
-                string? lang;
-                detect_locale(out country, out lang);
-                string? target = locale_to_language_code(lang, country);
-                if (target != null) {
-                    foreach (var code in _available_languages) {
-                        if (code == target) {
-                            language_filter = target;
-                            break;
-                        }
-                    }
-                }
-                // If no locale match, mark as explicitly "all"
-                if (_language_filter == "") {
-                    language_filter = "all";
-                }
-            }
+            load_countries();
 
             apply_filter();
 
@@ -146,33 +142,6 @@ namespace Receiver {
             return null;
         }
 
-
-
-        private string? locale_to_language_code(string? lang, string? country) {
-            if (lang == null) return null;
-            // Map specific locale combinations to database language codes
-            if (lang == "de" && country == "CH") return "gsw";  // Swiss German
-            if (lang == "zh" && country == "HK") return "yue";  // Cantonese
-            if (lang == "es" && country != null && country != "ES") {
-                // Latin American Spanish
-                switch (country) {
-                    case "MX": case "AR": case "CO": case "CL": case "PE":
-                    case "VE": case "EC": case "GT": case "CU": case "BO":
-                    case "DO": case "HN": case "PY": case "SV": case "NI":
-                    case "CR": case "PA": case "UY":
-                        return "es-419";
-                }
-            }
-            // Map locale codes to database language codes
-            switch (lang) {
-                case "nb": return "no";   // Norwegian Bokmål
-                case "nn": return "no";   // Norwegian Nynorsk
-                case "hsb": return "wen"; // Upper Sorbian
-                case "dsb": return "wen"; // Lower Sorbian
-                case "tl": return "fil";  // legacy Tagalog → Filipino
-            }
-            return lang;
-        }
 
         private void detect_locale(out string? country, out string? language) {
             country = null;
@@ -195,9 +164,8 @@ namespace Receiver {
             country = locale.substring(sep + 1, 2);      // "CH" from de_CH
         }
 
-        public GenericArray<Station> get_favourite_stations() {
-            return AppState.get_default().get_favourite_stations();
-        }
+
+
 
         public string? get_locale_country_name() {
             string? code;
@@ -217,6 +185,14 @@ namespace Receiver {
             return _available_languages;
         }
 
+        public string[] get_available_country_codes() {
+            return _available_country_codes;
+        }
+
+        public string[] get_available_country_names() {
+            return _available_country_names;
+        }
+
         private string[] load_languages() {
             var result = new GenericArray<string>();
             Sqlite.Statement stmt;
@@ -226,6 +202,27 @@ namespace Receiver {
                 if (lang != null) result.add(lang);
             }
             return result.data;
+        }
+
+        private void load_countries() {
+            var codes = new GenericArray<string>();
+            var names = new GenericArray<string>();
+            Sqlite.Statement stmt;
+            db.prepare_v2(
+                "SELECT DISTINCT country_code, country FROM stations " +
+                "WHERE country_code IS NOT NULL AND country_code != '' " +
+                "AND country IS NOT NULL AND country != '' " +
+                "ORDER BY country", -1, out stmt);
+            while (stmt.step() == Sqlite.ROW) {
+                var code = stmt.column_text(0);
+                var name = stmt.column_text(1);
+                if (code != null && name != null) {
+                    codes.add(code);
+                    names.add(name);
+                }
+            }
+            _available_country_codes = codes.data;
+            _available_country_names = names.data;
         }
 
         private void apply_filter() {
@@ -261,6 +258,7 @@ namespace Receiver {
                 sql.append("SELECT ").append(COLS).append(" FROM stations WHERE 1=1");
             }
             if (_language_filter != "all") sql.append(" AND " + prefix + "languages_raw LIKE ?");
+            if (_country_filter != "all") sql.append(" AND " + prefix + "country_code = ?");
 
             sql.append(" ").append(order_clause);
 
@@ -285,6 +283,9 @@ namespace Receiver {
             }
             if (_language_filter != "all") {
                 stmt.bind_text(idx++, "%" + _language_filter + "%");
+            }
+            if (_country_filter != "all") {
+                stmt.bind_text(idx++, _country_filter);
             }
 
             while (stmt.step() == Sqlite.ROW) {

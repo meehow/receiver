@@ -42,7 +42,7 @@ sources = files(
   'src/services/scrobbler.vala',
   'src/services/history_store.vala',
   'src/widgets/window.vala',
-  'src/widgets/home_screen.vala',
+  'src/widgets/favourites_page.vala',
   'src/widgets/station_list.vala',
   'src/widgets/player_bar.vala',
   'src/widgets/history_page.vala',

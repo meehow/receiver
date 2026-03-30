@@ -17,9 +17,14 @@
       <description>The last search query entered by the user.</description>
     </key>
     <key name="language-filter" type="s">
-      <default>''</default>
+      <default>'all'</default>
       <summary>Language filter</summary>
       <description>The language code used to filter the station list.</description>
+    </key>
+    <key name="country-filter" type="s">
+      <default>'all'</default>
+      <summary>Country filter</summary>
+      <description>The country code used to filter the station list.</description>
     </key>
     <key name="download-dir" type="s">
       <default>''</default>

@@ -4,11 +4,11 @@ namespace Receiver {
 
     public class MainWindow : Adw.ApplicationWindow {
         private Application app;
-        private HomeScreen home_screen;
         private StationList station_list;
+        private FavouritesPage favourites_page;
         private PlayerBar player_bar;
         private Adw.NavigationView nav_view;
-        private Adw.NavigationPage search_page;
+        private Adw.ViewStack view_stack;
         private Adw.ToastOverlay toast_overlay;
         private GLib.Menu lastfm_menu;
         private HistoryPage history_page;
@@ -38,17 +38,15 @@ namespace Receiver {
             toast_overlay = new Adw.ToastOverlay();
             nav_view = new Adw.NavigationView();
 
-            // Home page
-            home_screen = new HomeScreen(app.store);
-            var home_content = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
-            var home_header = new Adw.HeaderBar();
-            home_header.title_widget = new Gtk.Label("Receiver");
-            var search_btn = new Gtk.Button.from_icon_name("system-search-symbolic");
-            search_btn.tooltip_text = _("Search stations");
-            search_btn.clicked.connect(() => {
-                search_page.title = _("Search");
-                nav_view.push(search_page);
-            });
+            // Root page with ViewStack
+            var root_content = new Gtk.Box(Gtk.Orientation.VERTICAL, 0);
+
+            // Header bar
+            var header = new Adw.HeaderBar();
+
+            // ViewSwitcherTitle — shows tabs in header on wide windows
+            var switcher_title = new Adw.ViewSwitcherTitle();
+            header.title_widget = switcher_title;
 
             // Hamburger menu
             var menu_button = new Gtk.MenuButton();
@@ -57,19 +55,18 @@ namespace Receiver {
             menu_button.primary = true;
             var menu = new GLib.Menu();
 
-            // Last.fm — dynamic label (needs its own GLib.Menu for updates)
+            // Last.fm — dynamic label
             lastfm_menu = new GLib.Menu();
             update_lastfm_label();
             menu.append_section(null, lastfm_menu);
             app.scrobbler.status_changed.connect(update_lastfm_label);
-
 
             menu.append(_("Song History"), "win.history");
             menu.append(_("About Receiver"), "win.about");
 
             menu_button.menu_model = menu;
 
-            // Last.fm indicator — visible only when connected
+            // Last.fm indicator
             var lastfm_btn = new Gtk.Button.with_label("Last.fm");
             lastfm_btn.add_css_class("flat");
             lastfm_btn.add_css_class("success");
@@ -86,25 +83,44 @@ namespace Receiver {
             app.scrobbler.status_changed.connect(() => {
                 lastfm_btn.visible = app.scrobbler.is_enabled();
             });
-            home_header.pack_end(menu_button);
-            home_header.pack_end(search_btn);
-            home_header.pack_end(lastfm_btn);
-            home_content.append(home_header);
-            home_content.append(home_screen);
-            var home_page = new Adw.NavigationPage(home_content, _("Home"));
-            home_page.tag = "home";
-            nav_view.add(home_page);
+
+            header.pack_end(menu_button);
+            header.pack_end(lastfm_btn);
+            root_content.append(header);
+
+            // ViewStack with Browse and Favourites tabs
+            view_stack = new Adw.ViewStack();
 
             station_list = new StationList(app.store);
-            search_page = new Adw.NavigationPage(station_list, "Search");
-            search_page.tag = "search";
+            view_stack.add_titled(station_list, "browse", _("Browse"))
+                .icon_name = "audio-x-generic-symbolic";
 
-            // History page
+            favourites_page = new FavouritesPage(app.store);
+            view_stack.add_titled(favourites_page, "favourites", _("Favourites"))
+                .icon_name = "starred-symbolic";
+
+            switcher_title.stack = view_stack;
+
+            root_content.append(view_stack);
+
+            // ViewSwitcherBar — shows tabs at bottom on narrow windows
+            var switcher_bar = new Adw.ViewSwitcherBar();
+            switcher_bar.stack = view_stack;
+            switcher_title.notify["title-visible"].connect(() => {
+                switcher_bar.reveal = switcher_title.title_visible;
+            });
+            root_content.append(switcher_bar);
+
+            var root_page = new Adw.NavigationPage(root_content, "Receiver");
+            root_page.tag = "home";
+            nav_view.add(root_page);
+
+            // History page (pushed on demand)
             history_page = new HistoryPage();
             history_nav_page = new Adw.NavigationPage(history_page, _("Song History"));
             history_nav_page.tag = "history";
 
-            // Station info page
+            // Station info page (pushed on demand)
             station_info_page = new StationInfoPage(app.player);
             station_info_nav_page = new Adw.NavigationPage(station_info_page, _("Station Info"));
             station_info_nav_page.tag = "station-info";
@@ -121,29 +137,8 @@ namespace Receiver {
         }
 
         private void connect_signals() {
-            home_screen.station_activated.connect(play_station);
-
-            home_screen.genre_selected.connect((g) => {
-                app.store.language_filter = "all";
-                station_list.reset_language_filter();
-                station_list.set_search_text(g);
-                search_page.title = g.substring(0, 1).up() + g.substring(1);
-                nav_view.push(search_page);
-            });
-
-            home_screen.local_selected.connect((country_name) => {
-                station_list.set_search_text(country_name);
-                search_page.title = country_name;
-                nav_view.push(search_page);
-            });
-
-            home_screen.view_all_clicked.connect(() => {
-                station_list.set_search_text("");
-                search_page.title = _("Search");
-                nav_view.push(search_page);
-            });
-
             station_list.station_activated.connect(play_station);
+            favourites_page.station_activated.connect(play_station);
 
             history_page.station_requested.connect((id) => {
                 var s = app.store.get_station_by_id(id);

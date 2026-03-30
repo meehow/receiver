@@ -1,19 +1,32 @@
-// Station list view with search and virtualized scrolling
+// Browse tab — station list with inline search, filters, and genre pills
 namespace Receiver {
 
     public class StationList : Gtk.Box {
         private StationStore store;
         private Gtk.SearchEntry search_entry;
         private Gtk.DropDown language_dropdown;
+        private Gtk.DropDown country_dropdown;
         private Gtk.ListView list_view;
         private Gtk.Spinner spinner;
         private Gtk.Label status_label;
         private Adw.StatusPage empty_page;
         private Gtk.Stack stack;
         private string[] languages;
+        private string[] country_codes;
+        private Gtk.Box genre_box_ref;
+
         private bool restoring = false;
 
         public signal void station_activated(Station station);
+
+        private const string[] GENRES = {
+            "pop", "kpop", "rock", "jazz", "classical", "electronic", "dance",
+            "hits", "70s", "80s", "90s", "oldies", "chill",
+            "news", "talk", "sports",
+            "alternative", "indie", "metal", "punk",
+            "house", "hiphop", "latin", "soul", "blues", "folk",
+            "country", "reggae", "disco"
+        };
 
         public StationList(StationStore station_store) {
             Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
@@ -22,43 +35,75 @@ namespace Receiver {
             connect_signals();
         }
 
-        public void set_search_text(string text) {
-            search_entry.text = text;
-            store.search_query = text;
-        }
 
-        public void reset_language_filter() {
-            restoring = true;
-            language_dropdown.selected = 0;
-            restoring = false;
-        }
+
 
         private void build_ui() {
-            var header = new Adw.HeaderBar();
-            header.add_css_class("flat");
+            // Search entry
             search_entry = new Gtk.SearchEntry();
             search_entry.placeholder_text = _("Search stations…");
             search_entry.hexpand = true;
-            header.title_widget = search_entry;
+            search_entry.margin_start = search_entry.margin_end = 12;
+            search_entry.margin_top = 8;
+            this.append(search_entry);
+
+            // Filter row: language + country dropdowns
+            var filter_row = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 8);
+            filter_row.margin_start = filter_row.margin_end = 12;
+            filter_row.margin_top = 8;
+            filter_row.homogeneous = true;
+
             language_dropdown = new Gtk.DropDown(new Gtk.StringList({_("All Languages")}), null);
             language_dropdown.tooltip_text = _("Filter by language");
-            header.pack_end(language_dropdown);
-            this.append(header);
+            filter_row.append(language_dropdown);
 
-            var filter_bar = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 8);
-            filter_bar.halign = Gtk.Align.CENTER;
-            filter_bar.margin_top = filter_bar.margin_bottom = 8;
+            country_dropdown = new Gtk.DropDown(new Gtk.StringList({_("All Countries")}), null);
+            country_dropdown.tooltip_text = _("Filter by country");
+            filter_row.append(country_dropdown);
+
+            this.append(filter_row);
+
+            // Genre pills — horizontal scrollable strip
+            var genre_scroll = new Gtk.ScrolledWindow();
+            genre_scroll.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+            genre_scroll.vscrollbar_policy = Gtk.PolicyType.NEVER;
+            genre_scroll.margin_start = genre_scroll.margin_end = 12;
+            genre_scroll.margin_top = 8;
+
+            var genre_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 6);
+            genre_box_ref = genre_box;
+
+            foreach (var g in GENRES) {
+                var tile = new Gtk.Button();
+                tile.add_css_class("pill");
+                tile.add_css_class("suggested-action");
+                tile.child = new Gtk.Label(g.substring(0, 1).up() + g.substring(1));
+                tile.clicked.connect(() => {
+                    search_entry.text = g;
+                });
+                genre_box.append(tile);
+            }
+
+            genre_scroll.child = genre_box;
+            this.append(genre_scroll);
+
+            // Status row
+            var status_row = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 8);
+            status_row.halign = Gtk.Align.CENTER;
+            status_row.margin_top = status_row.margin_bottom = 6;
             spinner = new Gtk.Spinner();
-            filter_bar.append(spinner);
+            status_row.append(spinner);
             status_label = new Gtk.Label("");
             status_label.add_css_class("dim-label");
-            filter_bar.append(status_label);
-            this.append(filter_bar);
+            status_row.append(status_label);
+            this.append(status_row);
 
+            // Empty state
             empty_page = new Adw.StatusPage();
             empty_page.icon_name = "audio-x-generic-symbolic";
             empty_page.title = _("No Stations");
 
+            // Station list
             var factory = new Gtk.SignalListItemFactory();
             factory.setup.connect((f, o) => {
                 ((Gtk.ListItem)o).child = new StationRow();
@@ -78,7 +123,6 @@ namespace Receiver {
             list_view.single_click_activate = true;
             list_view.add_css_class("navigation-sidebar");
             list_view.margin_start = list_view.margin_end = 12;
-            list_view.margin_top = 6;
             list_view.margin_bottom = 12;
 
             var scrolled = new Gtk.ScrolledWindow();
@@ -97,10 +141,11 @@ namespace Receiver {
             });
         }
 
+
         private void connect_signals() {
             var settings = AppState.get_default().settings;
-            settings.bind("search-query", store, "search-query", SettingsBindFlags.DEFAULT);
             settings.bind("language-filter", store, "language-filter", SettingsBindFlags.DEFAULT);
+            settings.bind("country-filter", store, "country-filter", SettingsBindFlags.DEFAULT);
 
             uint timeout = 0;
             search_entry.search_changed.connect(() => {
@@ -120,6 +165,13 @@ namespace Receiver {
                 scroll_to_top();
             });
 
+            country_dropdown.notify["selected"].connect(() => {
+                if (restoring) return;
+                uint sel = country_dropdown.selected;
+                store.country_filter = (sel == 0 || country_codes == null) ? "all" : country_codes[sel - 1];
+                scroll_to_top();
+            });
+
             store.loading_started.connect(() => {
                 spinner.spinning = true;
                 status_label.label = _("Loading…");
@@ -128,6 +180,8 @@ namespace Receiver {
             store.loading_finished.connect((c) => {
                 spinner.spinning = false;
                 populate_langs();
+                populate_countries();
+                add_local_pill();
                 restore_state();
                 update_status();
             });
@@ -147,7 +201,7 @@ namespace Receiver {
         private void populate_langs() {
             restoring = true;
             var codes = store.get_available_languages();
-            
+
             // Sort by translated name alphabetically
             var sorted = new GenericArray<string>();
             for (int i = 0; i < codes.length; i++) {
@@ -156,7 +210,7 @@ namespace Receiver {
             sorted.sort_with_data((a, b) => {
                 return Languages.translate(a).collate(Languages.translate(b));
             });
-            
+
             languages = sorted.data;
             var labels = new string[languages.length + 1];
             labels[0] = _("All Languages");
@@ -167,16 +221,48 @@ namespace Receiver {
             restoring = false;
         }
 
+        private void populate_countries() {
+            restoring = true;
+            country_codes = store.get_available_country_codes();
+            var names = store.get_available_country_names();
+            var labels = new string[country_codes.length + 1];
+            labels[0] = _("All Countries");
+            for (int i = 0; i < country_codes.length; i++) {
+                labels[i + 1] = names[i];
+            }
+            country_dropdown.model = new Gtk.StringList(labels);
+            restoring = false;
+        }
+
+        private void add_local_pill() {
+            if (genre_box_ref == null) return;
+            var country_name = store.get_locale_country_name();
+            if (country_name == null) return;
+            var local_tile = new Gtk.Button();
+            local_tile.add_css_class("pill");
+            local_tile.add_css_class("suggested-action");
+            local_tile.child = new Gtk.Label(country_name);
+            local_tile.clicked.connect(() => {
+                search_entry.text = country_name;
+            });
+            genre_box_ref.prepend(local_tile);
+        }
+
         private void restore_state() {
             restoring = true;
-            // Store properties are already populated via GSettings binding
-            if (store.search_query != "") {
-                search_entry.text = store.search_query;
-            }
+            // Restore dropdown selections from persisted GSettings
             if (store.language_filter != "all" && languages != null) {
                 for (int i = 0; i < languages.length; i++) {
                     if (languages[i] == store.language_filter) {
                         language_dropdown.selected = (uint)(i + 1);
+                        break;
+                    }
+                }
+            }
+            if (store.country_filter != "all" && country_codes != null) {
+                for (int i = 0; i < country_codes.length; i++) {
+                    if (country_codes[i] == store.country_filter) {
+                        country_dropdown.selected = (uint)(i + 1);
                         break;
                     }
                 }
@@ -187,7 +273,10 @@ namespace Receiver {
         private void update_status() {
             uint filtered = store.get_n_items();
             int total = store.total_count;
-            status_label.label = (search_entry.text != "" || store.language_filter != "all") && filtered < total
+            bool has_filter = search_entry.text != ""
+                || store.language_filter != "all"
+                || store.country_filter != "all";
+            status_label.label = has_filter && filtered < total
                 ? _("%u of %d stations").printf(filtered, total)
                 : _("Stations: %d").printf(total);
         }
