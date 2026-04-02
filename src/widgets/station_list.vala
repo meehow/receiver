@@ -63,20 +63,32 @@ namespace Receiver {
 
             this.append(filter_row);
 
-            // Genre pills — horizontal scrollable strip
+            // Genre pills — horizontal scrollable strip (1 row)
             var genre_scroll = new Gtk.ScrolledWindow();
             genre_scroll.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+            //  genre_scroll.overlay_scrolling = false; // Scrollbar below pills, not on top
             genre_scroll.vscrollbar_policy = Gtk.PolicyType.NEVER;
             genre_scroll.margin_start = genre_scroll.margin_end = 12;
             genre_scroll.margin_top = 8;
+            
+            // Map vertical scroll wheel to horizontal scrolling since GTK4 doesn't natively cross-scroll
+            var scroll_ctrl = new Gtk.EventControllerScroll(Gtk.EventControllerScrollFlags.VERTICAL);
+            scroll_ctrl.scroll.connect((dx, dy) => {
+                var adj = genre_scroll.hadjustment;
+                adj.value += dy * 40.0;
+                return true;
+            });
+            genre_scroll.add_controller(scroll_ctrl);
 
             var genre_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 6);
+            genre_box.margin_bottom = 6; // Space between pills and scrollbar
             genre_box_ref = genre_box;
 
             foreach (var g in GENRES) {
                 var tile = new Gtk.Button();
                 tile.add_css_class("pill");
                 tile.add_css_class("suggested-action");
+                tile.add_css_class("compact"); // Reduces internal padding significantly without custom CSS
                 tile.child = new Gtk.Label(g.substring(0, 1).up() + g.substring(1));
                 tile.clicked.connect(() => {
                     search_entry.text = g;
@@ -241,6 +253,7 @@ namespace Receiver {
             var local_tile = new Gtk.Button();
             local_tile.add_css_class("pill");
             local_tile.add_css_class("suggested-action");
+            local_tile.add_css_class("compact"); // Reduces internal padding significantly without custom CSS
             local_tile.child = new Gtk.Label(country_name);
             local_tile.clicked.connect(() => {
                 search_entry.text = country_name;
