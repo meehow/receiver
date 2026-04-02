@@ -1,3 +1,12 @@
+receiver (0.5.0-1) unstable; urgency=medium
+
+  * Replace home screen with dedicated Browse and Favourites tabs
+  * Add mouse wheel scrolling for genre and country pill navigation
+  * Simplify station info page layout
+  * Update station database with latest verified stations
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Thu, 02 Apr 2026 22:30:00 +0200
+
 receiver (0.4.0-1) unstable; urgency=medium
 
   * Add station info page with detailed stream metadata

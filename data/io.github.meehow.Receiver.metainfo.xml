@@ -77,6 +77,16 @@
   </screenshots>
   
   <releases>
+    <release version="0.5.0" date="2026-04-02">
+      <description>
+        <ul>
+          <li>Replace home screen with dedicated Browse and Favourites tabs</li>
+          <li>Add mouse wheel scrolling for genre and country pill navigation</li>
+          <li>Simplify station info page layout</li>
+          <li>Update station database with latest verified stations</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.4.0" date="2026-03-20">
       <description>
         <ul>
