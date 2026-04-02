@@ -9,7 +9,7 @@ Most radio apps make you search for stations by name or paste in a stream URL. R
 [![Release](https://img.shields.io/github/v/release/meehow/receiver?style=flat-square)](https://github.com/meehow/receiver/releases)
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-blue?style=flat-square)](LICENSE)
 
-![Receiver - browsing stations](data/banner.jpg)
+![Receiver - browsing stations](data/banner.png)
 
 ## Why Receiver?
 
