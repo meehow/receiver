@@ -63,16 +63,16 @@
   
   <screenshots>
     <screenshot type="default">
-      <image>https://receiver.808bits.com/screenshot1.png</image>
-      <caption>Main Window</caption>
+      <image>https://receiver.808bits.com/rec1.png</image>
+      <caption>Browse</caption>
     </screenshot>
     <screenshot>
-      <image>https://receiver.808bits.com/screenshot2.png</image>
-      <caption>Station list</caption>
+      <image>https://receiver.808bits.com/rec2.png</image>
+      <caption>Favourites</caption>
     </screenshot>
     <screenshot>
-      <video container="webm" codec="vp9">https://receiver.808bits.com/screencast1.webm</video>
-      <caption>Receiver in action</caption>
+      <image>https://receiver.808bits.com/rec3.png</image>
+      <caption>History</caption>
     </screenshot>
   </screenshots>
   
