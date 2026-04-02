@@ -3,190 +3,224 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "స్టేషన్లు వెతకండి"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "వెతకండి"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "మెనూ"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "పాట చరిత్ర"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "Receiver గురించి"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "హోమ్"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "బ్రౌజ్ చేయండి"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "ఇష్టమైనవి"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "స్టేషన్ సమాచారం"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d స్టేషన్లు లోడ్ అయ్యాయి"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "లోపం: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "ప్లేబ్యాక్ లోపం: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "ఇప్పుడు ప్లే అవుతోంది: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "తిరిగి ప్రారంభం: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Last.fm ఆథరైజేషన్ రద్దు చేయండి"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Last.fm నుండి డిస్‌కనెక్ట్ చేయండి"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Last.fm కు కనెక్ట్ చేయండి"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm ఆథరైజేషన్ రద్దయింది"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Last.fm నుండి డిస్‌కనెక్ట్ అయింది"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Last.fm కు కనెక్ట్ అవుతోంది…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Last.fm కు కనెక్ట్ కాలేకపోయింది"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "మీ బ్రౌజర్‌లో యాక్సెస్ ఇవ్వండి…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm ఆథరైజేషన్ సమయం ముగిసింది"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Last.fm కు కనెక్ట్ అయింది"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "ప్రపంచవ్యాప్తంగా 30,000+ ధృవీకరించిన రేడియో స్టేషన్‌లను కనుగొనండి"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "ఇష్టమైన స్టేషన్లు"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "ఇష్టమైనవి లేవు"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "కనుగొనండి"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "ఇక్కడ జోడించడానికి బ్రౌజ్ చేస్తున్నప్పుడు స్టేషన్‌లకు స్టార్ చేయండి"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "అన్నీ చూడండి"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "స్టేషన్లు వెతకండి…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "అన్ని భాషలు"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "భాష ద్వారా ఫిల్టర్ చేయండి"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "అన్ని దేశాలు"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "దేశం ప్రకారం ఫిల్టర్"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "స్టేషన్లు లేవు"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "లోడ్ అవుతోంది…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u / %d స్టేషన్లు"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "స్టేషన్లు: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "స్టేషన్లు లోడ్ అవుతున్నాయి"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "ఫలితాలు లేవు"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "దయచేసి వేచి ఉండండి…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "మీ శోధనకు ఏ స్టేషన్ సరిపోలడం లేదు"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "స్టేషన్లు లోడ్ చేయలేకపోయాము"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "స్టేషన్"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "దేశం"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "ట్యాగ్‌లు"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "వెబ్‌సైట్"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "కోడెక్"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "బిట్‌రేట్"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "స్ట్రీమ్ URL"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "ప్లే అవడం లేదు"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "ఒక స్టేషన్ ఎంచుకోండి"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "విరామం"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "మళ్ళీ కనెక్ట్ అవుతోంది…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "ఇప్పుడు ప్లే అవుతోంది"
 
@@ -232,7 +266,7 @@ msgstr "సేవ్ చేయబడింది: %s"
 msgid "Download song"
 msgstr "పాట డౌన్‌లోడ్ చేయండి"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "డౌన్‌లోడ్ రద్దు చేయండి"
 
@@ -244,36 +278,27 @@ msgstr "ఇంకా పాటలు లేవు"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "రేడియో స్టేషన్‌లు వింటున్నప్పుడు పాటలు ఇక్కడ కనిపిస్తాయి"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "ఇప్పుడే"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d నిమిషం క్రితం"
 msgstr[1] "%d నిమిషాల క్రితం"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d గంట క్రితం"
 msgstr[1] "%d గంటల క్రితం"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d రోజు క్రితం"
 msgstr[1] "%d రోజుల క్రితం"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "ఫీచర్డ్ స్టేషన్‌లను చూపించు"
-
-#~ msgid "Featured Stations"
-#~ msgstr "ప్రత్యేక స్టేషన్లు"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "ప్రక్రియ ద్వారా బ్రౌజ్ చేయండి"

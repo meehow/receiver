@@ -1,8 +1,9 @@
 src/main.vala
 src/utils/languages.vala
 src/widgets/window.vala
-src/widgets/home_screen.vala
+src/widgets/favourites_page.vala
 src/widgets/station_list.vala
+src/widgets/station_info_page.vala
 src/widgets/player_bar.vala
 src/services/song_downloader.vala
 src/widgets/download_button.vala

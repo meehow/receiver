@@ -3,190 +3,224 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "Serĉi staciojn"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "Serĉi"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "Menuo"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "Kanta historio"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "Pri Receiver"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "Hejmo"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "Foliumi"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "Preferatoj"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "Stacio-informo"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d stacioj ŝargitaj"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Eraro: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "Reprodukteraro: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "Nun ludas: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "Daŭrigas: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Nuligi Last.fm-aŭtorizadon"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Malkonektiĝi de Last.fm"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Konektiĝi al Last.fm"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm-aŭtorizado nuligita"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Malkonektita de Last.fm"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Konektiĝas al Last.fm…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Malsukcesis konektiĝi al Last.fm"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "Donu aliron en via retumilo…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm-aŭtorizado eltempiĝis"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Konektita al Last.fm"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Malkovru pli ol 30 000 kontrolitajn radistaciojn el la tuta mondo"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "Plej ŝatataj stacioj"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "Neniu preferato"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "Malkovru"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "Stelu staciojn dum foliumado por aldoni ilin ĉi tien"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "Vidi ĉiujn"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "Serĉi staciojn…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "Ĉiuj lingvoj"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "Filtri laŭ lingvo"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "Ĉiuj landoj"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "Filtri laŭ lando"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "Neniuj stacioj"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "Ŝargas…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u el %d stacioj"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "Stacioj: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "Ŝargas staciojn"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "Neniuj rezultoj"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "Bonvolu atendi…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "Neniuj stacioj kongruas kun via serĉo"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "Ne eblis ŝargi staciojn"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "Stacio"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "Lando"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "Etikedoj"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "Retejo"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "Kodeko"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "Bitrapido"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "Fluo-URL"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "Ne ludas"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "Elektu stacion"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "Paŭzigita"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "Rekonektas…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "Nun ludas"
 
@@ -232,7 +266,7 @@ msgstr "Konservita: %s"
 msgid "Download song"
 msgstr "Elŝuti kanton"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "Nuligi elŝuton"
 
@@ -244,36 +278,27 @@ msgstr "Ankoraŭ neniuj kantoj"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "Kantoj aperos ĉi tie dum vi aŭskultas radiostaciojn"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "Ĵus nun"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "antaŭ %d minuto"
 msgstr[1] "antaŭ %d minutoj"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "antaŭ %d horo"
 msgstr[1] "antaŭ %d horoj"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "antaŭ %d tago"
 msgstr[1] "antaŭ %d tagoj"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "Montri elstarajn staciojn"
-
-#~ msgid "Featured Stations"
-#~ msgstr "Elstaraj stacioj"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "Foliumi laŭ ĝenro"

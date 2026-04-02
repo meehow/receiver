@@ -3,190 +3,224 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "ئىستانسىيە ئىزدەش"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "ئىزدەش"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "تىزىملىك"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "ناخشا تارىخى"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "Receiver ھەققىدە"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "باش بەت"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "كۆرۈش"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "ياقتۇرغانلار"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "ستانسىيە ئۇچۇرلىرى"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d ئىستانسىيە يۈكلەندى"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "خاتالىق: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "قويۇش خاتالىقى: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "ھازىر قويۇلىۋاتىدۇ: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "داۋاملاشتۇرۇش: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Last.fm ھوقۇقىنى بىكار قىل"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Last.fm دىن ئۈز"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Last.fm غا ئۇلا"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm ھوقۇقى بىكار قىلىندى"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Last.fm دىن ئۈزۈلدى"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Last.fm غا ئۇلىنىۋاتىدۇ…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Last.fm غا ئۇلىنالمىدى"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "توركۆرگۈچىڭىزدە ئىجازەت بېرىڭ…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm ھوقۇقىنىڭ ۋاقتى ئۆتتى"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Last.fm غا ئۇلاندى"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "پۈتكۈل دۇنيادىن 30,000+ دىن ئارتۇق دەلىللەنگەن رادىئو ئىستانسا بايقاڭ"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "ياقتۇرغان ئىستانسىيەلەر"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "ياقتۇرغان يوق"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "بايقا"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "بۇ يەرگە قوشۇش ئۈچۈن كۆرۈش جەريانىدا ستانسىيەلەرنى يۇلتۇزلاڭ"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "ھەممىنى كۆرۈش"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "ئىستانسىيە ئىزدەش…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "بارلىق تىللار"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "تىل بويىچە سۈزۈش"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "بارلىق دۆلەتلەر"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "دۆلەت بويىچە سۈزۈش"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "ئىستانسىيە يوق"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "يۈكلىنىۋاتىدۇ…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u / %d ئىستانسىيە"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "ئىستانسىيەلەر: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "ئىستانسىيەلەر يۈكلىنىۋاتىدۇ"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "نەتىجە يوق"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "ساقلاپ تۇرۇڭ…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "ئىزدەشىڭىزگە ماس كېلىدىغان ئىستانسىيە تېپىلمىدى"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "ئىستانسىيەلەرنى يۈكلىيەلمىدى"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "ستانسىيە"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "دۆلەت"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "بەلگىلەر"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "توربېكەت"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "كودېك"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "بىت سۈرئىتى"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "ئېقىم URL"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "قويۇلمىۋاتىدۇ"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "ئىستانسىيە تاللاڭ"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "توختىتىلدى"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "قايتا ئۇلىنىۋاتىدۇ…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "ھازىر قويۇلىۋاتىدۇ"
 
@@ -232,7 +266,7 @@ msgstr "ساقلاندى: %s"
 msgid "Download song"
 msgstr "ناخشا چۈشۈرۈش"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "چۈشۈرۈشنى بىكار قىلىش"
 
@@ -244,36 +278,27 @@ msgstr "تېخى ناخشا يوق"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "رادىئو ئىستانسالارنى ئاڭلىغاندا ناخشىلار بۇ يەردە كۆرۈنىدۇ"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "ھازىر"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d مىنۇت ئىلگىرى"
 msgstr[1] "%d مىنۇت ئىلگىرى"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d سائەت ئىلگىرى"
 msgstr[1] "%d سائەت ئىلگىرى"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d كۈن ئىلگىرى"
 msgstr[1] "%d كۈن ئىلگىرى"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "تەۋسىيەلەنگەن ئىستانسالارنى كۆرسەت"
-
-#~ msgid "Featured Stations"
-#~ msgstr "تاللانغان ئىستانسىيەلەر"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "تۈر بويىچە كۆرۈش"

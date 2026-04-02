@@ -3,190 +3,224 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: fo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "Leita eftir støðum"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "Leita"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "Valmynd"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "Søgusøga"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "Um Receiver"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "Heim"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "Kaga"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "Yndisligar"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "Støðupplýsingar"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d støð innlisin"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Villa: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "Avspælingarvilla: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "Spælir nú: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "Heldur áfram: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Avlýs Last.fm-góðkenning"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Slít sambandið við Last.fm"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Bind til Last.fm"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm-góðkenning avlýst"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Sambandið við Last.fm slitið"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Bindur til Last.fm…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Ikki bar at binda til Last.fm"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "Gev atgongd í kaganum…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm-góðkenning er útrunnin"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Bundin til Last.fm"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Finn fleiri enn 30.000 váttaðar ljóðvarpssstøðir úr øllum heiminum"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "Yndissstøðir"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "Ongar yndisligar"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "Uppgótka"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "Stjernu støðir meðan tú kagar fyri at leggja tær afturat her"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "Vís øll"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "Leita eftir støðum…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "Øll mál"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "Filtrera eftir máli"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "Øll lond"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "Filtrera eftir landi"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "Ongar støðir"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "Innlesur…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u av %d støðum"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "Støðir: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "Innlesur støðir"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "Eingi úrslit"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "Vinarliga bíða…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "Ongar støðir samsvara leitini"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "Fekk ikki innlisið støðir"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "Støð"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "Land"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "Merki"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "Heimasíða"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "Kodek"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "Bitferð"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "Streym-URL"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "Spælir ikki"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "Vel eina støð"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "Steðgað"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "Endurtengjast…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "Spælir nú"
 
@@ -232,7 +266,7 @@ msgstr "Goymt: %s"
 msgid "Download song"
 msgstr "Tak niður sang"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "Avlýs niðurtøku"
 
@@ -244,36 +278,27 @@ msgstr "Eingin songur enn"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "Songir koma fram her, meðan tú lurtar á ljóðvarpsstøðir"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "Júst nú"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d min síðan"
 msgstr[1] "%d min síðan"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d tími síðan"
 msgstr[1] "%d tímar síðan"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d dagur síðan"
 msgstr[1] "%d dagar síðan"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "Vís útvaldar støðir"
-
-#~ msgid "Featured Stations"
-#~ msgstr "Útvaldar støðir"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "Kaga eftir slag"

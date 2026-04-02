@@ -3,190 +3,224 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: tk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "Stansiýalary gözle"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "Gözle"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "Menýu"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "Aýdym taryhy"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "Receiver hakynda"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "Baş sahypa"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "Göz aýla"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "Halanlarym"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "Stansiýa barada maglumat"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d stansiýa ýüklendi"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Ýalňyşlyk: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "Oýnatma ýalňyşlygy: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "Häzir oýnaýar: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "Dowam edýär: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Last.fm ygtyýarnamasyny ýatyr"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Last.fm-den aýyr"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Last.fm-e birikdir"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm ygtyýarnamasy ýatyryldy"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Last.fm-den aýrylan"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Last.fm-e birikdirilýär…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Last.fm-e birikdirmek başartmady"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "Brauzer arkaly ygtyýar beriň…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm ygtyýarnamasynyň wagty geçdi"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Last.fm-e birikdirildi"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Dünýäniň çar künjünden 30 000+ tassyklanan radio stansiýany tapyň"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "Halaýan stansiýalar"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "Halanlar ýok"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "Tapyň"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "Bu ýere goşmak üçin göz aýlanyňyzda stansiýalary ýyldyz bilen belläň"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "Hemmesini görkez"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "Stansiýalary gözle…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "Ähli diller"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "Dil boýunça süz"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "Ähli ýurtlar"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "Ýurt boýunça süzmek"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "Stansiýa ýok"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "Ýüklenýär…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u / %d stansiýa"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "Stansiýalar: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "Stansiýalar ýüklenýär"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "Netije ýok"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "Haýyş, garaşyň…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "Gözlegiňize gabat gelýän stansiýa tapylmady"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "Stansiýalary ýükläp bolmady"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "Stansiýa"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "Ýurt"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "Bellikler"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "Web sahypa"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "Kodek"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "Bitreýt"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "Akym URL"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "Oýnamaýar"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "Stansiýa saýlaň"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "Durzuldy"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "Täzeden birikýär…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "Häzir oýnaýar"
 
@@ -232,7 +266,7 @@ msgstr "Saklanan: %s"
 msgid "Download song"
 msgstr "Aýdymy ýükle"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "Ýüklemäni ýatyr"
 
@@ -244,36 +278,27 @@ msgstr "Heniz aýdym ýok"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "Radio stansiýalaryny diňleýände aýdymlar bu ýerde görkeziler"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "Şu wagt"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d minut öň"
 msgstr[1] "%d minut öň"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d sagat öň"
 msgstr[1] "%d sagat öň"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d gün öň"
 msgstr[1] "%d gün öň"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "Tanyşdyrylýan stansiýalary görkez"
-
-#~ msgid "Featured Stations"
-#~ msgstr "Saýlanan stansiýalar"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "Žanr boýunça göz aýla"

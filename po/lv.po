@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,183 +11,217 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==0 || (n%100>=11 && n%100<=19) ? 0 : "
 "n%10==1 && n%100!=11 ? 1 : 2);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "Meklēt stacijas"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "Meklēt"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "Izvēlne"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "Dziesmu vēsture"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "Par Receiver"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "Sākums"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "Pārlūkot"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "Izlase"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "Stacijas informācija"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Ielādētas %d stacijas"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Kļūda: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "Atskaņošanas kļūda: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "Tagad atskaņo: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "Atsākšana: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Atcelt Last.fm autorizāciju"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Atvienoties no Last.fm"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Pieslēgties Last.fm"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm autorizācija atcelta"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Atvienots no Last.fm"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Pieslēdzas Last.fm…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Neizdevās pieslēgties Last.fm"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "Piešķiriet piekļuvi savā pārlūkā…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm autorizācijai iestājās noildze"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Pieslēgts Last.fm"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Atklājiet vairāk nekā 30 000 pārbaudītu radiostaciju no visas pasaules"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "Izlases stacijas"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "Nav izlases"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "Atklājiet"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "Pārlūkojot atzīmējiet stacijas ar zvaigznīti, lai pievienotu tās šeit"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "Skatīt visu"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "Meklēt stacijas…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "Visas valodas"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "Filtrēt pēc valodas"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "Visas valstis"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "Filtrēt pēc valsts"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "Nav staciju"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "Ielādē…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u no %d stacijām"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "Stacijas: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "Ielādē stacijas"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "Nav rezultātu"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "Lūdzu, uzgaidiet…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "Neviena stacija neatbilst meklējumam"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "Neizdevās ielādēt stacijas"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "Stacija"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "Valsts"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "Birkas"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "Tīmekļa vietne"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "Kodeks"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "Bitu pārraides ātrums"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "Straumes URL"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "Neatskaņo"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "Izvēlieties staciju"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "Apturēts"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "Atkārtoti savienojas…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "Tagad atskaņo"
 
@@ -233,7 +267,7 @@ msgstr "Saglabāts: %s"
 msgid "Download song"
 msgstr "Lejupielādēt dziesmu"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "Atcelt lejupielādi"
 
@@ -245,11 +279,11 @@ msgstr "Pagaidām nav dziesmu"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "Dziesmas parādīsies šeit, klausoties radiostacijas"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "Tikko"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
@@ -257,7 +291,7 @@ msgstr[0] "pirms %d min."
 msgstr[1] "pirms %d min."
 msgstr[2] "pirms %d min."
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -265,19 +299,10 @@ msgstr[0] "pirms %d stundas"
 msgstr[1] "pirms %d stundām"
 msgstr[2] "pirms %d stundām"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "pirms %d dienas"
 msgstr[1] "pirms %d dienām"
 msgstr[2] "pirms %d dienām"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "Rādīt ieteicamās stacijas"
-
-#~ msgid "Featured Stations"
-#~ msgstr "Ieteiktās stacijas"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "Pārlūkot pēc žanra"

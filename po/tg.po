@@ -3,190 +3,224 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: tg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "Ҷустуҷӯи стансияҳо"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "Ҷустуҷӯ"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "Меню"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "Таърихи сурудҳо"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "Дар бораи Receiver"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "Асосӣ"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "Дидан"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "Дӯстдоштаҳо"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "Маълумоти истгоҳ"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d стансия бор карда шуд"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Хато: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "Хатои пахш: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "Ҳоло пахш мешавад: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "Идома додан: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Лағви иҷозати Last.fm"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Ҷудо шудан аз Last.fm"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Пайваст шудан ба Last.fm"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Иҷозати Last.fm лағв шуд"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Аз Last.fm ҷудо шуд"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Ба Last.fm пайваст мешавад…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Ба Last.fm пайваст шудан нашуд"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "Дар браузери худ дастрасӣ диҳед…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Вақти иҷозати Last.fm гузашт"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Ба Last.fm пайваст шуд"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Аз саросари ҷаҳон зиёда аз 30,000 радиоистгоҳи тасдиқшударо кашф кунед"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "Стансияҳои дӯстдошта"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "Дӯстдоштаҳо нест"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "Кашф кунед"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "Барои илова кардан дар ин ҷо ҳангоми дидан ба истгоҳҳо ситора гузоред"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "Ҳамаро дидан"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "Ҷустуҷӯи стансияҳо…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "Ҳамаи забонҳо"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "Филтр аз рӯи забон"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "Ҳамаи кишварҳо"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "Филтр аз рӯи кишвар"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "Стансия нест"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "Бор шудан…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u аз %d стансия"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "Стансияҳо: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "Стансияҳо бор мешаванд"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "Натиҷа нест"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "Лутфан интизор шавед…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "Ягон стансия ба ҷустуҷӯи шумо мувофиқ нест"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "Стансияҳоро бор кардан имконнопазир нест"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "Истгоҳ"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "Кишвар"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "Тегҳо"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "Вебсайт"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "Кодек"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "Суръати бит"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "URL-и ҷараён"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "Пахш намешавад"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "Стансияро интихоб кунед"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "Таваққуф"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "Аз нав пайвастшавӣ…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "Ҳоло пахш мешавад"
 
@@ -232,7 +266,7 @@ msgstr "Захира шуд: %s"
 msgid "Download song"
 msgstr "Боргирии суруд"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "Бекор кардани боргирӣ"
 
@@ -244,36 +278,27 @@ msgstr "Ҳанӯз сурудҳо нест"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "Ҳангоми гӯш кардани радиоистгоҳҳо суруд дар ин ҷо пайдо мешаванд"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "Ҳамин алон"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d дақиқа пеш"
 msgstr[1] "%d дақиқа пеш"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d соат пеш"
 msgstr[1] "%d соат пеш"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d рӯз пеш"
 msgstr[1] "%d рӯз пеш"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "Истгоҳҳои тавсияшударо нишон диҳед"
-
-#~ msgid "Featured Stations"
-#~ msgstr "Стансияҳои баргузида"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "Аз рӯи жанр дидан"

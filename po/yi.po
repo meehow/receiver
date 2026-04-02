@@ -3,190 +3,224 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: yi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "זוכן סטאנציעס"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "זוכן"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "מעניו"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "ליד געשיכטע"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "וועגן Receiver"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "היים"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "בלעטערן"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "באליבטע"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "סטאנציע אינפארמאציע"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d סטאנציעס אַריינגעלאָדן"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "גרייז: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "שפּיל-גרייז: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "שפּילט איצט: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "פֿאָרזעצן: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "אנולירן Last.fm דערלויבעניש"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "אפּטרענען פֿון Last.fm"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "פֿאַרבינדן מיט Last.fm"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm דערלויבעניש אנולירט"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "אפּגעטרענט פֿון Last.fm"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "פֿאַרבינדן מיט Last.fm…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "קען נישט פֿאַרבינדן מיט Last.fm"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "גיט צוטריט אין אייער בלעטערער…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm דערלויבעניש צייט אויסגעגאנגען"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "פֿאַרבונדן מיט Last.fm"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "אנטדעקט מער ווי 30,000 באַשטעטיקטע ראַדיאָ סטאַנציעס פֿון אַרום דער וועלט"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "באַליבטע סטאנציעס"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "קיין באליבטע"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "אנטדעקן"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "שטערנט סטאנציעס בעת בלעטערן צו מוסיף זיין זיי דא"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "ווייזן אַלע"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "זוכן סטאנציעס…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "אַלע שפּראַכן"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "פֿילטער לויט שפּראַך"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "אלע לענדער"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "פילטער לויט לאנד"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "קיין סטאנציעס"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "לאָדן…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u פֿון %d סטאנציעס"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "סטאנציעס: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "לאָדן סטאנציעס"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "קיין רעזולטאַטן"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "ביטע וואַרט…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "קיין סטאנציעס פּאַסן צו אייער זוכן"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "קען נישט לאָדן סטאנציעס"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "סטאנציע"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "לאנד"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "טעגס"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "וועבזייטל"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "קאדעק"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "ביטרייט"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "סטרים URL"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "שפּילט נישט"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "קלייבט אַ סטאנציע"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "געפּויזט"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "פֿאַרבינדן ווידער…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "שפּילט איצט"
 
@@ -232,7 +266,7 @@ msgstr "אָפּגעהיט: %s"
 msgid "Download song"
 msgstr "אַראָפּלאָדן ליד"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "אָפּזאָגן אַראָפּלאָדן"
 
@@ -244,36 +278,27 @@ msgstr "נאָך קיין לידער"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "לידער וועלן אויפטרעטן דאָ ווען איר הערט ראַדיאָ סטאַנציעס"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "אָט אָט"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d מינוט צוריק"
 msgstr[1] "%d מינוטן צוריק"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d שעה צוריק"
 msgstr[1] "%d שעות צוריק"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d טאָג צוריק"
 msgstr[1] "%d טעג צוריק"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "ווייז אויסגעצייכנטע סטאַנציעס"
-
-#~ msgid "Featured Stations"
-#~ msgstr "אויסגעוויילטע סטאנציעס"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "בלעטערן לויט זשאַנער"

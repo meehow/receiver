@@ -3,190 +3,224 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "நிலையங்களைத் தேடுங்கள்"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "தேடு"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "பட்டி"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "பாடல் வரலாறு"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "Receiver பற்றி"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "முகப்பு"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "உலாவு"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "பிடித்தவை"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "நிலைய தகவல்"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d நிலையங்கள் ஏற்றப்பட்டன"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "பிழை: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "இயக்கப் பிழை: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "இப்போது இயங்குகிறது: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "தொடர்கிறது: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Last.fm அங்கீகாரத்தை ரத்து செய்"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Last.fm இலிருந்து துண்டி"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Last.fm உடன் இணை"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm அங்கீகாரம் ரத்து செய்யப்பட்டது"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Last.fm இலிருந்து துண்டிக்கப்பட்டது"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Last.fm உடன் இணைக்கிறது…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Last.fm உடன் இணைக்க இயலவில்லை"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "உங்கள் உலாவியில் அணுகலை வழங்குங்கள்…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm அங்கீகார நேரம் முடிந்தது"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Last.fm உடன் இணைக்கப்பட்டது"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "உலகம் முழுவதிலிருந்து 30,000+ சரிபார்க்கப்பட்ட வானொலி நிலையங்களைக் கண்டறியுங்கள்"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "பிடித்த நிலையங்கள்"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "பிடித்தவை இல்லை"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "கண்டறியுங்கள்"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "இங்கே சேர்க்க உலாவும்போது நிலையங்களை நட்சத்திரமிடுங்கள்"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "அனைத்தையும் காண்"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "நிலையங்களைத் தேடுங்கள்…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "அனைத்து மொழிகள்"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "மொழி வாரியாக வடிகட்டு"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "அனைத்து நாடுகளும்"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "நாடு வாரியாக வடிகட்டு"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "நிலையங்கள் இல்லை"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "ஏற்றுகிறது…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u / %d நிலையங்கள்"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "நிலையங்கள்: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "நிலையங்கள் ஏற்றப்படுகின்றன"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "முடிவுகள் இல்லை"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "தயவுசெய்து காத்திருங்கள்…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "உங்கள் தேடலுக்கு பொருத்தமான நிலையம் இல்லை"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "நிலையங்களை ஏற்ற இயலவில்லை"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "நிலையம்"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "நாடு"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "குறிச்சொற்கள்"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "இணையதளம்"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "கோடக்"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "பிட்ரேட்"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "ஸ்ட்ரீம் URL"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "இயங்கவில்லை"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "ஒரு நிலையத்தைத் தேர்ந்தெடுக்கவும்"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "இடைநிறுத்தம்"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "மீண்டும் இணைகிறது…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "இப்போது இயங்குகிறது"
 
@@ -232,7 +266,7 @@ msgstr "சேமிக்கப்பட்டது: %s"
 msgid "Download song"
 msgstr "பாடலைப் பதிவிறக்கு"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "பதிவிறக்கத்தை ரத்து செய்"
 
@@ -244,36 +278,27 @@ msgstr "இதுவரை பாடல்கள் இல்லை"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "வானொலி நிலையங்களைக் கேட்கும்போது பாடல்கள் இங்கே தோன்றும்"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "இப்போது"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d நிமிடம் முன்"
 msgstr[1] "%d நிமிடங்கள் முன்"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d மணி நேரம் முன்"
 msgstr[1] "%d மணி நேரங்கள் முன்"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d நாள் முன்"
 msgstr[1] "%d நாட்கள் முன்"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "சிறப்பு நிலையங்களைக் காட்டு"
-
-#~ msgid "Featured Stations"
-#~ msgstr "சிறப்பு நிலையங்கள்"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "வகை வாரியாகத் தேடு"

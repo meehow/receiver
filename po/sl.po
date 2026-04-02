@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -11,183 +11,217 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100>=3 && "
 "n%100<=4 ? 2 : 3);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "Iskanje postaj"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "Iskanje"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "Meni"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "Zgodovina pesmi"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "O programu Receiver"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "Domov"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "Brskaj"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "Priljubljeni"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "Podatki o postaji"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Naloženih %d postaj"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Napaka: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "Napaka predvajanja: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "Zdaj predvaja: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "Nadaljevanje: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Prekliči pooblastilo Last.fm"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Prekini povezavo z Last.fm"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Poveži se z Last.fm"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Pooblastilo Last.fm preklicano"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Povezava z Last.fm prekinjena"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Povezovanje z Last.fm…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Povezava z Last.fm ni uspela"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "Dovolite dostop v brskalniku…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Pooblastilo Last.fm je poteklo"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Povezan z Last.fm"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Odkrijte več kot 30.000 preverjenih radijskih postaj z vsega sveta"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "Priljubljene postaje"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "Ni priljubljenih"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "Odkrijte"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "Med brskanjem označite postaje z zvezdico, da jih dodate sem"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "Prikaži vse"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "Iskanje postaj…"
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "Vsi jeziki"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "Filtriraj po jeziku"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "Vse države"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "Filtriraj po državi"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "Ni postaj"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "Nalaganje…"
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u od %d postaj"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "Postaje: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "Nalaganje postaj"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "Ni rezultatov"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "Prosimo, počakajte…"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "Nobena postaja ne ustreza vašemu iskanju"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "Postaj ni bilo mogoče naložiti"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "Postaja"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "Država"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "Oznake"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "Spletna stran"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "Kodek"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "Bitna hitrost"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "URL pretoka"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "Ne predvaja"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "Izberite postajo"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "Začasno ustavljeno"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "Ponovna povezava…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "Zdaj predvaja"
 
@@ -233,7 +267,7 @@ msgstr "Shranjeno: %s"
 msgid "Download song"
 msgstr "Prenesi pesem"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "Prekliči prenos"
 
@@ -245,11 +279,11 @@ msgstr "Še ni pesmi"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "Pesmi se bodo pojavile tukaj, ko poslušate radijske postaje"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "Ravnokar"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
@@ -258,7 +292,7 @@ msgstr[1] "pred %d minutama"
 msgstr[2] "pred %d minutami"
 msgstr[3] "pred %d minutami"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -267,7 +301,7 @@ msgstr[1] "pred %d urama"
 msgstr[2] "pred %d urami"
 msgstr[3] "pred %d urami"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
@@ -275,12 +309,3 @@ msgstr[0] "pred %d dnem"
 msgstr[1] "pred %d dnevoma"
 msgstr[2] "pred %d dnevi"
 msgstr[3] "pred %d dnevi"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "Pokaži izpostavljene postaje"
-
-#~ msgid "Featured Stations"
-#~ msgstr "Izpostavljene postaje"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "Brskaj po zvrsti"

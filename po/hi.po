@@ -3,190 +3,224 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-19 23:42+0100\n"
+"POT-Creation-Date: 2026-04-02 22:36+0200\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:36
-msgid "Search stations"
-msgstr "اسٹیشنز تلاش کریں"
-
-#: src/widgets/window.vala:38 src/widgets/window.vala:108
-msgid "Search"
-msgstr "تلاش"
-
-#: src/widgets/window.vala:45
+#: src/widgets/window.vala:54
 msgid "Menu"
 msgstr "मेन्यू"
 
-#. History page
-#: src/widgets/window.vala:56 src/widgets/window.vala:75
+#. History page (pushed on demand)
+#: src/widgets/window.vala:64 src/widgets/window.vala:120
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "गाना इतिहास"
 
-#: src/widgets/window.vala:57
+#: src/widgets/window.vala:65
 msgid "About Receiver"
 msgstr "Receiver के बारे में"
 
-#: src/widgets/window.vala:65
-msgid "Home"
-msgstr "ہوم"
+#: src/widgets/window.vala:95
+msgid "Browse"
+msgstr "ब्राउज़ करें"
 
-#: src/widgets/window.vala:122
+#: src/widgets/window.vala:99
+msgid "Favourites"
+msgstr "पसंदीदा"
+
+#. Station info page (pushed on demand)
+#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+msgid "Station Info"
+msgstr "स्टेशन जानकारी"
+
+#: src/widgets/window.vala:151
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d اسٹیشنز لوڈ ہو گئے"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:127 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "غلطی: %s"
 
-#: src/widgets/window.vala:131
+#: src/widgets/window.vala:160
 #, c-format
 msgid "Playback error: %s"
 msgstr "پلے بیک کی غلطی: %s"
 
-#: src/widgets/window.vala:139
+#: src/widgets/window.vala:173
 #, c-format
 msgid "Now playing: %s"
 msgstr "ابھی چل رہا ہے: %s"
 
-#: src/widgets/window.vala:156
+#: src/widgets/window.vala:190
 #, c-format
 msgid "Resuming: %s"
 msgstr "دوبارہ شروع ہو رہا ہے: %s"
 
-#: src/widgets/window.vala:183
+#: src/widgets/window.vala:217
 msgid "Cancel Last.fm Authorization"
 msgstr "Last.fm प्राधिकरण रद्द करें"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala:219
 msgid "Disconnect from Last.fm"
 msgstr "Last.fm से डिस्कनेक्ट करें"
 
-#: src/widgets/window.vala:187
+#: src/widgets/window.vala:221
 msgid "Connect to Last.fm"
 msgstr "Last.fm से कनेक्ट करें"
 
-#: src/widgets/window.vala:194
+#: src/widgets/window.vala:229
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm प्राधिकरण रद्द हुआ"
 
-#: src/widgets/window.vala:200
+#: src/widgets/window.vala:235
 msgid "Disconnected from Last.fm"
 msgstr "Last.fm से डिस्कनेक्ट हुआ"
 
-#: src/widgets/window.vala:204
+#: src/widgets/window.vala:239
 msgid "Connecting to Last.fm…"
 msgstr "Last.fm से कनेक्ट हो रहा है…"
 
-#: src/widgets/window.vala:208
+#: src/widgets/window.vala:243
 msgid "Failed to connect to Last.fm"
 msgstr "Last.fm से कनेक्ट नहीं हो पाया"
 
-#: src/widgets/window.vala:215
+#: src/widgets/window.vala:250
 msgid "Grant access in your browser…"
 msgstr "अपने ब्राउज़र में एक्सेस दें…"
 
-#: src/widgets/window.vala:223
+#: src/widgets/window.vala:258
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm प्राधिकरण का समय समाप्त"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala:266
 msgid "Connected to Last.fm"
 msgstr "Last.fm से कनेक्ट हुआ"
 
-#: src/widgets/window.vala:252
+#: src/widgets/window.vala:287
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "दुनिया भर से 30,000+ सत्यापित रेडियो स्टेशन खोजें"
 
-#: src/widgets/home_screen.vala:52
-msgid "Favourite Stations"
-msgstr "پسندیدہ اسٹیشنز"
+#: src/widgets/favourites_page.vala:25
+msgid "No Favourites"
+msgstr "कोई पसंदीदा नहीं"
 
-#: src/widgets/home_screen.vala:146
-msgid "Discover"
-msgstr "खोजें"
+#: src/widgets/favourites_page.vala:26
+msgid "Star stations while browsing to add them here"
+msgstr "यहाँ जोड़ने के लिए ब्राउज़ करते समय स्टेशनों को स्टार करें"
 
-#: src/widgets/home_screen.vala:151
-msgid "View All"
-msgstr "سب دیکھیں"
-
-#: src/widgets/station_list.vala:40
+#. Search entry
+#: src/widgets/station_list.vala:44
 msgid "Search stations…"
 msgstr "اسٹیشنز تلاش کریں..."
 
-#: src/widgets/station_list.vala:43 src/widgets/station_list.vala:162
+#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
 msgid "All Languages"
 msgstr "تمام زبانیں"
 
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:57
 msgid "Filter by language"
 msgstr "زبان کے لحاظ سے فلٹر کریں"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+msgid "All Countries"
+msgstr "सभी देश"
+
+#: src/widgets/station_list.vala:61
+msgid "Filter by country"
+msgstr "देश के अनुसार फ़िल्टर"
+
+#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
 msgid "No Stations"
 msgstr "کوئی اسٹیشن نہیں"
 
-#: src/widgets/station_list.vala:125
+#: src/widgets/station_list.vala:189
 msgid "Loading…"
 msgstr "لوڈ ہو رہا ہے..."
 
-#: src/widgets/station_list.vala:191
+#: src/widgets/station_list.vala:293
 #, c-format
 msgid "%u of %d stations"
 msgstr "%d میں سے %u اسٹیشنز"
 
-#: src/widgets/station_list.vala:192
+#: src/widgets/station_list.vala:294
 #, c-format
 msgid "Stations: %d"
 msgstr "اسٹیشنز: %d"
 
-#: src/widgets/station_list.vala:204
+#: src/widgets/station_list.vala:306
 msgid "Loading Stations"
 msgstr "اسٹیشنز لوڈ ہو رہے ہیں"
 
-#: src/widgets/station_list.vala:205
+#: src/widgets/station_list.vala:307
 msgid "No Results"
 msgstr "کوئی نتائج نہیں"
 
-#: src/widgets/station_list.vala:207
+#: src/widgets/station_list.vala:309
 msgid "Please wait…"
 msgstr "براہ کرم انتظار کریں..."
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "No stations match your search"
 msgstr "آپ کی تلاش سے کوئی اسٹیشن میل نہیں کھاتا"
 
-#: src/widgets/station_list.vala:208
+#: src/widgets/station_list.vala:310
 msgid "Could not load stations"
 msgstr "اسٹیشنز لوڈ نہیں ہو سکے"
 
+#: src/widgets/station_info_page.vala:48
+msgid "Station"
+msgstr "स्टेशन"
+
+#: src/widgets/station_info_page.vala:52
+msgid "Country"
+msgstr "देश"
+
+#: src/widgets/station_info_page.vala:56
+msgid "Tags"
+msgstr "टैग"
+
+#: src/widgets/station_info_page.vala:61
+msgid "Website"
+msgstr "वेबसाइट"
+
+#: src/widgets/station_info_page.vala:66
+msgid "Codec"
+msgstr "कोडेक"
+
+#: src/widgets/station_info_page.vala:70
+msgid "Bitrate"
+msgstr "बिटरेट"
+
+#: src/widgets/station_info_page.vala:74
+msgid "Stream URL"
+msgstr "स्ट्रीम URL"
+
 #. Controls row
-#: src/widgets/player_bar.vala:68 src/widgets/player_bar.vala:207
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
 msgid "Not Playing"
 msgstr "نہیں چل رہا"
 
-#: src/widgets/player_bar.vala:136 src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
 msgid "Select a station"
 msgstr "ایک اسٹیشن منتخب کریں"
 
-#: src/widgets/player_bar.vala:197
+#: src/widgets/player_bar.vala:199
 msgid "Paused"
 msgstr "موقوف"
 
-#: src/widgets/player_bar.vala:202
+#: src/widgets/player_bar.vala:204
 msgid "Reconnecting…"
 msgstr "फिर से कनेक्ट हो रहा है…"
 
-#: src/widgets/player_bar.vala:227
+#: src/widgets/player_bar.vala:229
 msgid "Now playing"
 msgstr "ابھی چل رہا ہے"
 
@@ -232,7 +266,7 @@ msgstr "सहेja gaya: %s"
 msgid "Download song"
 msgstr "गाना डाउनलोड करें"
 
-#: src/widgets/download_button.vala:46
+#: src/widgets/download_button.vala:45
 msgid "Cancel download"
 msgstr "डाउनलोड रद्द करें"
 
@@ -244,36 +278,27 @@ msgstr "अभी तक कोई गाने नहीं"
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "रेडियो स्टेशन सुनते समय गाने यहाँ दिखाई देंगे"
 
-#: src/widgets/history_page.vala:97
+#: src/widgets/history_page.vala:150
 msgid "Just now"
 msgstr "अभी"
 
-#: src/widgets/history_page.vala:98
+#: src/widgets/history_page.vala:151
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d मिनट पहले"
 msgstr[1] "%d मिनट पहले"
 
-#: src/widgets/history_page.vala:99
+#: src/widgets/history_page.vala:152
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d घंटा पहले"
 msgstr[1] "%d घंटे पहले"
 
-#: src/widgets/history_page.vala:100
+#: src/widgets/history_page.vala:153
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
 msgstr[0] "%d दिन पहले"
 msgstr[1] "%d दिन पहले"
-
-#~ msgid "Show Featured Stations"
-#~ msgstr "विशेष स्टेशन दिखाएँ"
-
-#~ msgid "Featured Stations"
-#~ msgstr "نمایاں اسٹیشنز"
-
-#~ msgid "Browse by Genre"
-#~ msgstr "قسم کے لحاظ سے براؤز کریں"
