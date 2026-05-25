@@ -35,8 +35,12 @@ namespace Receiver {
                 save_window_position();
                 s.set_int("window-width", this.default_width);
                 s.set_int("window-height", this.default_height);
-                this.hide();
-                return true;
+
+                if (s.get_boolean("run-in-background")) {
+                    this.hide();
+                    return true;
+                }
+                return false;
             });
 
             this.map.connect(() => {
@@ -76,6 +80,7 @@ namespace Receiver {
             app.scrobbler.status_changed.connect(update_lastfm_label);
 
             menu.append(_("Song History"), "win.history");
+            menu.append(_("Run in background"), "win.run-in-background");
             menu.append(_("About Receiver"), "win.about");
 
             menu_button.menu_model = menu;
@@ -223,6 +228,15 @@ namespace Receiver {
             var about_action = new SimpleAction("about", null);
             about_action.activate.connect(show_about);
             this.add_action(about_action);
+
+            // Run in Background action (toggle)
+            var state = AppState.get_default().settings;
+            var bg_action = new SimpleAction.stateful("run-in-background", null,
+                new Variant.boolean(state.get_boolean("run-in-background")));
+            bg_action.notify["state"].connect(() => {
+                state.set_boolean("run-in-background", bg_action.state.get_boolean());
+            });
+            this.add_action(bg_action);
         }
 
         private void save_window_position() {

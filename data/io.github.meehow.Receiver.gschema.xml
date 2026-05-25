@@ -58,6 +58,11 @@
       <summary>Window Y position</summary>
       <description>The last saved Y position of the window (-1 means using default positioning).</description>
     </key>
+    <key name="run-in-background" type="b">
+      <default>true</default>
+      <summary>Run in background</summary>
+      <description>Whether the app keeps running when the window is closed.</description>
+    </key>
 
   </schema>
 </schemalist>
