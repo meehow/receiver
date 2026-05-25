@@ -6,11 +6,12 @@ namespace Receiver {
         public Player player { get; private set; }
         public Scrobbler scrobbler { get; private set; }
         private MprisService mpris;
+        private bool db_opened = false;
 
         public Application() {
             Object(
                 application_id: "io.github.meehow.Receiver",
-                flags: ApplicationFlags.DEFAULT_FLAGS | ApplicationFlags.NON_UNIQUE
+                flags: ApplicationFlags.DEFAULT_FLAGS
             );
         }
 
@@ -59,8 +60,9 @@ namespace Receiver {
             }
             window.present();
 
-            // Open database after window is shown
-            open_database();
+            if (!db_opened) {
+                open_database();
+            }
         }
 
 
@@ -93,12 +95,12 @@ namespace Receiver {
         }
 
         private void open_database() {
-            // Search XDG data dirs (/usr/share, /app/share, dev via make run)
             foreach (var data_dir in Environment.get_system_data_dirs()) {
                 var path = Path.build_filename(data_dir, "receiver", "receiver.db");
                 if (FileUtils.test(path, FileTest.EXISTS)) {
                     store.open(path);
                     message("Loaded %d stations from %s", store.total_count, path);
+                    db_opened = true;
                     return;
                 }
             }

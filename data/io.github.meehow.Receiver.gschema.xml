@@ -48,6 +48,16 @@
       <default>800</default>
       <summary>Window height</summary>
     </key>
+    <key name="window-x" type="i">
+      <default>-1</default>
+      <summary>Window X position</summary>
+      <description>The last saved X position of the window (-1 means using default positioning).</description>
+    </key>
+    <key name="window-y" type="i">
+      <default>-1</default>
+      <summary>Window Y position</summary>
+      <description>The last saved Y position of the window (-1 means using default positioning).</description>
+    </key>
 
   </schema>
 </schemalist>

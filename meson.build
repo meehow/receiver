@@ -20,6 +20,12 @@ sqlite_dep = dependency('sqlite3')
 ytdl_subproject = subproject('ytdl')
 ytdl_dep = ytdl_subproject.get_variable('ytdl_dep')
 
+# Optional X11 support for window position save/restore
+x11_dep = dependency('x11', required: false)
+if x11_dep.found()
+  add_project_arguments('--define=X11', '--pkg', 'gtk4-x11', '--pkg', 'x11', language: 'vala')
+endif
+
 # i18n configuration - define GETTEXT_PACKAGE for all C files
 add_project_arguments('-DGETTEXT_PACKAGE="' + meson.project_name() + '"', language: 'c')
 add_project_arguments('-DG_LOG_DOMAIN="receiver"', language: 'c')
@@ -69,6 +75,7 @@ executable('receiver',
     json_dep,
     sqlite_dep,
     ytdl_dep,
+    x11_dep,
   ],
   install: true
 )

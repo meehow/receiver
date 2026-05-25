@@ -1,3 +1,8 @@
+#if X11
+using Gdk.X11;
+using X;
+#endif
+
 // Main application window
 namespace Receiver {
     private extern const string APP_VERSION;
@@ -27,9 +32,18 @@ namespace Receiver {
             connect_signals();
 
             this.close_request.connect(() => {
+                save_window_position();
                 s.set_int("window-width", this.default_width);
                 s.set_int("window-height", this.default_height);
-                return false;
+                this.hide();
+                return true;
+            });
+
+            this.map.connect(() => {
+                Idle.add(() => {
+                    restore_window_position();
+                    return false;
+                });
             });
         }
 
@@ -209,6 +223,52 @@ namespace Receiver {
             var about_action = new SimpleAction("about", null);
             about_action.activate.connect(show_about);
             this.add_action(about_action);
+        }
+
+        private void save_window_position() {
+#if X11
+            unowned var gdk_surface = ((Gtk.Native) this).get_surface();
+            if (gdk_surface == null) return;
+
+            unowned var x11_surface = gdk_surface as Gdk.X11.Surface;
+            if (x11_surface == null) return;
+
+            unowned var x11_display = gdk_surface.display as Gdk.X11.Display;
+            if (x11_display == null) return;
+
+            unowned var xdisplay = x11_display.get_xdisplay();
+            var xid = x11_surface.get_xid();
+
+            X.WindowAttributes attrs;
+            xdisplay.get_window_attributes(xid, out attrs);
+
+            var s = AppState.get_default().settings;
+            s.set_int("window-x", attrs.x);
+            s.set_int("window-y", attrs.y);
+#endif
+        }
+
+        private void restore_window_position() {
+#if X11
+            var s = AppState.get_default().settings;
+            int x = s.get_int("window-x");
+            int y = s.get_int("window-y");
+            if (x < 0 || y < 0) return;
+
+            unowned var gdk_surface = ((Gtk.Native) this).get_surface();
+            if (gdk_surface == null) return;
+
+            unowned var x11_surface = gdk_surface as Gdk.X11.Surface;
+            if (x11_surface == null) return;
+
+            unowned var x11_display = gdk_surface.display as Gdk.X11.Display;
+            if (x11_display == null) return;
+
+            unowned var xdisplay = x11_display.get_xdisplay();
+            var xid = x11_surface.get_xid();
+
+            xdisplay.move_window(xid, x, y);
+#endif
         }
 
         private void update_lastfm_label() {
