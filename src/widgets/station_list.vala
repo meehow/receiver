@@ -510,6 +510,17 @@ namespace Receiver {
                     }
                 });
             }
+
+            // Fallback: if the list is too short to scroll (e.g. single result),
+            // the scroll signal will never fire. Re-check after layout completes.
+            Idle.add(() => {
+                if (station != s) return false;
+                if (get_height() > 0) {
+                    disconnect_scroll();
+                    load_artwork.begin(s);
+                }
+                return false;
+            });
         }
 
         private void disconnect_scroll() {
