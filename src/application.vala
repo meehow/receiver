@@ -17,6 +17,13 @@ namespace Receiver {
         protected override void startup() {
             base.startup();
 
+            // Strip flat-button padding so the station title in the player
+            // bar lines up with the subtitle below it
+            var css = new Gtk.CssProvider();
+            css.load_from_data("button.title-link { padding-left: 0; padding-right: 0; min-height: 0; }".data);
+            Gtk.StyleContext.add_provider_for_display(
+                Gdk.Display.get_default(), css, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
             // Initialize services
             store = new StationStore();
             player = new Player();

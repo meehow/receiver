@@ -77,6 +77,7 @@ namespace Receiver {
             title_button.can_target = false;
             title_button.child = title_label;
             title_button.add_css_class("flat");
+            title_button.add_css_class("title-link");
             title_button.hexpand = true;
             title_button.halign = Gtk.Align.START;
             title_button.clicked.connect(() => {

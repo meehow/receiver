@@ -31,8 +31,13 @@ namespace Receiver {
             get { return _volume; }
             set {
                 _volume = value.clamp(0.0, 1.0);
-                if (pipeline != null) pipeline.set_property("volume", _volume);
+                if (pipeline != null) pipeline.set_property("volume", cubic_volume());
             }
+        }
+
+        // Perceptual volume curve — must match everywhere pipeline volume is set
+        private double cubic_volume() {
+            return _volume * _volume * _volume;
         }
 
         public signal void state_changed(PlayerState new_state);
@@ -130,7 +135,7 @@ namespace Receiver {
             }
 
             pipeline.set_property("uri", url);
-            pipeline.set_property("volume", _volume * _volume * _volume);
+            pipeline.set_property("volume", cubic_volume());
             pipeline.set_property("video-sink", Gst.ElementFactory.make("fakesink", "video_fake"));
 
             // Set User-Agent so Shoutcast/Icecast servers don't reject us
