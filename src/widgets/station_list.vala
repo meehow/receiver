@@ -35,8 +35,10 @@ namespace Receiver {
             connect_signals();
         }
 
-
-
+        private void update_pill_scrollbar_policy(Gtk.ScrolledWindow scroll, Gtk.Settings settings) {
+            scroll.hscrollbar_policy = settings.gtk_overlay_scrolling
+                ? Gtk.PolicyType.AUTOMATIC : Gtk.PolicyType.ALWAYS;
+        }
 
         private void build_ui() {
             // Search entry
@@ -65,9 +67,21 @@ namespace Receiver {
 
             // Genre pills — horizontal scrollable strip (1 row)
             var genre_scroll = new Gtk.ScrolledWindow();
-            genre_scroll.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
-            //  genre_scroll.overlay_scrolling = false; // Scrollbar below pills, not on top
             genre_scroll.vscrollbar_policy = Gtk.PolicyType.NEVER;
+
+            // With classic scrollbars (a11y "Always Show Scrollbars" setting) the
+            // hscrollbar takes real height that the AUTOMATIC policy does not
+            // reserve, clipping the pills (issue #16). ALWAYS reserves it; keep
+            // AUTOMATIC for overlay scrollbars so the default look is unchanged.
+            var gtk_settings = Gtk.Settings.get_default();
+            if (gtk_settings != null) {
+                update_pill_scrollbar_policy(genre_scroll, gtk_settings);
+                gtk_settings.notify["gtk-overlay-scrolling"].connect(() => {
+                    update_pill_scrollbar_policy(genre_scroll, gtk_settings);
+                });
+            } else {
+                genre_scroll.hscrollbar_policy = Gtk.PolicyType.AUTOMATIC;
+            }
             genre_scroll.margin_start = genre_scroll.margin_end = 12;
             genre_scroll.margin_top = 8;
             
