@@ -173,6 +173,16 @@ namespace Receiver {
                 }
             });
 
+            player.notify["is-buffering"].connect(() => {
+                if (player.is_buffering) {
+                    revealer.reveal_child = true;
+                    subtitle_label.label = _("Buffering…");
+                } else if (player.state == PlayerState.PLAYING && player.current_station != null) {
+                    var np = player.now_playing;
+                    subtitle_label.label = (np != null && np != "") ? format_now_playing(np) : _("Now playing");
+                }
+            });
+
             player.metadata_changed.connect((t) => {
                 if (t != "" && player.state == PlayerState.PLAYING) {
                     subtitle_label.label = format_now_playing(t);

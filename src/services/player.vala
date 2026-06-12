@@ -18,6 +18,11 @@ namespace Receiver {
         public Station? current_station { get; private set; }
         public PlayerState state { get; private set; default = PlayerState.STOPPED; }
 
+        // True while the pipeline is paused internally to refill the network
+        // buffer; the public state stays PLAYING so the UI doesn't flip to Paused
+        public bool is_buffering { get; private set; default = false; }
+        private bool user_paused = false;
+
         public string now_playing { get; private set; default = ""; }
 
         // Stream info from GStreamer tags
@@ -48,6 +53,7 @@ namespace Receiver {
         ~Player() { stop(); }
 
         private void cleanup() {
+            is_buffering = false;
             if (bus != null && bus_handler_id != 0) {
                 bus.disconnect(bus_handler_id);
                 bus.remove_signal_watch();
@@ -122,6 +128,7 @@ namespace Receiver {
         private void start(string url) {
             message("Playing: %s - %s", current_station.name, url);
             cleanup();
+            user_paused = false;
             state = PlayerState.STOPPED;  // Reset so STATE_CHANGED is processed
 
             pipeline = Gst.ElementFactory.make("playbin3", "player");
@@ -136,6 +143,11 @@ namespace Receiver {
 
             pipeline.set_property("uri", url);
             pipeline.set_property("volume", cubic_volume());
+            // ~2s default underruns on high-bitrate (FLAC) streams; don't go
+            // much higher — Icecast throttles to real-time after the initial
+            // burst, so a large buffer turns into a long startup wait
+            pipeline.set_property("buffer-duration", (int64) (5 * Gst.SECOND));
+            pipeline.set_property("buffer-size", 4 * 1024 * 1024);
             pipeline.set_property("video-sink", Gst.ElementFactory.make("fakesink", "video_fake"));
 
             // Set User-Agent so Shoutcast/Icecast servers don't reject us
@@ -164,7 +176,10 @@ namespace Receiver {
                         if (new_s == Gst.State.PLAYING) {
                             retry_count = 0;  // Reset on successful playback
                             update_state(PlayerState.PLAYING);
-                        } else if (new_s == Gst.State.PAUSED) update_state(PlayerState.PAUSED);
+                        } else if (new_s == Gst.State.PAUSED) {
+                            // Buffering pauses are internal — not user-visible Paused
+                            if (!is_buffering) update_state(PlayerState.PAUSED);
+                        }
                         else if (new_s == Gst.State.NULL || new_s == Gst.State.READY) update_state(PlayerState.STOPPED);
                     }
                     break;
@@ -180,6 +195,27 @@ namespace Receiver {
 
                 case Gst.MessageType.EOS:
                     stop();
+                    break;
+
+                case Gst.MessageType.BUFFERING:
+                    Gst.BufferingMode mode;
+                    int avg_in, avg_out;
+                    int64 left;
+                    msg.parse_buffering_stats(out mode, out avg_in, out avg_out, out left);
+                    // Live sources must not be paused; honor a user-initiated pause
+                    if (mode == Gst.BufferingMode.LIVE || pipeline == null || user_paused) break;
+
+                    int percent;
+                    msg.parse_buffering(out percent);
+                    if (percent < 100) {
+                        if (!is_buffering) {
+                            is_buffering = true;
+                            pipeline.set_state(Gst.State.PAUSED);
+                        }
+                    } else if (is_buffering) {
+                        is_buffering = false;
+                        pipeline.set_state(Gst.State.PLAYING);
+                    }
                     break;
 
                 case Gst.MessageType.TAG:
@@ -272,7 +308,14 @@ namespace Receiver {
                 }
                 return;
             }
-            pipeline.set_state(Gst.State.PAUSED);
+            user_paused = true;
+            if (is_buffering) {
+                // Pipeline is already paused for refilling; just make it stick
+                is_buffering = false;
+                update_state(PlayerState.PAUSED);
+            } else {
+                pipeline.set_state(Gst.State.PAUSED);
+            }
         }
 
         private void schedule_retry(string error_msg) {
