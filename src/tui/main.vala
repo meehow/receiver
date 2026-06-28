@@ -28,6 +28,13 @@ namespace Receiver {
         NONE, COUNTRY, LANGUAGE
     }
 
+    // A clickable span in the header bar: columns [start, end) trigger `action`.
+    public struct HeaderZone {
+        int start;
+        int end;
+        int action;
+    }
+
     public class Tui : Object, MprisHost {
         // Signal numbers (the GLib profile has no Posix.Signal binding).
         private const int SIGNAL_INT = 2;
@@ -38,6 +45,16 @@ namespace Receiver {
         private const int PAIR_STATUS = 2;
 
         private const double VOLUME_STEP = 0.05;
+
+        // Header click actions.
+        private const int ACT_COUNTRY = 1;
+        private const int ACT_LANGUAGE = 2;
+        private const int ACT_SEARCH = 3;
+        private const int ACT_CLEAR = 4;
+        private const int ACT_VIEW = 5;
+        private const int ACT_QUIT = 6;
+
+        private HeaderZone[] header_zones = {};
 
         // Keeps core log messages from corrupting the curses screen.
         private static FileStream? log_stream;
@@ -242,7 +259,9 @@ namespace Receiver {
         private bool on_input (IOChannel source, IOCondition condition) {
             int ch;
             while ((ch = scr.getch ()) != Curses.ERR) {
-                if (picker != PickerMode.NONE) {
+                if (ch == Curses.KEY_MOUSE) {
+                    handle_mouse ();
+                } else if (picker != PickerMode.NONE) {
                     handle_picker_key (ch);
                 } else if (search_active) {
                     handle_search_key (ch);
@@ -331,9 +350,6 @@ namespace Receiver {
                         open_language_picker ();
                     }
                     break;
-                case Curses.KEY_MOUSE:
-                    handle_mouse ();
-                    break;
                 case Curses.KEY_RESIZE:
                     needs_redraw = true;
                     break;
@@ -342,12 +358,21 @@ namespace Receiver {
             }
         }
 
-        // Wheel scrolls the list; a left click on a row selects and plays it.
         private void handle_mouse () {
             Curses.MEvent ev;
             if (Curses.getmouse (out ev) == Curses.ERR) {
                 return;
             }
+            if (picker != PickerMode.NONE) {
+                handle_picker_mouse (ev);
+            } else if (!search_active) {
+                handle_view_mouse (ev);
+            }
+        }
+
+        // Wheel scrolls; left click on the header runs a hint, on a row plays
+        // it; right click on a row toggles its favourite.
+        private void handle_view_mouse (Curses.MEvent ev) {
             if ((ev.bstate & Curses.BUTTON4_PRESSED) != 0) {
                 move_selection (-3);
                 return;
@@ -356,17 +381,68 @@ namespace Receiver {
                 move_selection (3);
                 return;
             }
+            bool left = (ev.bstate & (Curses.BUTTON1_CLICKED | Curses.BUTTON1_PRESSED)) != 0;
+            bool right = (ev.bstate & (Curses.BUTTON3_CLICKED | Curses.BUTTON3_PRESSED)) != 0;
+
+            if (ev.y == 0) {
+                if (left) {
+                    header_click (ev.x);
+                }
+                return;
+            }
+            if (ev.y >= 1 && ev.y <= list_height ()) {
+                int idx = scroll + (ev.y - 1);
+                if (idx < 0 || idx >= item_count ()) {
+                    return;
+                }
+                selected = idx;
+                if (right) {
+                    toggle_favourite_selected ();
+                } else if (left) {
+                    play_selected ();
+                }
+                needs_redraw = true;
+            }
+        }
+
+        private void handle_picker_mouse (Curses.MEvent ev) {
+            if ((ev.bstate & Curses.BUTTON4_PRESSED) != 0) {
+                picker_move (-3);
+                return;
+            }
+            if ((ev.bstate & Curses.BUTTON5_PRESSED) != 0) {
+                picker_move (3);
+                return;
+            }
             if ((ev.bstate & (Curses.BUTTON1_CLICKED | Curses.BUTTON1_PRESSED)) != 0) {
-                int row = ev.y;
-                // List rows occupy screen rows 1 .. list_height.
-                if (row >= 1 && row <= list_height ()) {
-                    int idx = scroll + (row - 1);
-                    if (idx >= 0 && idx < item_count ()) {
-                        selected = idx;
-                        play_selected ();
-                        needs_redraw = true;
+                if (ev.y >= 1 && ev.y <= list_height ()) {
+                    int i = picker_off + (ev.y - 1);
+                    if (i >= 0 && i < picker_matches ().length) {
+                        picker_sel = i;
+                        picker_select ();
                     }
                 }
+            }
+        }
+
+        private void header_click (int x) {
+            foreach (var z in header_zones) {
+                if (x >= z.start && x < z.end) {
+                    run_header_action (z.action);
+                    return;
+                }
+            }
+        }
+
+        private void run_header_action (int action) {
+            switch (action) {
+                case ACT_COUNTRY:  open_country_picker ();  break;
+                case ACT_LANGUAGE: open_language_picker (); break;
+                case ACT_SEARCH:   search_active = true; needs_redraw = true; break;
+                case ACT_CLEAR:    clear_search ();         break;
+                case ACT_VIEW:     cycle_view (1);          break;
+                case ACT_QUIT:     loop.quit ();            break;
+                default: break;
             }
         }
 
@@ -693,32 +769,55 @@ namespace Receiver {
         }
 
         private void draw_header (int width) {
+            header_zones = {};
             string text;
             if (search_active) {
                 text = " Search: %s▏   [↵] apply  [Esc] clear".printf (search_text);
             } else if (view == View.BROWSE) {
                 var sb = new StringBuilder ();
                 sb.append (" Receiver · Browse (%d)".printf (item_count ()));
+                // Active filters double as clickable shortcuts to change them.
                 if (search_text != "") {
-                    sb.append ("  search:\"%s\"".printf (search_text));
+                    add_zone (sb, "  search:\"%s\"".printf (search_text), ACT_SEARCH);
                 }
                 if (country_label != "") {
-                    sb.append ("  country:" + country_label);
+                    add_zone (sb, "  country:" + country_label, ACT_COUNTRY);
                 }
                 if (language_label != "") {
-                    sb.append ("  lang:" + language_label);
+                    add_zone (sb, "  lang:" + language_label, ACT_LANGUAGE);
                 }
-                sb.append ("   [c]/[l] filter  [/] search");
+                sb.append ("   ");
+                add_zone (sb, "[c]country", ACT_COUNTRY);
+                sb.append ("  ");
+                add_zone (sb, "[l]lang", ACT_LANGUAGE);
+                sb.append ("  ");
+                add_zone (sb, "[/]search", ACT_SEARCH);
                 if (search_text != "") {
-                    sb.append ("  [Esc] clear");
+                    sb.append ("  ");
+                    add_zone (sb, "[Esc]clear", ACT_CLEAR);
                 }
-                sb.append ("  [Tab] view  [q] quit");
+                sb.append ("  ");
+                add_zone (sb, "[Tab]view", ACT_VIEW);
+                sb.append ("  ");
+                add_zone (sb, "[q]quit", ACT_QUIT);
                 text = sb.str;
             } else {
-                text = " Receiver · %s (%d)   [Tab] view  [↵] play  [space] pause  [f] fav  [q] quit"
-                    .printf (view.label (), item_count ());
+                var sb = new StringBuilder ();
+                sb.append (" Receiver · %s (%d)   ".printf (view.label (), item_count ()));
+                add_zone (sb, "[Tab]view", ACT_VIEW);
+                sb.append ("  ");
+                add_zone (sb, "[q]quit", ACT_QUIT);
+                text = sb.str;
             }
             draw_bar (0, width, PAIR_HEADER, text);
+        }
+
+        // Append a clickable token to the header, recording its column span.
+        private void add_zone (StringBuilder sb, string token, int action) {
+            int start = (int) sb.str.char_count ();
+            sb.append (token);
+            HeaderZone z = { start, (int) sb.str.char_count (), action };
+            header_zones += z;
         }
 
         private void draw_list (int h, int width) {

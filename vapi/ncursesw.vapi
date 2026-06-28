@@ -83,6 +83,10 @@ namespace Curses {
     public const uint BUTTON1_PRESSED;
     [CCode (cname = "BUTTON1_CLICKED")]
     public const uint BUTTON1_CLICKED;
+    [CCode (cname = "BUTTON3_PRESSED")]
+    public const uint BUTTON3_PRESSED;
+    [CCode (cname = "BUTTON3_CLICKED")]
+    public const uint BUTTON3_CLICKED;
     [CCode (cname = "BUTTON4_PRESSED")]
     public const uint BUTTON4_PRESSED;
     [CCode (cname = "BUTTON5_PRESSED")]
