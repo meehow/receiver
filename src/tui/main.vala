@@ -774,11 +774,25 @@ namespace Receiver {
             if (search_active) {
                 text = " Search: %s▏   [↵] apply  [Esc] clear".printf (search_text);
             } else if (view == View.BROWSE) {
+                // Fixed action hints first so their click targets never move;
+                // the variable count and active filters follow.
                 var sb = new StringBuilder ();
-                sb.append (" Receiver · Browse (%d)".printf (item_count ()));
+                sb.append (" ");
+                add_zone (sb, "[Tab]view", ACT_VIEW);
+                sb.append ("  ");
+                add_zone (sb, "[c]country", ACT_COUNTRY);
+                sb.append ("  ");
+                add_zone (sb, "[l]lang", ACT_LANGUAGE);
+                sb.append ("  ");
+                add_zone (sb, "[/]search", ACT_SEARCH);
+                sb.append ("  ");
+                add_zone (sb, "[q]quit", ACT_QUIT);
+                sb.append ("   Browse (%d)".printf (item_count ()));
                 // Active filters double as clickable shortcuts to change them.
                 if (search_text != "") {
                     add_zone (sb, "  search:\"%s\"".printf (search_text), ACT_SEARCH);
+                    sb.append ("  ");
+                    add_zone (sb, "[Esc]clear", ACT_CLEAR);
                 }
                 if (country_label != "") {
                     add_zone (sb, "  country:" + country_label, ACT_COUNTRY);
@@ -786,27 +800,14 @@ namespace Receiver {
                 if (language_label != "") {
                     add_zone (sb, "  lang:" + language_label, ACT_LANGUAGE);
                 }
-                sb.append ("   ");
-                add_zone (sb, "[c]country", ACT_COUNTRY);
-                sb.append ("  ");
-                add_zone (sb, "[l]lang", ACT_LANGUAGE);
-                sb.append ("  ");
-                add_zone (sb, "[/]search", ACT_SEARCH);
-                if (search_text != "") {
-                    sb.append ("  ");
-                    add_zone (sb, "[Esc]clear", ACT_CLEAR);
-                }
-                sb.append ("  ");
-                add_zone (sb, "[Tab]view", ACT_VIEW);
-                sb.append ("  ");
-                add_zone (sb, "[q]quit", ACT_QUIT);
                 text = sb.str;
             } else {
                 var sb = new StringBuilder ();
-                sb.append (" Receiver · %s (%d)   ".printf (view.label (), item_count ()));
+                sb.append (" ");
                 add_zone (sb, "[Tab]view", ACT_VIEW);
                 sb.append ("  ");
                 add_zone (sb, "[q]quit", ACT_QUIT);
+                sb.append ("   %s (%d)".printf (view.label (), item_count ()));
                 text = sb.str;
             }
             draw_bar (0, width, PAIR_HEADER, text);
