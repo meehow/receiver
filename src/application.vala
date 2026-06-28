@@ -1,7 +1,7 @@
 // Main application class
 namespace Receiver {
 
-    public class Application : Adw.Application {
+    public class Application : Adw.Application, MprisHost {
         public StationStore store { get; private set; }
         public Player player { get; private set; }
         public Scrobbler scrobbler { get; private set; }
@@ -12,6 +12,14 @@ namespace Receiver {
                 application_id: "io.github.meehow.Receiver",
                 flags: ApplicationFlags.DEFAULT_FLAGS | ApplicationFlags.NON_UNIQUE
             );
+        }
+
+        // MprisHost
+        public void raise() {
+            var win = active_window;
+            if (win != null) {
+                win.present();
+            }
         }
 
         protected override void startup() {

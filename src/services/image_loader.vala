@@ -6,7 +6,6 @@ namespace Receiver {
         private static ImageLoader? _instance;
         private Soup.Session session;
         private string cache_dir;
-        public const string IMAGE_BASE_URL = "https://receiver.808bits.com/images/";
 
         public static ImageLoader get_default() {
             if (_instance == null) {
@@ -54,7 +53,7 @@ namespace Receiver {
             loading.set(image_hash, true);
 
             try {
-                var url = IMAGE_BASE_URL + image_hash.to_string();
+                var url = Station.IMAGE_BASE_URL + image_hash.to_string();
                 var msg = new Soup.Message("GET", url);
                 var stream = yield session.send_async(msg, Priority.DEFAULT, null);
 
