@@ -317,6 +317,9 @@ namespace Receiver {
                         needs_redraw = true;
                     }
                     break;
+                case 27: // Esc — clear an applied search
+                    clear_search ();
+                    break;
                 case 'c':
                     if (view == View.BROWSE) {
                         open_country_picker ();
@@ -340,9 +343,13 @@ namespace Receiver {
                 case '\n':
                 case '\r':
                 case Curses.KEY_ENTER:
-                case 27: // Esc — confirm and leave search mode, keeping results
+                    // Apply and leave search mode, keeping results.
                     search_active = false;
                     needs_redraw = true;
+                    break;
+                case 27: // Esc — clear the query and leave search mode
+                    search_active = false;
+                    clear_search ();
                     break;
                 case Curses.KEY_BACKSPACE:
                 case 127:
@@ -534,6 +541,18 @@ namespace Receiver {
             }
         }
 
+        private void clear_search () {
+            if (search_text == "" && store.search_query == "") {
+                return;
+            }
+            search_text = "";
+            store.search_query = "";
+            selected = 0;
+            scroll = 0;
+            clamp_selection ();
+            needs_redraw = true;
+        }
+
         private void cycle_view (int dir) {
             saved_sel[(int) view] = selected;
             saved_off[(int) view] = scroll;
@@ -644,7 +663,7 @@ namespace Receiver {
         private void draw_header (int width) {
             string text;
             if (search_active) {
-                text = " Search: %s▏".printf (search_text);
+                text = " Search: %s▏   [↵] apply  [Esc] clear".printf (search_text);
             } else if (view == View.BROWSE) {
                 var sb = new StringBuilder ();
                 sb.append (" Receiver · Browse (%d)".printf (item_count ()));
@@ -657,7 +676,11 @@ namespace Receiver {
                 if (language_label != "") {
                     sb.append ("  lang:" + language_label);
                 }
-                sb.append ("   [c]/[l] filter  [/] search  [Tab] view  [q] quit");
+                sb.append ("   [c]/[l] filter  [/] search");
+                if (search_text != "") {
+                    sb.append ("  [Esc] clear");
+                }
+                sb.append ("  [Tab] view  [q] quit");
                 text = sb.str;
             } else {
                 text = " Receiver · %s (%d)   [Tab] view  [↵] play  [space] pause  [f] fav  [q] quit"
