@@ -143,6 +143,8 @@ namespace Curses {
     public const int KEY_BACKSPACE;
     [CCode (cname = "KEY_ENTER")]
     public const int KEY_ENTER;
+    [CCode (cname = "KEY_BTAB")]
+    public const int KEY_BTAB;
     [CCode (cname = "KEY_RESIZE")]
     public const int KEY_RESIZE;
 }

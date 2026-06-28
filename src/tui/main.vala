@@ -1,13 +1,28 @@
 /*
  * Receiver TUI — ncurses frontend over libreceiver-core.
  *
- * Browse + play MVP: a scrollable station list backed by StationStore with
- * incremental search, driving the shared Player. Curses runs as a guest of the
- * GLib main loop so the core's async GStreamer/Soup work keeps ticking; stdin
- * is read non-blocking, repaints are coalesced, and the terminal is always
- * restored on exit.
+ * Three views (Browse / Favourites / History) over the shared StationStore,
+ * AppState favourites and HistoryStore, driving the shared Player. Curses runs
+ * as a guest of the GLib main loop so the core's async GStreamer/Soup work keeps
+ * ticking; stdin is read non-blocking, repaints are coalesced, and the terminal
+ * is always restored on exit.
  */
 namespace Receiver {
+
+    public enum View {
+        BROWSE, FAVOURITES, HISTORY;
+
+        public const int COUNT = 3;
+
+        public string label () {
+            switch (this) {
+                case BROWSE: return "Browse";
+                case FAVOURITES: return "Favourites";
+                case HISTORY: return "History";
+                default: return "";
+            }
+        }
+    }
 
     public class Tui : Object {
         // Signal numbers (the GLib profile has no Posix.Signal binding).
@@ -31,8 +46,13 @@ namespace Receiver {
         private StationStore store = new StationStore ();
         private Player player = new Player ();
 
+        private View view = View.BROWSE;
+        // Cursor and scroll position, remembered per view.
         private int selected = 0;
         private int scroll = 0;
+        private int[] saved_sel = { 0, 0, 0 };
+        private int[] saved_off = { 0, 0, 0 };
+
         private bool search_active = false;
         private string search_text = "";
 
@@ -80,9 +100,23 @@ namespace Receiver {
                 clamp_selection ();
                 needs_redraw = true;
             });
+            AppState.get_default ().favourites_changed.connect (() => {
+                clamp_selection ();
+                needs_redraw = true;
+            });
+            HistoryStore.get_default ().items_changed.connect (() => {
+                clamp_selection ();
+                needs_redraw = true;
+            });
             player.state_changed.connect (() => { needs_redraw = true; });
-            player.metadata_changed.connect (() => { needs_redraw = true; });
             player.stream_info_changed.connect (() => { needs_redraw = true; });
+            player.metadata_changed.connect ((title) => {
+                // Record songs to history (same guard as the GTK frontend).
+                if (player.current_station != null && player.state == PlayerState.PLAYING) {
+                    HistoryStore.get_default ().add (player.current_station, title);
+                }
+                needs_redraw = true;
+            });
         }
 
         // Mirror the GTK app: look through XDG data dirs, then fall back to the
@@ -93,10 +127,8 @@ namespace Receiver {
                     return;
                 }
             }
-            if (try_open_db (Path.build_filename (Environment.get_current_dir (),
-                                                  "data", "receiver", "receiver.db"))) {
-                return;
-            }
+            try_open_db (Path.build_filename (Environment.get_current_dir (),
+                                              "data", "receiver", "receiver.db"));
         }
 
         private bool try_open_db (string path) {
@@ -123,6 +155,52 @@ namespace Receiver {
             }
         }
 
+        // --- View-aware data access -----------------------------------------
+
+        private int item_count () {
+            switch (view) {
+                case View.BROWSE:
+                    return (int) store.get_n_items ();
+                case View.FAVOURITES:
+                    return (int) AppState.get_default ().get_favourite_stations ().length;
+                case View.HISTORY:
+                    return (int) HistoryStore.get_default ().get_n_items ();
+                default:
+                    return 0;
+            }
+        }
+
+        // The station shown at a list row (Browse/Favourites only).
+        private Station? station_at (int idx) {
+            if (idx < 0) {
+                return null;
+            }
+            if (view == View.BROWSE) {
+                return idx < (int) store.get_n_items () ? store.get_item (idx) as Station : null;
+            }
+            if (view == View.FAVOURITES) {
+                var favs = AppState.get_default ().get_favourite_stations ();
+                return idx < (int) favs.length ? favs[idx] : null;
+            }
+            return null;
+        }
+
+        private HistoryEntry? history_at (int idx) {
+            var h = HistoryStore.get_default ();
+            return idx >= 0 && idx < (int) h.get_n_items ()
+                ? h.get_item (idx) as HistoryEntry : null;
+        }
+
+        // The playable station for the current selection, resolving history
+        // entries back to a full station (with a stream URL) via the database.
+        private Station? selected_station () {
+            if (view == View.HISTORY) {
+                var e = history_at (selected);
+                return e != null ? store.get_station_by_id (e.station_id) : null;
+            }
+            return station_at (selected);
+        }
+
         // --- Input -----------------------------------------------------------
 
         private bool on_input (IOChannel source, IOCondition condition) {
@@ -142,6 +220,12 @@ namespace Receiver {
                 case 'q':
                 case 'Q':
                     loop.quit ();
+                    break;
+                case '\t':
+                    cycle_view (1);
+                    break;
+                case Curses.KEY_BTAB:
+                    cycle_view (-1);
                     break;
                 case Curses.KEY_UP:
                 case 'k':
@@ -165,7 +249,7 @@ namespace Receiver {
                     break;
                 case Curses.KEY_END:
                 case 'G':
-                    selected = (int) store.get_n_items () - 1;
+                    selected = item_count () - 1;
                     clamp_selection ();
                     needs_redraw = true;
                     break;
@@ -191,8 +275,10 @@ namespace Receiver {
                     toggle_favourite_selected ();
                     break;
                 case '/':
-                    search_active = true;
-                    needs_redraw = true;
+                    if (view == View.BROWSE) {
+                        search_active = true;
+                        needs_redraw = true;
+                    }
                     break;
                 case Curses.KEY_RESIZE:
                     needs_redraw = true;
@@ -234,6 +320,17 @@ namespace Receiver {
             }
         }
 
+        private void cycle_view (int dir) {
+            saved_sel[(int) view] = selected;
+            saved_off[(int) view] = scroll;
+            view = (View) (((int) view + dir + View.COUNT) % View.COUNT);
+            selected = saved_sel[(int) view];
+            scroll = saved_off[(int) view];
+            search_active = false;
+            clamp_selection ();
+            needs_redraw = true;
+        }
+
         private void move_selection (int delta) {
             selected += delta;
             clamp_selection ();
@@ -241,29 +338,23 @@ namespace Receiver {
         }
 
         private void play_selected () {
-            var station = current_station_at_cursor ();
+            var station = selected_station ();
             if (station != null) {
                 player.play (station);
             }
         }
 
         private void toggle_favourite_selected () {
-            var station = current_station_at_cursor ();
+            // Only meaningful for station rows; a no-op in History.
+            var station = station_at (selected);
             if (station != null) {
                 store.toggle_favourite (station);
                 needs_redraw = true;
             }
         }
 
-        private Station? current_station_at_cursor () {
-            if (selected < 0 || selected >= (int) store.get_n_items ()) {
-                return null;
-            }
-            return store.get_item (selected) as Station;
-        }
-
         private void clamp_selection () {
-            int n = (int) store.get_n_items ();
+            int n = item_count ();
             if (n == 0) {
                 selected = 0;
                 scroll = 0;
@@ -304,28 +395,52 @@ namespace Receiver {
             if (search_active) {
                 text = " Search: %s".printf (search_text);
             } else {
-                text = " Receiver   %u/%d stations   [/] search  [enter] play  [space] pause  [f] fav  [q] quit"
-                    .printf (store.get_n_items (), store.total_count);
+                text = " Receiver · %s (%d)   [Tab] view  [↵] play  [space] pause  [+/-] vol  [f] fav  [/] search  [q] quit"
+                    .printf (view.label (), item_count ());
             }
             draw_bar (0, width, PAIR_HEADER, text);
         }
 
         private void draw_list (int h, int width) {
             int lh = list_height ();
-            uint n = store.get_n_items ();
+            int n = item_count ();
+            if (n == 0) {
+                scr.mvaddstr (1, 2, empty_message ());
+                return;
+            }
             for (int i = 0; i < lh; i++) {
                 int idx = scroll + i;
-                if (idx >= (int) n) {
+                if (idx >= n) {
                     break;
                 }
-                var station = store.get_item (idx) as Station;
-                if (station != null) {
-                    draw_row (1 + i, width, station, idx == selected);
+                int row = 1 + i;
+                bool is_selected = (idx == selected);
+                if (view == View.HISTORY) {
+                    var e = history_at (idx);
+                    if (e != null) {
+                        draw_history_row (row, width, e, is_selected);
+                    }
+                } else {
+                    var station = station_at (idx);
+                    if (station != null) {
+                        draw_station_row (row, width, station, is_selected);
+                    }
                 }
             }
         }
 
-        private void draw_row (int row, int width, Station station, bool is_selected) {
+        private string empty_message () {
+            switch (view) {
+                case View.FAVOURITES:
+                    return "No favourites yet — press 'f' on a station in Browse.";
+                case View.HISTORY:
+                    return "No song history yet — play a station for a while.";
+                default:
+                    return "No stations match your search.";
+            }
+        }
+
+        private void draw_station_row (int row, int width, Station station, bool is_selected) {
             bool playing = player.current_station != null
                 && player.current_station.id == station.id;
             string marker = playing ? "▶" : " ";
@@ -335,7 +450,16 @@ namespace Receiver {
             if (subtitle != "") {
                 line += "   —   " + subtitle;
             }
+            draw_line (row, width, line, is_selected);
+        }
 
+        private void draw_history_row (int row, int width, HistoryEntry entry, bool is_selected) {
+            string time = format_time (entry.played_at);
+            string line = "%s   %s   —   %s".printf (time, entry.song_title, entry.station_name);
+            draw_line (row, width, line, is_selected);
+        }
+
+        private void draw_line (int row, int width, string line, bool is_selected) {
             int attr = is_selected ? Curses.A_REVERSE : Curses.A_NORMAL;
             scr.attron (attr);
             scr.mvaddstr (row, 0, fit (line, width));
@@ -404,6 +528,14 @@ namespace Receiver {
                 sb.append_c (' ');
             }
             return sb.str;
+        }
+
+        private string format_time (string iso) {
+            if (iso == "") {
+                return "--:--";
+            }
+            var dt = new DateTime.from_iso8601 (iso, null);
+            return dt != null ? dt.format ("%H:%M") : iso;
         }
 
         // Redirect GLib log messages (from the core services) to a file so they
