@@ -88,6 +88,10 @@ namespace Receiver {
             wire_core ();
             load_database ();
 
+            // Persist volume and last station via GSettings, shared with the GTK app.
+            AppState.get_default ().settings.bind ("volume", player, "volume", SettingsBindFlags.DEFAULT);
+            restore_last_station ();
+
             // Register MPRIS so desktop media keys control playback.
             mpris = new MprisService (this, player);
 
@@ -526,6 +530,19 @@ namespace Receiver {
 
         private void play_selected () {
             var station = selected_station ();
+            if (station != null) {
+                player.play (station);
+                AppState.get_default ().settings.set_int64 ("last-station-id", station.id);
+            }
+        }
+
+        // Resume the last played station on startup, like the GTK app.
+        private void restore_last_station () {
+            var id = AppState.get_default ().settings.get_int64 ("last-station-id");
+            if (id == 0) {
+                return;
+            }
+            var station = store.get_station_by_id (id);
             if (station != null) {
                 player.play (station);
             }
