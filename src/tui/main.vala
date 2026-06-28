@@ -644,10 +644,13 @@ namespace Receiver {
         private void draw_header (int width) {
             string text;
             if (search_active) {
-                text = " Search: %s".printf (search_text);
+                text = " Search: %s▏".printf (search_text);
             } else if (view == View.BROWSE) {
                 var sb = new StringBuilder ();
                 sb.append (" Receiver · Browse (%d)".printf (item_count ()));
+                if (search_text != "") {
+                    sb.append ("  search:\"%s\"".printf (search_text));
+                }
                 if (country_label != "") {
                     sb.append ("  country:" + country_label);
                 }
