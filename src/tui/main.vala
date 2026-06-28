@@ -24,6 +24,10 @@ namespace Receiver {
         }
     }
 
+    public enum PickerMode {
+        NONE, COUNTRY, LANGUAGE
+    }
+
     public class Tui : Object {
         // Signal numbers (the GLib profile has no Posix.Signal binding).
         private const int SIGNAL_INT = 2;
@@ -55,6 +59,19 @@ namespace Receiver {
 
         private bool search_active = false;
         private string search_text = "";
+
+        // Country/language filter (Browse only). Labels are shown in the header;
+        // the empty string means "all" (no filter).
+        private string country_label = "";
+        private string language_label = "";
+
+        // Popup picker state for choosing a country/language.
+        private PickerMode picker = PickerMode.NONE;
+        private string[] picker_labels = {};
+        private string[] picker_values = {};
+        private string picker_query = "";
+        private int picker_sel = 0;
+        private int picker_off = 0;
 
         public int run () {
             Intl.setlocale (LocaleCategory.ALL, "");
@@ -206,7 +223,9 @@ namespace Receiver {
         private bool on_input (IOChannel source, IOCondition condition) {
             int ch;
             while ((ch = scr.getch ()) != Curses.ERR) {
-                if (search_active) {
+                if (picker != PickerMode.NONE) {
+                    handle_picker_key (ch);
+                } else if (search_active) {
                     handle_search_key (ch);
                 } else {
                     handle_key (ch);
@@ -280,6 +299,16 @@ namespace Receiver {
                         needs_redraw = true;
                     }
                     break;
+                case 'c':
+                    if (view == View.BROWSE) {
+                        open_country_picker ();
+                    }
+                    break;
+                case 'l':
+                    if (view == View.BROWSE) {
+                        open_language_picker ();
+                    }
+                    break;
                 case Curses.KEY_RESIZE:
                     needs_redraw = true;
                     break;
@@ -318,6 +347,152 @@ namespace Receiver {
                     }
                     break;
             }
+        }
+
+        // --- Country/language picker ----------------------------------------
+
+        private void open_country_picker () {
+            var codes = store.get_available_country_codes ();
+            var names = store.get_available_country_names ();
+            string[] labels = { "All countries" };
+            string[] values = { "all" };
+            for (int i = 0; i < names.length; i++) {
+                labels += names[i];
+                values += codes[i];
+            }
+            start_picker (PickerMode.COUNTRY, labels, values);
+        }
+
+        private void open_language_picker () {
+            var sorted = new GenericArray<string> ();
+            foreach (var code in store.get_available_languages ()) {
+                sorted.add (code);
+            }
+            sorted.sort ((a, b) => Languages.translate (a).collate (Languages.translate (b)));
+
+            string[] labels = { "All languages" };
+            string[] values = { "all" };
+            for (int i = 0; i < sorted.length; i++) {
+                labels += Languages.translate (sorted[i]);
+                values += sorted[i];
+            }
+            start_picker (PickerMode.LANGUAGE, labels, values);
+        }
+
+        private void start_picker (PickerMode mode, string[] labels, string[] values) {
+            picker = mode;
+            picker_labels = labels;
+            picker_values = values;
+            picker_query = "";
+            picker_sel = 0;
+            picker_off = 0;
+            needs_redraw = true;
+        }
+
+        // Indices of options matching the query. With an empty query the "All"
+        // entry sits at the top so clearing the filter is always one keypress.
+        private int[] picker_matches () {
+            var q = picker_query.down ();
+            int[] res = {};
+            for (int i = 0; i < picker_labels.length; i++) {
+                if (q == "" || picker_labels[i].down ().contains (q)) {
+                    res += i;
+                }
+            }
+            return res;
+        }
+
+        private void handle_picker_key (int ch) {
+            switch (ch) {
+                case 27: // Esc — cancel
+                    close_picker ();
+                    break;
+                case '\n':
+                case '\r':
+                case Curses.KEY_ENTER:
+                    picker_select ();
+                    break;
+                case Curses.KEY_UP:
+                    picker_move (-1);
+                    break;
+                case Curses.KEY_DOWN:
+                    picker_move (1);
+                    break;
+                case Curses.KEY_PPAGE:
+                    picker_move (-list_height ());
+                    break;
+                case Curses.KEY_NPAGE:
+                    picker_move (list_height ());
+                    break;
+                case Curses.KEY_BACKSPACE:
+                case 127:
+                case 8:
+                    if (picker_query.length > 0) {
+                        picker_query = picker_query[0 : picker_query.index_of_nth_char (
+                            picker_query.char_count () - 1)];
+                        picker_sel = 0;
+                        picker_off = 0;
+                    }
+                    needs_redraw = true;
+                    break;
+                case Curses.KEY_RESIZE:
+                    needs_redraw = true;
+                    break;
+                default:
+                    if (ch >= 32 && ch < 127) {
+                        picker_query += ((char) ch).to_string ();
+                        picker_sel = 0;
+                        picker_off = 0;
+                        needs_redraw = true;
+                    }
+                    break;
+            }
+        }
+
+        private void picker_move (int delta) {
+            int n = picker_matches ().length;
+            if (n == 0) {
+                picker_sel = 0;
+                picker_off = 0;
+                return;
+            }
+            picker_sel = (picker_sel + delta).clamp (0, n - 1);
+            int lh = list_height ();
+            if (picker_sel < picker_off) {
+                picker_off = picker_sel;
+            } else if (picker_sel >= picker_off + lh) {
+                picker_off = picker_sel - lh + 1;
+            }
+            needs_redraw = true;
+        }
+
+        private void picker_select () {
+            var idx = picker_matches ();
+            if (picker_sel < 0 || picker_sel >= idx.length) {
+                close_picker ();
+                return;
+            }
+            int real = idx[picker_sel];
+            string value = picker_values[real];
+            string label = (value == "all") ? "" : picker_labels[real];
+
+            if (picker == PickerMode.COUNTRY) {
+                store.country_filter = value;
+                country_label = label;
+            } else if (picker == PickerMode.LANGUAGE) {
+                store.language_filter = value;
+                language_label = label;
+            }
+            close_picker ();
+            // The list changed underfoot — reset the Browse cursor to the top.
+            selected = 0;
+            scroll = 0;
+            clamp_selection ();
+        }
+
+        private void close_picker () {
+            picker = PickerMode.NONE;
+            needs_redraw = true;
         }
 
         private void cycle_view (int dir) {
@@ -382,20 +557,55 @@ namespace Receiver {
             int w = Curses.COLS;
             scr.erase ();
 
-            draw_header (w);
-            draw_list (h, w);
-            draw_player_bar (h, w);
+            if (picker != PickerMode.NONE) {
+                draw_picker (h, w);
+            } else {
+                draw_header (w);
+                draw_list (h, w);
+                draw_player_bar (h, w);
+            }
 
             scr.noutrefresh ();
             Curses.doupdate ();
+        }
+
+        private void draw_picker (int h, int width) {
+            string title = (picker == PickerMode.COUNTRY) ? "Select country" : "Select language";
+            draw_bar (0, width, PAIR_HEADER, " %s — type to filter: %s".printf (title, picker_query));
+
+            var idx = picker_matches ();
+            int lh = list_height ();
+            if (idx.length == 0) {
+                scr.mvaddstr (1, 2, "No matches.");
+            } else {
+                for (int i = 0; i < lh; i++) {
+                    int p = picker_off + i;
+                    if (p >= idx.length) {
+                        break;
+                    }
+                    draw_line (1 + i, width, " " + picker_labels[idx[p]], p == picker_sel);
+                }
+            }
+            draw_bar (h - 1, width, PAIR_STATUS, " [↵] select   [Esc] cancel");
         }
 
         private void draw_header (int width) {
             string text;
             if (search_active) {
                 text = " Search: %s".printf (search_text);
+            } else if (view == View.BROWSE) {
+                var sb = new StringBuilder ();
+                sb.append (" Receiver · Browse (%d)".printf (item_count ()));
+                if (country_label != "") {
+                    sb.append ("  country:" + country_label);
+                }
+                if (language_label != "") {
+                    sb.append ("  lang:" + language_label);
+                }
+                sb.append ("   [c]/[l] filter  [/] search  [Tab] view  [q] quit");
+                text = sb.str;
             } else {
-                text = " Receiver · %s (%d)   [Tab] view  [↵] play  [space] pause  [+/-] vol  [f] fav  [/] search  [q] quit"
+                text = " Receiver · %s (%d)   [Tab] view  [↵] play  [space] pause  [f] fav  [q] quit"
                     .printf (view.label (), item_count ());
             }
             draw_bar (0, width, PAIR_HEADER, text);
