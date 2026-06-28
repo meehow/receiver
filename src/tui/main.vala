@@ -777,7 +777,7 @@ namespace Receiver {
                 // Fixed action hints first so their click targets never move;
                 // the variable count and active filters follow.
                 var sb = new StringBuilder ();
-                sb.append (" ");
+                sb.append (" Receiver   ");
                 add_zone (sb, "[Tab]view", ACT_VIEW);
                 sb.append ("  ");
                 add_zone (sb, "[c]country", ACT_COUNTRY);
@@ -803,7 +803,7 @@ namespace Receiver {
                 text = sb.str;
             } else {
                 var sb = new StringBuilder ();
-                sb.append (" ");
+                sb.append (" Receiver   ");
                 add_zone (sb, "[Tab]view", ACT_VIEW);
                 sb.append ("  ");
                 add_zone (sb, "[q]quit", ACT_QUIT);
