@@ -405,6 +405,7 @@ namespace Receiver {
     }
 
     public static int main (string[] args) {
+        Gst.init (ref args);
         return new Tui ().run ();
     }
 }
