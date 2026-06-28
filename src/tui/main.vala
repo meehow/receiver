@@ -173,6 +173,7 @@ namespace Receiver {
             Curses.curs_set (0);
             scr.keypad (true);
             scr.nodelay (true);
+            Curses.mousemask (Curses.ALL_MOUSE_EVENTS);
 
             if (Curses.has_colors ()) {
                 Curses.start_color ();
@@ -330,11 +331,42 @@ namespace Receiver {
                         open_language_picker ();
                     }
                     break;
+                case Curses.KEY_MOUSE:
+                    handle_mouse ();
+                    break;
                 case Curses.KEY_RESIZE:
                     needs_redraw = true;
                     break;
                 default:
                     break;
+            }
+        }
+
+        // Wheel scrolls the list; a left click on a row selects and plays it.
+        private void handle_mouse () {
+            Curses.MEvent ev;
+            if (Curses.getmouse (out ev) == Curses.ERR) {
+                return;
+            }
+            if ((ev.bstate & Curses.BUTTON4_PRESSED) != 0) {
+                move_selection (-3);
+                return;
+            }
+            if ((ev.bstate & Curses.BUTTON5_PRESSED) != 0) {
+                move_selection (3);
+                return;
+            }
+            if ((ev.bstate & (Curses.BUTTON1_CLICKED | Curses.BUTTON1_PRESSED)) != 0) {
+                int row = ev.y;
+                // List rows occupy screen rows 1 .. list_height.
+                if (row >= 1 && row <= list_height ()) {
+                    int idx = scroll + (row - 1);
+                    if (idx >= 0 && idx < item_count ()) {
+                        selected = idx;
+                        play_selected ();
+                        needs_redraw = true;
+                    }
+                }
             }
         }
 
