@@ -82,14 +82,16 @@ namespace Receiver {
                 return 1;
             }
 
-            // Skip language/country filtering ("all" bypasses those clauses).
-            store.language_filter = "all";
-            store.country_filter = "all";
             wire_core ();
-            load_database ();
 
-            // Persist volume and last station via GSettings, shared with the GTK app.
-            AppState.get_default ().settings.bind ("volume", player, "volume", SettingsBindFlags.DEFAULT);
+            // Persist player + filter state via GSettings, shared with the GTK app.
+            var settings = AppState.get_default ().settings;
+            settings.bind ("volume", player, "volume", SettingsBindFlags.DEFAULT);
+            settings.bind ("language-filter", store, "language-filter", SettingsBindFlags.DEFAULT);
+            settings.bind ("country-filter", store, "country-filter", SettingsBindFlags.DEFAULT);
+
+            load_database ();
+            sync_filter_labels ();
             restore_last_station ();
 
             // Register MPRIS so desktop media keys control playback.
@@ -509,6 +511,27 @@ namespace Receiver {
         private void close_picker () {
             picker = PickerMode.NONE;
             needs_redraw = true;
+        }
+
+        // Rebuild the header filter labels from filter codes restored via GSettings.
+        private void sync_filter_labels () {
+            country_label = "";
+            var cf = store.country_filter;
+            if (cf != "all" && cf != "") {
+                var codes = store.get_available_country_codes ();
+                var names = store.get_available_country_names ();
+                for (int i = 0; i < codes.length; i++) {
+                    if (codes[i] == cf) {
+                        country_label = names[i];
+                        break;
+                    }
+                }
+            }
+            language_label = "";
+            var lf = store.language_filter;
+            if (lf != "all" && lf != "") {
+                language_label = Languages.translate (lf);
+            }
         }
 
         private void cycle_view (int dir) {
