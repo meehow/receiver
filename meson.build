@@ -43,6 +43,7 @@ core_sources = files(
   'src/services/lastfm.vala',
   'src/services/scrobbler.vala',
   'src/services/history_store.vala',
+  'src/services/mpris.vala',
 )
 
 core_deps = [
@@ -60,7 +61,6 @@ core_deps = [
 gui_sources = files(
   'src/main.vala',
   'src/application.vala',
-  'src/services/mpris.vala',
   'src/services/image_loader.vala',
   'src/services/song_downloader.vala',
   'src/widgets/window.vala',

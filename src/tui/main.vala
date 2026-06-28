@@ -28,7 +28,7 @@ namespace Receiver {
         NONE, COUNTRY, LANGUAGE
     }
 
-    public class Tui : Object {
+    public class Tui : Object, MprisHost {
         // Signal numbers (the GLib profile has no Posix.Signal binding).
         private const int SIGNAL_INT = 2;
         private const int SIGNAL_TERM = 15;
@@ -49,6 +49,7 @@ namespace Receiver {
 
         private StationStore store = new StationStore ();
         private Player player = new Player ();
+        private MprisService mpris;
 
         private View view = View.BROWSE;
         // Cursor and scroll position, remembered per view.
@@ -86,6 +87,9 @@ namespace Receiver {
             store.country_filter = "all";
             wire_core ();
             load_database ();
+
+            // Register MPRIS so desktop media keys control playback.
+            mpris = new MprisService (this, player);
 
             init_screen ();
 
@@ -216,6 +220,14 @@ namespace Receiver {
                 return e != null ? store.get_station_by_id (e.station_id) : null;
             }
             return station_at (selected);
+        }
+
+        // MprisHost: a terminal app can't raise a window, so this is a no-op.
+        public void raise () {
+        }
+
+        public void quit () {
+            loop.quit ();
         }
 
         // --- Input -----------------------------------------------------------

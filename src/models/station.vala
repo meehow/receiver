@@ -5,6 +5,8 @@ namespace Receiver {
     public const int SOURCE_SOMAFM = 2;
 
     public class Station : Object {
+        public const string IMAGE_BASE_URL = "https://receiver.808bits.com/images/";
+
         public int64 id { get; set; }
         public int source { get; set; }
         public string name { get; set; }

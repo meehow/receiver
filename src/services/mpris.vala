@@ -1,12 +1,19 @@
 // MPRIS2 D-Bus integration for desktop media controls
 namespace Receiver {
 
+    // Frontend hooks the MPRIS layer needs but that differ per UI: raising the
+    // app and quitting. Implemented by the GTK app and the TUI.
+    public interface MprisHost : Object {
+        public abstract void raise();
+        public abstract void quit();
+    }
+
     [DBus(name = "org.mpris.MediaPlayer2")]
     public class MprisRoot : Object {
-        private Gtk.Application app;
+        private MprisHost host;
 
-        public MprisRoot(Gtk.Application app) {
-            this.app = app;
+        public MprisRoot(MprisHost host) {
+            this.host = host;
         }
 
         public bool can_quit { get { return true; } }
@@ -18,14 +25,11 @@ namespace Receiver {
         public string[] supported_mime_types { owned get { return {}; } }
 
         public void raise() throws GLib.Error {
-            var win = app.active_window;
-            if (win != null) {
-                win.present();
-            }
+            host.raise();
         }
 
         public void quit() throws GLib.Error {
-            app.quit();
+            host.quit();
         }
     }
 
@@ -91,7 +95,7 @@ namespace Receiver {
                     meta.insert("xesam:artist", new Variant.strv({station.name}));
 
                     if (station.image_hash != 0) {
-                        meta.insert("mpris:artUrl", ImageLoader.IMAGE_BASE_URL + station.image_hash.to_string());
+                        meta.insert("mpris:artUrl", Station.IMAGE_BASE_URL + station.image_hash.to_string());
                     }
                 }
 
@@ -231,7 +235,7 @@ namespace Receiver {
     public class MprisService : Object {
         private uint owner_id;
 
-        public MprisService(Gtk.Application app, Player player) {
+        public MprisService(MprisHost host, Player player) {
             // Snap only allows simple names; Flatpak requires reverse-DNS
             var snap = Environment.get_variable("SNAP_NAME");
             var bus_name = snap != null
@@ -244,7 +248,7 @@ namespace Receiver {
                 BusNameOwnerFlags.NONE,
                 (conn) => {
                     try {
-                        conn.register_object("/org/mpris/MediaPlayer2", new MprisRoot(app));
+                        conn.register_object("/org/mpris/MediaPlayer2", new MprisRoot(host));
                         conn.register_object("/org/mpris/MediaPlayer2", new MprisPlayer(player, conn));
                         message("MPRIS D-Bus registered");
                     } catch (IOError e) {
