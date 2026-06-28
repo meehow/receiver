@@ -9,7 +9,7 @@ GST_LIBDIR = /usr/lib/x86_64-linux-gnu/gstreamer-1.0
 GST_SCANNER = /usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-scanner
 VERSION = $(shell grep "version:" meson.build | head -1 | sed "s/.*'\(.*\)'.*/\1/")
 
-.PHONY: build install clean deb run appimage \
+.PHONY: build install clean deb run run-tui appimage \
         flatpak-build flatpak-run flatpak-lint-manifest flatpak-lint-repo flatpak-submit \
         translations-check translations-update
 
@@ -31,6 +31,13 @@ run: build
 	XDG_DATA_DIRS=$(CURDIR)/data:/usr/share \
 	LOCALEDIR=$(CURDIR)/builddir/po \
 	./builddir/receiver
+
+run-tui: build
+	glib-compile-schemas data/
+	GSETTINGS_SCHEMA_DIR=$(CURDIR)/data \
+	XDG_DATA_DIRS=$(CURDIR)/data:/usr/share \
+	LOCALEDIR=$(CURDIR)/builddir/po \
+	./builddir/receiver-tui
 
 deb:
 	dpkg-buildpackage -us -uc -b
