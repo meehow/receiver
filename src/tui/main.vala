@@ -20,6 +20,9 @@ namespace Receiver {
 
         private const double VOLUME_STEP = 0.05;
 
+        // Keeps core log messages from corrupting the curses screen.
+        private static FileStream? log_stream;
+
         private MainLoop loop = new MainLoop ();
         private unowned Curses.Window scr;
         private IOChannel stdin_channel;
@@ -402,10 +405,32 @@ namespace Receiver {
             }
             return sb.str;
         }
-    }
 
-    public static int main (string[] args) {
-        Gst.init (ref args);
-        return new Tui ().run ();
+        // Redirect GLib log messages (from the core services) to a file so they
+        // don't print over the curses screen.
+        private static void redirect_logs () {
+            var dir = Path.build_filename (Environment.get_user_cache_dir (), "receiver");
+            DirUtils.create_with_parents (dir, 0755);
+            log_stream = FileStream.open (Path.build_filename (dir, "tui.log"), "w");
+            Log.set_writer_func ((level, fields) => {
+                // Drop verbose DEBUG/INFO chatter (GIO, dconf, …); keep
+                // messages, warnings and errors.
+                if ((level & (LogLevelFlags.LEVEL_DEBUG | LogLevelFlags.LEVEL_INFO)) != 0) {
+                    return LogWriterOutput.HANDLED;
+                }
+                if (log_stream != null) {
+                    log_stream.puts (Log.writer_format_fields (level, fields, false));
+                    log_stream.putc ('\n');
+                    log_stream.flush ();
+                }
+                return LogWriterOutput.HANDLED;
+            });
+        }
+
+        public static int main (string[] args) {
+            redirect_logs ();
+            Gst.init (ref args);
+            return new Tui ().run ();
+        }
     }
 }
