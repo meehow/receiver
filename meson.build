@@ -9,12 +9,18 @@ i18n = import('i18n')
 gnome = import('gnome')
 
 # Dependencies (with Vala bindings)
-gtk4_dep = dependency('gtk4', version: '>= 4.10')
-adw_dep = dependency('libadwaita-1', version: '>= 1.4')
+# Core (GUI-independent) dependencies
+glib_dep = dependency('glib-2.0')
+gobject_dep = dependency('gobject-2.0')
+gio_dep = dependency('gio-2.0')
 gst_dep = dependency('gstreamer-1.0')
 soup_dep = dependency('libsoup-3.0')
 json_dep = dependency('json-glib-1.0')
 sqlite_dep = dependency('sqlite3')
+
+# GUI (GTK frontend) dependencies
+gtk4_dep = dependency('gtk4', version: '>= 4.10')
+adw_dep = dependency('libadwaita-1', version: '>= 1.4')
 
 # ytdl subproject
 ytdl_subproject = subproject('ytdl')
@@ -24,10 +30,9 @@ ytdl_dep = ytdl_subproject.get_variable('ytdl_dep')
 add_project_arguments('-DGETTEXT_PACKAGE="' + meson.project_name() + '"', language: 'c')
 add_project_arguments('-DG_LOG_DOMAIN="receiver"', language: 'c')
 
-# Source files
-sources = files(
-  'src/main.vala',
-  'src/application.vala',
+# Core library: GUI-independent logic (models, utils, services).
+# Shared by the GTK frontend and any future frontend (e.g. a curses TUI).
+core_sources = files(
   'src/models/station.vala',
   'src/utils/metadata_parser.vala',
   'src/utils/metadata_extractor.vala',
@@ -35,12 +40,29 @@ sources = files(
   'src/services/app_state.vala',
   'src/services/station_store.vala',
   'src/services/player.vala',
-  'src/services/mpris.vala',
-  'src/services/image_loader.vala',
-  'src/services/song_downloader.vala',
   'src/services/lastfm.vala',
   'src/services/scrobbler.vala',
   'src/services/history_store.vala',
+)
+
+core_deps = [
+  glib_dep,
+  gobject_dep,
+  gio_dep,
+  gst_dep,
+  soup_dep,
+  json_dep,
+  sqlite_dep,
+]
+
+# GTK frontend sources. The three services below still depend on GTK/Adw/Gdk
+# (image_loader, mpris, song_downloader) and stay here until they are decoupled.
+gui_sources = files(
+  'src/main.vala',
+  'src/application.vala',
+  'src/services/mpris.vala',
+  'src/services/image_loader.vala',
+  'src/services/song_downloader.vala',
   'src/widgets/window.vala',
   'src/widgets/favourites_page.vala',
   'src/widgets/station_list.vala',
@@ -58,16 +80,26 @@ add_project_arguments([
 add_project_arguments('-DRECEIVER_APP_VERSION="' + meson.project_version() + '"', language: 'c')
 add_project_arguments('-DLOCALEDIR="' + get_option('prefix') / get_option('localedir') + '"', language: 'c')
 
-# Build executable
+# Build core static library
+libreceiver_core = static_library('receiver-core',
+  core_sources,
+  dependencies: core_deps,
+  install: false,
+)
+
+receiver_core_dep = declare_dependency(
+  link_with: libreceiver_core,
+  include_directories: include_directories('.'),
+  dependencies: core_deps,
+)
+
+# Build GTK executable
 executable('receiver',
-  sources,
+  gui_sources,
   dependencies: [
+    receiver_core_dep,
     gtk4_dep,
     adw_dep,
-    gst_dep,
-    soup_dep,
-    json_dep,
-    sqlite_dep,
     ytdl_dep,
   ],
   install: true
