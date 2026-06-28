@@ -60,6 +60,34 @@ namespace Curses {
         public int getmaxy ();
     }
 
+    // Mouse
+    [CCode (cname = "MEVENT", has_type_id = false)]
+    public struct MEvent {
+        public short id;
+        public int x;
+        public int y;
+        public int z;
+        public uint bstate;
+    }
+
+    [CCode (cname = "mousemask")]
+    public uint mousemask (uint newmask, out uint oldmask = null);
+    [CCode (cname = "getmouse")]
+    public int getmouse (out MEvent ev);
+
+    [CCode (cname = "KEY_MOUSE")]
+    public const int KEY_MOUSE;
+    [CCode (cname = "ALL_MOUSE_EVENTS")]
+    public const uint ALL_MOUSE_EVENTS;
+    [CCode (cname = "BUTTON1_PRESSED")]
+    public const uint BUTTON1_PRESSED;
+    [CCode (cname = "BUTTON1_CLICKED")]
+    public const uint BUTTON1_CLICKED;
+    [CCode (cname = "BUTTON4_PRESSED")]
+    public const uint BUTTON4_PRESSED;
+    [CCode (cname = "BUTTON5_PRESSED")]
+    public const uint BUTTON5_PRESSED;
+
     // Lifecycle
     [CCode (cname = "endwin")]
     public int endwin ();
