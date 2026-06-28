@@ -75,6 +75,7 @@ gui_sources = files(
 # Vala compiler arguments
 add_project_arguments([
   '--target-glib=2.76',
+  '--vapidir', meson.current_source_dir() / 'vapi',
 ], language: 'vala')
 
 add_project_arguments('-DRECEIVER_APP_VERSION="' + meson.project_version() + '"', language: 'c')
@@ -104,6 +105,22 @@ executable('receiver',
   ],
   install: true
 )
+
+# Build ncurses terminal UI (optional, second frontend over the core)
+if get_option('tui')
+  ncursesw_dep = dependency('ncursesw')
+  executable('receiver-tui',
+    files(
+      'src/tui/main.vala',
+      'vapi/posix-extras.vapi',
+    ),
+    dependencies: [
+      receiver_core_dep,
+      ncursesw_dep,
+    ],
+    install: true
+  )
+endif
 
 # GSettings schema
 gnome.compile_schemas(
