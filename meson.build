@@ -141,6 +141,16 @@ install_data('data/io.github.meehow.Receiver.desktop',
   install_dir: get_option('datadir') / 'applications'
 )
 
+# D-Bus activation service: lets the desktop activate the running instance
+# (raise it from MPRIS / background mode) instead of spawning a new process.
+configure_file(
+  input: 'data/io.github.meehow.Receiver.service.in',
+  output: 'io.github.meehow.Receiver.service',
+  configuration: {'bindir': get_option('prefix') / get_option('bindir')},
+  install: true,
+  install_dir: get_option('datadir') / 'dbus-1/services'
+)
+
 install_data('data/io.github.meehow.Receiver.metainfo.xml',
   install_dir: get_option('datadir') / 'metainfo'
 )
