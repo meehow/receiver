@@ -60,3 +60,17 @@ sudo apt install ./receiver_*.deb
 ### From source
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions and development setup.
+
+## Terminal UI
+
+Receiver also ships `receiver-tui`, an ncurses terminal client that shares the
+same station database and playback engine as the desktop app. How you launch it
+depends on how Receiver is installed:
+
+| Install method | Command |
+| --- | --- |
+| Flatpak | `flatpak run --command=receiver-tui io.github.meehow.Receiver` |
+| Snap | `receiver.receiver-tui` |
+| Debian / Ubuntu | `receiver-tui` |
+| AppImage | `./Receiver-*.AppImage --tui` |
+| From source | `make run-tui` |
