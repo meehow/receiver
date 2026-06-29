@@ -49,7 +49,7 @@
       <summary>Window height</summary>
     </key>
     <key name="run-in-background" type="b">
-      <default>true</default>
+      <default>false</default>
       <summary>Keep playing in the background</summary>
       <description>When enabled, closing the window keeps playback running in the background instead of quitting. Use Stop or the system Background Apps menu to exit.</description>
     </key>

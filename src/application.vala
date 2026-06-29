@@ -40,13 +40,10 @@ namespace Receiver {
         }
 
         // Called by the window when it hides itself instead of quitting.
-        // Tells the desktop we intend to keep running and lets the user know.
+        // Tells the desktop we intend to keep running (the system surfaces this
+        // via MPRIS controls and the Background Apps menu, so no notification).
         public void enter_background() {
             request_background_portal();
-
-            var n = new GLib.Notification(_("Receiver is playing in the background"));
-            n.set_body(_("Use the system media controls or Stop to exit."));
-            send_notification("background-playback", n);
         }
 
         // Best-effort Background portal request over D-Bus (no libportal needed,
