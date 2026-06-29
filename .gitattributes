@@ -1,1 +1,6 @@
 subprojects/ytdl/data/*.js linguist-vendored
+
+# Translation catalogs are generated; collapse them in diffs and keep them
+# out of language statistics.
+po/*.po linguist-generated=true
+po/*.pot linguist-generated=true
