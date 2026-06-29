@@ -43,6 +43,14 @@ apps:
       - desktop
     slots:
       - receiver-mpris
+  receiver-tui:
+    command: usr/bin/receiver-tui
+    extensions: [gnome]
+    environment:
+      GIO_USE_PROXY_RESOLVER: gnome
+    plugs:
+      - network
+      - audio-playback
 
 layout:
   /usr/share/receiver:

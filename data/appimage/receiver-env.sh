@@ -23,3 +23,10 @@ unset GDK_BACKEND
 # Unset GTK_THEME — Libadwaita manages its own stylesheet
 # Setting GTK_THEME conflicts with AdwStyleManager
 unset GTK_THEME
+
+# Launch the bundled terminal UI with `./Receiver-*.AppImage --tui`.
+# The receiver-tui binary ships in the same AppDir and reuses the env above.
+if [ "${1:-}" = "--tui" ]; then
+    shift
+    exec "${APPDIR}/usr/bin/receiver-tui" "$@"
+fi
