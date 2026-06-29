@@ -1,4 +1,5 @@
 src/main.vala
+src/application.vala
 src/utils/languages.vala
 src/widgets/window.vala
 src/widgets/favourites_page.vala

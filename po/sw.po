@@ -3,108 +3,116 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-02 22:36+0200\n"
+"POT-Creation-Date: 2026-06-30 00:21+0200\n"
 "Language: sw\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/widgets/window.vala:54
+#: src/application.vala:51
+msgid "Receiver keeps playing radio after the window is closed"
+msgstr "Receiver inaendelea kucheza redio baada ya dirisha kufungwa"
+
+#: src/widgets/window.vala:65
 msgid "Menu"
 msgstr "Menyu"
 
 #. History page (pushed on demand)
-#: src/widgets/window.vala:64 src/widgets/window.vala:120
+#: src/widgets/window.vala:75 src/widgets/window.vala:132
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "Historia ya Nyimbo"
 
-#: src/widgets/window.vala:65
+#: src/widgets/window.vala:76
+msgid "Keep Playing in Background"
+msgstr "Endelea kucheza chinichini"
+
+#: src/widgets/window.vala:77
 msgid "About Receiver"
 msgstr "Kuhusu Receiver"
 
-#: src/widgets/window.vala:95
+#: src/widgets/window.vala:107
 msgid "Browse"
 msgstr "Vinjari"
 
-#: src/widgets/window.vala:99
+#: src/widgets/window.vala:111
 msgid "Favourites"
 msgstr "Vipendwa"
 
 #. Station info page (pushed on demand)
-#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+#: src/widgets/window.vala:137 src/widgets/station_info_page.vala:25
 msgid "Station Info"
 msgstr "Maelezo ya kituo"
 
-#: src/widgets/window.vala:151
+#: src/widgets/window.vala:163
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Vituo %d vimepakiwa"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:168 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Hitilafu: %s"
 
-#: src/widgets/window.vala:160
+#: src/widgets/window.vala:172
 #, c-format
 msgid "Playback error: %s"
 msgstr "Hitilafu ya uchezaji: %s"
 
-#: src/widgets/window.vala:173
+#: src/widgets/window.vala:185
 #, c-format
 msgid "Now playing: %s"
 msgstr "Inacheza sasa: %s"
 
-#: src/widgets/window.vala:190
+#: src/widgets/window.vala:202
 #, c-format
 msgid "Resuming: %s"
 msgstr "Inaendelea: %s"
 
-#: src/widgets/window.vala:217
+#: src/widgets/window.vala:229
 msgid "Cancel Last.fm Authorization"
 msgstr "Ghairi uidhinishaji wa Last.fm"
 
-#: src/widgets/window.vala:219
+#: src/widgets/window.vala:231
 msgid "Disconnect from Last.fm"
 msgstr "Tenganisha kutoka Last.fm"
 
-#: src/widgets/window.vala:221
+#: src/widgets/window.vala:233
 msgid "Connect to Last.fm"
 msgstr "Unganisha na Last.fm"
 
-#: src/widgets/window.vala:229
+#: src/widgets/window.vala:241
 msgid "Last.fm authorization cancelled"
 msgstr "Uidhinishaji wa Last.fm umeghairiwa"
 
-#: src/widgets/window.vala:235
+#: src/widgets/window.vala:247
 msgid "Disconnected from Last.fm"
 msgstr "Umetenganishwa kutoka Last.fm"
 
-#: src/widgets/window.vala:239
+#: src/widgets/window.vala:251
 msgid "Connecting to Last.fm…"
 msgstr "Inaunganisha na Last.fm…"
 
-#: src/widgets/window.vala:243
+#: src/widgets/window.vala:255
 msgid "Failed to connect to Last.fm"
 msgstr "Imeshindwa kuunganisha na Last.fm"
 
-#: src/widgets/window.vala:250
+#: src/widgets/window.vala:262
 msgid "Grant access in your browser…"
 msgstr "Toa ufikiaji katika kivinjari chako…"
 
-#: src/widgets/window.vala:258
+#: src/widgets/window.vala:270
 msgid "Last.fm authorization timed out"
 msgstr "Muda wa uidhinishaji wa Last.fm umekwisha"
 
-#: src/widgets/window.vala:266
+#: src/widgets/window.vala:278
 msgid "Connected to Last.fm"
 msgstr "Umeunganishwa na Last.fm"
 
-#: src/widgets/window.vala:287
+#: src/widgets/window.vala:299
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr ""
 "Gundua vituo vya redio 30,000+ vilivyothibitishwa kutoka ulimwenguni kote"
@@ -118,61 +126,61 @@ msgid "Star stations while browsing to add them here"
 msgstr "Weka nyota kwenye vituo unapovinjari ili kuviongeza hapa"
 
 #. Search entry
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:46
 msgid "Search stations…"
 msgstr "Tafuta vituo…"
 
-#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
+#: src/widgets/station_list.vala:58 src/widgets/station_list.vala:242
 msgid "All Languages"
 msgstr "Lugha zote"
 
-#: src/widgets/station_list.vala:57
+#: src/widgets/station_list.vala:59
 msgid "Filter by language"
 msgstr "Chuja kwa lugha"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+#: src/widgets/station_list.vala:62 src/widgets/station_list.vala:255
 msgid "All Countries"
 msgstr "Nchi zote"
 
-#: src/widgets/station_list.vala:61
+#: src/widgets/station_list.vala:63
 msgid "Filter by country"
 msgstr "Chuja kwa nchi"
 
-#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
+#: src/widgets/station_list.vala:130 src/widgets/station_list.vala:321
 msgid "No Stations"
 msgstr "Hakuna vituo"
 
-#: src/widgets/station_list.vala:189
+#: src/widgets/station_list.vala:203
 msgid "Loading…"
 msgstr "Inapakia…"
 
-#: src/widgets/station_list.vala:293
+#: src/widgets/station_list.vala:307
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u kati ya %d vituo"
 
-#: src/widgets/station_list.vala:294
+#: src/widgets/station_list.vala:308
 #, c-format
 msgid "Stations: %d"
 msgstr "Vituo: %d"
 
-#: src/widgets/station_list.vala:306
+#: src/widgets/station_list.vala:320
 msgid "Loading Stations"
 msgstr "Vituo vinapakiwa"
 
-#: src/widgets/station_list.vala:307
+#: src/widgets/station_list.vala:321
 msgid "No Results"
 msgstr "Hakuna matokeo"
 
-#: src/widgets/station_list.vala:309
+#: src/widgets/station_list.vala:323
 msgid "Please wait…"
 msgstr "Tafadhali subiri…"
 
-#: src/widgets/station_list.vala:310
+#: src/widgets/station_list.vala:324
 msgid "No stations match your search"
 msgstr "Hakuna kituo kinacholingana na utafutaji wako"
 
-#: src/widgets/station_list.vala:310
+#: src/widgets/station_list.vala:324
 msgid "Could not load stations"
 msgstr "Haikuweza kupakia vituo"
 
@@ -205,25 +213,29 @@ msgid "Stream URL"
 msgstr "URL ya utiririshaji"
 
 #. Controls row
-#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:220
 msgid "Not Playing"
 msgstr "Haichezi"
 
-#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
+#: src/widgets/player_bar.vala:139 src/widgets/player_bar.vala:223
 msgid "Select a station"
 msgstr "Chagua kituo"
 
-#: src/widgets/player_bar.vala:199
+#: src/widgets/player_bar.vala:179
+msgid "Buffering…"
+msgstr "Inahifadhi kwa muda…"
+
+#: src/widgets/player_bar.vala:182 src/widgets/player_bar.vala:240
+msgid "Now playing"
+msgstr "Inacheza sasa"
+
+#: src/widgets/player_bar.vala:210
 msgid "Paused"
 msgstr "Imesimamishwa"
 
-#: src/widgets/player_bar.vala:204
+#: src/widgets/player_bar.vala:215
 msgid "Reconnecting…"
 msgstr "Inaunganisha tena…"
-
-#: src/widgets/player_bar.vala:229
-msgid "Now playing"
-msgstr "Inacheza sasa"
 
 #. indeterminate while searching
 #: src/services/song_downloader.vala:28
