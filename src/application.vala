@@ -16,10 +16,27 @@ namespace Receiver {
 
         // MprisHost
         public void raise() {
-            var win = active_window;
-            if (win != null) {
-                win.present();
+            present_main_window();
+        }
+
+        // Bring the main window to the front, re-showing it if it was hidden by
+        // background mode. active_window is null while the only window is hidden,
+        // so look through the full window list (which still includes it) and only
+        // build a fresh window when there genuinely isn't one.
+        private void present_main_window() {
+            Gtk.Window? win = active_window;
+            if (win == null) {
+                unowned List<Gtk.Window> wins = get_windows();
+                if (wins != null) {
+                    win = wins.data;
+                }
             }
+            if (win == null) {
+                win = new MainWindow(this);
+                open_database();
+            }
+            win.set_visible(true);
+            win.present();
         }
 
         // Called by the window when it hides itself instead of quitting.
@@ -109,14 +126,7 @@ namespace Receiver {
         }
 
         protected override void activate() {
-            var window = this.active_window;
-            if (window == null) {
-                window = new MainWindow(this);
-            }
-            window.present();
-
-            // Open database after window is shown
-            open_database();
+            present_main_window();
         }
 
 

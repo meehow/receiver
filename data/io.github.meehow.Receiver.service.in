@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=io.github.meehow.Receiver
+Exec=@bindir@/receiver --gapplication-service
