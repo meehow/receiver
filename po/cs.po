@@ -3,298 +3,296 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 00:21+0200\n"
+"POT-Creation-Date: 2026-06-30 01:14+0200\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: src/application.vala:51
+#: src/application.vala
 msgid "Receiver keeps playing radio after the window is closed"
 msgstr "Receiver po zavření okna pokračuje v přehrávání rádia"
 
-#: src/widgets/window.vala:65
+#: src/widgets/window.vala
 msgid "Menu"
 msgstr "Nabídka"
 
 #. History page (pushed on demand)
-#: src/widgets/window.vala:75 src/widgets/window.vala:132
-#: src/widgets/history_page.vala:21
+#: src/widgets/window.vala src/widgets/history_page.vala
 msgid "Song History"
 msgstr "Historie skladeb"
 
-#: src/widgets/window.vala:76
+#: src/widgets/window.vala
 msgid "Keep Playing in Background"
 msgstr "Pokračovat v přehrávání na pozadí"
 
-#: src/widgets/window.vala:77
+#: src/widgets/window.vala
 msgid "About Receiver"
 msgstr "O aplikaci Receiver"
 
-#: src/widgets/window.vala:107
+#: src/widgets/window.vala
 msgid "Browse"
 msgstr "Procházet"
 
-#: src/widgets/window.vala:111
+#: src/widgets/window.vala
 msgid "Favourites"
 msgstr "Oblíbené"
 
 #. Station info page (pushed on demand)
-#: src/widgets/window.vala:137 src/widgets/station_info_page.vala:25
+#: src/widgets/window.vala src/widgets/station_info_page.vala
 msgid "Station Info"
 msgstr "Informace o stanici"
 
-#: src/widgets/window.vala:163
+#: src/widgets/window.vala
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Načteno %d stanic"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:168 src/services/song_downloader.vala:69
-#: src/services/song_downloader.vala:148
+#: src/widgets/window.vala src/services/song_downloader.vala
 #, c-format
 msgid "Error: %s"
 msgstr "Chyba: %s"
 
-#: src/widgets/window.vala:172
+#: src/widgets/window.vala
 #, c-format
 msgid "Playback error: %s"
 msgstr "Chyba přehrávání: %s"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala
 #, c-format
 msgid "Now playing: %s"
 msgstr "Nyní hraje: %s"
 
-#: src/widgets/window.vala:202
+#: src/widgets/window.vala
 #, c-format
 msgid "Resuming: %s"
 msgstr "Obnovení: %s"
 
-#: src/widgets/window.vala:229
+#: src/widgets/window.vala
 msgid "Cancel Last.fm Authorization"
 msgstr "Zrušit autorizaci Last.fm"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala
 msgid "Disconnect from Last.fm"
 msgstr "Odpojit od Last.fm"
 
-#: src/widgets/window.vala:233
+#: src/widgets/window.vala
 msgid "Connect to Last.fm"
 msgstr "Připojit k Last.fm"
 
-#: src/widgets/window.vala:241
+#: src/widgets/window.vala
 msgid "Last.fm authorization cancelled"
 msgstr "Autorizace Last.fm zrušena"
 
-#: src/widgets/window.vala:247
+#: src/widgets/window.vala
 msgid "Disconnected from Last.fm"
 msgstr "Odpojeno od Last.fm"
 
-#: src/widgets/window.vala:251
+#: src/widgets/window.vala
 msgid "Connecting to Last.fm…"
 msgstr "Připojování k Last.fm…"
 
-#: src/widgets/window.vala:255
+#: src/widgets/window.vala
 msgid "Failed to connect to Last.fm"
 msgstr "Nepodařilo se připojit k Last.fm"
 
-#: src/widgets/window.vala:262
+#: src/widgets/window.vala
 msgid "Grant access in your browser…"
 msgstr "Udělte přístup ve svém prohlížeči…"
 
-#: src/widgets/window.vala:270
+#: src/widgets/window.vala
 msgid "Last.fm authorization timed out"
 msgstr "Autorizace Last.fm vypršela"
 
-#: src/widgets/window.vala:278
+#: src/widgets/window.vala
 msgid "Connected to Last.fm"
 msgstr "Připojeno k Last.fm"
 
-#: src/widgets/window.vala:299
+#: src/widgets/window.vala
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Objevte více než 30 000 ověřených rozhlasových stanic z celého světa"
 
-#: src/widgets/favourites_page.vala:25
+#: src/widgets/favourites_page.vala
 msgid "No Favourites"
 msgstr "Žádné oblíbené"
 
-#: src/widgets/favourites_page.vala:26
+#: src/widgets/favourites_page.vala
 msgid "Star stations while browsing to add them here"
 msgstr "Při procházení označte stanice hvězdičkou a přidejte je sem"
 
 #. Search entry
-#: src/widgets/station_list.vala:46
+#: src/widgets/station_list.vala
 msgid "Search stations…"
 msgstr "Hledat stanice…"
 
-#: src/widgets/station_list.vala:58 src/widgets/station_list.vala:242
+#: src/widgets/station_list.vala
 msgid "All Languages"
 msgstr "Všechny jazyky"
 
-#: src/widgets/station_list.vala:59
+#: src/widgets/station_list.vala
 msgid "Filter by language"
 msgstr "Filtrovat podle jazyka"
 
-#: src/widgets/station_list.vala:62 src/widgets/station_list.vala:255
+#: src/widgets/station_list.vala
 msgid "All Countries"
 msgstr "Všechny země"
 
-#: src/widgets/station_list.vala:63
+#: src/widgets/station_list.vala
 msgid "Filter by country"
 msgstr "Filtrovat podle země"
 
-#: src/widgets/station_list.vala:130 src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Stations"
 msgstr "Žádné stanice"
 
-#: src/widgets/station_list.vala:203
+#: src/widgets/station_list.vala
 msgid "Loading…"
 msgstr "Načítání…"
 
-#: src/widgets/station_list.vala:307
+#: src/widgets/station_list.vala
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u z %d stanic"
 
-#: src/widgets/station_list.vala:308
+#: src/widgets/station_list.vala
 #, c-format
 msgid "Stations: %d"
 msgstr "Stanic: %d"
 
-#: src/widgets/station_list.vala:320
+#: src/widgets/station_list.vala
 msgid "Loading Stations"
 msgstr "Načítání stanic"
 
-#: src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Results"
 msgstr "Žádné výsledky"
 
-#: src/widgets/station_list.vala:323
+#: src/widgets/station_list.vala
 msgid "Please wait…"
 msgstr "Čekejte prosím…"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "No stations match your search"
 msgstr "Žádné stanice neodpovídají vašemu hledání"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "Could not load stations"
 msgstr "Nepodařilo se načíst stanice"
 
-#: src/widgets/station_info_page.vala:48
+#: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stanice"
 
-#: src/widgets/station_info_page.vala:52
+#: src/widgets/station_info_page.vala
 msgid "Country"
 msgstr "Země"
 
-#: src/widgets/station_info_page.vala:56
+#: src/widgets/station_info_page.vala
 msgid "Tags"
 msgstr "Štítky"
 
-#: src/widgets/station_info_page.vala:61
+#: src/widgets/station_info_page.vala
 msgid "Website"
 msgstr "Webové stránky"
 
-#: src/widgets/station_info_page.vala:66
+#: src/widgets/station_info_page.vala
 msgid "Codec"
 msgstr "Kodek"
 
-#: src/widgets/station_info_page.vala:70
+#: src/widgets/station_info_page.vala
 msgid "Bitrate"
 msgstr "Datový tok"
 
-#: src/widgets/station_info_page.vala:74
+#: src/widgets/station_info_page.vala
 msgid "Stream URL"
 msgstr "URL streamu"
 
 #. Controls row
-#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:220
+#: src/widgets/player_bar.vala
 msgid "Not Playing"
 msgstr "Nepřehrává se"
 
-#: src/widgets/player_bar.vala:139 src/widgets/player_bar.vala:223
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Vyberte stanici"
 
-#: src/widgets/player_bar.vala:179
+#: src/widgets/player_bar.vala
 msgid "Buffering…"
 msgstr "Ukládání do vyrovnávací paměti…"
 
-#: src/widgets/player_bar.vala:182 src/widgets/player_bar.vala:240
+#: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Nyní hraje"
 
-#: src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala
 msgid "Paused"
 msgstr "Pozastaveno"
 
-#: src/widgets/player_bar.vala:215
+#: src/widgets/player_bar.vala
 msgid "Reconnecting…"
 msgstr "Opětovné připojování…"
 
 #. indeterminate while searching
-#: src/services/song_downloader.vala:28
+#: src/services/song_downloader.vala
 msgid "Searching YouTube…"
 msgstr "Hledání na YouTube…"
 
-#: src/services/song_downloader.vala:42
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Search failed: %s"
 msgstr "Hledání selhalo: %s"
 
-#: src/services/song_downloader.vala:48
+#: src/services/song_downloader.vala
 msgid "No YouTube results found"
 msgstr "Nebyly nalezeny žádné výsledky na YouTube"
 
-#: src/services/song_downloader.vala:62
+#: src/services/song_downloader.vala
 msgid "All results unavailable"
 msgstr "Všechny výsledky jsou nedostupné"
 
-#: src/services/song_downloader.vala:94
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Downloading: %s"
 msgstr "Stahování: %s"
 
 #. Clean up partial file
-#: src/services/song_downloader.vala:131
+#: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Zrušeno"
 
-#: src/services/song_downloader.vala:140
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Download failed: %s"
 msgstr "Stahování selhalo: %s"
 
-#: src/services/song_downloader.vala:142
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Saved: %s"
 msgstr "Uloženo: %s"
 
-#: src/widgets/download_button.vala:30
+#: src/widgets/download_button.vala
 msgid "Download song"
 msgstr "Stáhnout skladbu"
 
-#: src/widgets/download_button.vala:45
+#: src/widgets/download_button.vala
 msgid "Cancel download"
 msgstr "Zrušit stahování"
 
-#: src/widgets/history_page.vala:31
+#: src/widgets/history_page.vala
 msgid "No Songs Yet"
 msgstr "Zatím žádné skladby"
 
-#: src/widgets/history_page.vala:32
+#: src/widgets/history_page.vala
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "Skladby se zde zobrazí při poslechu rozhlasových stanic"
 
-#: src/widgets/history_page.vala:150
+#: src/widgets/history_page.vala
 msgid "Just now"
 msgstr "Právě teď"
 
-#: src/widgets/history_page.vala:151
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
@@ -302,7 +300,7 @@ msgstr[0] "před %d minutou"
 msgstr[1] "před %d minutami"
 msgstr[2] "před %d minutami"
 
-#: src/widgets/history_page.vala:152
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -310,7 +308,7 @@ msgstr[0] "před %d hodinou"
 msgstr[1] "před %d hodinami"
 msgstr[2] "před %d hodinami"
 
-#: src/widgets/history_page.vala:153
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"

@@ -3,311 +3,309 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 00:21+0200\n"
+"POT-Creation-Date: 2026-06-30 01:14+0200\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/application.vala:51
+#: src/application.vala
 msgid "Receiver keeps playing radio after the window is closed"
 msgstr "Receiver tiếp tục phát radio sau khi cửa sổ được đóng"
 
-#: src/widgets/window.vala:65
+#: src/widgets/window.vala
 msgid "Menu"
 msgstr "Menu"
 
 #. History page (pushed on demand)
-#: src/widgets/window.vala:75 src/widgets/window.vala:132
-#: src/widgets/history_page.vala:21
+#: src/widgets/window.vala src/widgets/history_page.vala
 msgid "Song History"
 msgstr "Lịch sử bài hát"
 
-#: src/widgets/window.vala:76
+#: src/widgets/window.vala
 msgid "Keep Playing in Background"
 msgstr "Tiếp tục phát ở chế độ nền"
 
-#: src/widgets/window.vala:77
+#: src/widgets/window.vala
 msgid "About Receiver"
 msgstr "Giới thiệu Receiver"
 
-#: src/widgets/window.vala:107
+#: src/widgets/window.vala
 msgid "Browse"
 msgstr "Duyệt"
 
-#: src/widgets/window.vala:111
+#: src/widgets/window.vala
 msgid "Favourites"
 msgstr "Yêu thích"
 
 #. Station info page (pushed on demand)
-#: src/widgets/window.vala:137 src/widgets/station_info_page.vala:25
+#: src/widgets/window.vala src/widgets/station_info_page.vala
 msgid "Station Info"
 msgstr "Thông tin đài"
 
-#: src/widgets/window.vala:163
+#: src/widgets/window.vala
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Đã tải %d đài"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:168 src/services/song_downloader.vala:69
-#: src/services/song_downloader.vala:148
+#: src/widgets/window.vala src/services/song_downloader.vala
 #, c-format
 msgid "Error: %s"
 msgstr "Lỗi: %s"
 
-#: src/widgets/window.vala:172
+#: src/widgets/window.vala
 #, c-format
 msgid "Playback error: %s"
 msgstr "Lỗi phát: %s"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala
 #, c-format
 msgid "Now playing: %s"
 msgstr "Đang phát: %s"
 
-#: src/widgets/window.vala:202
+#: src/widgets/window.vala
 #, c-format
 msgid "Resuming: %s"
 msgstr "Tiếp tục: %s"
 
-#: src/widgets/window.vala:229
+#: src/widgets/window.vala
 msgid "Cancel Last.fm Authorization"
 msgstr "Hủy ủy quyền Last.fm"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala
 msgid "Disconnect from Last.fm"
 msgstr "Ngắt kết nối Last.fm"
 
-#: src/widgets/window.vala:233
+#: src/widgets/window.vala
 msgid "Connect to Last.fm"
 msgstr "Kết nối Last.fm"
 
-#: src/widgets/window.vala:241
+#: src/widgets/window.vala
 msgid "Last.fm authorization cancelled"
 msgstr "Đã hủy ủy quyền Last.fm"
 
-#: src/widgets/window.vala:247
+#: src/widgets/window.vala
 msgid "Disconnected from Last.fm"
 msgstr "Đã ngắt kết nối Last.fm"
 
-#: src/widgets/window.vala:251
+#: src/widgets/window.vala
 msgid "Connecting to Last.fm…"
 msgstr "Đang kết nối Last.fm…"
 
-#: src/widgets/window.vala:255
+#: src/widgets/window.vala
 msgid "Failed to connect to Last.fm"
 msgstr "Không thể kết nối Last.fm"
 
-#: src/widgets/window.vala:262
+#: src/widgets/window.vala
 msgid "Grant access in your browser…"
 msgstr "Cấp quyền truy cập trong trình duyệt…"
 
-#: src/widgets/window.vala:270
+#: src/widgets/window.vala
 msgid "Last.fm authorization timed out"
 msgstr "Ủy quyền Last.fm đã hết hạn"
 
-#: src/widgets/window.vala:278
+#: src/widgets/window.vala
 msgid "Connected to Last.fm"
 msgstr "Đã kết nối Last.fm"
 
-#: src/widgets/window.vala:299
+#: src/widgets/window.vala
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr ""
 "Khám phá hơn 30.000 đài phát thanh đã xác minh từ khắp nơi trên thế giới"
 
-#: src/widgets/favourites_page.vala:25
+#: src/widgets/favourites_page.vala
 msgid "No Favourites"
 msgstr "Không có yêu thích"
 
-#: src/widgets/favourites_page.vala:26
+#: src/widgets/favourites_page.vala
 msgid "Star stations while browsing to add them here"
 msgstr "Đánh dấu sao các đài khi duyệt để thêm vào đây"
 
 #. Search entry
-#: src/widgets/station_list.vala:46
+#: src/widgets/station_list.vala
 msgid "Search stations…"
 msgstr "Tìm đài…"
 
-#: src/widgets/station_list.vala:58 src/widgets/station_list.vala:242
+#: src/widgets/station_list.vala
 msgid "All Languages"
 msgstr "Tất cả ngôn ngữ"
 
-#: src/widgets/station_list.vala:59
+#: src/widgets/station_list.vala
 msgid "Filter by language"
 msgstr "Lọc theo ngôn ngữ"
 
-#: src/widgets/station_list.vala:62 src/widgets/station_list.vala:255
+#: src/widgets/station_list.vala
 msgid "All Countries"
 msgstr "Tất cả quốc gia"
 
-#: src/widgets/station_list.vala:63
+#: src/widgets/station_list.vala
 msgid "Filter by country"
 msgstr "Lọc theo quốc gia"
 
-#: src/widgets/station_list.vala:130 src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Stations"
 msgstr "Không có đài"
 
-#: src/widgets/station_list.vala:203
+#: src/widgets/station_list.vala
 msgid "Loading…"
 msgstr "Đang tải…"
 
-#: src/widgets/station_list.vala:307
+#: src/widgets/station_list.vala
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u / %d đài"
 
-#: src/widgets/station_list.vala:308
+#: src/widgets/station_list.vala
 #, c-format
 msgid "Stations: %d"
 msgstr "Đài: %d"
 
-#: src/widgets/station_list.vala:320
+#: src/widgets/station_list.vala
 msgid "Loading Stations"
 msgstr "Đang tải các đài"
 
-#: src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Results"
 msgstr "Không có kết quả"
 
-#: src/widgets/station_list.vala:323
+#: src/widgets/station_list.vala
 msgid "Please wait…"
 msgstr "Vui lòng đợi…"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "No stations match your search"
 msgstr "Không có đài nào khớp với tìm kiếm của bạn"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "Could not load stations"
 msgstr "Không thể tải các đài"
 
-#: src/widgets/station_info_page.vala:48
+#: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Đài"
 
-#: src/widgets/station_info_page.vala:52
+#: src/widgets/station_info_page.vala
 msgid "Country"
 msgstr "Quốc gia"
 
-#: src/widgets/station_info_page.vala:56
+#: src/widgets/station_info_page.vala
 msgid "Tags"
 msgstr "Thẻ"
 
-#: src/widgets/station_info_page.vala:61
+#: src/widgets/station_info_page.vala
 msgid "Website"
 msgstr "Trang web"
 
-#: src/widgets/station_info_page.vala:66
+#: src/widgets/station_info_page.vala
 msgid "Codec"
 msgstr "Codec"
 
-#: src/widgets/station_info_page.vala:70
+#: src/widgets/station_info_page.vala
 msgid "Bitrate"
 msgstr "Tốc độ bit"
 
-#: src/widgets/station_info_page.vala:74
+#: src/widgets/station_info_page.vala
 msgid "Stream URL"
 msgstr "URL luồng phát"
 
 #. Controls row
-#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:220
+#: src/widgets/player_bar.vala
 msgid "Not Playing"
 msgstr "Không phát"
 
-#: src/widgets/player_bar.vala:139 src/widgets/player_bar.vala:223
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Chọn một đài"
 
-#: src/widgets/player_bar.vala:179
+#: src/widgets/player_bar.vala
 msgid "Buffering…"
 msgstr "Đang đệm…"
 
-#: src/widgets/player_bar.vala:182 src/widgets/player_bar.vala:240
+#: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Đang phát"
 
-#: src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala
 msgid "Paused"
 msgstr "Tạm dừng"
 
-#: src/widgets/player_bar.vala:215
+#: src/widgets/player_bar.vala
 msgid "Reconnecting…"
 msgstr "Đang kết nối lại…"
 
 #. indeterminate while searching
-#: src/services/song_downloader.vala:28
+#: src/services/song_downloader.vala
 msgid "Searching YouTube…"
 msgstr "Đang tìm trên YouTube…"
 
-#: src/services/song_downloader.vala:42
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Search failed: %s"
 msgstr "Tìm kiếm thất bại: %s"
 
-#: src/services/song_downloader.vala:48
+#: src/services/song_downloader.vala
 msgid "No YouTube results found"
 msgstr "Không tìm thấy kết quả YouTube"
 
-#: src/services/song_downloader.vala:62
+#: src/services/song_downloader.vala
 msgid "All results unavailable"
 msgstr "Tất cả kết quả không khả dụng"
 
-#: src/services/song_downloader.vala:94
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Downloading: %s"
 msgstr "Đang tải: %s"
 
 #. Clean up partial file
-#: src/services/song_downloader.vala:131
+#: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Đã hủy"
 
-#: src/services/song_downloader.vala:140
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Download failed: %s"
 msgstr "Tải thất bại: %s"
 
-#: src/services/song_downloader.vala:142
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Saved: %s"
 msgstr "Đã lưu: %s"
 
-#: src/widgets/download_button.vala:30
+#: src/widgets/download_button.vala
 msgid "Download song"
 msgstr "Tải bài hát"
 
-#: src/widgets/download_button.vala:45
+#: src/widgets/download_button.vala
 msgid "Cancel download"
 msgstr "Hủy tải"
 
-#: src/widgets/history_page.vala:31
+#: src/widgets/history_page.vala
 msgid "No Songs Yet"
 msgstr "Chưa có bài hát nào"
 
-#: src/widgets/history_page.vala:32
+#: src/widgets/history_page.vala
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "Bài hát sẽ xuất hiện tại đây khi bạn nghe các đài phát thanh"
 
-#: src/widgets/history_page.vala:150
+#: src/widgets/history_page.vala
 msgid "Just now"
 msgstr "Vừa xong"
 
-#: src/widgets/history_page.vala:151
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d phút trước"
 
-#: src/widgets/history_page.vala:152
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d giờ trước"
 
-#: src/widgets/history_page.vala:153
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"

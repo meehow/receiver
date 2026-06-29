@@ -3,312 +3,310 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 00:21+0200\n"
+"POT-Creation-Date: 2026-06-30 01:14+0200\n"
 "Language: ne\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/application.vala:51
+#: src/application.vala
 msgid "Receiver keeps playing radio after the window is closed"
 msgstr "विन्डो बन्द भएपछि पनि Receiver ले रेडियो बजाउन जारी राख्छ"
 
-#: src/widgets/window.vala:65
+#: src/widgets/window.vala
 msgid "Menu"
 msgstr "मेनु"
 
 #. History page (pushed on demand)
-#: src/widgets/window.vala:75 src/widgets/window.vala:132
-#: src/widgets/history_page.vala:21
+#: src/widgets/window.vala src/widgets/history_page.vala
 msgid "Song History"
 msgstr "गीत इतिहास"
 
-#: src/widgets/window.vala:76
+#: src/widgets/window.vala
 msgid "Keep Playing in Background"
 msgstr "पृष्ठभूमिमा बजाउन जारी राख्नुहोस्"
 
-#: src/widgets/window.vala:77
+#: src/widgets/window.vala
 msgid "About Receiver"
 msgstr "Receiver बारेमा"
 
-#: src/widgets/window.vala:107
+#: src/widgets/window.vala
 msgid "Browse"
 msgstr "ब्राउज गर्नुहोस्"
 
-#: src/widgets/window.vala:111
+#: src/widgets/window.vala
 msgid "Favourites"
 msgstr "मनपर्ने"
 
 #. Station info page (pushed on demand)
-#: src/widgets/window.vala:137 src/widgets/station_info_page.vala:25
+#: src/widgets/window.vala src/widgets/station_info_page.vala
 msgid "Station Info"
 msgstr "स्टेशन जानकारी"
 
-#: src/widgets/window.vala:163
+#: src/widgets/window.vala
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d स्टेशनहरू लोड भए"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:168 src/services/song_downloader.vala:69
-#: src/services/song_downloader.vala:148
+#: src/widgets/window.vala src/services/song_downloader.vala
 #, c-format
 msgid "Error: %s"
 msgstr "त्रुटि: %s"
 
-#: src/widgets/window.vala:172
+#: src/widgets/window.vala
 #, c-format
 msgid "Playback error: %s"
 msgstr "प्लेब्याक त्रुटि: %s"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala
 #, c-format
 msgid "Now playing: %s"
 msgstr "अहिले बजिरहेको छ: %s"
 
-#: src/widgets/window.vala:202
+#: src/widgets/window.vala
 #, c-format
 msgid "Resuming: %s"
 msgstr "पुनः सुरु हुँदैछ: %s"
 
-#: src/widgets/window.vala:229
+#: src/widgets/window.vala
 msgid "Cancel Last.fm Authorization"
 msgstr "Last.fm प्राधिकरण रद्द गर्नुहोस्"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala
 msgid "Disconnect from Last.fm"
 msgstr "Last.fm बाट विच्छेद गर्नुहोस्"
 
-#: src/widgets/window.vala:233
+#: src/widgets/window.vala
 msgid "Connect to Last.fm"
 msgstr "Last.fm मा जडान गर्नुहोस्"
 
-#: src/widgets/window.vala:241
+#: src/widgets/window.vala
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm प्राधिकरण रद्द भयो"
 
-#: src/widgets/window.vala:247
+#: src/widgets/window.vala
 msgid "Disconnected from Last.fm"
 msgstr "Last.fm बाट विच्छेद भयो"
 
-#: src/widgets/window.vala:251
+#: src/widgets/window.vala
 msgid "Connecting to Last.fm…"
 msgstr "Last.fm मा जडान गर्दै…"
 
-#: src/widgets/window.vala:255
+#: src/widgets/window.vala
 msgid "Failed to connect to Last.fm"
 msgstr "Last.fm मा जडान हुन सकेन"
 
-#: src/widgets/window.vala:262
+#: src/widgets/window.vala
 msgid "Grant access in your browser…"
 msgstr "तपाईंको ब्राउजरमा पहुँच दिनुहोस्…"
 
-#: src/widgets/window.vala:270
+#: src/widgets/window.vala
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm प्राधिकरण समयसीमा समाप्त"
 
-#: src/widgets/window.vala:278
+#: src/widgets/window.vala
 msgid "Connected to Last.fm"
 msgstr "Last.fm मा जडान भयो"
 
-#: src/widgets/window.vala:299
+#: src/widgets/window.vala
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "विश्वभरबाट 30,000+ प्रमाणित रेडियो स्टेशनहरू पत्ता लगाउनुहोस्"
 
-#: src/widgets/favourites_page.vala:25
+#: src/widgets/favourites_page.vala
 msgid "No Favourites"
 msgstr "कुनै मनपर्ने छैन"
 
-#: src/widgets/favourites_page.vala:26
+#: src/widgets/favourites_page.vala
 msgid "Star stations while browsing to add them here"
 msgstr "यहाँ थप्न ब्राउज गर्दा स्टेशनहरूमा तारा लगाउनुहोस्"
 
 #. Search entry
-#: src/widgets/station_list.vala:46
+#: src/widgets/station_list.vala
 msgid "Search stations…"
 msgstr "स्टेशनहरू खोज्नुहोस्…"
 
-#: src/widgets/station_list.vala:58 src/widgets/station_list.vala:242
+#: src/widgets/station_list.vala
 msgid "All Languages"
 msgstr "सबै भाषाहरू"
 
-#: src/widgets/station_list.vala:59
+#: src/widgets/station_list.vala
 msgid "Filter by language"
 msgstr "भाषा अनुसार फिल्टर गर्नुहोस्"
 
-#: src/widgets/station_list.vala:62 src/widgets/station_list.vala:255
+#: src/widgets/station_list.vala
 msgid "All Countries"
 msgstr "सबै देशहरू"
 
-#: src/widgets/station_list.vala:63
+#: src/widgets/station_list.vala
 msgid "Filter by country"
 msgstr "देश अनुसार फिल्टर"
 
-#: src/widgets/station_list.vala:130 src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Stations"
 msgstr "कुनै स्टेशन छैन"
 
-#: src/widgets/station_list.vala:203
+#: src/widgets/station_list.vala
 msgid "Loading…"
 msgstr "लोड हुँदैछ…"
 
-#: src/widgets/station_list.vala:307
+#: src/widgets/station_list.vala
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u / %d स्टेशनहरू"
 
-#: src/widgets/station_list.vala:308
+#: src/widgets/station_list.vala
 #, c-format
 msgid "Stations: %d"
 msgstr "स्टेशनहरू: %d"
 
-#: src/widgets/station_list.vala:320
+#: src/widgets/station_list.vala
 msgid "Loading Stations"
 msgstr "स्टेशनहरू लोड हुँदैछ"
 
-#: src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Results"
 msgstr "कुनै परिणाम छैन"
 
-#: src/widgets/station_list.vala:323
+#: src/widgets/station_list.vala
 msgid "Please wait…"
 msgstr "कृपया पर्खनुहोस्…"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "No stations match your search"
 msgstr "तपाईंको खोजसँग कुनै स्टेशन मेल खाँदैन"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "Could not load stations"
 msgstr "स्टेशनहरू लोड गर्न सकिएन"
 
-#: src/widgets/station_info_page.vala:48
+#: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "स्टेशन"
 
-#: src/widgets/station_info_page.vala:52
+#: src/widgets/station_info_page.vala
 msgid "Country"
 msgstr "देश"
 
-#: src/widgets/station_info_page.vala:56
+#: src/widgets/station_info_page.vala
 msgid "Tags"
 msgstr "ट्यागहरू"
 
-#: src/widgets/station_info_page.vala:61
+#: src/widgets/station_info_page.vala
 msgid "Website"
 msgstr "वेबसाइट"
 
-#: src/widgets/station_info_page.vala:66
+#: src/widgets/station_info_page.vala
 msgid "Codec"
 msgstr "कोडेक"
 
-#: src/widgets/station_info_page.vala:70
+#: src/widgets/station_info_page.vala
 msgid "Bitrate"
 msgstr "बिटरेट"
 
-#: src/widgets/station_info_page.vala:74
+#: src/widgets/station_info_page.vala
 msgid "Stream URL"
 msgstr "स्ट्रिम URL"
 
 #. Controls row
-#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:220
+#: src/widgets/player_bar.vala
 msgid "Not Playing"
 msgstr "बजिरहेको छैन"
 
-#: src/widgets/player_bar.vala:139 src/widgets/player_bar.vala:223
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "एउटा स्टेशन छान्नुहोस्"
 
-#: src/widgets/player_bar.vala:179
+#: src/widgets/player_bar.vala
 msgid "Buffering…"
 msgstr "बफर हुँदैछ…"
 
-#: src/widgets/player_bar.vala:182 src/widgets/player_bar.vala:240
+#: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "अहिले बजिरहेको छ"
 
-#: src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala
 msgid "Paused"
 msgstr "रोकिएको"
 
-#: src/widgets/player_bar.vala:215
+#: src/widgets/player_bar.vala
 msgid "Reconnecting…"
 msgstr "पुनः जडान हुँदैछ…"
 
 #. indeterminate while searching
-#: src/services/song_downloader.vala:28
+#: src/services/song_downloader.vala
 msgid "Searching YouTube…"
 msgstr "YouTube मा खोजिँदैछ…"
 
-#: src/services/song_downloader.vala:42
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Search failed: %s"
 msgstr "खोज असफल: %s"
 
-#: src/services/song_downloader.vala:48
+#: src/services/song_downloader.vala
 msgid "No YouTube results found"
 msgstr "YouTube परिणामहरू फेला परेनन्"
 
-#: src/services/song_downloader.vala:62
+#: src/services/song_downloader.vala
 msgid "All results unavailable"
 msgstr "सबै परिणामहरू उपलब्ध छैनन्"
 
-#: src/services/song_downloader.vala:94
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Downloading: %s"
 msgstr "डाउनलोड हुँदैछ: %s"
 
 #. Clean up partial file
-#: src/services/song_downloader.vala:131
+#: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "रद्द गरियो"
 
-#: src/services/song_downloader.vala:140
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Download failed: %s"
 msgstr "डाउनलोड असफल: %s"
 
-#: src/services/song_downloader.vala:142
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Saved: %s"
 msgstr "सुरक्षित गरियो: %s"
 
-#: src/widgets/download_button.vala:30
+#: src/widgets/download_button.vala
 msgid "Download song"
 msgstr "गीत डाउनलोड गर्नुहोस्"
 
-#: src/widgets/download_button.vala:45
+#: src/widgets/download_button.vala
 msgid "Cancel download"
 msgstr "डाउनलोड रद्द गर्नुहोस्"
 
-#: src/widgets/history_page.vala:31
+#: src/widgets/history_page.vala
 msgid "No Songs Yet"
 msgstr "अहिलेसम्म कुनै गीत छैन"
 
-#: src/widgets/history_page.vala:32
+#: src/widgets/history_page.vala
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "रेडियो स्टेशनहरू सुन्दा गीतहरू यहाँ देखिनेछन्"
 
-#: src/widgets/history_page.vala:150
+#: src/widgets/history_page.vala
 msgid "Just now"
 msgstr "अहिले भर्खरै"
 
-#: src/widgets/history_page.vala:151
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d मिनेट अघि"
 msgstr[1] "%d मिनेट अघि"
 
-#: src/widgets/history_page.vala:152
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d घण्टा अघि"
 msgstr[1] "%d घण्टा अघि"
 
-#: src/widgets/history_page.vala:153
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"

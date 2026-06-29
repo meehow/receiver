@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 00:21+0200\n"
+"POT-Creation-Date: 2026-06-30 01:14+0200\n"
 "PO-Revision-Date: 2026-02-06 22:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
@@ -17,291 +17,289 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: src/application.vala:51
+#: src/application.vala
 msgid "Receiver keeps playing radio after the window is closed"
 msgstr "Receiver dalej odtwarza radio po zamknięciu okna"
 
-#: src/widgets/window.vala:65
+#: src/widgets/window.vala
 msgid "Menu"
 msgstr "Menu"
 
 #. History page (pushed on demand)
-#: src/widgets/window.vala:75 src/widgets/window.vala:132
-#: src/widgets/history_page.vala:21
+#: src/widgets/window.vala src/widgets/history_page.vala
 msgid "Song History"
 msgstr "Historia utworów"
 
-#: src/widgets/window.vala:76
+#: src/widgets/window.vala
 msgid "Keep Playing in Background"
 msgstr "Odtwarzaj dalej w tle"
 
-#: src/widgets/window.vala:77
+#: src/widgets/window.vala
 msgid "About Receiver"
 msgstr "O programie Receiver"
 
-#: src/widgets/window.vala:107
+#: src/widgets/window.vala
 msgid "Browse"
 msgstr "Przeglądaj"
 
-#: src/widgets/window.vala:111
+#: src/widgets/window.vala
 msgid "Favourites"
 msgstr "Ulubione"
 
 #. Station info page (pushed on demand)
-#: src/widgets/window.vala:137 src/widgets/station_info_page.vala:25
+#: src/widgets/window.vala src/widgets/station_info_page.vala
 msgid "Station Info"
 msgstr "Informacje o stacji"
 
-#: src/widgets/window.vala:163
+#: src/widgets/window.vala
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Załadowano %d stacji"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:168 src/services/song_downloader.vala:69
-#: src/services/song_downloader.vala:148
+#: src/widgets/window.vala src/services/song_downloader.vala
 #, c-format
 msgid "Error: %s"
 msgstr "Błąd: %s"
 
-#: src/widgets/window.vala:172
+#: src/widgets/window.vala
 #, c-format
 msgid "Playback error: %s"
 msgstr "Błąd odtwarzania: %s"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala
 #, c-format
 msgid "Now playing: %s"
 msgstr "Teraz gra: %s"
 
-#: src/widgets/window.vala:202
+#: src/widgets/window.vala
 #, c-format
 msgid "Resuming: %s"
 msgstr "Wznawiam: %s"
 
-#: src/widgets/window.vala:229
+#: src/widgets/window.vala
 msgid "Cancel Last.fm Authorization"
 msgstr "Anuluj autoryzację Last.fm"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala
 msgid "Disconnect from Last.fm"
 msgstr "Rozłącz z Last.fm"
 
-#: src/widgets/window.vala:233
+#: src/widgets/window.vala
 msgid "Connect to Last.fm"
 msgstr "Połącz z Last.fm"
 
-#: src/widgets/window.vala:241
+#: src/widgets/window.vala
 msgid "Last.fm authorization cancelled"
 msgstr "Autoryzacja Last.fm anulowana"
 
-#: src/widgets/window.vala:247
+#: src/widgets/window.vala
 msgid "Disconnected from Last.fm"
 msgstr "Rozłączono z Last.fm"
 
-#: src/widgets/window.vala:251
+#: src/widgets/window.vala
 msgid "Connecting to Last.fm…"
 msgstr "Łączenie z Last.fm…"
 
-#: src/widgets/window.vala:255
+#: src/widgets/window.vala
 msgid "Failed to connect to Last.fm"
 msgstr "Nie udało się połączyć z Last.fm"
 
-#: src/widgets/window.vala:262
+#: src/widgets/window.vala
 msgid "Grant access in your browser…"
 msgstr "Udziel dostępu w przeglądarce…"
 
-#: src/widgets/window.vala:270
+#: src/widgets/window.vala
 msgid "Last.fm authorization timed out"
 msgstr "Autoryzacja Last.fm wygasła"
 
-#: src/widgets/window.vala:278
+#: src/widgets/window.vala
 msgid "Connected to Last.fm"
 msgstr "Połączono z Last.fm"
 
-#: src/widgets/window.vala:299
+#: src/widgets/window.vala
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Odkryj ponad 30 000 zweryfikowanych stacji radiowych z całego świata"
 
-#: src/widgets/favourites_page.vala:25
+#: src/widgets/favourites_page.vala
 msgid "No Favourites"
 msgstr "Brak ulubionych"
 
-#: src/widgets/favourites_page.vala:26
+#: src/widgets/favourites_page.vala
 msgid "Star stations while browsing to add them here"
 msgstr "Oznacz stacje gwiazdką podczas przeglądania, aby dodać je tutaj"
 
 #. Search entry
-#: src/widgets/station_list.vala:46
+#: src/widgets/station_list.vala
 msgid "Search stations…"
 msgstr "Szukaj stacji…"
 
-#: src/widgets/station_list.vala:58 src/widgets/station_list.vala:242
+#: src/widgets/station_list.vala
 msgid "All Languages"
 msgstr "Wszystkie języki"
 
-#: src/widgets/station_list.vala:59
+#: src/widgets/station_list.vala
 msgid "Filter by language"
 msgstr "Filtruj według języka"
 
-#: src/widgets/station_list.vala:62 src/widgets/station_list.vala:255
+#: src/widgets/station_list.vala
 msgid "All Countries"
 msgstr "Wszystkie kraje"
 
-#: src/widgets/station_list.vala:63
+#: src/widgets/station_list.vala
 msgid "Filter by country"
 msgstr "Filtruj według kraju"
 
-#: src/widgets/station_list.vala:130 src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Stations"
 msgstr "Brak stacji"
 
-#: src/widgets/station_list.vala:203
+#: src/widgets/station_list.vala
 msgid "Loading…"
 msgstr "Ładowanie…"
 
-#: src/widgets/station_list.vala:307
+#: src/widgets/station_list.vala
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u z %d stacji"
 
-#: src/widgets/station_list.vala:308
+#: src/widgets/station_list.vala
 #, c-format
 msgid "Stations: %d"
 msgstr "Stacji: %d"
 
-#: src/widgets/station_list.vala:320
+#: src/widgets/station_list.vala
 msgid "Loading Stations"
 msgstr "Ładowanie stacji"
 
-#: src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Results"
 msgstr "Brak wyników"
 
-#: src/widgets/station_list.vala:323
+#: src/widgets/station_list.vala
 msgid "Please wait…"
 msgstr "Proszę czekać…"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "No stations match your search"
 msgstr "Brak stacji pasujących do wyszukiwania"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "Could not load stations"
 msgstr "Nie można załadować stacji"
 
-#: src/widgets/station_info_page.vala:48
+#: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stacja"
 
-#: src/widgets/station_info_page.vala:52
+#: src/widgets/station_info_page.vala
 msgid "Country"
 msgstr "Kraj"
 
-#: src/widgets/station_info_page.vala:56
+#: src/widgets/station_info_page.vala
 msgid "Tags"
 msgstr "Tagi"
 
-#: src/widgets/station_info_page.vala:61
+#: src/widgets/station_info_page.vala
 msgid "Website"
 msgstr "Strona internetowa"
 
-#: src/widgets/station_info_page.vala:66
+#: src/widgets/station_info_page.vala
 msgid "Codec"
 msgstr "Kodek"
 
-#: src/widgets/station_info_page.vala:70
+#: src/widgets/station_info_page.vala
 msgid "Bitrate"
 msgstr "Przepływność"
 
-#: src/widgets/station_info_page.vala:74
+#: src/widgets/station_info_page.vala
 msgid "Stream URL"
 msgstr "URL strumienia"
 
 #. Controls row
-#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:220
+#: src/widgets/player_bar.vala
 msgid "Not Playing"
 msgstr "Nie odtwarza"
 
-#: src/widgets/player_bar.vala:139 src/widgets/player_bar.vala:223
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Wybierz stację"
 
-#: src/widgets/player_bar.vala:179
+#: src/widgets/player_bar.vala
 msgid "Buffering…"
 msgstr "Buforowanie…"
 
-#: src/widgets/player_bar.vala:182 src/widgets/player_bar.vala:240
+#: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Teraz gra"
 
-#: src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala
 msgid "Paused"
 msgstr "Wstrzymano"
 
-#: src/widgets/player_bar.vala:215
+#: src/widgets/player_bar.vala
 msgid "Reconnecting…"
 msgstr "Ponowne łączenie…"
 
 #. indeterminate while searching
-#: src/services/song_downloader.vala:28
+#: src/services/song_downloader.vala
 msgid "Searching YouTube…"
 msgstr "Wyszukiwanie w YouTube…"
 
-#: src/services/song_downloader.vala:42
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Search failed: %s"
 msgstr "Wyszukiwanie nie powiodło się: %s"
 
-#: src/services/song_downloader.vala:48
+#: src/services/song_downloader.vala
 msgid "No YouTube results found"
 msgstr "Nie znaleziono wyników w YouTube"
 
-#: src/services/song_downloader.vala:62
+#: src/services/song_downloader.vala
 msgid "All results unavailable"
 msgstr "Wszystkie wyniki niedostępne"
 
-#: src/services/song_downloader.vala:94
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Downloading: %s"
 msgstr "Pobieranie: %s"
 
 #. Clean up partial file
-#: src/services/song_downloader.vala:131
+#: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Anulowano"
 
-#: src/services/song_downloader.vala:140
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Download failed: %s"
 msgstr "Pobieranie nie powiodło się: %s"
 
-#: src/services/song_downloader.vala:142
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Saved: %s"
 msgstr "Zapisano: %s"
 
-#: src/widgets/download_button.vala:30
+#: src/widgets/download_button.vala
 msgid "Download song"
 msgstr "Pobierz utwór"
 
-#: src/widgets/download_button.vala:45
+#: src/widgets/download_button.vala
 msgid "Cancel download"
 msgstr "Anuluj pobieranie"
 
-#: src/widgets/history_page.vala:31
+#: src/widgets/history_page.vala
 msgid "No Songs Yet"
 msgstr "Brak utworów"
 
-#: src/widgets/history_page.vala:32
+#: src/widgets/history_page.vala
 msgid "Songs will appear here as you listen to radio stations"
 msgstr "Utwory pojawią się tutaj podczas słuchania stacji radiowych"
 
-#: src/widgets/history_page.vala:150
+#: src/widgets/history_page.vala
 msgid "Just now"
 msgstr "Właśnie teraz"
 
-#: src/widgets/history_page.vala:151
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
@@ -309,7 +307,7 @@ msgstr[0] "%d min temu"
 msgstr[1] "%d min temu"
 msgstr[2] "%d min temu"
 
-#: src/widgets/history_page.vala:152
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
@@ -317,7 +315,7 @@ msgstr[0] "%d godzinę temu"
 msgstr[1] "%d godziny temu"
 msgstr[2] "%d godzin temu"
 
-#: src/widgets/history_page.vala:153
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"

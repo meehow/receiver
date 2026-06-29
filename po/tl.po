@@ -3,315 +3,314 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 00:21+0200\n"
+"POT-Creation-Date: 2026-06-30 01:14+0200\n"
 "Language: tl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/application.vala:51
+#: src/application.vala
 msgid "Receiver keeps playing radio after the window is closed"
-msgstr "Patuloy na nagpe-play ng radyo ang Receiver pagkatapos isara ang bintana"
+msgstr ""
+"Patuloy na nagpe-play ng radyo ang Receiver pagkatapos isara ang bintana"
 
-#: src/widgets/window.vala:65
+#: src/widgets/window.vala
 msgid "Menu"
 msgstr "Menu"
 
 #. History page (pushed on demand)
-#: src/widgets/window.vala:75 src/widgets/window.vala:132
-#: src/widgets/history_page.vala:21
+#: src/widgets/window.vala src/widgets/history_page.vala
 msgid "Song History"
 msgstr "Kasaysayan ng Kanta"
 
-#: src/widgets/window.vala:76
+#: src/widgets/window.vala
 msgid "Keep Playing in Background"
 msgstr "Magpatuloy sa pag-play sa background"
 
-#: src/widgets/window.vala:77
+#: src/widgets/window.vala
 msgid "About Receiver"
 msgstr "Tungkol sa Receiver"
 
-#: src/widgets/window.vala:107
+#: src/widgets/window.vala
 msgid "Browse"
 msgstr "Mag-browse"
 
-#: src/widgets/window.vala:111
+#: src/widgets/window.vala
 msgid "Favourites"
 msgstr "Mga Paborito"
 
 #. Station info page (pushed on demand)
-#: src/widgets/window.vala:137 src/widgets/station_info_page.vala:25
+#: src/widgets/window.vala src/widgets/station_info_page.vala
 msgid "Station Info"
 msgstr "Impormasyon ng Istasyon"
 
-#: src/widgets/window.vala:163
+#: src/widgets/window.vala
 #, c-format
 msgid "Loaded %d stations"
 msgstr "Na-load ang %d na istasyon"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:168 src/services/song_downloader.vala:69
-#: src/services/song_downloader.vala:148
+#: src/widgets/window.vala src/services/song_downloader.vala
 #, c-format
 msgid "Error: %s"
 msgstr "Error: %s"
 
-#: src/widgets/window.vala:172
+#: src/widgets/window.vala
 #, c-format
 msgid "Playback error: %s"
 msgstr "Error sa pag-play: %s"
 
-#: src/widgets/window.vala:185
+#: src/widgets/window.vala
 #, c-format
 msgid "Now playing: %s"
 msgstr "Pinapatugtog ngayon: %s"
 
-#: src/widgets/window.vala:202
+#: src/widgets/window.vala
 #, c-format
 msgid "Resuming: %s"
 msgstr "Ipinagpapatuloy: %s"
 
-#: src/widgets/window.vala:229
+#: src/widgets/window.vala
 msgid "Cancel Last.fm Authorization"
 msgstr "Kanselahin ang pahintulot sa Last.fm"
 
-#: src/widgets/window.vala:231
+#: src/widgets/window.vala
 msgid "Disconnect from Last.fm"
 msgstr "Idiskonekta sa Last.fm"
 
-#: src/widgets/window.vala:233
+#: src/widgets/window.vala
 msgid "Connect to Last.fm"
 msgstr "Kumonekta sa Last.fm"
 
-#: src/widgets/window.vala:241
+#: src/widgets/window.vala
 msgid "Last.fm authorization cancelled"
 msgstr "Nakansela ang pahintulot sa Last.fm"
 
-#: src/widgets/window.vala:247
+#: src/widgets/window.vala
 msgid "Disconnected from Last.fm"
 msgstr "Nadiskonekta sa Last.fm"
 
-#: src/widgets/window.vala:251
+#: src/widgets/window.vala
 msgid "Connecting to Last.fm…"
 msgstr "Kumokonekta sa Last.fm…"
 
-#: src/widgets/window.vala:255
+#: src/widgets/window.vala
 msgid "Failed to connect to Last.fm"
 msgstr "Hindi nakakonekta sa Last.fm"
 
-#: src/widgets/window.vala:262
+#: src/widgets/window.vala
 msgid "Grant access in your browser…"
 msgstr "Magbigay ng access sa iyong browser…"
 
-#: src/widgets/window.vala:270
+#: src/widgets/window.vala
 msgid "Last.fm authorization timed out"
 msgstr "Nag-expire ang pahintulot sa Last.fm"
 
-#: src/widgets/window.vala:278
+#: src/widgets/window.vala
 msgid "Connected to Last.fm"
 msgstr "Nakakonekta sa Last.fm"
 
-#: src/widgets/window.vala:299
+#: src/widgets/window.vala
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr ""
 "Tumuklas ng 30,000+ na na-verify na istasyon ng radyo mula sa buong mundo"
 
-#: src/widgets/favourites_page.vala:25
+#: src/widgets/favourites_page.vala
 msgid "No Favourites"
 msgstr "Walang paborito"
 
-#: src/widgets/favourites_page.vala:26
+#: src/widgets/favourites_page.vala
 msgid "Star stations while browsing to add them here"
 msgstr ""
 "Lagyan ng bituin ang mga istasyon habang nagba-browse para idagdag dito"
 
 #. Search entry
-#: src/widgets/station_list.vala:46
+#: src/widgets/station_list.vala
 msgid "Search stations…"
 msgstr "Maghanap ng mga istasyon…"
 
-#: src/widgets/station_list.vala:58 src/widgets/station_list.vala:242
+#: src/widgets/station_list.vala
 msgid "All Languages"
 msgstr "Lahat ng wika"
 
-#: src/widgets/station_list.vala:59
+#: src/widgets/station_list.vala
 msgid "Filter by language"
 msgstr "I-filter ayon sa wika"
 
-#: src/widgets/station_list.vala:62 src/widgets/station_list.vala:255
+#: src/widgets/station_list.vala
 msgid "All Countries"
 msgstr "Lahat ng bansa"
 
-#: src/widgets/station_list.vala:63
+#: src/widgets/station_list.vala
 msgid "Filter by country"
 msgstr "I-filter ayon sa bansa"
 
-#: src/widgets/station_list.vala:130 src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Stations"
 msgstr "Walang istasyon"
 
-#: src/widgets/station_list.vala:203
+#: src/widgets/station_list.vala
 msgid "Loading…"
 msgstr "Naglo-load…"
 
-#: src/widgets/station_list.vala:307
+#: src/widgets/station_list.vala
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u sa %d na istasyon"
 
-#: src/widgets/station_list.vala:308
+#: src/widgets/station_list.vala
 #, c-format
 msgid "Stations: %d"
 msgstr "Mga istasyon: %d"
 
-#: src/widgets/station_list.vala:320
+#: src/widgets/station_list.vala
 msgid "Loading Stations"
 msgstr "Naglo-load ng mga istasyon"
 
-#: src/widgets/station_list.vala:321
+#: src/widgets/station_list.vala
 msgid "No Results"
 msgstr "Walang resulta"
 
-#: src/widgets/station_list.vala:323
+#: src/widgets/station_list.vala
 msgid "Please wait…"
 msgstr "Maghintay po…"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "No stations match your search"
 msgstr "Walang istasyong tumutugma sa iyong hinanap"
 
-#: src/widgets/station_list.vala:324
+#: src/widgets/station_list.vala
 msgid "Could not load stations"
 msgstr "Hindi ma-load ang mga istasyon"
 
-#: src/widgets/station_info_page.vala:48
+#: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Istasyon"
 
-#: src/widgets/station_info_page.vala:52
+#: src/widgets/station_info_page.vala
 msgid "Country"
 msgstr "Bansa"
 
-#: src/widgets/station_info_page.vala:56
+#: src/widgets/station_info_page.vala
 msgid "Tags"
 msgstr "Mga tag"
 
-#: src/widgets/station_info_page.vala:61
+#: src/widgets/station_info_page.vala
 msgid "Website"
 msgstr "Website"
 
-#: src/widgets/station_info_page.vala:66
+#: src/widgets/station_info_page.vala
 msgid "Codec"
 msgstr "Codec"
 
-#: src/widgets/station_info_page.vala:70
+#: src/widgets/station_info_page.vala
 msgid "Bitrate"
 msgstr "Bitrate"
 
-#: src/widgets/station_info_page.vala:74
+#: src/widgets/station_info_page.vala
 msgid "Stream URL"
 msgstr "Stream URL"
 
 #. Controls row
-#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:220
+#: src/widgets/player_bar.vala
 msgid "Not Playing"
 msgstr "Hindi pinapatugtog"
 
-#: src/widgets/player_bar.vala:139 src/widgets/player_bar.vala:223
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Pumili ng istasyon"
 
-#: src/widgets/player_bar.vala:179
+#: src/widgets/player_bar.vala
 msgid "Buffering…"
 msgstr "Nagba-buffer…"
 
-#: src/widgets/player_bar.vala:182 src/widgets/player_bar.vala:240
+#: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Pinapatugtog ngayon"
 
-#: src/widgets/player_bar.vala:210
+#: src/widgets/player_bar.vala
 msgid "Paused"
 msgstr "Naka-pause"
 
-#: src/widgets/player_bar.vala:215
+#: src/widgets/player_bar.vala
 msgid "Reconnecting…"
 msgstr "Muling kumokonekta…"
 
 #. indeterminate while searching
-#: src/services/song_downloader.vala:28
+#: src/services/song_downloader.vala
 msgid "Searching YouTube…"
 msgstr "Naghahanap sa YouTube…"
 
-#: src/services/song_downloader.vala:42
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Search failed: %s"
 msgstr "Nabigo ang paghahanap: %s"
 
-#: src/services/song_downloader.vala:48
+#: src/services/song_downloader.vala
 msgid "No YouTube results found"
 msgstr "Walang nahanap na resulta sa YouTube"
 
-#: src/services/song_downloader.vala:62
+#: src/services/song_downloader.vala
 msgid "All results unavailable"
 msgstr "Lahat ng resulta ay hindi available"
 
-#: src/services/song_downloader.vala:94
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Downloading: %s"
 msgstr "Dina-download: %s"
 
 #. Clean up partial file
-#: src/services/song_downloader.vala:131
+#: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Nakansela"
 
-#: src/services/song_downloader.vala:140
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Download failed: %s"
 msgstr "Nabigo ang download: %s"
 
-#: src/services/song_downloader.vala:142
+#: src/services/song_downloader.vala
 #, c-format
 msgid "Saved: %s"
 msgstr "Na-save: %s"
 
-#: src/widgets/download_button.vala:30
+#: src/widgets/download_button.vala
 msgid "Download song"
 msgstr "I-download ang kanta"
 
-#: src/widgets/download_button.vala:45
+#: src/widgets/download_button.vala
 msgid "Cancel download"
 msgstr "Kanselahin ang download"
 
-#: src/widgets/history_page.vala:31
+#: src/widgets/history_page.vala
 msgid "No Songs Yet"
 msgstr "Wala Pang Mga Kanta"
 
-#: src/widgets/history_page.vala:32
+#: src/widgets/history_page.vala
 msgid "Songs will appear here as you listen to radio stations"
 msgstr ""
 "Lalabas dito ang mga kanta habang nakikinig ka ng mga istasyon ng radyo"
 
-#: src/widgets/history_page.vala:150
+#: src/widgets/history_page.vala
 msgid "Just now"
 msgstr "Ngayon lang"
 
-#: src/widgets/history_page.vala:151
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d min ago"
 msgid_plural "%d min ago"
 msgstr[0] "%d min ang nakalipas"
 msgstr[1] "%d min ang nakalipas"
 
-#: src/widgets/history_page.vala:152
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d hour ago"
 msgid_plural "%d hours ago"
 msgstr[0] "%d oras ang nakalipas"
 msgstr[1] "%d oras ang nakalipas"
 
-#: src/widgets/history_page.vala:153
+#: src/widgets/history_page.vala
 #, c-format
 msgid "%d day ago"
 msgid_plural "%d days ago"
