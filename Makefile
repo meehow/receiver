@@ -13,31 +13,31 @@ VERSION = $(shell grep "version:" meson.build | head -1 | sed "s/.*'\(.*\)'.*/\1
         flatpak-build flatpak-run flatpak-lint-manifest flatpak-lint-repo flatpak-submit \
         translations-check translations-update
 
-builddir:
-	meson setup builddir --prefix=/usr --buildtype=release
+_build:
+	meson setup _build --prefix=/usr --buildtype=release
 
-build: builddir
-	meson compile -C builddir
+build: _build
+	meson compile -C _build
 
 install: build
-	meson install -C builddir
+	meson install -C _build
 
 clean:
-	rm -rf builddir
+	rm -rf _build
 
 run: build
 	glib-compile-schemas data/
 	GSETTINGS_SCHEMA_DIR=$(CURDIR)/data \
 	XDG_DATA_DIRS=$(CURDIR)/data:/usr/share \
-	LOCALEDIR=$(CURDIR)/builddir/po \
-	./builddir/receiver
+	LOCALEDIR=$(CURDIR)/_build/po \
+	./_build/receiver
 
 run-tui: build
 	glib-compile-schemas data/
 	GSETTINGS_SCHEMA_DIR=$(CURDIR)/data \
 	XDG_DATA_DIRS=$(CURDIR)/data:/usr/share \
-	LOCALEDIR=$(CURDIR)/builddir/po \
-	./builddir/receiver-tui
+	LOCALEDIR=$(CURDIR)/_build/po \
+	./_build/receiver-tui
 
 deb:
 	dpkg-buildpackage -us -uc -b
@@ -48,9 +48,9 @@ translations-check:
 		msgfmt --statistics -o /dev/null $$file; \
 	done
 
-translations-update: builddir
-	meson compile -C builddir receiver-pot
-	meson compile -C builddir receiver-update-po
+translations-update: _build
+	meson compile -C _build receiver-pot
+	meson compile -C _build receiver-update-po
 
 translations-prune:
 	@for file in po/*.po; do \
@@ -79,7 +79,7 @@ $(LINUXDEPLOY_GTK):
 
 appimage: build $(LINUXDEPLOY) $(LINUXDEPLOY_GTK)
 	rm -rf $(APPDIR)
-	DESTDIR=$(CURDIR)/$(APPDIR) meson install -C builddir
+	DESTDIR=$(CURDIR)/$(APPDIR) meson install -C _build
 	@# Bundle GStreamer plugins
 	mkdir -p $(APPDIR)/usr/lib/x86_64-linux-gnu/gstreamer-1.0
 	cp $(GST_LIBDIR)/libgstcoreelements.so \
