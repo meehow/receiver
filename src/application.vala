@@ -10,7 +10,7 @@ namespace Receiver {
         public Application() {
             Object(
                 application_id: "io.github.meehow.Receiver",
-                flags: ApplicationFlags.DEFAULT_FLAGS | ApplicationFlags.NON_UNIQUE
+                flags: ApplicationFlags.DEFAULT_FLAGS
             );
         }
 
@@ -19,6 +19,38 @@ namespace Receiver {
             var win = active_window;
             if (win != null) {
                 win.present();
+            }
+        }
+
+        // Called by the window when it hides itself instead of quitting.
+        // Tells the desktop we intend to keep running and lets the user know.
+        public void enter_background() {
+            request_background_portal();
+
+            var n = new GLib.Notification(_("Receiver is playing in the background"));
+            n.set_body(_("Use the system media controls or Stop to exit."));
+            send_notification("background-playback", n);
+        }
+
+        // Best-effort Background portal request over D-Bus (no libportal needed,
+        // and a no-op when no portal is running, e.g. outside Flatpak).
+        private void request_background_portal() {
+            try {
+                var conn = Bus.get_sync(BusType.SESSION);
+                var options = new VariantBuilder(new VariantType("a{sv}"));
+                options.add("{sv}", "reason", new Variant.string(
+                    _("Receiver keeps playing radio after the window is closed")));
+                options.add("{sv}", "autostart", new Variant.boolean(false));
+                conn.call.begin(
+                    "org.freedesktop.portal.Desktop",
+                    "/org/freedesktop/portal/desktop",
+                    "org.freedesktop.portal.Background",
+                    "RequestBackground",
+                    new Variant("(sa{sv})", "", options),
+                    new VariantType("(o)"),
+                    DBusCallFlags.NONE, -1, null);
+            } catch (Error e) {
+                debug("Background portal unavailable: %s", e.message);
             }
         }
 
@@ -56,6 +88,15 @@ namespace Receiver {
                 }
             });
 
+            // When running in the background (window hidden), Stop means "done":
+            // tear the process down. Pause keeps it alive.
+            player.state_changed.connect((new_state) => {
+                var win = active_window;
+                if (new_state == PlayerState.STOPPED && win != null && !win.visible) {
+                    this.quit();
+                }
+            });
+
             // Record songs to history
             player.metadata_changed.connect((title) => {
                 if (player.current_station != null && player.state == PlayerState.PLAYING) {
@@ -80,6 +121,10 @@ namespace Receiver {
 
 
         private void setup_actions() {
+            // Run-in-background toggle (stateful, backed by GSettings)
+            var bg_action = AppState.get_default().settings.create_action("run-in-background");
+            this.add_action(bg_action);
+
             // Quit action
             var quit_action = new SimpleAction("quit", null);
             quit_action.activate.connect(() => {

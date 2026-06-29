@@ -29,6 +29,15 @@ namespace Receiver {
             this.close_request.connect(() => {
                 s.set_int("window-width", this.default_width);
                 s.set_int("window-height", this.default_height);
+
+                // Keep playing in the background: hide instead of destroying the
+                // window so the app's last window stays registered and it lives on.
+                if (s.get_boolean("run-in-background") &&
+                    app.player.state != PlayerState.STOPPED) {
+                    this.set_visible(false);
+                    app.enter_background();
+                    return true;
+                }
                 return false;
             });
         }
@@ -62,6 +71,7 @@ namespace Receiver {
             app.scrobbler.status_changed.connect(update_lastfm_label);
 
             menu.append(_("Song History"), "win.history");
+            menu.append(_("Keep Playing in Background"), "app.run-in-background");
             menu.append(_("About Receiver"), "win.about");
 
             menu_button.menu_model = menu;
