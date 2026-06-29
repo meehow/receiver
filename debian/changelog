@@ -1,3 +1,18 @@
+receiver (0.6.0-1) unstable; urgency=medium
+
+  * Add a terminal UI (receiver-tui): browse and play, Favourites and
+    History, country/language filters, search, MPRIS media keys, and mouse
+    support
+  * Keep playing in the background when the window is closed (optional;
+    toggle in the menu)
+  * Fix missing favourite and tab icons on the .deb and AppImage
+  * Smoother playback of high-bitrate streams (pause while buffering)
+  * Apply a consistent cubic volume curve and align the player-bar title
+  * Load station artwork even when the list is too short to scroll
+  * Reserve scrollbar height in the genre strip with classic scrollbars
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Tue, 30 Jun 2026 00:55:43 +0200
+
 receiver (0.5.0-1) unstable; urgency=medium
 
   * Replace home screen with dedicated Browse and Favourites tabs
