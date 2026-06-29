@@ -118,11 +118,18 @@ appimage: build $(LINUXDEPLOY) $(LINUXDEPLOY_GTK)
 	    /usr/lib/x86_64-linux-gnu/gio/modules/libgiolibproxy.so \
 	    $(APPDIR)/usr/lib/x86_64-linux-gnu/gio/modules/
 	gio-querymodules $(APPDIR)/usr/lib/x86_64-linux-gnu/gio/modules
-	@# Bundle only Adwaita symbolic icons (needed by GTK4/Libadwaita)
+	@# Bundle Adwaita symbolic icons (needed by GTK4/Libadwaita)
 	mkdir -p $(APPDIR)/usr/share/icons/Adwaita
 	cp /usr/share/icons/Adwaita/index.theme $(APPDIR)/usr/share/icons/Adwaita/
 	cp -r /usr/share/icons/Adwaita/symbolic $(APPDIR)/usr/share/icons/Adwaita/
 	-cp -r /usr/share/icons/Adwaita/symbolic-up-to-32 $(APPDIR)/usr/share/icons/Adwaita/
+	@# hicolor is the base theme Adwaita inherits from; without its index.theme
+	@# GTK fails to build the theme chain and shows only its built-in icons
+	mkdir -p $(APPDIR)/usr/share/icons/hicolor
+	cp /usr/share/icons/hicolor/index.theme $(APPDIR)/usr/share/icons/hicolor/
+	@# Regenerate icon caches so GTK reliably resolves the bundled themes
+	-gtk4-update-icon-cache -ft $(APPDIR)/usr/share/icons/Adwaita
+	-gtk4-update-icon-cache -ft $(APPDIR)/usr/share/icons/hicolor
 	VERSION=$(VERSION) DEPLOY_GTK_VERSION=4 ./$(LINUXDEPLOY) \
 		--appdir $(APPDIR) \
 		--plugin gtk \
