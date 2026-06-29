@@ -39,16 +39,11 @@ namespace Receiver {
             win.present();
         }
 
-        // Called by the window when it hides itself instead of quitting.
-        // Tells the desktop we intend to keep running (the system surfaces this
-        // via MPRIS controls and the Background Apps menu, so no notification).
-        public void enter_background() {
-            request_background_portal();
-        }
-
         // Best-effort Background portal request over D-Bus (no libportal needed,
-        // and a no-op when no portal is running, e.g. outside Flatpak).
-        private void request_background_portal() {
+        // and a no-op when no portal is running, e.g. outside Flatpak). Called by
+        // the window when it hides itself instead of quitting, so the desktop
+        // knows we intend to keep running (surfaced via the Background Apps menu).
+        public void request_background_portal() {
             try {
                 var conn = Bus.get_sync(BusType.SESSION);
                 var options = new VariantBuilder(new VariantType("a{sv}"));

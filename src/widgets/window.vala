@@ -35,7 +35,7 @@ namespace Receiver {
                 if (s.get_boolean("run-in-background") &&
                     app.player.state != PlayerState.STOPPED) {
                     this.set_visible(false);
-                    app.enter_background();
+                    app.request_background_portal();
                     return true;
                 }
                 return false;
