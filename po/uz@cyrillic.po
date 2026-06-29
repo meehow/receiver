@@ -3,108 +3,116 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-04-02 22:36+0200\n"
+"POT-Creation-Date: 2026-06-30 00:21+0200\n"
 "Language: uz@cyrillic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/widgets/window.vala:54
+#: src/application.vala:51
+msgid "Receiver keeps playing radio after the window is closed"
+msgstr "Дераза ёпилгандан кейин ҳам Receiver радиони ижро этишда давом этади"
+
+#: src/widgets/window.vala:65
 msgid "Menu"
 msgstr "Меню"
 
 #. History page (pushed on demand)
-#: src/widgets/window.vala:64 src/widgets/window.vala:120
+#: src/widgets/window.vala:75 src/widgets/window.vala:132
 #: src/widgets/history_page.vala:21
 msgid "Song History"
 msgstr "Қўшиқ тарихи"
 
-#: src/widgets/window.vala:65
+#: src/widgets/window.vala:76
+msgid "Keep Playing in Background"
+msgstr "Орқа фонда ижрони давом эттириш"
+
+#: src/widgets/window.vala:77
 msgid "About Receiver"
 msgstr "Receiver ҳақида"
 
-#: src/widgets/window.vala:95
+#: src/widgets/window.vala:107
 msgid "Browse"
 msgstr "Кўриш"
 
-#: src/widgets/window.vala:99
+#: src/widgets/window.vala:111
 msgid "Favourites"
 msgstr "Севимлилар"
 
 #. Station info page (pushed on demand)
-#: src/widgets/window.vala:125 src/widgets/station_info_page.vala:25
+#: src/widgets/window.vala:137 src/widgets/station_info_page.vala:25
 msgid "Station Info"
 msgstr "Станция ҳақида"
 
-#: src/widgets/window.vala:151
+#: src/widgets/window.vala:163
 #, c-format
 msgid "Loaded %d stations"
 msgstr "%d станция юкланди"
 
 #. User dismissed the dialog — no toast needed
-#: src/widgets/window.vala:156 src/services/song_downloader.vala:69
+#: src/widgets/window.vala:168 src/services/song_downloader.vala:69
 #: src/services/song_downloader.vala:148
 #, c-format
 msgid "Error: %s"
 msgstr "Хато: %s"
 
-#: src/widgets/window.vala:160
+#: src/widgets/window.vala:172
 #, c-format
 msgid "Playback error: %s"
 msgstr "Ижро хатоси: %s"
 
-#: src/widgets/window.vala:173
+#: src/widgets/window.vala:185
 #, c-format
 msgid "Now playing: %s"
 msgstr "Ҳозир ижро этилмоқда: %s"
 
-#: src/widgets/window.vala:190
+#: src/widgets/window.vala:202
 #, c-format
 msgid "Resuming: %s"
 msgstr "Давом этиш: %s"
 
-#: src/widgets/window.vala:217
+#: src/widgets/window.vala:229
 msgid "Cancel Last.fm Authorization"
 msgstr "Last.fm рухсатини бекор қилиш"
 
-#: src/widgets/window.vala:219
+#: src/widgets/window.vala:231
 msgid "Disconnect from Last.fm"
 msgstr "Last.fm дан узиш"
 
-#: src/widgets/window.vala:221
+#: src/widgets/window.vala:233
 msgid "Connect to Last.fm"
 msgstr "Last.fm га уланиш"
 
-#: src/widgets/window.vala:229
+#: src/widgets/window.vala:241
 msgid "Last.fm authorization cancelled"
 msgstr "Last.fm рухсати бекор қилинди"
 
-#: src/widgets/window.vala:235
+#: src/widgets/window.vala:247
 msgid "Disconnected from Last.fm"
 msgstr "Last.fm дан узилди"
 
-#: src/widgets/window.vala:239
+#: src/widgets/window.vala:251
 msgid "Connecting to Last.fm…"
 msgstr "Last.fm га уланмоқда…"
 
-#: src/widgets/window.vala:243
+#: src/widgets/window.vala:255
 msgid "Failed to connect to Last.fm"
 msgstr "Last.fm га уланиб бўлмади"
 
-#: src/widgets/window.vala:250
+#: src/widgets/window.vala:262
 msgid "Grant access in your browser…"
 msgstr "Браузерингизда рухсат беринг…"
 
-#: src/widgets/window.vala:258
+#: src/widgets/window.vala:270
 msgid "Last.fm authorization timed out"
 msgstr "Last.fm рухсати муддати тугади"
 
-#: src/widgets/window.vala:266
+#: src/widgets/window.vala:278
 msgid "Connected to Last.fm"
 msgstr "Last.fm га уланди"
 
-#: src/widgets/window.vala:287
+#: src/widgets/window.vala:299
 msgid "Discover 30,000+ verified radio stations from around the world"
 msgstr "Дунё бўйлаб 30 000+ тасдиқланган радио станцияларини кашф этинг"
 
@@ -114,64 +122,65 @@ msgstr "Севимлилар йўқ"
 
 #: src/widgets/favourites_page.vala:26
 msgid "Star stations while browsing to add them here"
-msgstr "Бу ерга қўшиш учун кўраётганингизда станцияларни юлдузча билан белгиланг"
+msgstr ""
+"Бу ерга қўшиш учун кўраётганингизда станцияларни юлдузча билан белгиланг"
 
 #. Search entry
-#: src/widgets/station_list.vala:44
+#: src/widgets/station_list.vala:46
 msgid "Search stations…"
 msgstr "Станцияларни қидириш…"
 
-#: src/widgets/station_list.vala:56 src/widgets/station_list.vala:228
+#: src/widgets/station_list.vala:58 src/widgets/station_list.vala:242
 msgid "All Languages"
 msgstr "Барча тиллар"
 
-#: src/widgets/station_list.vala:57
+#: src/widgets/station_list.vala:59
 msgid "Filter by language"
 msgstr "Тил бўйича саралаш"
 
-#: src/widgets/station_list.vala:60 src/widgets/station_list.vala:241
+#: src/widgets/station_list.vala:62 src/widgets/station_list.vala:255
 msgid "All Countries"
 msgstr "Барча давлатлар"
 
-#: src/widgets/station_list.vala:61
+#: src/widgets/station_list.vala:63
 msgid "Filter by country"
 msgstr "Давлат бўйича саралаш"
 
-#: src/widgets/station_list.vala:116 src/widgets/station_list.vala:307
+#: src/widgets/station_list.vala:130 src/widgets/station_list.vala:321
 msgid "No Stations"
 msgstr "Станциялар йўқ"
 
-#: src/widgets/station_list.vala:189
+#: src/widgets/station_list.vala:203
 msgid "Loading…"
 msgstr "Юкланмоқда…"
 
-#: src/widgets/station_list.vala:293
+#: src/widgets/station_list.vala:307
 #, c-format
 msgid "%u of %d stations"
 msgstr "%u / %d станция"
 
-#: src/widgets/station_list.vala:294
+#: src/widgets/station_list.vala:308
 #, c-format
 msgid "Stations: %d"
 msgstr "Станциялар: %d"
 
-#: src/widgets/station_list.vala:306
+#: src/widgets/station_list.vala:320
 msgid "Loading Stations"
 msgstr "Станциялар юкланмоқда"
 
-#: src/widgets/station_list.vala:307
+#: src/widgets/station_list.vala:321
 msgid "No Results"
 msgstr "Натижалар йўқ"
 
-#: src/widgets/station_list.vala:309
+#: src/widgets/station_list.vala:323
 msgid "Please wait…"
 msgstr "Илтимос, кутинг…"
 
-#: src/widgets/station_list.vala:310
+#: src/widgets/station_list.vala:324
 msgid "No stations match your search"
 msgstr "Қидирувингизга мос станция топилмади"
 
-#: src/widgets/station_list.vala:310
+#: src/widgets/station_list.vala:324
 msgid "Could not load stations"
 msgstr "Станцияларни юклаб бўлмади"
 
@@ -204,25 +213,29 @@ msgid "Stream URL"
 msgstr "Оқим URL"
 
 #. Controls row
-#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:209
+#: src/widgets/player_bar.vala:70 src/widgets/player_bar.vala:220
 msgid "Not Playing"
 msgstr "Ижро этилмаяпти"
 
-#: src/widgets/player_bar.vala:138 src/widgets/player_bar.vala:212
+#: src/widgets/player_bar.vala:139 src/widgets/player_bar.vala:223
 msgid "Select a station"
 msgstr "Станция танланг"
 
-#: src/widgets/player_bar.vala:199
+#: src/widgets/player_bar.vala:179
+msgid "Buffering…"
+msgstr "Буферланмоқда…"
+
+#: src/widgets/player_bar.vala:182 src/widgets/player_bar.vala:240
+msgid "Now playing"
+msgstr "Ҳозир ижро этилмоқда"
+
+#: src/widgets/player_bar.vala:210
 msgid "Paused"
 msgstr "Тўхтатилди"
 
-#: src/widgets/player_bar.vala:204
+#: src/widgets/player_bar.vala:215
 msgid "Reconnecting…"
 msgstr "Қайта уланмоқда…"
-
-#: src/widgets/player_bar.vala:229
-msgid "Now playing"
-msgstr "Ҳозир ижро этилмоқда"
 
 #. indeterminate while searching
 #: src/services/song_downloader.vala:28
