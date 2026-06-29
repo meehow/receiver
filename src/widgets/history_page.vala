@@ -90,7 +90,7 @@ namespace Receiver {
         }
 
         private void build_ui() {
-            var icon = new Gtk.Image.from_icon_name("music-note-single-symbolic");
+            var icon = new Gtk.Image.from_icon_name("audio-x-generic-symbolic");
             icon.add_css_class("dim-label");
             icon.valign = Gtk.Align.CENTER;
             this.append(icon);
