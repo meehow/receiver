@@ -32,8 +32,10 @@ namespace Receiver {
 
                 // Keep playing in the background: hide instead of destroying the
                 // window so the app's last window stays registered and it lives on.
+                // Only when there is actually playback (not when stopped or errored).
+                var state = app.player.state;
                 if (s.get_boolean("run-in-background") &&
-                    app.player.state != PlayerState.STOPPED) {
+                    (state == PlayerState.PLAYING || state == PlayerState.PAUSED)) {
                     this.set_visible(false);
                     app.request_background_portal();
                     return true;
