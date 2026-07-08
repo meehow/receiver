@@ -73,7 +73,7 @@ namespace Receiver {
             }
 
             // Build filename from YouTube title
-            var filename = sanitize_filename(info.title) + ".mp4";
+            var filename = sanitize_filename(info.title) + "." + info.ext;
 
             // Show save dialog
             var dialog = new Gtk.FileDialog();
@@ -103,33 +103,21 @@ namespace Receiver {
                     try {
                         var session = new Soup.Session();
                         session.timeout = 120;
-                        var msg = new Soup.Message("GET", url);
-                        var stream = session.send(msg, cancellable);
-                        if (msg.status_code != 200) {
-                            dl_error = "HTTP %u".printf(msg.status_code);
-                            Idle.add(download_song.callback);
-                            return;
-                        }
-                        int64 total = msg.response_headers.get_content_length();
-                        int64 received = 0;
                         var out_stream = dest.replace(null, false, FileCreateFlags.REPLACE_DESTINATION, cancellable);
-                        uint8[] buffer = new uint8[65536];
-                        while (true) {
-                            var n = stream.read(buffer, cancellable);
-                            if (n <= 0) break;
-                            out_stream.write(buffer[0:n], cancellable);
-                            received += n;
+                        Ytdl.download(session, url, out_stream, cancellable, (received, total) => {
                             if (total > 0) {
                                 double frac = (double) received / (double) total;
                                 Idle.add(() => { progress_updated(frac); return false; });
                             }
-                        }
+                        });
                         out_stream.close(null);
                     } catch (IOError.CANCELLED e) {
                         // Clean up partial file
                         try { dest.delete(null); } catch (Error de) {}
                         dl_error = _("Cancelled");
                     } catch (Error e) {
+                        // Don't leave a partial/empty file behind
+                        try { dest.delete(null); } catch (Error de) {}
                         dl_error = e.message;
                     }
                     Idle.add(download_song.callback);
