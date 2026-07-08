@@ -1,8 +1,9 @@
 /**
  * ytdl — YouTube format extraction library
  *
- * Extracts a playable URL for itag 18 (360p muxed mp4) from YouTube.
- * Uses web_embedded API and JavaScriptCore for signatureCipher solving.
+ * Extracts a playable URL for itag 18 (360p muxed mp4) or itag 140
+ * (m4a audio) from YouTube via non-web innertube clients, which return
+ * direct URLs without sig/n JS challenges or PO tokens.
  */
 
 namespace Ytdl {
@@ -146,61 +147,33 @@ namespace Ytdl {
         MatchInfo mi;
 
         // Visitor data ties API calls to a browsing session; without it
-        // non-web clients are rejected with a "confirm you're not a bot" check.
+        // the clients are rejected with a "confirm you're not a bot" check.
         string? visitor_data = null;
         var re_vd = new Regex ("\"visitorData\"\\s*:\\s*\"([^\"]+)\"");
         if (re_vd.match (page, 0, out mi))
             visitor_data = mi.fetch (1).replace ("\\u003d", "=");
 
-        // 2. Locate the player JS. It is only downloaded if a web client is
-        //    actually attempted (signatureTimestamp + sig/n challenge solving);
-        //    non-web clients return ready-to-use URLs.
-        string? player_js_path = null;
-        var re_js = new Regex ("/s/player/[a-f0-9]+/[^\"]+(?:base|tv-player-ias)\\.js");
-        if (re_js.match (page, 0, out mi))
-            player_js_path = mi.fetch (0);
-        string? base_js = null;
-        string sts = "0";
-
-        // 3. Try API clients in order until one yields a usable format:
+        // 2. Try API clients in order until one yields a usable format.
+        //    Only non-web clients: they return direct URLs without sig/n JS
+        //    challenges (web clients now return SABR-only responses anyway).
         //    ANDROID_VR — no PO-token requirement, still serves muxed itag 18
-        //    WEB_EMBEDDED_PLAYER — muxed itag 18 for embeddable videos
         //    IOS — direct adaptive URLs (downloads may be range-restricted)
-        //    WEB — last resort; usually returns SABR-only responses with no URLs
         ApiClient[] clients = {
             { "ANDROID_VR", "1.65.10", "28", ANDROID_VR_UA,
-              ",\"deviceMake\": \"Oculus\",\"deviceModel\": \"Quest 3\",\"androidSdkVersion\": 32,\"userAgent\": \"" + ANDROID_VR_UA + "\",\"osName\": \"Android\",\"osVersion\": \"12L\"",
-              null, false },
-            { "WEB_EMBEDDED_PLAYER", "1.20260115.01.00", "56", null, null,
-              ",\"thirdParty\": { \"embedUrl\": \"https://www.youtube.com/\" }", true },
+              ",\"deviceMake\": \"Oculus\",\"deviceModel\": \"Quest 3\",\"androidSdkVersion\": 32,\"userAgent\": \"" + ANDROID_VR_UA + "\",\"osName\": \"Android\",\"osVersion\": \"12L\"" },
             { "IOS", "21.02.3", "5", IOS_UA,
-              ",\"deviceMake\": \"Apple\",\"deviceModel\": \"iPhone16,2\",\"userAgent\": \"" + IOS_UA + "\",\"osName\": \"iPhone\",\"osVersion\": \"18.3.2.22D82\"",
-              null, false },
-            { "WEB", "2.20260115.01.00", "1", null, null, null, true },
+              ",\"deviceMake\": \"Apple\",\"deviceModel\": \"iPhone16,2\",\"userAgent\": \"" + IOS_UA + "\",\"osName\": \"iPhone\",\"osVersion\": \"18.3.2.22D82\"" },
         };
 
         string title = "video";
-        string? raw_url = null;
-        string? sig_cipher = null;
+        string? url = null;
         string ext = "mp4";
-        bool web_client = true;
         Error? last_err = null;
 
         foreach (var client in clients) {
-            if (client.is_web && base_js == null) {
-                if (player_js_path == null) continue;
-                base_js = http_get (session, "https://www.youtube.com" + player_js_path);
-                if (base_js == null) {
-                    player_js_path = null;  // don't retry for later web clients
-                    continue;
-                }
-                var re_sts = new Regex ("signatureTimestamp[=:]\\s*(\\d+)");
-                if (re_sts.match (base_js, 0, out mi)) sts = mi.fetch (1);
-            }
-
             Json.Object root;
             try {
-                root = call_player_api (session, video_id, sts, visitor_data, client);
+                root = call_player_api (session, video_id, visitor_data, client);
             } catch (Error e) {
                 last_err = e;
                 continue;
@@ -212,16 +185,15 @@ namespace Ytdl {
             if (!root.has_member ("streamingData")) continue;
             var sd = root.get_object_member ("streamingData");
             if (sd.has_member ("formats")
-                && pick_itag (sd.get_array_member ("formats"), 18, out raw_url, out sig_cipher)) {
+                && (url = pick_itag (sd.get_array_member ("formats"), 18)) != null) {
                 ext = "mp4";
             } else if (sd.has_member ("adaptiveFormats")
-                && pick_itag (sd.get_array_member ("adaptiveFormats"), 140, out raw_url, out sig_cipher)) {
+                && (url = pick_itag (sd.get_array_member ("adaptiveFormats"), 140)) != null) {
                 ext = "m4a";
             } else {
-                continue;  // response has no usable URLs (e.g. SABR-only)
+                continue;  // response has no usable direct URLs
             }
 
-            web_client = client.is_web;
             if (root.has_member ("videoDetails")) {
                 title = root.get_object_member ("videoDetails")
                     .get_string_member_with_default ("title", "video");
@@ -229,50 +201,10 @@ namespace Ytdl {
             break;
         }
 
-        if (raw_url == null && sig_cipher == null)
+        if (url == null)
             throw last_err ?? new IOError.FAILED ("No playable format found (itag 18 or 140)");
 
-        // 4. Build download URL (decipher if needed)
-        string download_url;
-        string? enc_sig = null;
-        string sp = "signature";
-
-        if (raw_url != null) {
-            download_url = raw_url;
-        } else {
-            var sc = GLib.Uri.parse_params (sig_cipher, -1, "&", GLib.UriParamsFlags.NONE);
-            string? v;
-            if (sc.lookup_extended ("s", null, out v))   enc_sig = GLib.Uri.unescape_string (v);
-            if (sc.lookup_extended ("sp", null, out v))  sp = v;
-            if (sc.lookup_extended ("url", null, out v)) download_url = GLib.Uri.unescape_string (v);
-            else throw new IOError.FAILED ("No URL in signatureCipher");
-        }
-
-        // Extract n-param (throttling challenge — only applies to web clients)
-        string? n_param = null;
-        if (web_client) try {
-            var uri = GLib.Uri.parse (download_url, GLib.UriFlags.NONE);
-            var q = uri.get_query ();
-            if (q != null) {
-                var qp = GLib.Uri.parse_params (q, -1, "&", GLib.UriParamsFlags.NONE);
-                string? nv;
-                if (qp.lookup_extended ("n", null, out nv)) n_param = nv;
-            }
-        } catch {}
-
-        // 5. Solve JS challenges (web-client URLs only; base_js is set
-        //    whenever a web client produced the chosen format)
-        if (base_js != null && (enc_sig != null || n_param != null)) {
-            string? solved_sig, solved_n;
-            solve_challenges (base_js, enc_sig, n_param, out solved_sig, out solved_n);
-
-            if (solved_sig != null)
-                download_url += "&" + sp + "=" + GLib.Uri.escape_string (solved_sig, null, true);
-            if (solved_n != null)
-                download_url = replace_param (download_url, "n", solved_n);
-        }
-
-        return VideoInfo () { title = title, url = download_url, video_id = video_id, ext = ext };
+        return VideoInfo () { title = title, url = url, video_id = video_id, ext = ext };
     }
 
     public delegate void ProgressFunc (int64 received, int64 total);
@@ -348,53 +280,38 @@ namespace Ytdl {
         string name;
         string version;
         string id;
-        string? user_agent;   // null → desktop browser UA
-        string? device_json;  // extra fields inside context.client
-        string? extra_json;   // extra fields inside context
-        bool is_web;          // needs signatureTimestamp + sig/n solving
+        string user_agent;
+        string device_json;  // extra fields inside context.client
     }
 
-    private bool pick_itag (Json.Array formats, int itag,
-                            out string? raw_url, out string? sig_cipher) {
-        raw_url = null;
-        sig_cipher = null;
+    private string? pick_itag (Json.Array formats, int itag) {
         for (uint i = 0; i < formats.get_length (); i++) {
             var f = formats.get_object_element (i);
-            if ((int) f.get_int_member_with_default ("itag", 0) == itag) {
-                if (f.has_member ("url"))
-                    raw_url = f.get_string_member ("url");
-                else if (f.has_member ("signatureCipher"))
-                    sig_cipher = f.get_string_member ("signatureCipher");
-                return raw_url != null || sig_cipher != null;
-            }
+            if ((int) f.get_int_member_with_default ("itag", 0) == itag)
+                return f.has_member ("url") ? f.get_string_member ("url") : null;
         }
-        return false;
+        return null;
     }
 
     private const string IOS_UA = "com.google.ios.youtube/21.02.3 (iPhone16,2; U; CPU iOS 18_3_2 like Mac OS X;)";
     private const string ANDROID_VR_UA = "com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip";
 
     private Json.Object call_player_api (Soup.Session session, string video_id,
-                                          string sts, string? visitor_data,
+                                          string? visitor_data,
                                           ApiClient client) throws Error {
         var client_obj = new StringBuilder ();
         client_obj.append_printf ("\"clientName\": \"%s\",\"clientVersion\": \"%s\"",
                                   client.name, client.version);
-        if (client.device_json != null) client_obj.append (client.device_json);
+        client_obj.append (client.device_json);
         if (visitor_data != null)
             client_obj.append_printf (",\"visitorData\": \"%s\"", visitor_data);
 
-        // Web clients need the player's signatureTimestamp to get valid ciphers
-        string playback_part = client.is_web
-            ? ",\"playbackContext\": { \"contentPlaybackContext\": { \"signatureTimestamp\": %s } }".printf (sts)
-            : "";
-
-        string api_body = "{\"context\": {\"client\": {%s}%s},\"videoId\": \"%s\"%s}".printf (
-            client_obj.str, client.extra_json ?? "", video_id, playback_part);
+        string api_body = "{\"context\": {\"client\": {%s}},\"videoId\": \"%s\"}".printf (
+            client_obj.str, video_id);
 
         var msg = new Soup.Message ("POST",
             "https://www.youtube.com/youtubei/v1/player?prettyPrint=false");
-        msg.request_headers.append ("User-Agent", client.user_agent ?? UA);
+        msg.request_headers.append ("User-Agent", client.user_agent);
         msg.request_headers.append ("X-Youtube-Client-Name", client.id);
         msg.request_headers.append ("X-Youtube-Client-Version", client.version);
         msg.request_headers.append ("Origin", "https://www.youtube.com");
@@ -431,95 +348,5 @@ namespace Ytdl {
             if (msg.status_code == 200) return (string) bytes.get_data ();
         } catch {}
         return null;
-    }
-
-    private void solve_challenges (string base_js, string? enc_sig, string? n_param,
-                                   out string? solved_sig, out string? solved_n) throws Error {
-        solved_sig = null;
-        solved_n = null;
-        if (enc_sig == null && n_param == null) return;
-
-        // Load solver JS from embedded GResource
-        var lib_bytes = resources_lookup_data ("/org/ytdl/yt.solver.lib.js", ResourceLookupFlags.NONE);
-        var core_bytes = resources_lookup_data ("/org/ytdl/yt.solver.core.js", ResourceLookupFlags.NONE);
-        string lib_js = (string) lib_bytes.get_data ();
-        string core_js = (string) core_bytes.get_data ();
-
-        // Build solver input JSON
-        var b = new Json.Builder ();
-        b.begin_object ();
-        b.set_member_name ("type"); b.add_string_value ("player");
-        b.set_member_name ("player"); b.add_string_value (base_js);
-        b.set_member_name ("requests"); b.begin_array ();
-        if (enc_sig != null) {
-            b.begin_object ();
-            b.set_member_name ("type"); b.add_string_value ("sig");
-            b.set_member_name ("challenges");
-            b.begin_array (); b.add_string_value (enc_sig); b.end_array ();
-            b.end_object ();
-        }
-        if (n_param != null) {
-            b.begin_object ();
-            b.set_member_name ("type"); b.add_string_value ("n");
-            b.set_member_name ("challenges");
-            b.begin_array (); b.add_string_value (n_param); b.end_array ();
-            b.end_object ();
-        }
-        b.end_array (); b.end_object ();
-        var gen = new Json.Generator ();
-        gen.set_root (b.get_root ());
-        string input_json = gen.to_data (null);
-
-        // Execute in JavaScriptCore (single concatenated script)
-        var js = new StringBuilder ();
-        js.append (lib_js);
-        js.append ("\nObject.assign(globalThis, lib);\n");
-        js.append (core_js);
-        js.append ("\nvar _r = JSON.stringify(jsc(");
-        js.append (input_json);
-        js.append ("));\n_r;\n");
-
-        var ctx = new JSC.Context ();
-        var result = ctx.evaluate (js.str, js.len);
-
-        var ex = ctx.get_exception ();
-        if (ex != null) throw new IOError.FAILED ("JS error: %s", ex.get_message ());
-        if (result.is_undefined () || result.is_null ())
-            throw new IOError.FAILED ("JS solver returned null");
-
-        // Parse result
-        var p = new Json.Parser ();
-        p.load_from_data (result.to_string ());
-        var robj = p.get_root ().get_object ();
-        if (robj.get_string_member_with_default ("type", "") != "result")
-            throw new IOError.FAILED ("JS solver error");
-
-        var responses = robj.get_array_member ("responses");
-        int idx = 0;
-
-        if (enc_sig != null && idx < responses.get_length ()) {
-            var r = responses.get_object_element (idx);
-            if (r.get_string_member_with_default ("type", "") == "result")
-                solved_sig = r.get_object_member ("data").get_string_member (enc_sig);
-            idx++;
-        }
-        if (n_param != null && idx < responses.get_length ()) {
-            var r = responses.get_object_element (idx);
-            if (r.get_string_member_with_default ("type", "") == "result")
-                solved_n = r.get_object_member ("data").get_string_member (n_param);
-        }
-    }
-
-    private string replace_param (string url, string param, string val) {
-        foreach (string pfx in new string[] { "&" + param + "=", "?" + param + "=" }) {
-            int i = url.index_of (pfx);
-            if (i >= 0) {
-                int vs = i + pfx.length;
-                int ve = url.index_of ("&", vs);
-                if (ve < 0) return url.substring (0, vs) + val;
-                return url.substring (0, vs) + val + url.substring (ve);
-            }
-        }
-        return url + "&" + param + "=" + val;
     }
 }

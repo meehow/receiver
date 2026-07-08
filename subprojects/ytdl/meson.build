@@ -3,26 +3,16 @@ project('ytdl', 'vala', 'c',
   meson_version: '>= 0.56',
 )
 
-gnome = import('gnome')
-
 deps = [
   dependency('glib-2.0'),
   dependency('gobject-2.0'),
   dependency('gio-2.0'),
   dependency('libsoup-3.0'),
   dependency('json-glib-1.0'),
-  dependency('javascriptcoregtk-6.0'),
 ]
-
-# Embed JS solver files into the binary
-resources = gnome.compile_resources('ytdl-resources',
-  'data/ytdl.gresource.xml',
-  source_dir: 'data',
-)
 
 libytdl = static_library('ytdl',
   'src/ytdl.vala',
-  resources,
   dependencies: deps,
   install: false,
 )

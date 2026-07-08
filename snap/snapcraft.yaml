@@ -70,7 +70,6 @@ parts:
       - libgstreamer1.0-dev
       - libsoup-3.0-dev
       - libjson-glib-dev
-      - libjavascriptcoregtk-6.0-dev
       - libsqlite3-dev
       - gettext
     stage-packages:
@@ -79,7 +78,6 @@ parts:
       - gstreamer1.0-plugins-bad
       - libsoup-3.0-0
       - libjson-glib-1.0-0
-      - libjavascriptcoregtk-6.0-1
       - libsqlite3-0
       - webp-pixbuf-loader
     stage:

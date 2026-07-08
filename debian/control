@@ -10,7 +10,6 @@ Build-Depends: debhelper-compat (= 13),
                libgstreamer1.0-dev,
                libsoup-3.0-dev,
                libjson-glib-dev,
-               libjavascriptcoregtk-6.0-dev,
                libsqlite3-dev
 Standards-Version: 4.6.2
 Homepage: https://github.com/meehow/receiver
