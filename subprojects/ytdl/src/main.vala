@@ -36,36 +36,18 @@ int main (string[] args) {
         // Download mode
         var info = Ytdl.extract (session, args[1]);
 
-        string filename = sanitize (info.title) + ".mp4";
+        string filename = sanitize (info.title) + "." + info.ext;
         print ("Downloading: %s\n", info.title);
         print ("File: %s\n\n", filename);
 
-        var msg = new Soup.Message ("GET", info.url);
-        msg.request_headers.append ("User-Agent",
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36");
-        msg.request_headers.append ("Referer", "https://www.youtube.com/");
-        msg.request_headers.append ("Origin", "https://www.youtube.com");
-
-        var input = session.send (msg, null);
-        if (msg.status_code != 200) {
-            printerr ("HTTP %u\n", msg.status_code);
-            return 1;
-        }
-
-        int64 total = msg.response_headers.get_content_length ();
         var fos = File.new_for_path (filename)
             .replace (null, false, FileCreateFlags.REPLACE_DESTINATION, null);
 
-        uint8[] buf = new uint8[65536];
-        int64 done = 0;
-        ssize_t n;
-        while ((n = input.read (buf, null)) > 0) {
-            fos.write (buf[0:n], null);
-            done += n;
+        Ytdl.download (session, info.url, fos, null, (done, total) => {
             if (total > 0)
                 print ("\r  %.0f%%  %.1f / %.1f MB",
                     (double) done / total * 100, done / 1048576.0, total / 1048576.0);
-        }
+        });
         fos.close (null);
 
         print ("\n✓ %s\n", filename);

@@ -11,6 +11,7 @@ namespace Ytdl {
         public string title;
         public string url;
         public string video_id;
+        public string ext;
     }
 
     public struct SearchResult {
@@ -142,77 +143,96 @@ namespace Ytdl {
         string? page = http_get (session, "https://www.youtube.com/watch?v=" + video_id);
         if (page == null) throw new IOError.FAILED ("Could not fetch watch page");
 
-        // 2. Download the actual player JS from the watch page.
-        //    yt-dlp now uses 'actual' player version (not pinned), so we do the same.
-        string? base_js = null;
-        var re = new Regex ("/s/player/[a-f0-9]+/[^\"]+(?:base|tv-player-ias)\\.js");
         MatchInfo mi;
-        if (re.match (page, 0, out mi)) {
-            base_js = http_get (session, "https://www.youtube.com" + mi.fetch (0));
-        }
-        if (base_js == null) throw new IOError.FAILED ("Could not download player JS");
 
+        // Visitor data ties API calls to a browsing session; without it
+        // non-web clients are rejected with a "confirm you're not a bot" check.
+        string? visitor_data = null;
+        var re_vd = new Regex ("\"visitorData\"\\s*:\\s*\"([^\"]+)\"");
+        if (re_vd.match (page, 0, out mi))
+            visitor_data = mi.fetch (1).replace ("\\u003d", "=");
+
+        // 2. Locate the player JS. It is only downloaded if a web client is
+        //    actually attempted (signatureTimestamp + sig/n challenge solving);
+        //    non-web clients return ready-to-use URLs.
+        string? player_js_path = null;
+        var re_js = new Regex ("/s/player/[a-f0-9]+/[^\"]+(?:base|tv-player-ias)\\.js");
+        if (re_js.match (page, 0, out mi))
+            player_js_path = mi.fetch (0);
+        string? base_js = null;
         string sts = "0";
-        var re_sts = new Regex ("signatureTimestamp[=:]\\s*(\\d+)");
-        if (re_sts.match (base_js, 0, out mi)) sts = mi.fetch (1);
 
-        // 3. Try API clients: WEB_EMBEDDED_PLAYER first, then WEB as fallback
-        Json.Object? root = null;
-        Error? last_err = null;
+        // 3. Try API clients in order until one yields a usable format:
+        //    ANDROID_VR — no PO-token requirement, still serves muxed itag 18
+        //    WEB_EMBEDDED_PLAYER — muxed itag 18 for embeddable videos
+        //    IOS — direct adaptive URLs (downloads may be range-restricted)
+        //    WEB — last resort; usually returns SABR-only responses with no URLs
+        ApiClient[] clients = {
+            { "ANDROID_VR", "1.65.10", "28", ANDROID_VR_UA,
+              ",\"deviceMake\": \"Oculus\",\"deviceModel\": \"Quest 3\",\"androidSdkVersion\": 32,\"userAgent\": \"" + ANDROID_VR_UA + "\",\"osName\": \"Android\",\"osVersion\": \"12L\"",
+              null, false },
+            { "WEB_EMBEDDED_PLAYER", "1.20260115.01.00", "56", null, null,
+              ",\"thirdParty\": { \"embedUrl\": \"https://www.youtube.com/\" }", true },
+            { "IOS", "21.02.3", "5", IOS_UA,
+              ",\"deviceMake\": \"Apple\",\"deviceModel\": \"iPhone16,2\",\"userAgent\": \"" + IOS_UA + "\",\"osName\": \"iPhone\",\"osVersion\": \"18.3.2.22D82\"",
+              null, false },
+            { "WEB", "2.20260115.01.00", "1", null, null, null, true },
+        };
 
-        // WEB_EMBEDDED_PLAYER (client 56)
-        try {
-            root = call_player_api (session, video_id, sts,
-                "WEB_EMBEDDED_PLAYER", "1.20260115.01.00", "56", true);
-        } catch (Error e) {
-            last_err = e;
-        }
-
-        // WEB fallback (client 1)
-        if (root == null) {
-            try {
-                root = call_player_api (session, video_id, sts,
-                    "WEB", "2.20260115.01.00", "1", false);
-            } catch (Error e) {
-                last_err = e;
-            }
-        }
-
-        if (root == null)
-            throw last_err ?? new IOError.FAILED ("All API clients failed");
-
-        // 5. Extract title
         string title = "video";
-        if (root.has_member ("videoDetails")) {
-            title = root.get_object_member ("videoDetails")
-                .get_string_member_with_default ("title", "video");
-        }
-
-        // 6. Find itag 18
         string? raw_url = null;
         string? sig_cipher = null;
+        string ext = "mp4";
+        bool web_client = true;
+        Error? last_err = null;
 
-        if (root.has_member ("streamingData")) {
-            var sd = root.get_object_member ("streamingData");
-            if (sd.has_member ("formats")) {
-                var formats = sd.get_array_member ("formats");
-                for (uint i = 0; i < formats.get_length (); i++) {
-                    var f = formats.get_object_element (i);
-                    if ((int) f.get_int_member_with_default ("itag", 0) == 18) {
-                        if (f.has_member ("url"))
-                            raw_url = f.get_string_member ("url");
-                        else if (f.has_member ("signatureCipher"))
-                            sig_cipher = f.get_string_member ("signatureCipher");
-                        break;
-                    }
+        foreach (var client in clients) {
+            if (client.is_web && base_js == null) {
+                if (player_js_path == null) continue;
+                base_js = http_get (session, "https://www.youtube.com" + player_js_path);
+                if (base_js == null) {
+                    player_js_path = null;  // don't retry for later web clients
+                    continue;
                 }
+                var re_sts = new Regex ("signatureTimestamp[=:]\\s*(\\d+)");
+                if (re_sts.match (base_js, 0, out mi)) sts = mi.fetch (1);
             }
+
+            Json.Object root;
+            try {
+                root = call_player_api (session, video_id, sts, visitor_data, client);
+            } catch (Error e) {
+                last_err = e;
+                continue;
+            }
+
+            // Pick a format: itag 18 (360p muxed mp4) if still available,
+            // else itag 140 (m4a audio) — YouTube dropped muxed formats
+            // from most videos, leaving only separate audio/video streams.
+            if (!root.has_member ("streamingData")) continue;
+            var sd = root.get_object_member ("streamingData");
+            if (sd.has_member ("formats")
+                && pick_itag (sd.get_array_member ("formats"), 18, out raw_url, out sig_cipher)) {
+                ext = "mp4";
+            } else if (sd.has_member ("adaptiveFormats")
+                && pick_itag (sd.get_array_member ("adaptiveFormats"), 140, out raw_url, out sig_cipher)) {
+                ext = "m4a";
+            } else {
+                continue;  // response has no usable URLs (e.g. SABR-only)
+            }
+
+            web_client = client.is_web;
+            if (root.has_member ("videoDetails")) {
+                title = root.get_object_member ("videoDetails")
+                    .get_string_member_with_default ("title", "video");
+            }
+            break;
         }
 
         if (raw_url == null && sig_cipher == null)
-            throw new IOError.FAILED ("itag 18 not found");
+            throw last_err ?? new IOError.FAILED ("No playable format found (itag 18 or 140)");
 
-        // 7. Build download URL (decipher if needed)
+        // 4. Build download URL (decipher if needed)
         string download_url;
         string? enc_sig = null;
         string sp = "signature";
@@ -228,9 +248,9 @@ namespace Ytdl {
             else throw new IOError.FAILED ("No URL in signatureCipher");
         }
 
-        // Extract n-param
+        // Extract n-param (throttling challenge — only applies to web clients)
         string? n_param = null;
-        try {
+        if (web_client) try {
             var uri = GLib.Uri.parse (download_url, GLib.UriFlags.NONE);
             var q = uri.get_query ();
             if (q != null) {
@@ -240,8 +260,9 @@ namespace Ytdl {
             }
         } catch {}
 
-        // 8. Solve JS challenges
-        if (enc_sig != null || n_param != null) {
+        // 5. Solve JS challenges (web-client URLs only; base_js is set
+        //    whenever a web client produced the chosen format)
+        if (base_js != null && (enc_sig != null || n_param != null)) {
             string? solved_sig, solved_n;
             solve_challenges (base_js, enc_sig, n_param, out solved_sig, out solved_n);
 
@@ -251,7 +272,58 @@ namespace Ytdl {
                 download_url = replace_param (download_url, "n", solved_n);
         }
 
-        return VideoInfo () { title = title, url = download_url, video_id = video_id };
+        return VideoInfo () { title = title, url = download_url, video_id = video_id, ext = ext };
+    }
+
+    public delegate void ProgressFunc (int64 received, int64 total);
+
+    /**
+     * Download a media URL to out_stream in ranged chunks.
+     * googlevideo rejects unranged full-file GETs and Range requests larger
+     * than ~1 MiB (HTTP 403), so the file is requested as a sequence of
+     * 1 MiB Range requests.
+     */
+    public void download (Soup.Session session, string url, OutputStream out_stream,
+                          Cancellable? cancellable = null,
+                          ProgressFunc? progress = null) throws Error {
+        const int64 CHUNK = 1024 * 1024;
+        int64 total = -1;
+        int64 received = 0;
+        uint8[] buffer = new uint8[65536];
+
+        while (total < 0 || received < total) {
+            var msg = new Soup.Message ("GET", url);
+            msg.request_headers.append ("User-Agent", UA);
+            msg.request_headers.set_range (received, received + CHUNK - 1);
+
+            var stream = session.send (msg, cancellable);
+            if (msg.status_code != 206 && msg.status_code != 200)
+                throw new IOError.FAILED ("HTTP %u", msg.status_code);
+
+            if (total < 0) {
+                int64 rs, re;
+                if (msg.status_code == 206
+                    && msg.response_headers.get_content_range (out rs, out re, out total)) {
+                    // total set from Content-Range
+                } else {
+                    total = msg.response_headers.get_content_length ();
+                }
+            }
+
+            int64 chunk_got = 0;
+            ssize_t n;
+            while ((n = stream.read (buffer, cancellable)) > 0) {
+                out_stream.write (buffer[0:n], cancellable);
+                received += n;
+                chunk_got += n;
+                if (progress != null) progress (received, total);
+            }
+            stream.close (cancellable);
+
+            // 200 means the server sent the whole file; empty chunk means
+            // the size was unknown and we've read past the end.
+            if (msg.status_code == 200 || chunk_got == 0) break;
+        }
     }
 
     /**
@@ -272,40 +344,67 @@ namespace Ytdl {
 
     // ── Private helpers ──
 
-    private Json.Object call_player_api (Soup.Session session, string video_id,
-                                          string sts, string client_name,
-                                          string client_version, string client_id,
-                                          bool is_embedded) throws Error {
-        string embed_part = is_embedded
-            ? ",\"thirdParty\": { \"embedUrl\": \"https://www.youtube.com/\" }"
-            : "";
+    private struct ApiClient {
+        string name;
+        string version;
+        string id;
+        string? user_agent;   // null → desktop browser UA
+        string? device_json;  // extra fields inside context.client
+        string? extra_json;   // extra fields inside context
+        bool is_web;          // needs signatureTimestamp + sig/n solving
+    }
 
-        string api_body = """
-        {
-            "context": {
-                "client": {
-                    "clientName": "%s",
-                    "clientVersion": "%s"
-                }%s
-            },
-            "videoId": "%s",
-            "playbackContext": {
-                "contentPlaybackContext": { "signatureTimestamp": %s }
+    private bool pick_itag (Json.Array formats, int itag,
+                            out string? raw_url, out string? sig_cipher) {
+        raw_url = null;
+        sig_cipher = null;
+        for (uint i = 0; i < formats.get_length (); i++) {
+            var f = formats.get_object_element (i);
+            if ((int) f.get_int_member_with_default ("itag", 0) == itag) {
+                if (f.has_member ("url"))
+                    raw_url = f.get_string_member ("url");
+                else if (f.has_member ("signatureCipher"))
+                    sig_cipher = f.get_string_member ("signatureCipher");
+                return raw_url != null || sig_cipher != null;
             }
         }
-        """.printf (client_name, client_version, embed_part, video_id, sts);
+        return false;
+    }
+
+    private const string IOS_UA = "com.google.ios.youtube/21.02.3 (iPhone16,2; U; CPU iOS 18_3_2 like Mac OS X;)";
+    private const string ANDROID_VR_UA = "com.google.android.apps.youtube.vr.oculus/1.65.10 (Linux; U; Android 12L; eureka-user Build/SQ3A.220605.009.A1) gzip";
+
+    private Json.Object call_player_api (Soup.Session session, string video_id,
+                                          string sts, string? visitor_data,
+                                          ApiClient client) throws Error {
+        var client_obj = new StringBuilder ();
+        client_obj.append_printf ("\"clientName\": \"%s\",\"clientVersion\": \"%s\"",
+                                  client.name, client.version);
+        if (client.device_json != null) client_obj.append (client.device_json);
+        if (visitor_data != null)
+            client_obj.append_printf (",\"visitorData\": \"%s\"", visitor_data);
+
+        // Web clients need the player's signatureTimestamp to get valid ciphers
+        string playback_part = client.is_web
+            ? ",\"playbackContext\": { \"contentPlaybackContext\": { \"signatureTimestamp\": %s } }".printf (sts)
+            : "";
+
+        string api_body = "{\"context\": {\"client\": {%s}%s},\"videoId\": \"%s\"%s}".printf (
+            client_obj.str, client.extra_json ?? "", video_id, playback_part);
 
         var msg = new Soup.Message ("POST",
             "https://www.youtube.com/youtubei/v1/player?prettyPrint=false");
-        msg.request_headers.append ("User-Agent", UA);
-        msg.request_headers.append ("X-Youtube-Client-Name", client_id);
-        msg.request_headers.append ("X-Youtube-Client-Version", client_version);
+        msg.request_headers.append ("User-Agent", client.user_agent ?? UA);
+        msg.request_headers.append ("X-Youtube-Client-Name", client.id);
+        msg.request_headers.append ("X-Youtube-Client-Version", client.version);
         msg.request_headers.append ("Origin", "https://www.youtube.com");
+        if (visitor_data != null)
+            msg.request_headers.append ("X-Goog-Visitor-Id", visitor_data);
         msg.set_request_body_from_bytes ("application/json", new Bytes (api_body.data));
 
         var resp_bytes = session.send_and_read (msg, null);
         if (msg.status_code != 200)
-            throw new IOError.FAILED ("%s: HTTP %u", client_name, msg.status_code);
+            throw new IOError.FAILED ("%s: HTTP %u", client.name, msg.status_code);
 
         var parser = new Json.Parser ();
         parser.load_from_data ((string) resp_bytes.get_data ());
