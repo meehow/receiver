@@ -71,6 +71,7 @@ parts:
       - libsoup-3.0-dev
       - libjson-glib-dev
       - libsqlite3-dev
+      - libncurses-dev
       - gettext
     stage-packages:
       - gstreamer1.0-plugins-base
@@ -79,6 +80,7 @@ parts:
       - libsoup-3.0-0
       - libjson-glib-1.0-0
       - libsqlite3-0
+      - libncursesw6
       - webp-pixbuf-loader
     stage:
       - -usr/lib/*/libdirect*
