@@ -77,6 +77,16 @@
   </screenshots>
   
   <releases>
+    <release version="0.7.0" date="2026-07-09">
+      <description>
+        <ul>
+          <li>Screen-reader support: playback and favourite controls now have accessible labels, and favourite cards can be activated with the keyboard</li>
+          <li>Translate the new interface strings into all supported languages and rewrite the broken Hindi translation</li>
+          <li>Refresh the station database: 38,920 checked stations and new language filters</li>
+          <li>Fix song downloads after YouTube player changes</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.6.0" date="2026-06-30">
       <description>
         <ul>
