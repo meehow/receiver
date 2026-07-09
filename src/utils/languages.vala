@@ -24,6 +24,7 @@ namespace Receiver {
                 case "ca": return "Català";
                 case "cmn": return "普通话";
                 case "cr": return "ᓀᐦᐃᔭᐍᐏᐣ";
+                case "crs": return "Seselwa";
                 case "cs": return "Čeština";
                 case "cy": return "Cymraeg";
                 case "da": return "Dansk";
@@ -36,6 +37,7 @@ namespace Receiver {
                 case "et": return "Eesti";
                 case "eu": return "Euskara";
                 case "fa": return "فارسی";
+                case "fat": return "Mfantse";
                 case "fi": return "Suomi";
                 case "fil": return "Filipino";
                 case "fj": return "Vosa Vakaviti";
@@ -56,11 +58,13 @@ namespace Receiver {
                 case "hu": return "Magyar";
                 case "hy": return "Հայերેն";
                 case "id": return "Bahasa Indonesia";
+                case "ig": return "Igbo";
                 case "is": return "Íslenska";
                 case "it": return "Italiano";
                 case "ja": return "日本語";
                 case "jv": return "Basa Jawa";
                 case "ka": return "ქართული";
+                case "ken": return "Kenyang";
                 case "kk": return "Қазақша";
                 case "km": return "ខ្មែរ";
                 case "kn": return "ಕನ್ನಡ";
@@ -89,6 +93,7 @@ namespace Receiver {
                 case "no": return "Norsk";
                 case "nv": return "Diné bizaad";
                 case "oc": return "Occitan";
+                case "oj": return "Anishinaabemowin";
                 case "om": return "Afaan Oromoo";
                 case "pa": return "ਪੰਜਾਬੀ";
                 case "pi": return "पालि";
@@ -115,6 +120,7 @@ namespace Receiver {
                 case "ta": return "தமிழ்";
                 case "te": return "తెలుగు";
                 case "th": return "ไทย";
+                case "ti": return "ትግርኛ";
                 case "tk": return "Türkmen";
                 case "to": return "Lea fakatonga";
                 case "tr": return "Türkçe";
@@ -126,6 +132,7 @@ namespace Receiver {
                 case "uz": return "Oʻzbek";
                 case "vi": return "Tiếng Việt";
                 case "wen": return "Serbšćina";
+                case "wo": return "Wolof";
                 case "xh": return "IsiXhosa";
                 case "yi": return "ייִדיש";
                 case "yo": return "Yorùbá";
