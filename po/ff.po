@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ff\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Alaa cuɓaaɗi"
 msgid "Star stations while browsing to add them here"
 msgstr "Hokku hoodere e nokkuuje nde njiya-ɗaa ngam ɓeydude ɗum ɗoo"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr ""
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Alaa jaaɓe njahdaani e njiylu maa"
 msgid "Could not load stations"
 msgstr "Horiima loowde jaaɓe"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Ɓeydu e cuɓaaɗi"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Ittu e cuɓaaɗi"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr ""
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Nokkuure"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Nanngaaka"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr ""
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Dartin"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr ""
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Suɓo jaaɓorgal"
 
@@ -225,6 +254,10 @@ msgstr "Ina loowa…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Ina nanga jooni"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr ""
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

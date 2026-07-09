@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: dv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "ފެވަރިޓެއް ނެތް"
 msgid "Star stations while browsing to add them here"
 msgstr "މިތަނަށް އިތުރުކުރުމަށް ބްރައުޒް ކުރާއިރު ސްޓޭޝަންތަކުގައި ސްޓާރ ޖައްސާ"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s ކުޅޭ"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "ތިޔަ ހޯދުމާ ގުޅޭ ސްޓޭޝަނެއް ނެތް"
 msgid "Could not load stations"
 msgstr "ސްޓޭޝަންތައް ލޯޑެއް ނުކުރެވުނު"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "ފެވަރިޓްސްއަށް އިތުރުކުރޭ"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "ފެވަރިޓްސްއިން ނަގާ"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "ސްޓޭޝަން ލިބެން ނެތް"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "ސްޓޭޝަން"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "ނުކުޅެއެވެ"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "ކުޅޭ"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "ހުއްޓާލާ"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "ވޮލިއުމް"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "ސްޓޭޝަނެއް ހޮވާ"
 
@@ -225,6 +254,10 @@ msgstr "ބަފަރ ކުރަނީ…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "މިހާރު ކުޅެނީ"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "މަޑުކުރޭ"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "بدون علاقه‌مندی"
 msgid "Star stations while browsing to add them here"
 msgstr "هنگام مرور، ایستگاه‌ها را ستاره‌دار کنید تا اینجا اضافه شوند"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "پخش %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "هیچ ایستگاهی با جستجوی شما مطابقت ندارد
 msgid "Could not load stations"
 msgstr "بارگذاری ایستگاه‌ها ممکن نشد"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "افزودن به علاقه‌مندی‌ها"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "حذف از علاقه‌مندی‌ها"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "ایستگاه در دسترس نیست"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "ایستگاه"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "در حال پخش نیست"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "پخش"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "توقف"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "حجم صدا"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "یک ایستگاه انتخاب کنید"
 
@@ -225,6 +254,10 @@ msgstr "در حال بافر…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "در حال پخش"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "مکث"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

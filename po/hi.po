@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: hi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "कोई पसंदीदा नहीं"
 msgid "Star stations while browsing to add them here"
 msgstr "यहाँ जोड़ने के लिए ब्राउज़ करते समय स्टेशनों को स्टार करें"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s चलाएँ"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -154,7 +159,7 @@ msgstr "لوڈ ہو رہا ہے..."
 #: src/widgets/station_list.vala
 #, c-format
 msgid "%u of %d stations"
-msgstr "%d میں سے %u اسٹیشنز"
+msgstr "%2$d میں سے %1$u اسٹیشنز"
 
 #: src/widgets/station_list.vala
 #, c-format
@@ -180,6 +185,18 @@ msgstr "آپ کی تلاش سے کوئی اسٹیشن میل نہیں کھاتا
 #: src/widgets/station_list.vala
 msgid "Could not load stations"
 msgstr "اسٹیشنز لوڈ نہیں ہو سکے"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "पसंदीदा में जोड़ें"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "पसंदीदा से हटाएँ"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "स्टेशन अनुपलब्ध"
 
 #: src/widgets/station_info_page.vala
 msgid "Station"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "نہیں چل رہا"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "चलाएँ"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "बंद करें"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "वॉल्यूम"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "ایک اسٹیشن منتخب کریں"
 
@@ -225,6 +254,10 @@ msgstr "बफ़र हो रहा है…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "ابھی چل رہا ہے"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "रोकें"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

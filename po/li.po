@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: li\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Gein favoriete"
 msgid "Star stations while browsing to add them here"
 msgstr "Markeer zenders mit 'n stèr tiedes 't bekieke om ze hie toe te voege"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s aafspeule"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Gein stations passe bie dien zeukopdracht"
 msgid "Could not load stations"
 msgstr "Kos stations neet laje"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Aan favoriete toeveuge"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Oet favoriete verwiedere"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Station neet besjikbaar"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Zender"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Neet aan 't speule"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Aafspeule"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Stoppe"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Volume"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Kees 'n station"
 
@@ -225,6 +254,10 @@ msgstr "Aan 't bufferen…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Noe aan 't speule"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Pauzere"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

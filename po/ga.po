@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ga\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,6 +124,11 @@ msgid "Star stations while browsing to add them here"
 msgstr ""
 "Cuir réalta le stáisiúin agus tú ag brabhsáil chun iad a chur leis anseo"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Seinn %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -183,6 +188,18 @@ msgstr "Níl aon stáisiún ag teacht le do chuardach"
 msgid "Could not load stations"
 msgstr "Níorbh fhéidir stáisiúin a luchtú"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Cuir leis na ceanáin"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Bain de na ceanáin"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Níl an stáisiún ar fáil"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stáisiún"
@@ -217,6 +234,18 @@ msgid "Not Playing"
 msgstr "Gan seinm"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Seinn"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Stad"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Airde"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Roghnaigh stáisiún"
 
@@ -227,6 +256,10 @@ msgstr "Á mhaolánú…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Á sheinm anois"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Cuir ar sos"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

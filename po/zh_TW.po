@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "沒有收藏"
 msgid "Star stations while browsing to add them here"
 msgstr "瀏覽時為電台加星標以新增至此"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "播放 %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "找不到符合的電台"
 msgid "Could not load stations"
 msgstr "無法載入電台"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "新增至收藏"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "從收藏中移除"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "電台無法使用"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "電台"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "未播放"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "播放"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "停止"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "音量"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "選擇電台"
 
@@ -225,6 +254,10 @@ msgstr "正在緩衝…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "正在播放"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "暫停"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

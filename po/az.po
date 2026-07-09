@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: az\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,6 +124,11 @@ msgid "Star stations while browsing to add them here"
 msgstr ""
 "Bura əlavə etmək üçün gözdən keçirərkən stansiyaları ulduzla işarələyin"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s oxut"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -183,6 +188,18 @@ msgstr "Axtarışınıza uyğun stansiya tapılmadı"
 msgid "Could not load stations"
 msgstr "Stansiyalar yüklənə bilmədi"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Sevimlilərə əlavə et"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Sevimlilərdən sil"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stansiya əlçatmazdır"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stansiya"
@@ -217,6 +234,18 @@ msgid "Not Playing"
 msgstr "Oxumur"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Oxut"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Dayandır"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Səs səviyyəsi"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Stansiya seçin"
 
@@ -227,6 +256,10 @@ msgstr "Bufer doldurulur…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "İndi oxuyur"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Fasilə ver"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

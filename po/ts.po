@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ts\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -125,6 +125,11 @@ msgstr "A ku na swa u swi rhandzaka"
 msgid "Star stations while browsing to add them here"
 msgstr "Veka tinyeleti eka switichi loko u languta ku engetela laha"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Tlanga %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -184,6 +189,18 @@ msgstr "Ku hava switichi leswi faneleke ku lava ka wena"
 msgid "Could not load stations"
 msgstr "A swi koteki ku layicha switichi"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Engetela eka swa u swi rhandzaka"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Susa eka swa u swi rhandzaka"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Xitichi a xi kumeki"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Xitichi"
@@ -218,6 +235,18 @@ msgid "Not Playing"
 msgstr "A Yi Tlangi"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Tlanga"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Yimisa"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Mpimo wa mpfumawulo"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Hlawula xitichi"
 
@@ -228,6 +257,10 @@ msgstr "Ya hlayisa…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Sweswi ya tlanga"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Yimisa nkarhinyana"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,11 @@ msgstr "Dim ffefrynnau"
 msgid "Star stations while browsing to add them here"
 msgstr "Serennu gorsafoedd wrth bori i'w hychwanegu yma"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Chwarae %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -182,6 +187,18 @@ msgstr "Dim gorsafoedd yn cyfateb i'ch chwiliad"
 msgid "Could not load stations"
 msgstr "Methu llwytho gorsafoedd"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Ychwanegu at y ffefrynnau"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Tynnu o'r ffefrynnau"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Nid yw'r orsaf ar gael"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Gorsaf"
@@ -216,6 +233,18 @@ msgid "Not Playing"
 msgstr "Ddim yn Chwarae"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Chwarae"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Stopio"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Lefel sain"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Dewiswch orsaf"
 
@@ -226,6 +255,10 @@ msgstr "Yn byffro…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Yn chwarae nawr"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Oedi"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

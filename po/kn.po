@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: kn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "ಮೆಚ್ಚಿನವು ಇಲ್ಲ"
 msgid "Star stations while browsing to add them here"
 msgstr "ಇಲ್ಲಿ ಸೇರಿಸಲು ಬ್ರೌಸ್ ಮಾಡುವಾಗ ಕೇಂದ್ರಗಳಿಗೆ ನಕ್ಷತ್ರ ಗುರುತು ಮಾಡಿ"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s ಪ್ಲೇ ಮಾಡಿ"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "ನಿಮ್ಮ ಹುಡುಕಾಟಕ್ಕೆ ಯಾವುದೇ ಕ
 msgid "Could not load stations"
 msgstr "ಕೇಂದ್ರಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "ಮೆಚ್ಚಿನವುಗಳಿಗೆ ಸೇರಿಸಿ"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "ಮೆಚ್ಚಿನವುಗಳಿಂದ ತೆಗೆದುಹಾಕಿ"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "ಕೇಂದ್ರ ಲಭ್ಯವಿಲ್ಲ"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "ಕೇಂದ್ರ"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "ನುಡಿಸಲಾಗುತ್ತಿಲ್ಲ"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "ಪ್ಲೇ ಮಾಡಿ"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "ನಿಲ್ಲಿಸಿ"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "ಧ್ವನಿ ಪ್ರಮಾಣ"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "ಒಂದು ಕೇಂದ್ರವನ್ನು ಆಯ್ಕೆಮಾಡಿ"
 
@@ -225,6 +254,10 @@ msgstr "ಬಫರ್ ಆಗುತ್ತಿದೆ…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "ಈಗ ನುಡಿಸಲಾಗುತ್ತಿದೆ"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "ವಿರಾಮ"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

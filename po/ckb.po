@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ckb\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "هیچ دڵخوازێک نییە"
 msgid "Star stations while browsing to add them here"
 msgstr "لەکاتی گەڕاندا وێستگەکان ئەستێرە بکە بۆ زیادکردنیان لێرە"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "لێدانی %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "هیچ وێستگەیەک لەگەڵ گەڕانەکەت ناگونجێت
 msgid "Could not load stations"
 msgstr "وێستگەکان بارنەکران"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "زیادکردن بۆ دڵخوازەکان"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "لابردن لە دڵخوازەکان"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "وێستگەکە بەردەست نییە"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "وێستگە"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "لێنادرێت"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "لێدان"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "ڕاگرتن"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "ئاستی دەنگ"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "وێستگەیەک هەڵبژێرە"
 
@@ -225,6 +254,10 @@ msgstr "بارکردن…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "ئێستا دەخوێنرێتەوە"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "وەستاندن"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

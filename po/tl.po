@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: tl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -125,6 +125,11 @@ msgid "Star stations while browsing to add them here"
 msgstr ""
 "Lagyan ng bituin ang mga istasyon habang nagba-browse para idagdag dito"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "I-play ang %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -184,6 +189,18 @@ msgstr "Walang istasyong tumutugma sa iyong hinanap"
 msgid "Could not load stations"
 msgstr "Hindi ma-load ang mga istasyon"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Idagdag sa mga paborito"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Alisin sa mga paborito"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Hindi available ang istasyon"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Istasyon"
@@ -218,6 +235,18 @@ msgid "Not Playing"
 msgstr "Hindi pinapatugtog"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "I-play"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Ihinto"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Lakas ng tunog"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Pumili ng istasyon"
 
@@ -228,6 +257,10 @@ msgstr "Nagba-buffer…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Pinapatugtog ngayon"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "I-pause"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

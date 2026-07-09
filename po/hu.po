@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Nincsenek kedvencek"
 msgid "Star stations while browsing to add them here"
 msgstr "Csillagozzon meg állomásokat böngészés közben, hogy ide kerüljenek"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s lejátszása"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Nincs a keresésnek megfelelő állomás"
 msgid "Could not load stations"
 msgstr "Nem sikerült betölteni az állomásokat"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Hozzáadás a kedvencekhez"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Eltávolítás a kedvencekből"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Az állomás nem érhető el"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Állomás"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Nem játszik"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Lejátszás"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Leállítás"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Hangerő"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Válasszon állomást"
 
@@ -225,6 +254,10 @@ msgstr "Pufferelés…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Most játszik"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Szüneteltetés"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

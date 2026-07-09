@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,11 @@ msgstr "Nav izlases"
 msgid "Star stations while browsing to add them here"
 msgstr "Pārlūkojot atzīmējiet stacijas ar zvaigznīti, lai pievienotu tās šeit"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Atskaņot %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -182,6 +187,18 @@ msgstr "Neviena stacija neatbilst meklējumam"
 msgid "Could not load stations"
 msgstr "Neizdevās ielādēt stacijas"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Pievienot izlasei"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Izņemt no izlases"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stacija nav pieejama"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stacija"
@@ -216,6 +233,18 @@ msgid "Not Playing"
 msgstr "Neatskaņo"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Atskaņot"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Apturēt"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Skaļums"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Izvēlieties staciju"
 
@@ -226,6 +255,10 @@ msgstr "Notiek buferēšana…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Tagad atskaņo"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Pauzēt"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

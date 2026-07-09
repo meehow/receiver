@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "பிடித்தவை இல்லை"
 msgid "Star stations while browsing to add them here"
 msgstr "இங்கே சேர்க்க உலாவும்போது நிலையங்களை நட்சத்திரமிடுங்கள்"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s ஐ இயக்கு"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "உங்கள் தேடலுக்கு பொருத்தம�
 msgid "Could not load stations"
 msgstr "நிலையங்களை ஏற்ற இயலவில்லை"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "பிடித்தவையில் சேர்"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "பிடித்தவையிலிருந்து நீக்கு"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "நிலையம் கிடைக்கவில்லை"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "நிலையம்"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "இயங்கவில்லை"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "இயக்கு"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "நிறுத்து"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "ஒலியளவு"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "ஒரு நிலையத்தைத் தேர்ந்தெடுக்கவும்"
 
@@ -225,6 +254,10 @@ msgstr "இடையகப்படுத்துகிறது…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "இப்போது இயங்குகிறது"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "இடைநிறுத்து"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

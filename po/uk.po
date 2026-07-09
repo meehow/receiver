@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,11 @@ msgstr "Немає улюблених"
 msgid "Star stations while browsing to add them here"
 msgstr "Позначте станції зіркою під час перегляду, щоб додати їх сюди"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Відтворити %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -182,6 +187,18 @@ msgstr "Жодна станція не відповідає вашому пош�
 msgid "Could not load stations"
 msgstr "Не вдалося завантажити станції"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Додати до улюблених"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Вилучити з улюблених"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Станція недоступна"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Станція"
@@ -216,6 +233,18 @@ msgid "Not Playing"
 msgstr "Не відтворюється"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Відтворити"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Зупинити"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Гучність"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Оберіть станцію"
 
@@ -226,6 +255,10 @@ msgstr "Буферизація…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Зараз грає"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Призупинити"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"
