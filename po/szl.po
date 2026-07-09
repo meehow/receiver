@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: szl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,6 +124,11 @@ msgstr "Żodne oblubōne"
 msgid "Star stations while browsing to add them here"
 msgstr "Ôznacz stacyje gwiozdkōm przi przeglōndaniu, coby je sam dodać"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Grej %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -183,6 +188,18 @@ msgstr "Żodne stacyje niy pasujōm do twojigo szukanio"
 msgid "Could not load stations"
 msgstr "Niy szło naczytać stacyji"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Przidej do oblubōnych"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Wyciep z oblubōnych"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stacyjo je niydostympno"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stacyjo"
@@ -217,6 +234,18 @@ msgid "Not Playing"
 msgstr "Niy gro"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Grej"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Zastow"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Głośność"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Ôbier stacyjõ"
 
@@ -227,6 +256,10 @@ msgstr "Buforowanie…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Teroz gro"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Wstrzimej"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

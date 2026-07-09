@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "რჩეულები არ არის"
 msgid "Star stations while browsing to add them here"
 msgstr "დათვალიერებისას მონიშნეთ სადგურები ვარსკვლავით აქ დასამატებლად"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s-ის დაკვრა"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "თქვენი ძიებისთვის სადგურე�
 msgid "Could not load stations"
 msgstr "სადგურების ჩატვირთვა ვერ მოხერხდა"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "რჩეულებში დამატება"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "რჩეულებიდან წაშლა"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "სადგური მიუწვდომელია"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "სადგური"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "არ უკრავს"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "დაკვრა"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "გაჩერება"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "ხმის დონე"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "აირჩიეთ სადგური"
 
@@ -225,6 +254,10 @@ msgstr "ბუფერიზაცია…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "ახლა უკრავს"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "შეჩერება"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

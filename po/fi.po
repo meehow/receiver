@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Ei suosikkeja"
 msgid "Star stations while browsing to add them here"
 msgstr "Lisää asemia suosikkeihin tähdellä selaamisen aikana"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Toista %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Yksikään asema ei vastaa hakuasi"
 msgid "Could not load stations"
 msgstr "Asemia ei voitu ladata"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Lisää suosikkeihin"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Poista suosikeista"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Asema ei ole käytettävissä"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Asema"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Ei toista"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Toista"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Pysäytä"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Äänenvoimakkuus"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Valitse asema"
 
@@ -225,6 +254,10 @@ msgstr "Puskuroidaan…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Nyt soi"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Keskeytä"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -125,6 +125,11 @@ msgid "Star stations while browsing to add them here"
 msgstr ""
 "Marchează posturi cu stea în timp ce răsfoiești pentru a le adăuga aici"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Redă %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -184,6 +189,18 @@ msgstr "Niciun post nu corespunde căutării"
 msgid "Could not load stations"
 msgstr "Nu s-au putut încărca posturile"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Adaugă la favorite"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Elimină din favorite"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Post indisponibil"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Post"
@@ -218,6 +235,18 @@ msgid "Not Playing"
 msgstr "Nu se redă"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Redă"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Oprește"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Volum"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Selectați un post"
 
@@ -228,6 +257,10 @@ msgstr "Se memorează în buffer…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Se redă acum"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Pauză"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

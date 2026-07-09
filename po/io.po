@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: io\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Nula favorizato"
 msgid "Star stations while browsing to add them here"
 msgstr "Stelizez stacioni dum foliumado por adjuntar li hike"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Plear %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Nula staciono konformas a vua sercho"
 msgid "Could not load stations"
 msgstr "Ne povis kargar la stacioni"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Adjuntar a la favorizati"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Removar de la favorizati"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Staciono nedisponebla"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Staciono"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Ne ludas"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Plear"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Haltigar"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Volumino"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Selektez staciono"
 
@@ -225,6 +254,10 @@ msgstr "Bufrado…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Nun ludas"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Pauzar"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

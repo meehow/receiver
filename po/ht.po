@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ht\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Pa gen prefere"
 msgid "Star stations while browsing to add them here"
 msgstr "Mete etwal sou estasyon pandan w ap navige pou ajoute yo isit la"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Jwe %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Pa gen estasyon ki matche ak rechèch ou a"
 msgid "Could not load stations"
 msgstr "Pa t kapab chaje estasyon yo"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Ajoute nan prefere"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Retire nan prefere"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Estasyon pa disponib"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Estasyon"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Pa ap jwe"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Jwe"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Kanpe"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Volim"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Chwazi yon estasyon"
 
@@ -225,6 +254,10 @@ msgstr "Ap chaje…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Ap jwe kounye a"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Mete an poz"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

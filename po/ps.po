@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ps\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "خوښې نشته"
 msgid "Star stations while browsing to add them here"
 msgstr "دلته د اضافه کولو لپاره د لټون پر مهال سټیشنونه ستوري کړئ"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s غږول"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "ستاسو لټون سره هیڅ سټېشن سمون نه خوري"
 msgid "Could not load stations"
 msgstr "سټېشنونه پورته نشول"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "خوښو ته ورزیاتول"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "له خوښو څخه لرې کول"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "سټیشن شتون نلري"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "سټیشن"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "نه غږیږي"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "غږول"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "بندول"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "د غږ کچه"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "یو سټېشن وټاکئ"
 
@@ -225,6 +254,10 @@ msgstr "بفرول کیږي…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "اوس غږیږي"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "درول"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

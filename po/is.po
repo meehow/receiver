@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: is\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Engin eftirlæti"
 msgid "Star stations while browsing to add them here"
 msgstr "Merktu stöðvar með stjörnu á meðan þú vafrar til að bæta þeim hér"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Spila %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Engar stöðvar passa við leitina"
 msgid "Could not load stations"
 msgstr "Gat ekki hlaðið stöðvum"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Bæta í eftirlæti"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Fjarlægja úr eftirlætum"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stöð ótiltæk"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stöð"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Ekki í spilun"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Spila"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Stöðva"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Hljóðstyrkur"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Veldu stöð"
 
@@ -225,6 +254,10 @@ msgstr "Les í biðminni…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Í spilun"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Gera hlé"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

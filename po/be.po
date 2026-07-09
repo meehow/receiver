@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: be\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,11 @@ msgstr "Няма абранага"
 msgid "Star stations while browsing to add them here"
 msgstr "Адзначце станцыі зоркай падчас агляду, каб дадаць іх сюды"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Прайграць %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -182,6 +187,18 @@ msgstr "Ні адна станцыя не адпавядае вашаму пош
 msgid "Could not load stations"
 msgstr "Не ўдалося загрузіць станцыі"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Дадаць у абранае"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Выдаліць з абранага"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Станцыя недаступная"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Станцыя"
@@ -216,6 +233,18 @@ msgid "Not Playing"
 msgstr "Не іграе"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Прайграць"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Спыніць"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Гучнасць"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Выберыце станцыю"
 
@@ -226,6 +255,10 @@ msgstr "Буферызацыя…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Зараз іграе"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Прыпыніць"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

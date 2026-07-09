@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: kk@latin\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Tañdawlylar joq"
 msgid "Star stations while browsing to add them here"
 msgstr "Mında qosw üşin şolw kezinde stantsiyalardy juldyzşamen belgileñiz"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s oinatw"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Izdeuińizge sáıkes stantsııa tabylmady"
 msgid "Could not load stations"
 msgstr "Stantsııalardy júkteu múmkin bolmady"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Tañdawlylarğa qosw"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Tañdawlylardan alyp tastaw"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stantsiya qol jetimsiz"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stantsiya"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Oınatylmaıdy"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Oinatw"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Toqtatw"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Dybys deñgeıi"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Stantsııany tańdańyz"
 
@@ -225,6 +254,10 @@ msgstr "Buferleý…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Qazir oınaluda"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Kidirtw"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

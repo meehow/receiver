@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: sq\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Nuk ka të preferuara"
 msgid "Star stations while browsing to add them here"
 msgstr "Vendosni yll stacioneve gjatë shfletimit për t'i shtuar këtu"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Luaj %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Asnjë stacion nuk përputhet me kërkimin tuaj"
 msgid "Could not load stations"
 msgstr "Nuk mundën të ngarkoheshin stacionet"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Shto te të preferuarat"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Hiq nga të preferuarat"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stacioni është i padisponueshëm"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stacioni"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Nuk po luhet"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Luaj"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Ndalo"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Volumi"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Zgjidhni një stacion"
 
@@ -225,6 +254,10 @@ msgstr "Po mbushet buffer-i…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Duke luajtur tani"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Pauzë"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

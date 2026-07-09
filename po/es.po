@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,11 @@ msgstr "Sin favoritos"
 msgid "Star stations while browsing to add them here"
 msgstr "Marca emisoras mientras exploras para añadirlas aquí"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Reproducir %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -182,6 +187,18 @@ msgstr "Ninguna emisora coincide con su búsqueda"
 msgid "Could not load stations"
 msgstr "No se pudieron cargar las emisoras"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Añadir a favoritos"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Quitar de favoritos"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Emisora no disponible"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Emisora"
@@ -216,6 +233,18 @@ msgid "Not Playing"
 msgstr "Sin reproducir"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Reproducir"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Detener"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Volumen"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Selecciona una emisora"
 
@@ -226,6 +255,10 @@ msgstr "Almacenando en búfer…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Reproduciendo"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Pausar"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

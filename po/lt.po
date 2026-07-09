@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,11 @@ msgstr "Nėra mėgstamų"
 msgid "Star stations while browsing to add them here"
 msgstr "Naršydami pažymėkite stotis žvaigždute, kad pridėtumėte jas čia"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Groti %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -182,6 +187,18 @@ msgstr "Nerasta stočių pagal paiešką"
 msgid "Could not load stations"
 msgstr "Nepavyko įkelti stočių"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Pridėti į mėgstamus"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Pašalinti iš mėgstamų"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stotis nepasiekiama"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stotis"
@@ -216,6 +233,18 @@ msgid "Not Playing"
 msgstr "Negroja"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Groti"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Stabdyti"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Garsumas"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Pasirinkite stotį"
 
@@ -226,6 +255,10 @@ msgstr "Buferizuojama…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Dabar groja"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Pristabdyti"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

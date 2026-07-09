@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: bn_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "কোনো পছন্দসই নেই"
 msgid "Star stations while browsing to add them here"
 msgstr "এখানে যোগ করতে ব্রাউজ করার সময় স্টেশনগুলিতে তারকা চিহ্ন দিন"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s চালান"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "আপনার অনুসন্ধানের সাথে কোন
 msgid "Could not load stations"
 msgstr "স্টেশন লোড করা যায়নি"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "পছন্দসইতে যোগ করুন"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "পছন্দসই থেকে সরান"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "স্টেশন উপলব্ধ নয়"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "স্টেশন"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "চলছে না"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "চালান"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "থামান"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "ভলিউম"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "একটি স্টেশন নির্বাচন করুন"
 
@@ -225,6 +254,10 @@ msgstr "বাফার হচ্ছে…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "এখন চলছে"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "বিরতি দিন"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

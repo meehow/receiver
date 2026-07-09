@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Inga favoriter"
 msgid "Star stations while browsing to add them here"
 msgstr "Stjärnmarkera stationer medan du bläddrar för att lägga till dem här"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Spela upp %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Inga stationer matchar din sökning"
 msgid "Could not load stations"
 msgstr "Kunde inte ladda stationer"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Lägg till i favoriter"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Ta bort från favoriter"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stationen är otillgänglig"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Station"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Spelar inte"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Spela upp"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Stoppa"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Volym"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Välj en station"
 
@@ -225,6 +254,10 @@ msgstr "Buffrar…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Spelar nu"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Pausa"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

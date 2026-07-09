@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: gd\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,6 +126,11 @@ msgstr ""
 "Cuir rionnag air stèiseanan fhad 's a bhios tu a' brabhsadh gus an cur ris "
 "an-seo"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Cluich %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -185,6 +190,18 @@ msgstr "Chan eil stèisean a’ freagairt ris an lorg agad"
 msgid "Could not load stations"
 msgstr "Cha b’ urrainn stèiseanan a luchdachadh"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Cuir ris na h-annsachdan"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Thoir air falbh o na h-annsachdan"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Chan eil an stèisean ri fhaighinn"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stèisean"
@@ -219,6 +236,18 @@ msgid "Not Playing"
 msgstr "Chan eil e ga chluich"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Cluich"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Stad"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Àirde na fuaime"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Tagh stèisean"
 
@@ -229,6 +258,10 @@ msgstr "A' bufaireadh…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Ga chluich an-dràsta"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Cuir ’na stad"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

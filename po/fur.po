@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: fur\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Nissun preferît"
 msgid "Star stations while browsing to add them here"
 msgstr "Segnale stazions cu la stele intant che tu esploris par zontâlis culì"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Riprodûs %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Nissune stazion e corispuint ae tô ricercje"
 msgid "Could not load stations"
 msgstr "No si è podût cjariâ lis stazions"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Zonte ai preferîts"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Gjave dai preferîts"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stazion no disponibile"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stazion"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "No in riproduzion"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Riprodûs"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Ferme"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Volum"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Selezione une stazion"
 
@@ -225,6 +254,10 @@ msgstr "Daûr a memorizâ tal buffer…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "In riproduzion"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Pause"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

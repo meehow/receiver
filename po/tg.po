@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: tg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "Дӯстдоштаҳо нест"
 msgid "Star stations while browsing to add them here"
 msgstr "Барои илова кардан дар ин ҷо ҳангоми дидан ба истгоҳҳо ситора гузоред"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Пахш кардани %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "Ягон стансия ба ҷустуҷӯи шумо мувофиқ н
 msgid "Could not load stations"
 msgstr "Стансияҳоро бор кардан имконнопазир нест"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Ба дӯстдоштаҳо илова кардан"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Аз дӯстдоштаҳо тоза кардан"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Истгоҳ дастнорас аст"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Истгоҳ"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "Пахш намешавад"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Пахш кардан"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Қатъ кардан"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Баландии садо"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Стансияро интихоб кунед"
 
@@ -225,6 +254,10 @@ msgstr "Буферкунӣ…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Ҳоло пахш мешавад"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Таваққуф кардан"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

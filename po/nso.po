@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: nso\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -126,6 +126,11 @@ msgstr "Ga go na tše di ratwago"
 msgid "Star stations while browsing to add them here"
 msgstr "Swaya dinaledi go ditšhešene ge o šomiša go di oketša mo"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Bapala %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -185,6 +190,18 @@ msgstr "Ga go na diteišene tše swanago le seo o se nyakago"
 msgid "Could not load stations"
 msgstr "Ga go kgonege go logela diteišene"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Tsenya go tše di ratwago"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Tloša go tše di ratwago"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Setšhešene ga se hwetšagale"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Setšhešene"
@@ -219,6 +236,18 @@ msgid "Not Playing"
 msgstr "Ga E Bapale"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Bapala"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Emiša"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Bolumo"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Kgetha teišene"
 
@@ -229,6 +258,10 @@ msgstr "E a boloka…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Bjale e a bapala"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Emiša nakwana"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

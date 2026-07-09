@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: uz@cyrillic\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,11 @@ msgid "Star stations while browsing to add them here"
 msgstr ""
 "Бу ерга қўшиш учун кўраётганингизда станцияларни юлдузча билан белгиланг"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%sни ижро этиш"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -182,6 +187,18 @@ msgstr "Қидирувингизга мос станция топилмади"
 msgid "Could not load stations"
 msgstr "Станцияларни юклаб бўлмади"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Севимлиларга қўшиш"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Севимлилардан олиб ташлаш"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Станция мавжуд эмас"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Станция"
@@ -216,6 +233,18 @@ msgid "Not Playing"
 msgstr "Ижро этилмаяпти"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Ижро этиш"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Тўхтатиш"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Овоз баландлиги"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Станция танланг"
 
@@ -226,6 +255,10 @@ msgstr "Буферланмоқда…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Ҳозир ижро этилмоқда"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Пауза"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

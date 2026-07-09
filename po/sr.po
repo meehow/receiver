@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,11 @@ msgstr "Нема омиљених"
 msgid "Star stations while browsing to add them here"
 msgstr "Означите станице звездицом током прегледања да бисте их додали овде"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Пусти %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -182,6 +187,18 @@ msgstr "Ниједна станица не одговара вашој прет�
 msgid "Could not load stations"
 msgstr "Није могуће учитати станице"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Додај у омиљене"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Уклони из омиљених"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Станица је недоступна"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Станица"
@@ -216,6 +233,18 @@ msgid "Not Playing"
 msgstr "Не свира"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Пусти"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Заустави"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Јачина звука"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Изаберите станицу"
 
@@ -226,6 +255,10 @@ msgstr "Пуњење бафера…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Сада свира"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Паузирај"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

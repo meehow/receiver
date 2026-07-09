@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,6 +122,11 @@ msgstr "お気に入りなし"
 msgid "Star stations while browsing to add them here"
 msgstr "閲覧中にステーションにスターを付けてここに追加"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s を再生"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -181,6 +186,18 @@ msgstr "検索条件に一致する局はありません"
 msgid "Could not load stations"
 msgstr "局を読み込めませんでした"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "お気に入りに追加"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "お気に入りから削除"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "ステーションを利用できません"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "ステーション"
@@ -215,6 +232,18 @@ msgid "Not Playing"
 msgstr "停止中"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "再生"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "停止"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "音量"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "局を選択してください"
 
@@ -225,6 +254,10 @@ msgstr "バッファ中…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "再生中"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "一時停止"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

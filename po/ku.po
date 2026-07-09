@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: ku\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -124,6 +124,11 @@ msgstr "Bijare tune"
 msgid "Star stations while browsing to add them here"
 msgstr "Ji bo lê zêdekirinê dema ku hûn digerîn stasyonan bi stêrk nîşan bikin"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "%s lê bide"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -183,6 +188,18 @@ msgstr "Tu stasyon bi lêgerîna te re li hev nayê"
 msgid "Could not load stations"
 msgstr "Stasyon nehatin barkirin"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Li bijareyan zêde bike"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Ji bijareyan rake"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Stasyon ne berdest e"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Stasyon"
@@ -217,6 +234,18 @@ msgid "Not Playing"
 msgstr "Nalêde"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Lê bide"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Rawestîne"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Deng"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Stasyonekê hilbijêre"
 
@@ -227,6 +256,10 @@ msgstr "Tê tamponkirin…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Niha tê lêdan"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Bisekinîne"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"

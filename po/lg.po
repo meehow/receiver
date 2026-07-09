@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-06-30 01:14+0200\n"
+"POT-Creation-Date: 2026-07-09 11:36+0200\n"
 "Language: lg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -123,6 +123,11 @@ msgstr "Tewali byoyagala"
 msgid "Star stations while browsing to add them here"
 msgstr "Teeka emmunyeenye ku bitundu nga olambula okubigattako wano"
 
+#: src/widgets/favourites_page.vala
+#, c-format
+msgid "Play %s"
+msgstr "Zannya %s"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -182,6 +187,18 @@ msgstr "Tewali sitesi zikwatagana n'ekyanoonyebwa"
 msgid "Could not load stations"
 msgstr "Tekyasobodde kutikka sitesi"
 
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Add to favourites"
+msgstr "Yongera ku byoyagala"
+
+#: src/widgets/station_list.vala src/widgets/player_bar.vala
+msgid "Remove from favourites"
+msgstr "Ggyamu mu byoyagala"
+
+#: src/widgets/station_list.vala
+msgid "Station unavailable"
+msgstr "Sitesi tefunika"
+
 #: src/widgets/station_info_page.vala
 msgid "Station"
 msgstr "Ekitundu"
@@ -216,6 +233,18 @@ msgid "Not Playing"
 msgstr "Tezannyibwa"
 
 #: src/widgets/player_bar.vala
+msgid "Play"
+msgstr "Zannya"
+
+#: src/widgets/player_bar.vala
+msgid "Stop"
+msgstr "Komya"
+
+#: src/widgets/player_bar.vala
+msgid "Volume"
+msgstr "Eddoboozi"
+
+#: src/widgets/player_bar.vala
 msgid "Select a station"
 msgstr "Londa sitesi"
 
@@ -226,6 +255,10 @@ msgstr "Kitereka…"
 #: src/widgets/player_bar.vala
 msgid "Now playing"
 msgstr "Kati ezannyibwa"
+
+#: src/widgets/player_bar.vala
+msgid "Pause"
+msgstr "Yimiriza"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"
