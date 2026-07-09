@@ -1,3 +1,16 @@
+receiver (0.7.0-1) unstable; urgency=medium
+
+  * Screen-reader support: playback and favourite controls now have
+    accessible labels, and favourite cards can be activated with the
+    keyboard
+  * Translate the new interface strings into all supported languages and
+    rewrite the broken Hindi translation
+  * Refresh the station database: 38,920 checked stations and new
+    language filters
+  * Fix song downloads after YouTube player changes
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Thu, 09 Jul 2026 20:23:14 +0200
+
 receiver (0.6.0-1) unstable; urgency=medium
 
   * Add a terminal UI (receiver-tui): browse and play, Favourites and
