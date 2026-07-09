@@ -21,7 +21,7 @@ msgstr "मेन्यू"
 #. History page (pushed on demand)
 #: src/widgets/window.vala src/widgets/history_page.vala
 msgid "Song History"
-msgstr "गाना इतिहास"
+msgstr "गानों का इतिहास"
 
 #: src/widgets/window.vala
 msgid "Keep Playing in Background"
@@ -47,28 +47,28 @@ msgstr "स्टेशन जानकारी"
 #: src/widgets/window.vala
 #, c-format
 msgid "Loaded %d stations"
-msgstr "%d اسٹیشنز لوڈ ہو گئے"
+msgstr "%d स्टेशन लोड हुए"
 
 #. User dismissed the dialog — no toast needed
 #: src/widgets/window.vala src/services/song_downloader.vala
 #, c-format
 msgid "Error: %s"
-msgstr "غلطی: %s"
+msgstr "त्रुटि: %s"
 
 #: src/widgets/window.vala
 #, c-format
 msgid "Playback error: %s"
-msgstr "پلے بیک کی غلطی: %s"
+msgstr "प्लेबैक त्रुटि: %s"
 
 #: src/widgets/window.vala
 #, c-format
 msgid "Now playing: %s"
-msgstr "ابھی چل رہا ہے: %s"
+msgstr "अभी चल रहा है: %s"
 
 #: src/widgets/window.vala
 #, c-format
 msgid "Resuming: %s"
-msgstr "دوبارہ شروع ہو رہا ہے: %s"
+msgstr "फिर से शुरू हो रहा है: %s"
 
 #: src/widgets/window.vala
 msgid "Cancel Last.fm Authorization"
@@ -130,15 +130,15 @@ msgstr "%s चलाएँ"
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
-msgstr "اسٹیشنز تلاش کریں..."
+msgstr "स्टेशन खोजें…"
 
 #: src/widgets/station_list.vala
 msgid "All Languages"
-msgstr "تمام زبانیں"
+msgstr "सभी भाषाएँ"
 
 #: src/widgets/station_list.vala
 msgid "Filter by language"
-msgstr "زبان کے لحاظ سے فلٹر کریں"
+msgstr "भाषा के अनुसार फ़िल्टर"
 
 #: src/widgets/station_list.vala
 msgid "All Countries"
@@ -150,41 +150,41 @@ msgstr "देश के अनुसार फ़िल्टर"
 
 #: src/widgets/station_list.vala
 msgid "No Stations"
-msgstr "کوئی اسٹیشن نہیں"
+msgstr "कोई स्टेशन नहीं"
 
 #: src/widgets/station_list.vala
 msgid "Loading…"
-msgstr "لوڈ ہو رہا ہے..."
+msgstr "लोड हो रहा है…"
 
 #: src/widgets/station_list.vala
 #, c-format
 msgid "%u of %d stations"
-msgstr "%2$d میں سے %1$u اسٹیشنز"
+msgstr "%2$d में से %1$u स्टेशन"
 
 #: src/widgets/station_list.vala
 #, c-format
 msgid "Stations: %d"
-msgstr "اسٹیشنز: %d"
+msgstr "स्टेशन: %d"
 
 #: src/widgets/station_list.vala
 msgid "Loading Stations"
-msgstr "اسٹیشنز لوڈ ہو رہے ہیں"
+msgstr "स्टेशन लोड हो रहे हैं"
 
 #: src/widgets/station_list.vala
 msgid "No Results"
-msgstr "کوئی نتائج نہیں"
+msgstr "कोई परिणाम नहीं"
 
 #: src/widgets/station_list.vala
 msgid "Please wait…"
-msgstr "براہ کرم انتظار کریں..."
+msgstr "कृपया प्रतीक्षा करें…"
 
 #: src/widgets/station_list.vala
 msgid "No stations match your search"
-msgstr "آپ کی تلاش سے کوئی اسٹیشن میل نہیں کھاتا"
+msgstr "आपकी खोज से कोई स्टेशन मेल नहीं खाता"
 
 #: src/widgets/station_list.vala
 msgid "Could not load stations"
-msgstr "اسٹیشنز لوڈ نہیں ہو سکے"
+msgstr "स्टेशन लोड नहीं हो सके"
 
 #: src/widgets/station_list.vala src/widgets/player_bar.vala
 msgid "Add to favourites"
@@ -229,7 +229,7 @@ msgstr "स्ट्रीम URL"
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
-msgstr "نہیں چل رہا"
+msgstr "कुछ नहीं चल रहा"
 
 #: src/widgets/player_bar.vala
 msgid "Play"
@@ -245,7 +245,7 @@ msgstr "वॉल्यूम"
 
 #: src/widgets/player_bar.vala
 msgid "Select a station"
-msgstr "ایک اسٹیشن منتخب کریں"
+msgstr "कोई स्टेशन चुनें"
 
 #: src/widgets/player_bar.vala
 msgid "Buffering…"
@@ -253,7 +253,7 @@ msgstr "बफ़र हो रहा है…"
 
 #: src/widgets/player_bar.vala
 msgid "Now playing"
-msgstr "ابھی چل رہا ہے"
+msgstr "अभी चल रहा है"
 
 #: src/widgets/player_bar.vala
 msgid "Pause"
@@ -261,7 +261,7 @@ msgstr "रोकें"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"
-msgstr "موقوف"
+msgstr "रुका हुआ"
 
 #: src/widgets/player_bar.vala
 msgid "Reconnecting…"
@@ -293,7 +293,7 @@ msgstr "डाउनलोड हो रहा है: %s"
 #. Clean up partial file
 #: src/services/song_downloader.vala
 msgid "Cancelled"
-msgstr "रद्द"
+msgstr "रद्द किया गया"
 
 #: src/services/song_downloader.vala
 #, c-format
@@ -303,7 +303,7 @@ msgstr "डाउनलोड विफल: %s"
 #: src/services/song_downloader.vala
 #, c-format
 msgid "Saved: %s"
-msgstr "सहेja gaya: %s"
+msgstr "सहेजा गया: %s"
 
 #: src/widgets/download_button.vala
 msgid "Download song"
