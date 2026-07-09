@@ -392,6 +392,8 @@ namespace Receiver {
             fav_button.add_css_class("circular");
             fav_button.valign = Gtk.Align.CENTER;
             fav_button.icon_name = "non-starred-symbolic";
+            fav_button.tooltip_text = _("Add to favourites");
+            fav_button.update_property(Gtk.AccessibleProperty.LABEL, _("Add to favourites"), -1);
             fav_button.clicked.connect(() => {
                 if (station != null) {
                     var a = GLib.Application.get_default() as Application;
@@ -415,29 +417,17 @@ namespace Receiver {
 
             var app = GLib.Application.get_default() as Application;
             if (app != null) {
-                var failed = app.store.is_station_failed(s.id);
-                status_icon.icon_name = failed ? "action-unavailable-symbolic" : "media-playback-start-symbolic";
-                if (failed) {
-                    status_icon.remove_css_class("dim-label");
-                    status_icon.add_css_class("warning");
-                } else {
-                    status_icon.remove_css_class("warning");
-                    status_icon.add_css_class("dim-label");
-                }
+                update_status(app.store.is_station_failed(s.id));
 
                 failed_id = app.store.station_failed.connect((id) => {
                     if (station != null && station.id == id) {
-                        status_icon.icon_name = "action-unavailable-symbolic";
-                        status_icon.remove_css_class("dim-label");
-                        status_icon.add_css_class("warning");
+                        update_status(true);
                     }
                 });
 
                 cleared_id = app.store.station_cleared.connect((id) => {
                     if (station != null && station.id == id) {
-                        status_icon.icon_name = "media-playback-start-symbolic";
-                        status_icon.remove_css_class("warning");
-                        status_icon.add_css_class("dim-label");
+                        update_status(false);
                     }
                 });
 
@@ -500,6 +490,22 @@ namespace Receiver {
 
         private void update_fav(bool is_fav) {
             fav_button.icon_name = is_fav ? "starred-symbolic" : "non-starred-symbolic";
+            fav_button.tooltip_text = is_fav ? _("Remove from favourites") : _("Add to favourites");
+            fav_button.update_property(Gtk.AccessibleProperty.LABEL, fav_button.tooltip_text, -1);
+        }
+
+        private void update_status(bool failed) {
+            status_icon.icon_name = failed ? "action-unavailable-symbolic" : "media-playback-start-symbolic";
+            status_icon.tooltip_text = failed ? _("Station unavailable") : null;
+            status_icon.update_property(Gtk.AccessibleProperty.LABEL,
+                                        failed ? _("Station unavailable") : null, -1);
+            if (failed) {
+                status_icon.remove_css_class("dim-label");
+                status_icon.add_css_class("warning");
+            } else {
+                status_icon.remove_css_class("warning");
+                status_icon.add_css_class("dim-label");
+            }
         }
 
         private void maybe_load_artwork(Station s) {
