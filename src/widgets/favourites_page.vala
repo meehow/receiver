@@ -67,9 +67,13 @@ namespace Receiver {
         }
 
         private Gtk.Widget create_fav_card(Station s, int index) {
-            var card = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 8);
+            var card = new Gtk.Button();
             card.add_css_class("card");
             card.set_size_request(180, 60);
+            card.tooltip_text = _("Play %s").printf(s.name);
+            card.update_property(Gtk.AccessibleProperty.LABEL, s.name, -1);
+            var content_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 8);
+            card.child = content_box;
 
             var img_stack = new Gtk.Stack();
             var ph = new Gtk.Image.from_icon_name("audio-x-generic-symbolic");
@@ -86,7 +90,7 @@ namespace Receiver {
             frame.overflow = Gtk.Overflow.HIDDEN;
             frame.set_size_request(48, 48);
             img_stack.add_named(frame, "artwork");
-            card.append(img_stack);
+            content_box.append(img_stack);
 
             var text = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
             text.valign = Gtk.Align.CENTER;
@@ -105,16 +109,14 @@ namespace Receiver {
                 sub.add_css_class("caption");
                 text.append(sub);
             }
-            card.append(text);
+            content_box.append(text);
 
             load_artwork.begin(s, art, img_stack);
 
-            // Click to play
-            var g = new Gtk.GestureClick();
-            g.released.connect(() => {
+            // Click or keyboard activation to play
+            card.clicked.connect(() => {
                 station_activated(s);
             });
-            card.add_controller(g);
 
             // Drag source — carry the position index
             var drag = new Gtk.DragSource();

@@ -92,6 +92,8 @@ namespace Receiver {
             favourite_button = new Gtk.Button.from_icon_name("non-starred-symbolic");
             favourite_button.add_css_class("circular");
             favourite_button.add_css_class("flat");
+            favourite_button.tooltip_text = _("Add to favourites");
+            favourite_button.update_property(Gtk.AccessibleProperty.LABEL, _("Add to favourites"), -1);
             favourite_button.visible = false;
             favourite_button.clicked.connect(() => {
                 var s = player.current_station;
@@ -109,6 +111,8 @@ namespace Receiver {
             play_button.child = play_icon;
             play_button.add_css_class("circular");
             play_button.add_css_class("suggested-action");
+            play_button.tooltip_text = _("Play");
+            play_button.update_property(Gtk.AccessibleProperty.LABEL, _("Play"), -1);
             play_button.clicked.connect(() => {
                 player.toggle_pause();
             });
@@ -116,6 +120,8 @@ namespace Receiver {
 
             var stop = new Gtk.Button.from_icon_name("media-playback-stop-symbolic");
             stop.add_css_class("circular");
+            stop.tooltip_text = _("Stop");
+            stop.update_property(Gtk.AccessibleProperty.LABEL, _("Stop"), -1);
             stop.clicked.connect(() => {
                 player.stop();
             });
@@ -124,6 +130,8 @@ namespace Receiver {
             var vol_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 4);
             vol_box.append(new Gtk.Image.from_icon_name("audio-volume-high-symbolic"));
             volume_scale = new Gtk.Scale.with_range(Gtk.Orientation.HORIZONTAL, 0, 1, 0.01);
+            volume_scale.tooltip_text = _("Volume");
+            volume_scale.update_property(Gtk.AccessibleProperty.LABEL, _("Volume"), -1);
             volume_scale.set_value(player.volume);
             volume_scale.set_size_request(100, -1);
             volume_scale.draw_value = false;
@@ -200,6 +208,10 @@ namespace Receiver {
             revealer.reveal_child = player.current_station != null || state != PlayerState.STOPPED;
 
 
+            var playing = state == PlayerState.PLAYING;
+            play_button.tooltip_text = playing ? _("Pause") : _("Play");
+            play_button.update_property(Gtk.AccessibleProperty.LABEL, play_button.tooltip_text, -1);
+
             switch (state) {
                 case PlayerState.PLAYING:
                     play_icon.icon_name = "media-playback-pause-symbolic";
@@ -264,6 +276,8 @@ namespace Receiver {
             var app = GLib.Application.get_default() as Application;
             var is_fav = app != null && app.store.is_favourite(s.id);
             favourite_button.icon_name = is_fav ? "starred-symbolic" : "non-starred-symbolic";
+            favourite_button.tooltip_text = is_fav ? _("Remove from favourites") : _("Add to favourites");
+            favourite_button.update_property(Gtk.AccessibleProperty.LABEL, favourite_button.tooltip_text, -1);
         }
 
 
