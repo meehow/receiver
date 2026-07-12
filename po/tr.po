@@ -4,15 +4,19 @@ msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Poedit 3.9\n"
 
 #: src/application.vala
 msgid "Receiver keeps playing radio after the window is closed"
-msgstr "Pencere kapatıldıktan sonra Receiver radyoyu çalmaya devam eder"
+msgstr "Pencere kapatıldıktan sonra Receiver radyoyu oynatmaya devam eder"
 
 #: src/widgets/window.vala
 msgid "Menu"
@@ -25,7 +29,7 @@ msgstr "Şarkı Geçmişi"
 
 #: src/widgets/window.vala
 msgid "Keep Playing in Background"
-msgstr "Arka planda çalmaya devam et"
+msgstr "Arka planda oynatmaya devam et"
 
 #: src/widgets/window.vala
 msgid "About Receiver"
@@ -37,7 +41,7 @@ msgstr "Göz at"
 
 #: src/widgets/window.vala
 msgid "Favourites"
-msgstr "Favoriler"
+msgstr "Gözdeler"
 
 #. Station info page (pushed on demand)
 #: src/widgets/window.vala src/widgets/station_info_page.vala
@@ -63,7 +67,7 @@ msgstr "Oynatma hatası: %s"
 #: src/widgets/window.vala
 #, c-format
 msgid "Now playing: %s"
-msgstr "Şimdi çalıyor: %s"
+msgstr "Şimdi oynatılıyor: %s"
 
 #: src/widgets/window.vala
 #, c-format
@@ -112,12 +116,11 @@ msgstr "Last.fm'e bağlandı"
 
 #: src/widgets/window.vala
 msgid "Discover 30,000+ verified radio stations from around the world"
-msgstr ""
-"Dünya genelinden 30.000'den fazla doğrulanmış radyo istasyonunu keşfedin"
+msgstr "Dünya genelinden 30.000'den fazla doğrulanmış radyo istasyonunu keşfedin"
 
 #: src/widgets/favourites_page.vala
 msgid "No Favourites"
-msgstr "Favori yok"
+msgstr "Gözde yok"
 
 #: src/widgets/favourites_page.vala
 msgid "Star stations while browsing to add them here"
@@ -126,7 +129,7 @@ msgstr "Buraya eklemek için göz atarken istasyonları yıldızlayın"
 #: src/widgets/favourites_page.vala
 #, c-format
 msgid "Play %s"
-msgstr "%s çal"
+msgstr "%s oynat"
 
 #. Search entry
 #: src/widgets/station_list.vala
@@ -139,7 +142,7 @@ msgstr "Tüm diller"
 
 #: src/widgets/station_list.vala
 msgid "Filter by language"
-msgstr "Dile göre filtrele"
+msgstr "Dile göre süzgeçle"
 
 #: src/widgets/station_list.vala
 msgid "All Countries"
@@ -147,7 +150,7 @@ msgstr "Tüm ülkeler"
 
 #: src/widgets/station_list.vala
 msgid "Filter by country"
-msgstr "Ülkeye göre filtrele"
+msgstr "Ülkeye göre süzgeçle"
 
 #: src/widgets/station_list.vala
 msgid "No Stations"
@@ -189,11 +192,11 @@ msgstr "İstasyonlar yüklenemedi"
 
 #: src/widgets/station_list.vala src/widgets/player_bar.vala
 msgid "Add to favourites"
-msgstr "Favorilere ekle"
+msgstr "Gözdelere ekle"
 
 #: src/widgets/station_list.vala src/widgets/player_bar.vala
 msgid "Remove from favourites"
-msgstr "Favorilerden kaldır"
+msgstr "Gözdelerden kaldır"
 
 #: src/widgets/station_list.vala
 msgid "Station unavailable"
@@ -225,16 +228,16 @@ msgstr "Bit hızı"
 
 #: src/widgets/station_info_page.vala
 msgid "Stream URL"
-msgstr "Yayın URL'si"
+msgstr "Yayın Bağlantısı"
 
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
-msgstr "Çalmıyor"
+msgstr "Oynatmıyor"
 
 #: src/widgets/player_bar.vala
 msgid "Play"
-msgstr "Çal"
+msgstr "Oynat"
 
 #: src/widgets/player_bar.vala
 msgid "Stop"
@@ -254,7 +257,7 @@ msgstr "Arabelleğe alınıyor…"
 
 #: src/widgets/player_bar.vala
 msgid "Now playing"
-msgstr "Şimdi çalıyor"
+msgstr "Şimdi oynatılıyor"
 
 #: src/widgets/player_bar.vala
 msgid "Pause"
