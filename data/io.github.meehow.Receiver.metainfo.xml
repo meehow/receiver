@@ -5,7 +5,7 @@
   <project_license>GPL-3.0-or-later</project_license>
   
   <name>Receiver</name>
-  <summary>30,000+ verified radio stations</summary>
+  <summary>Discover radio stations worldwide</summary>
   
   <description>
     <p>
@@ -63,20 +63,29 @@
   
   <screenshots>
     <screenshot type="default">
-      <image>https://receiver.808bits.com/rec1.png</image>
-      <caption>Browse</caption>
+      <image>https://receiver.808bits.com/browse.png</image>
+      <caption>Browse and search stations by tag, country, or language</caption>
     </screenshot>
     <screenshot>
-      <image>https://receiver.808bits.com/rec2.png</image>
-      <caption>Favourites</caption>
+      <image>https://receiver.808bits.com/favourites.png</image>
+      <caption>Save your favourite stations for quick access</caption>
     </screenshot>
     <screenshot>
-      <image>https://receiver.808bits.com/rec3.png</image>
-      <caption>History</caption>
+      <image>https://receiver.808bits.com/history.png</image>
+      <caption>Revisit the songs you have heard</caption>
     </screenshot>
   </screenshots>
   
   <releases>
+    <release version="0.8.0" date="2026-07-12">
+      <description>
+        <ul>
+          <li>Redesign the app icon</li>
+          <li>Adapt the interface for phone-sized screens, so the window works down to 360 pixels wide</li>
+          <li>Fix the receiver-tui terminal client build by declaring its ncurses dependency</li>
+        </ul>
+      </description>
+    </release>
     <release version="0.7.0" date="2026-07-09">
       <description>
         <ul>

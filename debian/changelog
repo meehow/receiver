@@ -1,3 +1,13 @@
+receiver (0.8.0-1) unstable; urgency=medium
+
+  * Redesign the app icon
+  * Adapt the interface for phone-sized screens, so the window works
+    down to 360 pixels wide
+  * Fix the receiver-tui terminal client build by declaring its
+    ncurses dependency
+
+ -- Michał Adamski <michal.adamski@808bits.com>  Sun, 12 Jul 2026 12:00:00 +0200
+
 receiver (0.7.0-1) unstable; urgency=medium
 
   * Screen-reader support: playback and favourite controls now have
