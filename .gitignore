@@ -1,3 +1,6 @@
+# Rendered promo banners
+promo/
+
 # Build directories
 _build/
 builddir/
