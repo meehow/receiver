@@ -6,8 +6,8 @@
   Promo banner. Render at two sizes, no cropping needed:
     GitHub social preview (2:1):
       chromium --headless --hide-scrollbars --window-size=1280,640 --screenshot=... this file
-    Snapcraft featured banner (3:1):
-      chromium --headless --hide-scrollbars --window-size=1280,427 --screenshot=... this file
+    Snapcraft featured banner (exact 3:1, width divisible by 3):
+      chromium --headless --hide-scrollbars --window-size=1278,426 --screenshot=... this file
   A media query switches to a compact layout below 550px viewport height.
 -->
 <style>
