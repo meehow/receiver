@@ -11,12 +11,20 @@ namespace Receiver {
         private Gtk.Button play_button;
         private Gtk.Image play_icon;
         private Gtk.Scale volume_scale;
+        private Gtk.Box volume_box;
 
         private Gtk.Revealer revealer;
         private Gtk.Button favourite_button;
         private DownloadButton download_button;
 
         public signal void info_requested();
+
+        // Hidden on narrow windows via an Adw.Breakpoint; phones control
+        // volume with hardware buttons anyway.
+        public bool show_volume {
+            get { return volume_box.visible; }
+            set { volume_box.visible = value; }
+        }
 
         public PlayerBar(Player audio_player) {
             Object(orientation: Gtk.Orientation.VERTICAL, spacing: 0);
@@ -127,8 +135,8 @@ namespace Receiver {
             });
             controls.append(stop);
 
-            var vol_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 4);
-            vol_box.append(new Gtk.Image.from_icon_name("audio-volume-high-symbolic"));
+            volume_box = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 4);
+            volume_box.append(new Gtk.Image.from_icon_name("audio-volume-high-symbolic"));
             volume_scale = new Gtk.Scale.with_range(Gtk.Orientation.HORIZONTAL, 0, 1, 0.01);
             volume_scale.tooltip_text = _("Volume");
             volume_scale.update_property(Gtk.AccessibleProperty.LABEL, _("Volume"), -1);
@@ -138,8 +146,8 @@ namespace Receiver {
             volume_scale.value_changed.connect(() => {
                 player.volume = volume_scale.get_value();
             });
-            vol_box.append(volume_scale);
-            controls.append(vol_box);
+            volume_box.append(volume_scale);
+            controls.append(volume_box);
             right.append(controls);
 
             var subtitle_row = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 4);

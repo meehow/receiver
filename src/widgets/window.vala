@@ -21,7 +21,12 @@ namespace Receiver {
             var s = AppState.get_default().settings;
             Object(application: application, title: "Receiver",
                 default_width: s.get_int("window-width"),
-                default_height: s.get_int("window-height"));
+                default_height: s.get_int("window-height"),
+                // Minimum size supported by the layout; required for
+                // Adw.Breakpoint to know the smallest size it must handle.
+                // Height is dictated by the Browse page: header + search +
+                // filters + genre pills + status + switcher + player bar.
+                width_request: 360, height_request: 430);
             this.app = application;
             build_ui();
             connect_signals();
@@ -55,9 +60,14 @@ namespace Receiver {
             // Header bar
             var header = new Adw.HeaderBar();
 
-            // ViewSwitcherTitle — shows tabs in header on wide windows
-            var switcher_title = new Adw.ViewSwitcherTitle();
-            header.title_widget = switcher_title;
+            // ViewSwitcher — tabs in the header; swapped for the bottom
+            // ViewSwitcherBar on narrow windows via breakpoints below.
+            // (Replaces deprecated Adw.ViewSwitcherTitle, whose internal
+            // squeezer emits negative-allocation criticals once the window
+            // declares a phone-sized minimum for breakpoints.)
+            var switcher = new Adw.ViewSwitcher();
+            switcher.policy = Adw.ViewSwitcherPolicy.WIDE;
+            header.title_widget = switcher;
 
             // Hamburger menu
             var menu_button = new Gtk.MenuButton();
@@ -111,16 +121,13 @@ namespace Receiver {
             view_stack.add_titled(favourites_page, "favourites", _("Favourites"))
                 .icon_name = "starred-symbolic";
 
-            switcher_title.stack = view_stack;
+            switcher.stack = view_stack;
 
             root_content.append(view_stack);
 
             // ViewSwitcherBar — shows tabs at bottom on narrow windows
             var switcher_bar = new Adw.ViewSwitcherBar();
             switcher_bar.stack = view_stack;
-            switcher_title.notify["title-visible"].connect(() => {
-                switcher_bar.reveal = switcher_title.title_visible;
-            });
             root_content.append(switcher_bar);
 
             var root_page = new Adw.NavigationPage(root_content, "Receiver");
@@ -146,6 +153,21 @@ namespace Receiver {
             player_bar = new PlayerBar(app.player);
             main_box.append(player_bar);
             this.content = main_box;
+
+            // Compact layouts. Only the last matching breakpoint applies —
+            // they do not stack — so the narrower one repeats the setters.
+            var no_title = GLib.Value(typeof(Gtk.Widget)); // null widget
+
+            var medium = new Adw.Breakpoint(Adw.BreakpointCondition.parse("max-width: 550sp"));
+            medium.add_setter(header, "title-widget", no_title);
+            medium.add_setter(switcher_bar, "reveal", true);
+            this.add_breakpoint(medium);
+
+            var narrow = new Adw.Breakpoint(Adw.BreakpointCondition.parse("max-width: 450sp"));
+            narrow.add_setter(header, "title-widget", no_title);
+            narrow.add_setter(switcher_bar, "reveal", true);
+            narrow.add_setter(player_bar, "show-volume", false);
+            this.add_breakpoint(narrow);
         }
 
         private void connect_signals() {

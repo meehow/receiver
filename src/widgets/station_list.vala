@@ -57,10 +57,12 @@ namespace Receiver {
 
             language_dropdown = new Gtk.DropDown(new Gtk.StringList({_("All Languages")}), null);
             language_dropdown.tooltip_text = _("Filter by language");
+            setup_dropdown_factories(language_dropdown);
             filter_row.append(language_dropdown);
 
             country_dropdown = new Gtk.DropDown(new Gtk.StringList({_("All Countries")}), null);
             country_dropdown.tooltip_text = _("Filter by country");
+            setup_dropdown_factories(country_dropdown);
             filter_row.append(country_dropdown);
 
             this.append(filter_row);
@@ -167,6 +169,33 @@ namespace Receiver {
             });
         }
 
+        // The default GtkDropDown factory sizes the button to its widest item,
+        // which for hundreds of language/country names forces a window minimum
+        // width far beyond phone screens. An ellipsizing button label keeps the
+        // minimum small; the popup list keeps full-width labels.
+        private static void setup_dropdown_factories(Gtk.DropDown dropdown) {
+            dropdown.factory = make_string_factory(true);
+            dropdown.list_factory = make_string_factory(false);
+        }
+
+        private static Gtk.ListItemFactory make_string_factory(bool ellipsize) {
+            var factory = new Gtk.SignalListItemFactory();
+            factory.setup.connect((f, o) => {
+                var item = o as Gtk.ListItem;
+                var label = new Gtk.Label(null);
+                label.xalign = 0;
+                if (ellipsize) {
+                    label.ellipsize = Pango.EllipsizeMode.END;
+                }
+                item.child = label;
+            });
+            factory.bind.connect((f, o) => {
+                var item = o as Gtk.ListItem;
+                var str = item.item as Gtk.StringObject;
+                (item.child as Gtk.Label).label = str.string;
+            });
+            return factory;
+        }
 
         private void connect_signals() {
             var settings = AppState.get_default().settings;

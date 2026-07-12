@@ -37,7 +37,8 @@ namespace Receiver {
             favourites_flow.selection_mode = Gtk.SelectionMode.NONE;
             favourites_flow.homogeneous = true;
             favourites_flow.max_children_per_line = 4;
-            favourites_flow.min_children_per_line = 2;
+            // 1 keeps the grid usable at phone width (2 x 180px cards exceed 360px)
+            favourites_flow.min_children_per_line = 1;
             favourites_flow.row_spacing = favourites_flow.column_spacing = 8;
             content.append(favourites_flow);
 
@@ -90,7 +91,18 @@ namespace Receiver {
             frame.overflow = Gtk.Overflow.HIDDEN;
             frame.set_size_request(48, 48);
             img_stack.add_named(frame, "artwork");
-            content_box.append(img_stack);
+            // GtkPicture reports the full texture size as its natural width,
+            // which would make the FlowBox think a card needs 300+ px and
+            // delay the switch to multiple columns. Overlay children do not
+            // contribute to size requests, so this pins the slot to 48x48.
+            var art_holder = new Gtk.Box(Gtk.Orientation.HORIZONTAL, 0);
+            art_holder.set_size_request(48, 48);
+            var art_overlay = new Gtk.Overlay();
+            art_overlay.child = art_holder;
+            art_overlay.add_overlay(img_stack);
+            art_overlay.set_clip_overlay(img_stack, true);
+            art_overlay.valign = Gtk.Align.CENTER;
+            content_box.append(art_overlay);
 
             var text = new Gtk.Box(Gtk.Orientation.VERTICAL, 2);
             text.valign = Gtk.Align.CENTER;
@@ -98,6 +110,9 @@ namespace Receiver {
             var title = new Gtk.Label(s.name);
             title.xalign = 0;
             title.ellipsize = Pango.EllipsizeMode.END;
+            // Cap the natural width, or the longest station name decides
+            // how wide the window must be before a second column fits
+            title.max_width_chars = 14;
             title.add_css_class("heading");
             text.append(title);
             var subtitle = s.get_subtitle();
@@ -105,6 +120,7 @@ namespace Receiver {
                 var sub = new Gtk.Label(subtitle);
                 sub.xalign = 0;
                 sub.ellipsize = Pango.EllipsizeMode.END;
+                sub.max_width_chars = 18;
                 sub.add_css_class("dim-label");
                 sub.add_css_class("caption");
                 text.append(sub);
