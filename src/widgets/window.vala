@@ -207,6 +207,12 @@ namespace Receiver {
             toast(_("Now playing: %s").printf(s.name));
         }
 
+        // Switch to Browse and run a search (GNOME Shell "search in app" action).
+        public void show_search(string query) {
+            view_stack.set_visible_child_name("browse");
+            station_list.set_search(query);
+        }
+
         private void toast(string msg) {
             var t = new Adw.Toast(Markup.escape_text(msg));
             t.timeout = 3;

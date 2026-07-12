@@ -104,20 +104,40 @@ namespace Receiver {
             favourites_changed();
         }
 
-        public void open(string path) {
-            is_loading = true;
-            loading_started();
+        // Whether the SQLite connection is open (regardless of whether the
+        // ListModel has been populated). The search provider checks this
+        // before searching so it can open the connection lazily when headless.
+        public bool db_ready {
+            get { return db != null; }
+        }
 
-            if (Sqlite.Database.open_v2(path, out db, Sqlite.OPEN_READONLY) != Sqlite.OK) {
-                is_loading = false;
-                loading_error("Cannot open database");
-                return;
+        // Open just the read-only SQLite connection and read the station count,
+        // without loading filter lists or building the ListModel. Used by the
+        // GNOME Shell search provider, which runs without the main window.
+        public bool open_connection(string path) {
+            if (db != null) {
+                return true;
             }
-
+            if (Sqlite.Database.open_v2(path, out db, Sqlite.OPEN_READONLY) != Sqlite.OK) {
+                db = null;
+                return false;
+            }
             Sqlite.Statement stmt;
             db.prepare_v2("SELECT COUNT(*) FROM stations", -1, out stmt);
             if (stmt.step() == Sqlite.ROW) {
                 total_count = stmt.column_int(0);
+            }
+            return true;
+        }
+
+        public void open(string path) {
+            is_loading = true;
+            loading_started();
+
+            if (!open_connection(path)) {
+                is_loading = false;
+                loading_error("Cannot open database");
+                return;
             }
 
             _available_languages = load_languages();
@@ -127,6 +147,45 @@ namespace Receiver {
 
             is_loading = false;
             loading_finished(total_count);
+        }
+
+        // Standalone station search for the GNOME Shell search provider.
+        // Returns up to `limit` matches for `query`, surfacing stations that
+        // have a logo first. Independent of the ListModel and active filters.
+        public GenericArray<Station> search_stations(string query, int limit) {
+            var results = new GenericArray<Station>();
+            if (db == null || query.strip() == "") {
+                return results;
+            }
+            var sql = "SELECT s." + COLS.replace(", ", ", s.")
+                + " FROM stations s JOIN stations_fts f ON s.rowid = f.rowid"
+                + " WHERE stations_fts MATCH ?"
+                + " ORDER BY CASE WHEN s.image_hash != 0 THEN 0 ELSE 1 END, length(s.name)"
+                + " LIMIT ?";
+            Sqlite.Statement stmt;
+            if (db.prepare_v2(sql, -1, out stmt) != Sqlite.OK) {
+                return results;
+            }
+            stmt.bind_text(1, build_fts_query(query));
+            stmt.bind_int(2, limit);
+            while (stmt.step() == Sqlite.ROW) {
+                results.add(parse(stmt));
+            }
+            return results;
+        }
+
+        // Build an FTS5 MATCH pattern: prefix-match each whitespace token.
+        private string build_fts_query(string query) {
+            var fts = new StringBuilder();
+            foreach (var p in query.strip().split(" ")) {
+                if (p != "") {
+                    if (fts.len > 0) {
+                        fts.append(" ");
+                    }
+                    fts.append(p.replace("&", " ")).append("*");
+                }
+            }
+            return fts.str;
         }
 
         public Station? get_station_by_id(int64 id) {
@@ -269,17 +328,7 @@ namespace Receiver {
 
             int idx = 1;
             if (use_fts) {
-                var parts = _search_query.strip().split(" ");
-                var fts = new StringBuilder();
-                foreach (var p in parts) {
-                    if (p != "") {
-                        if (fts.len > 0) {
-                            fts.append(" ");
-                        }
-                        fts.append(p.replace("&", " ")).append("*");
-                    }
-                }
-                stmt.bind_text(idx++, fts.str);
+                stmt.bind_text(idx++, build_fts_query(_search_query));
             }
             if (_language_filter != "all") {
                 stmt.bind_text(idx++, "%" + _language_filter + "%");

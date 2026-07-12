@@ -35,6 +35,12 @@ namespace Receiver {
             connect_signals();
         }
 
+        // Fill the search box (used by the GNOME Shell "search in app" action).
+        // Setting the text drives the existing search-changed handler.
+        public void set_search(string query) {
+            search_entry.text = query;
+        }
+
         private void update_pill_scrollbar_policy(Gtk.ScrolledWindow scroll, Gtk.Settings settings) {
             scroll.hscrollbar_policy = settings.gtk_overlay_scrolling
                 ? Gtk.PolicyType.AUTOMATIC : Gtk.PolicyType.ALWAYS;

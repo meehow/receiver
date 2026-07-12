@@ -6,12 +6,35 @@ namespace Receiver {
         public Player player { get; private set; }
         public Scrobbler scrobbler { get; private set; }
         private MprisService mpris;
+        private SearchProvider search_provider;
+        private uint search_provider_reg = 0;
 
         public Application() {
             Object(
                 application_id: "io.github.meehow.Receiver",
                 flags: ApplicationFlags.DEFAULT_FLAGS
             );
+        }
+
+        // Register the GNOME Shell search provider on the session bus alongside
+        // the app's own object. The Shell finds it via the .ini in data/ and
+        // can D-Bus-activate the app to answer queries without a window.
+        public override bool dbus_register(DBusConnection connection, string object_path) throws Error {
+            if (!base.dbus_register(connection, object_path)) {
+                return false;
+            }
+            search_provider = new SearchProvider(this);
+            search_provider_reg = connection.register_object(
+                object_path + "/SearchProvider", search_provider);
+            return true;
+        }
+
+        public override void dbus_unregister(DBusConnection connection, string object_path) {
+            if (search_provider_reg != 0) {
+                connection.unregister_object(search_provider_reg);
+                search_provider_reg = 0;
+            }
+            base.dbus_unregister(connection, object_path);
         }
 
         // MprisHost
@@ -24,6 +47,14 @@ namespace Receiver {
         // so look through the full window list (which still includes it) and only
         // build a fresh window when there genuinely isn't one.
         private void present_main_window() {
+            var win = ensure_main_window();
+            win.set_visible(true);
+            win.present();
+        }
+
+        // Return the main window, creating it (and loading the browse list) if
+        // there is not one yet.
+        private MainWindow ensure_main_window() {
             Gtk.Window? win = active_window;
             if (win == null) {
                 unowned List<Gtk.Window> wins = get_windows();
@@ -32,11 +63,11 @@ namespace Receiver {
                 }
             }
             if (win == null) {
-                win = new MainWindow(this);
+                var created = new MainWindow(this);
                 open_database();
+                return created;
             }
-            win.set_visible(true);
-            win.present();
+            return (MainWindow) win;
         }
 
         // Best-effort Background portal request over D-Bus (no libportal needed,
@@ -154,18 +185,93 @@ namespace Receiver {
             this.add_action(stop_action);
         }
 
-        private void open_database() {
-            // Search XDG data dirs (/usr/share, /app/share, dev via make run)
+        // Search XDG data dirs (/usr/share, /app/share, dev via make run)
+        private string? find_db_path() {
             foreach (var data_dir in Environment.get_system_data_dirs()) {
                 var path = Path.build_filename(data_dir, "receiver", "receiver.db");
                 if (FileUtils.test(path, FileTest.EXISTS)) {
-                    store.open(path);
-                    message("Loaded %d stations from %s", store.total_count, path);
-                    return;
+                    return path;
                 }
             }
+            return null;
+        }
 
-            warning("Database not found");
+        private void open_database() {
+            var path = find_db_path();
+            if (path == null) {
+                warning("Database not found");
+                return;
+            }
+            store.open(path);
+            message("Loaded %d stations from %s", store.total_count, path);
+        }
+
+        // Open just the SQLite connection so the search provider can answer
+        // queries when the app was D-Bus-activated without a window.
+        private void ensure_db() {
+            if (store.db_ready) {
+                return;
+            }
+            var path = find_db_path();
+            if (path != null) {
+                store.open_connection(path);
+            } else {
+                warning("Database not found");
+            }
+        }
+
+        // ---- GNOME Shell search provider backends (called from SearchProvider) ----
+
+        public string[] search_station_ids(string query) {
+            ensure_db();
+            var found = store.search_stations(query, 20);
+            var ids = new string[found.length];
+            for (int i = 0; i < found.length; i++) {
+                ids[i] = found.get(i).id.to_string();
+            }
+            return ids;
+        }
+
+        public HashTable<string, Variant>[] search_result_metas(string[] identifiers) {
+            ensure_db();
+            HashTable<string, Variant>[] metas = {};
+            foreach (var idstr in identifiers) {
+                var station = store.get_station_by_id(int64.parse(idstr));
+                if (station == null) {
+                    continue;
+                }
+                var meta = new HashTable<string, Variant>(str_hash, str_equal);
+                meta.insert("id", new Variant.string(idstr));
+                meta.insert("name", new Variant.string(station.name));
+                var subtitle = station.get_subtitle();
+                if (subtitle != "") {
+                    meta.insert("description", new Variant.string(subtitle));
+                }
+                metas += meta;
+            }
+            return metas;
+        }
+
+        public void play_station_id(string identifier) {
+            ensure_db();
+            var station = store.get_station_by_id(int64.parse(identifier));
+            if (station != null) {
+                // Set before creating the window so its restore-last logic
+                // resumes this station rather than the previous one.
+                AppState.get_default().settings.set_int64("last-station-id", station.id);
+            }
+            present_main_window();
+            if (station != null &&
+                    (player.current_station == null || player.current_station.id != station.id)) {
+                player.play(station);
+            }
+        }
+
+        public void open_with_search(string query) {
+            var win = ensure_main_window();
+            win.set_visible(true);
+            win.present();
+            win.show_search(query);
         }
     }
 }

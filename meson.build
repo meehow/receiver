@@ -61,6 +61,7 @@ core_deps = [
 gui_sources = files(
   'src/main.vala',
   'src/application.vala',
+  'src/services/search_provider.vala',
   'src/services/image_loader.vala',
   'src/services/song_downloader.vala',
   'src/widgets/window.vala',
@@ -153,6 +154,11 @@ configure_file(
 
 install_data('data/io.github.meehow.Receiver.metainfo.xml',
   install_dir: get_option('datadir') / 'metainfo'
+)
+
+# GNOME Shell search provider: search stations from the Activities overview
+install_data('data/io.github.meehow.Receiver.search-provider.ini',
+  install_dir: get_option('datadir') / 'gnome-shell/search-providers'
 )
 
 install_data('data/icons/hicolor/512x512/apps/io.github.meehow.Receiver.png',
