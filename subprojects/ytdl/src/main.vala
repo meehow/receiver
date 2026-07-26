@@ -4,21 +4,32 @@ int main (string[] args) {
     var session = new Soup.Session ();
     session.timeout = 30;
 
-    if (args.length < 2) {
-        printerr ("Usage: %s <video-id-or-url>\n", args[0]);
+    // Pull out the --audio/-a flag; keep the rest as positional args.
+    // With it, downloads use the itag 140 (m4a) audio-only stream.
+    bool audio_only = false;
+    string[] pos = {};
+    for (int i = 1; i < args.length; i++) {
+        if (args[i] == "--audio" || args[i] == "-a")
+            audio_only = true;
+        else
+            pos += args[i];
+    }
+
+    if (pos.length < 1) {
+        printerr ("Usage: %s [--audio] <video-id-or-url>\n", args[0]);
         printerr ("       %s --search <query>\n", args[0]);
         return 1;
     }
 
     try {
         // Search mode
-        if (args[1] == "--search" || args[1] == "-s") {
-            if (args.length < 3) {
+        if (pos[0] == "--search" || pos[0] == "-s") {
+            if (pos.length < 2) {
                 printerr ("Usage: %s --search <query>\n", args[0]);
                 return 1;
             }
             // Join remaining args as query
-            string query = string.joinv (" ", args[2:args.length]);
+            string query = string.joinv (" ", pos[1:pos.length]);
             var results = Ytdl.search (session, query);
 
             if (results.length == 0) {
@@ -34,7 +45,7 @@ int main (string[] args) {
         }
 
         // Download mode
-        var info = Ytdl.extract (session, args[1]);
+        var info = Ytdl.extract (session, pos[0], audio_only);
 
         string filename = sanitize (info.title) + "." + info.ext;
         print ("Downloading: %s\n", info.title);

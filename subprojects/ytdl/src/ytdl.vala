@@ -137,7 +137,8 @@ namespace Ytdl {
      * Returns a VideoInfo with title and direct download URL.
      * Throws on any failure.
      */
-    public VideoInfo extract (Soup.Session session, string video_id_or_url) throws Error {
+    public VideoInfo extract (Soup.Session session, string video_id_or_url,
+                              bool audio_only = false) throws Error {
         string video_id = parse_video_id (video_id_or_url);
 
         // 1. Fetch watch page
@@ -179,12 +180,13 @@ namespace Ytdl {
                 continue;
             }
 
-            // Pick a format: itag 18 (360p muxed mp4) if still available,
-            // else itag 140 (m4a audio) — YouTube dropped muxed formats
-            // from most videos, leaving only separate audio/video streams.
+            // Pick a format. Audio-only mode uses itag 140 (m4a audio)
+            // exclusively; otherwise prefer the muxed itag 18 (360p mp4) when
+            // still offered, falling back to itag 140 — YouTube dropped muxed
+            // formats from most videos, leaving only separate audio/video.
             if (!root.has_member ("streamingData")) continue;
             var sd = root.get_object_member ("streamingData");
-            if (sd.has_member ("formats")
+            if (!audio_only && sd.has_member ("formats")
                 && (url = pick_itag (sd.get_array_member ("formats"), 18)) != null) {
                 ext = "mp4";
             } else if (sd.has_member ("adaptiveFormats")
@@ -202,7 +204,8 @@ namespace Ytdl {
         }
 
         if (url == null)
-            throw last_err ?? new IOError.FAILED ("No playable format found (itag 18 or 140)");
+            throw last_err ?? new IOError.FAILED (
+                "No playable format found (itag %s)", audio_only ? "140" : "18 or 140");
 
         return VideoInfo () { title = title, url = url, video_id = video_id, ext = ext };
     }
