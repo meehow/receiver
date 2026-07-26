@@ -144,6 +144,7 @@ namespace Receiver {
             changed.insert("PlaybackStatus", status);
             changed.insert("CanPlay", can_play);
             changed.insert("CanPause", can_pause);
+            changed.insert("Metadata", metadata);
             emit_properties_changed(changed);
         }
 

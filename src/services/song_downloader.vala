@@ -100,10 +100,11 @@ namespace Receiver {
                 string? dl_error = null;
 
                 new Thread<void>("ytdl-download", () => {
+                    FileOutputStream? out_stream = null;
                     try {
                         var session = new Soup.Session();
                         session.timeout = 120;
-                        var out_stream = dest.replace(null, false, FileCreateFlags.REPLACE_DESTINATION, cancellable);
+                        out_stream = dest.replace(null, false, FileCreateFlags.REPLACE_DESTINATION, cancellable);
                         Ytdl.download(session, url, out_stream, cancellable, (received, total) => {
                             if (total > 0) {
                                 double frac = (double) received / (double) total;
@@ -111,14 +112,14 @@ namespace Receiver {
                             }
                         });
                         out_stream.close(null);
-                    } catch (IOError.CANCELLED e) {
-                        // Clean up partial file
-                        try { dest.delete(null); } catch (Error de) {}
-                        dl_error = _("Cancelled");
                     } catch (Error e) {
+                        // Close the stream first or its temp file survives the delete
+                        if (out_stream != null) {
+                            try { out_stream.close(null); } catch (Error ce) {}
+                        }
                         // Don't leave a partial/empty file behind
                         try { dest.delete(null); } catch (Error de) {}
-                        dl_error = e.message;
+                        dl_error = e.matches(IOError.quark(), IOError.CANCELLED) ? _("Cancelled") : e.message;
                     }
                     Idle.add(download_song.callback);
                 });

@@ -12,7 +12,7 @@ namespace Receiver {
         private static HistoryStore? _instance;
         private GenericArray<HistoryEntry> entries;
         private string file_path;
-        private bool save_pending = false;
+        private uint save_timeout = 0;
         private const int MAX_ENTRIES = 500;
 
         public static HistoryStore get_default() {
@@ -41,7 +41,9 @@ namespace Receiver {
                 if (!dir.query_exists()) {
                     dir.make_directory_with_parents();
                 }
-            } catch (Error e) {}
+            } catch (Error e) {
+                warning("Failed to create config dir: %s", e.message);
+            }
             file_path = Path.build_filename(app_dir, "history.json");
             load();
         }
@@ -63,16 +65,15 @@ namespace Receiver {
             entry.played_at = new DateTime.now_local().format_iso8601();
             entries.insert(0, entry);
 
-            // Cap size + notify removals from the end
+            // Notify: 1 item added at position 0
+            items_changed(0, 0, 1);
+
+            // Cap size, then notify removals from the end
             uint removed = 0;
             while (entries.length > MAX_ENTRIES) {
                 entries.remove_index(entries.length - 1);
                 removed++;
             }
-
-            // Notify: 1 item added at position 0
-            items_changed(0, 0, 1);
-            // Notify any trimmed items from the tail
             if (removed > 0) {
                 items_changed(entries.length, removed, 0);
             }
@@ -107,10 +108,11 @@ namespace Receiver {
                     var obj = arr.get_element(i).get_object();
                     if (obj == null) continue;
                     var e = new HistoryEntry();
+                    // Members may hold JSON null; get_string_member returns null then
                     e.station_id = obj.has_member("station_id") ? obj.get_int_member("station_id") : 0;
-                    e.station_name = obj.has_member("station_name") ? obj.get_string_member("station_name") : "";
-                    e.song_title = obj.has_member("song_title") ? obj.get_string_member("song_title") : "";
-                    e.played_at = obj.has_member("played_at") ? obj.get_string_member("played_at") : "";
+                    e.station_name = obj.has_member("station_name") ? (obj.get_string_member("station_name") ?? "") : "";
+                    e.song_title = obj.has_member("song_title") ? (obj.get_string_member("song_title") ?? "") : "";
+                    e.played_at = obj.has_member("played_at") ? (obj.get_string_member("played_at") ?? "") : "";
                     if (e.station_id != 0 && e.song_title != "") {
                         entries.add(e);
                     }
@@ -122,36 +124,55 @@ namespace Receiver {
         }
 
         private void schedule_save() {
-            if (save_pending) return;
-            save_pending = true;
-            Timeout.add(1000, () => {
+            if (save_timeout != 0) return;
+            save_timeout = Timeout.add(1000, () => {
+                save_timeout = 0;
                 do_save.begin();
-                save_pending = false;
                 return false;
             });
         }
 
+        // Synchronous write for shutdown, when the main loop may not run again
+        public void flush() {
+            if (save_timeout != 0) {
+                Source.remove(save_timeout);
+                save_timeout = 0;
+                try {
+                    File.new_for_path(file_path).replace_contents(
+                        serialize().data, null, false,
+                        FileCreateFlags.REPLACE_DESTINATION, null, null);
+                } catch (Error e) {
+                    warning("Failed to save history: %s", e.message);
+                }
+            }
+        }
+
+        private string serialize() {
+            var b = new Json.Builder();
+            b.begin_array();
+            for (int i = 0; i < entries.length; i++) {
+                var e = entries[i];
+                b.begin_object();
+                b.set_member_name("station_id"); b.add_int_value(e.station_id);
+                b.set_member_name("station_name"); b.add_string_value(e.station_name);
+                b.set_member_name("song_title"); b.add_string_value(e.song_title);
+                b.set_member_name("played_at"); b.add_string_value(e.played_at);
+                b.end_object();
+            }
+            b.end_array();
+
+            var gen = new Json.Generator();
+            gen.set_root(b.get_root());
+            gen.pretty = true;
+            return gen.to_data(null);
+        }
+
         private async void do_save() {
             try {
-                var b = new Json.Builder();
-                b.begin_array();
-                for (int i = 0; i < entries.length; i++) {
-                    var e = entries[i];
-                    b.begin_object();
-                    b.set_member_name("station_id"); b.add_int_value(e.station_id);
-                    b.set_member_name("station_name"); b.add_string_value(e.station_name);
-                    b.set_member_name("song_title"); b.add_string_value(e.song_title);
-                    b.set_member_name("played_at"); b.add_string_value(e.played_at);
-                    b.end_object();
-                }
-                b.end_array();
-
-                var gen = new Json.Generator();
-                gen.set_root(b.get_root());
-                gen.pretty = true;
-
-                yield File.new_for_path(file_path).replace_contents_async(
-                    gen.to_data(null).data, null, false, FileCreateFlags.REPLACE_DESTINATION, null, null);
+                // replace_contents_async does not copy the buffer, so keep it
+                // alive in a Bytes for the duration of the call
+                yield File.new_for_path(file_path).replace_contents_bytes_async(
+                    new Bytes(serialize().data), null, false, FileCreateFlags.REPLACE_DESTINATION, null, null);
             } catch (Error e) {
                 warning("Failed to save history: %s", e.message);
             }

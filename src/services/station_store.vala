@@ -123,7 +123,11 @@ namespace Receiver {
                 return false;
             }
             Sqlite.Statement stmt;
-            db.prepare_v2("SELECT COUNT(*) FROM stations", -1, out stmt);
+            if (db.prepare_v2("SELECT COUNT(*) FROM stations", -1, out stmt) != Sqlite.OK) {
+                warning("Cannot query stations: %s", db.errmsg());
+                db = null;
+                return false;
+            }
             if (stmt.step() == Sqlite.ROW) {
                 total_count = stmt.column_int(0);
             }
@@ -175,6 +179,7 @@ namespace Receiver {
         }
 
         // Build an FTS5 MATCH pattern: prefix-match each whitespace token.
+        // Tokens are quoted so FTS5 metacharacters (e.g. in "AC/DC") stay literal.
         private string build_fts_query(string query) {
             var fts = new StringBuilder();
             foreach (var p in query.strip().split(" ")) {
@@ -182,7 +187,7 @@ namespace Receiver {
                     if (fts.len > 0) {
                         fts.append(" ");
                     }
-                    fts.append(p.replace("&", " ")).append("*");
+                    fts.append("\"").append(p.replace("\"", "\"\"")).append("\"*");
                 }
             }
             return fts.str;
@@ -193,7 +198,10 @@ namespace Receiver {
                 return null;
             }
             Sqlite.Statement stmt;
-            db.prepare_v2("SELECT " + COLS + " FROM stations WHERE id = ?", -1, out stmt);
+            if (db.prepare_v2("SELECT " + COLS + " FROM stations WHERE id = ?", -1, out stmt) != Sqlite.OK) {
+                warning("Cannot query station by id: %s", db.errmsg());
+                return null;
+            }
             stmt.bind_int64(1, id);
             if (stmt.step() == Sqlite.ROW) {
                 return parse(stmt);
@@ -232,7 +240,10 @@ namespace Receiver {
             detect_locale(out code, out lang);
             if (code == null || db == null) return null;
             Sqlite.Statement stmt;
-            db.prepare_v2("SELECT DISTINCT country FROM stations WHERE country_code = ?", -1, out stmt);
+            if (db.prepare_v2("SELECT DISTINCT country FROM stations WHERE country_code = ?", -1, out stmt) != Sqlite.OK) {
+                warning("Cannot query locale country: %s", db.errmsg());
+                return null;
+            }
             stmt.bind_text(1, code);
             if (stmt.step() == Sqlite.ROW) {
                 return stmt.column_text(0);
@@ -255,7 +266,10 @@ namespace Receiver {
         private string[] load_languages() {
             var result = new GenericArray<string>();
             Sqlite.Statement stmt;
-            db.prepare_v2("SELECT code FROM languages", -1, out stmt);
+            if (db.prepare_v2("SELECT code FROM languages", -1, out stmt) != Sqlite.OK) {
+                warning("Cannot query languages: %s", db.errmsg());
+                return result.data;
+            }
             while (stmt.step() == Sqlite.ROW) {
                 var lang = stmt.column_text(0);
                 if (lang != null) result.add(lang);
@@ -267,11 +281,14 @@ namespace Receiver {
             var codes = new GenericArray<string>();
             var names = new GenericArray<string>();
             Sqlite.Statement stmt;
-            db.prepare_v2(
+            if (db.prepare_v2(
                 "SELECT DISTINCT country_code, country FROM stations " +
                 "WHERE country_code IS NOT NULL AND country_code != '' " +
                 "AND country IS NOT NULL AND country != '' " +
-                "ORDER BY country", -1, out stmt);
+                "ORDER BY country", -1, out stmt) != Sqlite.OK) {
+                warning("Cannot query countries: %s", db.errmsg());
+                return;
+            }
             while (stmt.step() == Sqlite.ROW) {
                 var code = stmt.column_text(0);
                 var name = stmt.column_text(1);
@@ -284,10 +301,15 @@ namespace Receiver {
             _available_country_names = names.data;
         }
 
+        private static bool filter_active(string filter) {
+            return filter != "" && filter != "all";
+        }
+
         private void apply_filter() {
             uint old_len = filtered_stations.length;
             filtered_stations = new GenericArray<Station>();
             if (db == null) {
+                items_changed(0, old_len, 0);
                 return;
             }
 
@@ -316,13 +338,16 @@ namespace Receiver {
             } else {
                 sql.append("SELECT ").append(COLS).append(" FROM stations WHERE 1=1");
             }
-            if (_language_filter != "all") sql.append(" AND " + prefix + "languages_raw LIKE ?");
-            if (_country_filter != "all") sql.append(" AND " + prefix + "country_code = ?");
+            // Token match on the space-separated list, not substring
+            if (filter_active(_language_filter)) sql.append(" AND (' ' || " + prefix + "languages_raw || ' ') LIKE ?");
+            if (filter_active(_country_filter)) sql.append(" AND " + prefix + "country_code = ?");
 
             sql.append(" ").append(order_clause);
 
             Sqlite.Statement stmt;
             if (db.prepare_v2(sql.str, -1, out stmt) != Sqlite.OK) {
+                warning("Failed to prepare filter query: %s", db.errmsg());
+                items_changed(0, old_len, 0);
                 return;
             }
 
@@ -330,10 +355,10 @@ namespace Receiver {
             if (use_fts) {
                 stmt.bind_text(idx++, build_fts_query(_search_query));
             }
-            if (_language_filter != "all") {
-                stmt.bind_text(idx++, "%" + _language_filter + "%");
+            if (filter_active(_language_filter)) {
+                stmt.bind_text(idx++, "% " + _language_filter + " %");
             }
-            if (_country_filter != "all") {
+            if (filter_active(_country_filter)) {
                 stmt.bind_text(idx++, _country_filter);
             }
 

@@ -6,7 +6,7 @@ namespace Receiver {
         private static AppState? _instance;
         public Settings settings { get; private set; }
         private string favourites_file;
-        private bool save_pending = false;
+        private uint save_timeout = 0;
         private GenericArray<Station> _favourite_stations;
 
         public signal void favourites_changed();
@@ -27,7 +27,9 @@ namespace Receiver {
                 if (!dir.query_exists()) {
                     dir.make_directory_with_parents();
                 }
-            } catch (Error e) {}
+            } catch (Error e) {
+                warning("Failed to create config dir: %s", e.message);
+            }
 
             favourites_file = Path.build_filename(app_dir, "favourites.json");
             _favourite_stations = new GenericArray<Station>();
@@ -118,37 +120,49 @@ namespace Receiver {
 
 
         public void save_favourites() {
-            if (save_pending) return;
-            save_pending = true;
-            Timeout.add(500, () => {
+            if (save_timeout != 0) return;
+            save_timeout = Timeout.add(500, () => {
+                save_timeout = 0;
                 do_save_favourites.begin();
-                save_pending = false;
                 return false;
             });
         }
 
+        // Synchronous write for shutdown, when the main loop may not run again
         public void flush() {
-            if (save_pending) {
-                do_save_favourites.begin();
-                save_pending = false;
+            if (save_timeout != 0) {
+                Source.remove(save_timeout);
+                save_timeout = 0;
+                try {
+                    File.new_for_path(favourites_file).replace_contents(
+                        serialize_favourites().data, null, false,
+                        FileCreateFlags.REPLACE_DESTINATION, null, null);
+                } catch (Error e) {
+                    warning("Failed to save favourites: %s", e.message);
+                }
             }
+        }
+
+        private string serialize_favourites() {
+            var b = new Json.Builder();
+            b.begin_array();
+            for (int i = 0; i < _favourite_stations.length; i++) {
+                b.add_value(Json.gobject_serialize(_favourite_stations[i]));
+            }
+            b.end_array();
+
+            var gen = new Json.Generator();
+            gen.set_root(b.get_root());
+            gen.pretty = true;
+            return gen.to_data(null);
         }
 
         private async void do_save_favourites() {
             try {
-                var b = new Json.Builder();
-                b.begin_array();
-                for (int i = 0; i < _favourite_stations.length; i++) {
-                    b.add_value(Json.gobject_serialize(_favourite_stations[i]));
-                }
-                b.end_array();
-
-                var gen = new Json.Generator();
-                gen.set_root(b.get_root());
-                gen.pretty = true;
-
-                yield File.new_for_path(favourites_file).replace_contents_async(
-                    gen.to_data(null).data, null, false, FileCreateFlags.REPLACE_DESTINATION, null, null);
+                // replace_contents_async does not copy the buffer, so keep it
+                // alive in a Bytes for the duration of the call
+                yield File.new_for_path(favourites_file).replace_contents_bytes_async(
+                    new Bytes(serialize_favourites().data), null, false, FileCreateFlags.REPLACE_DESTINATION, null, null);
             } catch (Error e) {
                 warning("Failed to save favourites: %s", e.message);
             }

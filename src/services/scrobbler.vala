@@ -12,6 +12,7 @@ namespace Receiver {
         private string? current_title = null;
         private int64 track_start_time = 0;  // Unix timestamp when track started
         private uint scrobble_timer = 0;
+        private bool scrobbled = false;
 
         // Scrobble after 30 seconds (Last.fm minimum track length)
         private const int SCROBBLE_THRESHOLD_SECONDS = 30;
@@ -89,9 +90,6 @@ namespace Receiver {
         private void on_metadata_changed(string title) {
             if (!is_enabled()) return;
 
-            // Try to scrobble the previous track
-            maybe_scrobble_current();
-
             // Extract artist/title from the new metadata
             var cleaned = extractor.clean(title);
             var info = extractor.extract_artist_title(cleaned);
@@ -107,6 +105,7 @@ namespace Receiver {
             current_artist = info.artist;
             current_title = info.title;
             track_start_time = new DateTime.now_utc().to_unix();
+            scrobbled = false;
 
             // Send Now Playing
             var sk = get_session_key();
@@ -121,23 +120,24 @@ namespace Receiver {
         private void on_state_changed(PlayerState new_state) {
             if (!is_enabled()) return;
 
-            if (new_state == PlayerState.STOPPED || new_state == PlayerState.ERROR) {
-                maybe_scrobble_current();
-                current_artist = null;
-                current_title = null;
-                cancel_scrobble_timer();
-            }
-        }
-
-        private void maybe_scrobble_current() {
-            if (current_artist == null || current_title == null || track_start_time == 0) {
-                return;
-            }
-
-            var now = new DateTime.now_utc().to_unix();
-            var elapsed = now - track_start_time;
-            if (elapsed >= SCROBBLE_THRESHOLD_SECONDS) {
-                do_scrobble.begin(current_artist, current_title, track_start_time);
+            switch (new_state) {
+                case PlayerState.STOPPED:
+                case PlayerState.ERROR:
+                    current_artist = null;
+                    current_title = null;
+                    cancel_scrobble_timer();
+                    break;
+                case PlayerState.PAUSED:
+                    cancel_scrobble_timer();
+                    break;
+                case PlayerState.PLAYING:
+                    // Resume restarts a fresh 30s window for the current track
+                    if (current_artist != null && !scrobbled && scrobble_timer == 0) {
+                        start_scrobble_timer();
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -146,6 +146,7 @@ namespace Receiver {
             scrobble_timer = Timeout.add_seconds(SCROBBLE_THRESHOLD_SECONDS, () => {
                 scrobble_timer = 0;
                 if (current_artist != null && current_title != null) {
+                    scrobbled = true;
                     do_scrobble.begin(current_artist, current_title, track_start_time);
                 }
                 return false;

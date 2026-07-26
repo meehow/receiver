@@ -1,7 +1,7 @@
 // Last.fm API client for desktop authentication and scrobbling
 namespace Receiver {
 
-    private const string LASTFM_API_URL = "http://ws.audioscrobbler.com/2.0/";
+    private const string LASTFM_API_URL = "https://ws.audioscrobbler.com/2.0/";
     private const string LASTFM_API_KEY = "83f81327ea8f83f4becbc8fa1255611d";
     private const string LASTFM_API_SECRET = "037b74525c3c6ce5a5535ee04fa58a27";
     private const string LASTFM_AUTH_URL = "https://www.last.fm/api/auth/?api_key=" + LASTFM_API_KEY + "&token=";
@@ -43,6 +43,13 @@ namespace Receiver {
             return Checksum.compute_for_string(ChecksumType.MD5, sb.str);
         }
 
+        // GBytes from libsoup are not NUL-terminated; copy with explicit length
+        private static string bytes_to_string(Bytes bytes) {
+            unowned uint8[] data = bytes.get_data();
+            if (data == null || data.length == 0) return "";
+            return ((string) data).substring(0, data.length);
+        }
+
         /**
          * Step 1: Get a request token for desktop auth.
          */
@@ -57,7 +64,7 @@ namespace Receiver {
             try {
                 var msg = new Soup.Message("GET", url);
                 var bytes = yield session.send_and_read_async(msg, Priority.DEFAULT, null);
-                var body = (string) bytes.get_data();
+                var body = bytes_to_string(bytes);
 
                 // Parse <token>xxx</token>
                 var start = body.index_of("<token>");
@@ -97,7 +104,7 @@ namespace Receiver {
             try {
                 var msg = new Soup.Message("GET", url);
                 var bytes = yield session.send_and_read_async(msg, Priority.DEFAULT, null);
-                var body = (string) bytes.get_data();
+                var body = bytes_to_string(bytes);
 
                 if (body.contains("<error")) {
                     if (!body.contains("code=\"14\"")) {
@@ -176,7 +183,7 @@ namespace Receiver {
                     new Bytes.take(sb.str.data));
 
                 var bytes = yield session.send_and_read_async(msg, Priority.DEFAULT, null);
-                result.body = (string) bytes.get_data();
+                result.body = bytes_to_string(bytes);
 
                 if (result.body.contains("status=\"ok\"")) {
                     result.ok = true;
@@ -187,7 +194,7 @@ namespace Receiver {
                     if (code_str != null) {
                         result.error_code = int.parse(code_str);
                     }
-                    result.error_message = extract_xml_value(result.body, "error");
+                    result.error_message = extract_error_message(result.body);
                     warning("Last.fm %s failed (code %d): %s", label, result.error_code,
                             result.error_message ?? "unknown");
                 }
@@ -207,6 +214,17 @@ namespace Receiver {
                 return xml.substring(start + open.length, end - start - open.length);
             }
             return null;
+        }
+
+        // The error tag carries attributes: <error code="6">message</error>
+        private string? extract_error_message(string xml) {
+            var start = xml.index_of("<error");
+            if (start < 0) return null;
+            var open_end = xml.index_of(">", start);
+            if (open_end < 0) return null;
+            var close = xml.index_of("</error>", open_end);
+            if (close <= open_end) return null;
+            return xml.substring(open_end + 1, close - open_end - 1);
         }
 
         private string? extract_xml_attr(string xml, string tag, string attr) {

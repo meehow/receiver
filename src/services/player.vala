@@ -72,7 +72,7 @@ namespace Receiver {
         public void play(Station station) {
             var url = station.get_stream_url();
             if (url == null || url == "") {
-                error_occurred("No stream URL available");
+                error_occurred(_("No stream URL available"));
                 return;
             }
 
@@ -90,11 +90,27 @@ namespace Receiver {
 
             // playbin handles .m3u8 (HLS) natively; .pls and .m3u must be
             // pre-parsed — GStreamer treats them as opaque text and fails.
-            if (url.has_suffix(".pls") || url.has_suffix(".m3u")) {
+            if (is_playlist_url(url)) {
                 resolve_playlist.begin(url, play_cancellable);
             } else {
                 resolve_redirects.begin(url, play_cancellable);
             }
+        }
+
+        // URI path without query string, for extension checks; falls back to
+        // the full URL when parsing fails
+        private string uri_path(string url) {
+            try {
+                return GLib.Uri.parse(url, GLib.UriFlags.NONE).get_path();
+            } catch (Error e) {
+                return url;
+            }
+        }
+
+        // .m3u8 (HLS) intentionally does not match
+        private bool is_playlist_url(string url) {
+            var path = uri_path(url);
+            return path.has_suffix(".pls") || path.has_suffix(".m3u");
         }
 
         // Pre-resolve HTTP redirects since GStreamer's souphttpsrc fails on some 302s
@@ -137,7 +153,7 @@ namespace Receiver {
                 pipeline = Gst.ElementFactory.make("playbin", "player");
             }
             if (pipeline == null) {
-                error_occurred("Failed to create player");
+                error_occurred(_("Failed to create player"));
                 return;
             }
 
@@ -149,15 +165,6 @@ namespace Receiver {
             pipeline.set_property("buffer-duration", (int64) (5 * Gst.SECOND));
             pipeline.set_property("buffer-size", 4 * 1024 * 1024);
             pipeline.set_property("video-sink", Gst.ElementFactory.make("fakesink", "video_fake"));
-
-            // Set User-Agent so Shoutcast/Icecast servers don't reject us
-            //  ((Gst.Bin) pipeline).deep_element_added.connect((bin, element) => {
-            //      if (pipeline == null || bin != pipeline) return;
-            //      var factory = element.get_factory();
-            //      if (factory != null && factory.get_name() == "souphttpsrc") {
-            //          element.set_property("user-agent", "Receiver/1.0");
-            //      }
-            //  });
 
             bus = pipeline.get_bus();
             bus.add_signal_watch();
@@ -335,7 +342,7 @@ namespace Receiver {
                     message("Retry attempt %d for %s", retry_count, current_station.name);
                     var url = current_station.get_stream_url();
                     if (url != null && url != "") {
-                        if (url.has_suffix(".pls") || url.has_suffix(".m3u")) {
+                        if (is_playlist_url(url)) {
                             resolve_playlist.begin(url, play_cancellable);
                         } else {
                             resolve_redirects.begin(url, play_cancellable);
@@ -365,16 +372,18 @@ namespace Receiver {
                 var bytes = yield session.send_and_read_async(msg, Priority.DEFAULT, cancel);
                 if (cancel.is_cancelled()) return;
                 if (msg.status_code != 200) {
-                    error_occurred("Playlist fetch failed: HTTP %u".printf(msg.status_code));
+                    error_occurred(_("Playlist fetch failed: HTTP %u").printf(msg.status_code));
                     return;
                 }
-                var content = (string) bytes.get_data();
+                unowned uint8[] data = bytes.get_data();
+                var content = data == null || data.length == 0
+                    ? "" : ((string) data).substring(0, data.length);
 
                 string? stream_url = null;
                 foreach (var line in content.split("\n")) {
                     var l = line.strip();
                     // PLS: File1=http://...
-                    if (url.has_suffix(".pls") && l.has_prefix("File") && l.contains("=")) {
+                    if (uri_path(url).has_suffix(".pls") && l.has_prefix("File") && l.contains("=")) {
                         stream_url = l.split("=", 2)[1];
                         break;
                     }
@@ -391,11 +400,11 @@ namespace Receiver {
                     message("Playlist resolved: %s -> %s", url, stream_url);
                     start(stream_url);
                 } else {
-                    error_occurred("No stream URL in playlist");
+                    error_occurred(_("No stream URL in playlist"));
                 }
             } catch (Error e) {
                 if (cancel.is_cancelled()) return;
-                error_occurred("Playlist error: " + e.message);
+                error_occurred(_("Playlist error: %s").printf(e.message));
             }
         }
     }
