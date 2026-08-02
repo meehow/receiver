@@ -16,6 +16,7 @@ namespace Receiver {
         private StationInfoPage station_info_page;
         private Adw.NavigationPage station_info_nav_page;
         private uint auth_poll_timer = 0;
+        private bool auth_in_progress = false;
 
         public MainWindow(Application application) {
             var s = AppState.get_default().settings;
@@ -32,15 +33,16 @@ namespace Receiver {
             connect_signals();
 
             this.close_request.connect(() => {
-                s.set_int("window-width", this.default_width);
-                s.set_int("window-height", this.default_height);
+                save_window_state();
 
                 // Keep playing in the background: hide instead of destroying the
                 // window so the app's last window stays registered and it lives on.
-                // Only when there is actually playback (not when stopped or errored).
+                // Only when there is playback, including the transient error state
+                // the player automatically retries from (not when stopped).
                 var state = app.player.state;
                 if (s.get_boolean("run-in-background") &&
-                    (state == PlayerState.PLAYING || state == PlayerState.PAUSED)) {
+                    (state == PlayerState.PLAYING || state == PlayerState.PAUSED ||
+                     state == PlayerState.ERROR)) {
                     this.set_visible(false);
                     app.request_background_portal();
                     return true;
@@ -196,6 +198,9 @@ namespace Receiver {
             });
 
             player_bar.info_requested.connect(() => {
+                if (nav_view.visible_page == station_info_nav_page) {
+                    return;
+                }
                 station_info_page.refresh();
                 nav_view.push(station_info_nav_page);
             });
@@ -211,6 +216,12 @@ namespace Receiver {
         public void show_search(string query) {
             view_stack.set_visible_child_name("browse");
             station_list.set_search(query);
+        }
+
+        public void save_window_state() {
+            var s = AppState.get_default().settings;
+            s.set_int("window-width", this.default_width);
+            s.set_int("window-height", this.default_height);
         }
 
         private void toast(string msg) {
@@ -270,6 +281,10 @@ namespace Receiver {
                 return;
             }
 
+            if (auth_in_progress) {
+                return;
+            }
+
             if (app.scrobbler.is_enabled()) {
                 app.scrobbler.disconnect_lastfm();
                 toast(_("Disconnected from Last.fm"));
@@ -277,9 +292,11 @@ namespace Receiver {
             }
 
             toast(_("Connecting to Last.fm…"));
+            auth_in_progress = true;
             app.scrobbler.start_auth.begin((obj, res) => {
                 var url = app.scrobbler.start_auth.end(res);
                 if (url == null) {
+                    auth_in_progress = false;
                     toast(_("Failed to connect to Last.fm"));
                     return;
                 }
@@ -288,7 +305,6 @@ namespace Receiver {
                 launcher.launch.begin(this, null);
 
                 toast(_("Grant access in your browser…"));
-                update_lastfm_label();
 
                 var attempts = 0;
                 auth_poll_timer = Timeout.add_seconds(3, () => {
@@ -308,6 +324,7 @@ namespace Receiver {
                     });
                     return auth_poll_timer > 0;
                 });
+                update_lastfm_label();
             });
         }
 
@@ -316,6 +333,7 @@ namespace Receiver {
                 Source.remove(auth_poll_timer);
                 auth_poll_timer = 0;
             }
+            auth_in_progress = false;
             update_lastfm_label();
         }
 

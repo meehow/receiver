@@ -90,7 +90,7 @@ namespace Receiver {
             title_button.halign = Gtk.Align.START;
             title_button.clicked.connect(() => {
                 var s = player.current_station;
-                if (s != null && s.homepage != null) {
+                if (s != null && s.homepage != null && s.homepage != "") {
                     var launcher = new Gtk.UriLauncher(s.homepage);
                     launcher.launch.begin(get_root() as Gtk.Window, null);
                 }
@@ -189,6 +189,15 @@ namespace Receiver {
                 }
             });
 
+            // Reflect external volume changes (MPRIS, GSettings); the epsilon
+            // guards against feedback with the scale's value-changed handler
+            player.notify["volume"].connect(() => {
+                var diff = volume_scale.get_value() - player.volume;
+                if (diff > 0.001 || diff < -0.001) {
+                    volume_scale.set_value(player.volume);
+                }
+            });
+
             player.notify["is-buffering"].connect(() => {
                 if (player.is_buffering) {
                     revealer.reveal_child = true;
@@ -254,7 +263,7 @@ namespace Receiver {
             }
             title_label.label = s.name;
             title_label.tooltip_text = s.homepage;
-            title_button.can_target = s.homepage != null;
+            title_button.can_target = s.homepage != null && s.homepage != "";
             update_fav();
             var np = player.now_playing;
             subtitle_label.label = (np != null && np != "") ? format_now_playing(np) : _("Now playing");

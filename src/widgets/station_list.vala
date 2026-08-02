@@ -19,13 +19,16 @@ namespace Receiver {
 
         public signal void station_activated(Station station);
 
+        // Each genre doubles as the search query fed to the station database,
+        // so only the pill labels are translated, never the query itself.
         private const string[] GENRES = {
-            "pop", "kpop", "rock", "jazz", "classical", "electronic", "dance",
-            "hits", "70s", "80s", "90s", "oldies", "chill",
-            "news", "talk", "sports",
-            "alternative", "indie", "metal", "punk",
-            "house", "hiphop", "latin", "soul", "blues", "folk",
-            "country", "reggae", "disco"
+            N_("pop"), N_("kpop"), N_("rock"), N_("jazz"), N_("classical"),
+            N_("electronic"), N_("dance"),
+            N_("hits"), N_("70s"), N_("80s"), N_("90s"), N_("oldies"), N_("chill"),
+            N_("news"), N_("talk"), N_("sports"),
+            N_("alternative"), N_("indie"), N_("metal"), N_("punk"),
+            N_("house"), N_("hiphop"), N_("latin"), N_("soul"), N_("blues"), N_("folk"),
+            N_("country"), N_("reggae"), N_("disco")
         };
 
         public StationList(StationStore station_store) {
@@ -111,7 +114,9 @@ namespace Receiver {
                 tile.add_css_class("pill");
                 tile.add_css_class("suggested-action");
                 tile.add_css_class("compact"); // Reduces internal padding significantly without custom CSS
-                tile.child = new Gtk.Label(g.substring(0, 1).up() + g.substring(1));
+                var label = _(g);
+                var second = label.index_of_nth_char(1);
+                tile.child = new Gtk.Label(label.substring(0, second).up() + label.substring(second));
                 tile.clicked.connect(() => {
                     search_entry.text = g;
                 });
@@ -312,21 +317,37 @@ namespace Receiver {
 
         private void restore_state() {
             restoring = true;
-            // Restore dropdown selections from persisted GSettings
-            if (store.language_filter != "all" && languages != null) {
-                for (int i = 0; i < languages.length; i++) {
-                    if (languages[i] == store.language_filter) {
-                        language_dropdown.selected = (uint)(i + 1);
-                        break;
+            // Restore dropdown selections from persisted GSettings; a persisted
+            // value that no longer exists in the loaded lists would leave the
+            // dropdown on All while the store keeps filtering, so reset it
+            if (store.language_filter != "all") {
+                var found = false;
+                if (languages != null) {
+                    for (int i = 0; i < languages.length; i++) {
+                        if (languages[i] == store.language_filter) {
+                            language_dropdown.selected = (uint)(i + 1);
+                            found = true;
+                            break;
+                        }
                     }
                 }
+                if (!found) {
+                    store.language_filter = "all";
+                }
             }
-            if (store.country_filter != "all" && country_codes != null) {
-                for (int i = 0; i < country_codes.length; i++) {
-                    if (country_codes[i] == store.country_filter) {
-                        country_dropdown.selected = (uint)(i + 1);
-                        break;
+            if (store.country_filter != "all") {
+                var found = false;
+                if (country_codes != null) {
+                    for (int i = 0; i < country_codes.length; i++) {
+                        if (country_codes[i] == store.country_filter) {
+                            country_dropdown.selected = (uint)(i + 1);
+                            found = true;
+                            break;
+                        }
                     }
+                }
+                if (!found) {
+                    store.country_filter = "all";
                 }
             }
             restoring = false;
@@ -351,12 +372,15 @@ namespace Receiver {
 
         private void update_empty() {
             if (store.get_n_items() == 0) {
+                bool has_filter = search_entry.text != ""
+                    || (store.language_filter != "" && store.language_filter != "all")
+                    || (store.country_filter != "" && store.country_filter != "all");
                 empty_page.title = store.is_loading
                     ? _("Loading Stations")
-                    : (search_entry.text != "" ? _("No Results") : _("No Stations"));
+                    : (has_filter ? _("No Results") : _("No Stations"));
                 empty_page.description = store.is_loading
                     ? _("Please wait…")
-                    : (search_entry.text != "" ? _("No stations match your search") : _("Could not load stations"));
+                    : (has_filter ? _("No stations match your search") : _("Could not load stations"));
                 stack.visible_child_name = "empty";
             } else {
                 stack.visible_child_name = "list";
@@ -376,6 +400,7 @@ namespace Receiver {
         private ulong cleared_id;
         private ulong fav_id;
         private ulong scroll_id;
+        private Gtk.Adjustment? scroll_adjustment;
         private uint load_timeout;
 
         public StationRow() {
@@ -554,7 +579,8 @@ namespace Receiver {
             // Not yet laid out: wait for scroll to trigger layout
             var sw = get_ancestor(typeof(Gtk.ScrolledWindow)) as Gtk.ScrolledWindow;
             if (sw != null && scroll_id == 0 && sw.vadjustment != null) {
-                scroll_id = sw.vadjustment.value_changed.connect(() => {
+                scroll_adjustment = sw.vadjustment;
+                scroll_id = scroll_adjustment.value_changed.connect(() => {
                     if (station != s) {
                         disconnect_scroll();
                         return;
@@ -579,13 +605,11 @@ namespace Receiver {
         }
 
         private void disconnect_scroll() {
-            if (scroll_id > 0) {
-                var sw = get_ancestor(typeof(Gtk.ScrolledWindow)) as Gtk.ScrolledWindow;
-                if (sw != null && sw.vadjustment != null) {
-                    sw.vadjustment.disconnect(scroll_id);
-                }
+            if (scroll_id > 0 && scroll_adjustment != null) {
+                scroll_adjustment.disconnect(scroll_id);
                 scroll_id = 0;
             }
+            scroll_adjustment = null;
         }
 
         private async void load_artwork(Station s) {

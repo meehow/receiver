@@ -81,6 +81,7 @@ namespace Receiver {
         private Gtk.Label subtitle_label;
         private DownloadButton dl;
         private HistoryEntry? entry;
+        private bool download_started;
 
         public HistoryRow() {
             Object(orientation: Gtk.Orientation.HORIZONTAL, spacing: 12);
@@ -104,7 +105,6 @@ namespace Receiver {
             title_label.ellipsize = Pango.EllipsizeMode.END;
             title_label.max_width_chars = 1;
             title_label.hexpand = true;
-            title_label.selectable = true;
             title_label.lines = 1;
             title_label.add_css_class("heading");
             text.append(title_label);
@@ -120,15 +120,32 @@ namespace Receiver {
             text.append(subtitle_label);
             this.append(text);
 
-            dl = new DownloadButton();
-            dl.clicked.connect(() => {
-                if (entry != null) dl.download(entry.song_title);
-            });
+            dl = create_download_button();
             this.append(dl);
+        }
+
+        private DownloadButton create_download_button() {
+            var button = new DownloadButton();
+            button.clicked.connect(() => {
+                if (entry != null) {
+                    download_started = true;
+                    button.download(entry.song_title);
+                }
+            });
+            return button;
         }
 
         public void bind(HistoryEntry e) {
             entry = e;
+            // A download cannot be retargeted to another entry, so a recycled
+            // row gets a fresh button; a download still running on the old
+            // button simply finishes in the background
+            if (download_started) {
+                this.remove(dl);
+                dl = create_download_button();
+                this.append(dl);
+                download_started = false;
+            }
             title_label.label = e.song_title;
             subtitle_label.label = e.station_name + "  ·  " + format_time(e.played_at);
         }
@@ -148,7 +165,7 @@ namespace Receiver {
             var days = (int)(diff / TimeSpan.DAY);
 
             if (minutes < 1) return _("Just now");
-            if (minutes < 60) return ngettext("%d min ago", "%d min ago", minutes).printf(minutes);
+            if (minutes < 60) return ngettext("%d minute ago", "%d minutes ago", minutes).printf(minutes);
             if (hours < 24) return ngettext("%d hour ago", "%d hours ago", hours).printf(hours);
             if (days < 7) return ngettext("%d day ago", "%d days ago", days).printf(days);
 

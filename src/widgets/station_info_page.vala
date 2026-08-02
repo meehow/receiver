@@ -83,7 +83,21 @@ namespace Receiver {
 
         public void refresh() {
             var station = player.current_station;
-            if (station == null) return;
+            if (station == null) {
+                name_row.subtitle = "";
+                country_row.subtitle = "";
+                country_row.visible = false;
+                tags_row.subtitle = "";
+                tags_row.visible = false;
+                website_row.subtitle = "";
+                website_row.visible = false;
+                stream_row.subtitle = "";
+                stream_row.visible = false;
+                artwork.paintable = null;
+                artwork.visible = false;
+                update_stream_info();
+                return;
+            }
 
             name_row.subtitle = station.name;
 
@@ -110,7 +124,7 @@ namespace Receiver {
         private void update_stream_info() {
             codec_row.subtitle = player.stream_codec != "" ? player.stream_codec : "—";
             bitrate_row.subtitle = player.stream_bitrate > 0
-                ? "%u kbps".printf(player.stream_bitrate / 1000) : "—";
+                ? _("%u kbps").printf(player.stream_bitrate / 1000) : "—";
         }
 
         private async void load_artwork(Station s) {

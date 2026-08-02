@@ -43,18 +43,18 @@ namespace Receiver {
         }
 
         // Bring the main window to the front, re-showing it if it was hidden by
-        // background mode. active_window is null while the only window is hidden,
-        // so look through the full window list (which still includes it) and only
-        // build a fresh window when there genuinely isn't one.
+        // background mode; only build a fresh window when there genuinely
+        // isn't one.
         private void present_main_window() {
             var win = ensure_main_window();
             win.set_visible(true);
             win.present();
         }
 
-        // Return the main window, creating it (and loading the browse list) if
-        // there is not one yet.
-        private MainWindow ensure_main_window() {
+        // Find the existing window, hidden or not. active_window is null while
+        // the only window is hidden, so fall back to the full window list
+        // (which still includes it).
+        private Gtk.Window? find_window() {
             Gtk.Window? win = active_window;
             if (win == null) {
                 unowned List<Gtk.Window> wins = get_windows();
@@ -62,12 +62,19 @@ namespace Receiver {
                     win = wins.data;
                 }
             }
+            return win;
+        }
+
+        // Return the main window, creating it (and loading the browse list) if
+        // there is not one yet.
+        private MainWindow ensure_main_window() {
+            var win = find_window() as MainWindow;
             if (win == null) {
                 var created = new MainWindow(this);
                 open_database();
                 return created;
             }
-            return (MainWindow) win;
+            return win;
         }
 
         // Best-effort Background portal request over D-Bus (no libportal needed,
@@ -131,7 +138,7 @@ namespace Receiver {
             // When running in the background (window hidden), Stop means "done":
             // tear the process down. Pause keeps it alive.
             player.state_changed.connect((new_state) => {
-                var win = active_window;
+                var win = find_window();
                 if (new_state == PlayerState.STOPPED && win != null && !win.visible) {
                     this.quit();
                 }
@@ -150,6 +157,16 @@ namespace Receiver {
 
         protected override void activate() {
             present_main_window();
+        }
+
+        protected override void shutdown() {
+            var win = find_window() as MainWindow;
+            if (win != null) {
+                win.save_window_state();
+            }
+            AppState.get_default().flush();
+            HistoryStore.get_default().flush();
+            base.shutdown();
         }
 
 

@@ -16,6 +16,7 @@ namespace Receiver {
             station_store.loading_finished.connect(() => {
                 update_favourites();
             });
+            update_favourites();
         }
 
         private void build_ui() {

@@ -22,6 +22,16 @@ namespace Receiver {
 
         public Station() {}
 
+        private static int quality_rank(string quality) {
+            switch (quality) {
+                case "highest": return 4;
+                case "high": return 3;
+                case "medium": return 2;
+                case "low": return 1;
+                default: return 0;
+            }
+        }
+
         // Get best stream URL (prioritize highest quality)
         // Parses streams_raw on demand — only called when actually playing
         public string? get_stream_url() {
@@ -30,7 +40,7 @@ namespace Receiver {
             }
 
             string? best_url = null;
-            string? best_quality = null;
+            int best_rank = -1;
 
             foreach (var part in streams_raw.split(";")) {
                 var fields = part.split("|");
@@ -41,9 +51,10 @@ namespace Receiver {
 
                 if (quality == "highest") return url;
 
-                if (best_url == null || quality == "high") {
+                var rank = quality_rank(quality);
+                if (rank > best_rank) {
                     best_url = url;
-                    best_quality = quality;
+                    best_rank = rank;
                 }
             }
             return best_url;
@@ -52,10 +63,10 @@ namespace Receiver {
         // Get subtitle string (country • tag1 • tag2 • ...)
         public string get_subtitle() {
             var parts = new GenericArray<string>();
-            if (country != null) parts.add(country);
+            if (country != null && country != "") parts.add(country);
             if (tags_raw != null) {
                 foreach (var tag in tags_raw.split(" ")) {
-                    parts.add(tag);
+                    if (tag != "") parts.add(tag);
                 }
             }
             return string.joinv(" • ", parts.data);
