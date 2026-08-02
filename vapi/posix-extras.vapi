@@ -3,4 +3,7 @@
 namespace PosixExtras {
     [CCode (cname = "isatty")]
     public int isatty (int fd);
+
+    [CCode (cname = "wcwidth", cheader_filename = "wchar.h")]
+    public int wcwidth (int c);
 }

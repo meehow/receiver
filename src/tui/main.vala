@@ -39,6 +39,7 @@ namespace Receiver {
         // Signal numbers (the GLib profile has no Posix.Signal binding).
         private const int SIGNAL_INT = 2;
         private const int SIGNAL_TERM = 15;
+        private const int SIGNAL_WINCH = 28;
 
         // Colour pair ids.
         private const int PAIR_HEADER = 1;
@@ -67,6 +68,7 @@ namespace Receiver {
         private StationStore store = new StationStore ();
         private Player player = new Player ();
         private MprisService mpris;
+        private bool db_missing = false;
 
         private View view = View.BROWSE;
         // Cursor and scroll position, remembered per view.
@@ -77,6 +79,7 @@ namespace Receiver {
 
         private bool search_active = false;
         private string search_text = "";
+        private uint search_timeout_id = 0;
 
         // Country/language filter (Browse only). Labels are shown in the header;
         // the empty string means "all" (no filter).
@@ -118,6 +121,13 @@ namespace Receiver {
 
             Unix.signal_add (SIGNAL_INT, () => { loop.quit (); return Source.REMOVE; });
             Unix.signal_add (SIGNAL_TERM, () => { loop.quit (); return Source.REMOVE; });
+            Unix.signal_add (SIGNAL_WINCH, () => {
+                // Reinitialise curses so LINES/COLS pick up the new size.
+                Curses.endwin ();
+                scr.refresh ();
+                needs_redraw = true;
+                return Source.CONTINUE;
+            });
 
             stdin_channel = new IOChannel.unix_new (0);
             stdin_channel.add_watch (IOCondition.IN, on_input);
@@ -135,6 +145,7 @@ namespace Receiver {
             loop.run ();
 
             AppState.get_default ().flush ();
+            HistoryStore.get_default ().flush ();
             Curses.endwin ();
             return 0;
         }
@@ -155,8 +166,10 @@ namespace Receiver {
             player.state_changed.connect (() => { needs_redraw = true; });
             player.stream_info_changed.connect (() => { needs_redraw = true; });
             player.metadata_changed.connect ((title) => {
-                // Record songs to history (same guard as the GTK frontend).
-                if (player.current_station != null && player.state == PlayerState.PLAYING) {
+                // Record songs to history; Player.play echoes the station
+                // name before real metadata arrives, so skip that.
+                if (player.current_station != null && player.state == PlayerState.PLAYING
+                    && title != player.current_station.name) {
                     HistoryStore.get_default ().add (player.current_station, title);
                 }
                 needs_redraw = true;
@@ -171,8 +184,10 @@ namespace Receiver {
                     return;
                 }
             }
-            try_open_db (Path.build_filename (Environment.get_current_dir (),
-                                              "data", "receiver", "receiver.db"));
+            if (!try_open_db (Path.build_filename (Environment.get_current_dir (),
+                                                   "data", "receiver", "receiver.db"))) {
+                db_missing = true;
+            }
         }
 
         private bool try_open_db (string path) {
@@ -338,7 +353,9 @@ namespace Receiver {
                     }
                     break;
                 case 27: // Esc — clear an applied search
-                    clear_search ();
+                    if (view == View.BROWSE) {
+                        clear_search ();
+                    }
                     break;
                 case 'c':
                     if (view == View.BROWSE) {
@@ -452,6 +469,7 @@ namespace Receiver {
                 case '\r':
                 case Curses.KEY_ENTER:
                     // Apply and leave search mode, keeping results.
+                    apply_search_now ();
                     search_active = false;
                     needs_redraw = true;
                     break;
@@ -465,7 +483,7 @@ namespace Receiver {
                     if (search_text.length > 0) {
                         search_text = search_text[0 : search_text.index_of_nth_char (
                             search_text.char_count () - 1)];
-                        store.search_query = search_text;
+                        schedule_search_apply ();
                     }
                     needs_redraw = true;
                     break;
@@ -473,13 +491,67 @@ namespace Receiver {
                     needs_redraw = true;
                     break;
                 default:
-                    if (ch >= 32 && ch < 127) {
-                        search_text += ((char) ch).to_string ();
-                        store.search_query = search_text;
+                    var typed = read_input_char (ch);
+                    if (typed != null) {
+                        search_text += typed;
+                        schedule_search_apply ();
                         needs_redraw = true;
                     }
                     break;
             }
+        }
+
+        // Assemble one UTF-8 character from getch() bytes: `first` is the
+        // byte already read, continuation bytes are fetched immediately.
+        // Returns null for control bytes, curses key codes and invalid input.
+        private string? read_input_char (int first) {
+            if (first < 32) {
+                return null;
+            }
+            if (first < 127) {
+                return ((char) first).to_string ();
+            }
+            int extra;
+            if (first >= 0xC2 && first <= 0xDF) {
+                extra = 1;
+            } else if (first >= 0xE0 && first <= 0xEF) {
+                extra = 2;
+            } else if (first >= 0xF0 && first <= 0xF4) {
+                extra = 3;
+            } else {
+                return null;
+            }
+            var sb = new StringBuilder ();
+            sb.append_c ((char) first);
+            for (int i = 0; i < extra; i++) {
+                int ch = scr.getch ();
+                if (ch < 0x80 || ch > 0xBF) {
+                    return null;
+                }
+                sb.append_c ((char) ch);
+            }
+            return sb.str.validate () ? sb.str : null;
+        }
+
+        // Applying the query re-filters the whole station store, so debounce
+        // it; the header echoes search_text immediately regardless.
+        private void schedule_search_apply () {
+            if (search_timeout_id != 0) {
+                Source.remove (search_timeout_id);
+            }
+            search_timeout_id = Timeout.add (200, () => {
+                search_timeout_id = 0;
+                store.search_query = search_text;
+                return Source.REMOVE;
+            });
+        }
+
+        private void apply_search_now () {
+            if (search_timeout_id != 0) {
+                Source.remove (search_timeout_id);
+                search_timeout_id = 0;
+            }
+            store.search_query = search_text;
         }
 
         // --- Country/language picker ----------------------------------------
@@ -572,8 +644,9 @@ namespace Receiver {
                     needs_redraw = true;
                     break;
                 default:
-                    if (ch >= 32 && ch < 127) {
-                        picker_query += ((char) ch).to_string ();
+                    var typed = read_input_char (ch);
+                    if (typed != null) {
+                        picker_query += typed;
                         picker_sel = 0;
                         picker_off = 0;
                         needs_redraw = true;
@@ -654,7 +727,7 @@ namespace Receiver {
                 return;
             }
             search_text = "";
-            store.search_query = "";
+            apply_search_now ();
             selected = 0;
             scroll = 0;
             clamp_selection ();
@@ -815,9 +888,9 @@ namespace Receiver {
 
         // Append a clickable token to the header, recording its column span.
         private void add_zone (StringBuilder sb, string token, int action) {
-            int start = (int) sb.str.char_count ();
+            int start = col_width (sb.str);
             sb.append (token);
-            HeaderZone z = { start, (int) sb.str.char_count (), action };
+            HeaderZone z = { start, start + col_width (token), action };
             header_zones += z;
         }
 
@@ -856,7 +929,9 @@ namespace Receiver {
                 case View.HISTORY:
                     return "No song history yet — play a station for a while.";
                 default:
-                    return "No stations match your search.";
+                    return db_missing
+                        ? "Station database not found."
+                        : "No stations match your search.";
             }
         }
 
@@ -923,8 +998,8 @@ namespace Receiver {
 
         // Left-aligned text with right-aligned suffix, padded to width.
         private string compose (string left, string right, int width) {
-            int lw = left.char_count ();
-            int rw = right.char_count ();
+            int lw = col_width (left);
+            int rw = col_width (right);
             if (lw + rw >= width) {
                 return fit (left, width);
             }
@@ -936,15 +1011,30 @@ namespace Receiver {
             return sb.str;
         }
 
-        // Pad or truncate to exactly `width` display columns (assumes one
-        // column per character; adequate for the Latin chrome drawn here).
-        private string fit (string text, int width) {
-            int len = text.char_count ();
-            if (len > width) {
-                return text[0 : (int) text.index_of_nth_char (width)];
+        // Display width in terminal columns; wide (CJK) chars take two.
+        private int col_width (string text) {
+            int cols = 0;
+            unichar c;
+            for (int i = 0; text.get_next_char (ref i, out c);) {
+                cols += int.max (PosixExtras.wcwidth ((int) c), 0);
             }
-            var sb = new StringBuilder (text);
-            for (int i = len; i < width; i++) {
+            return cols;
+        }
+
+        // Pad or truncate to exactly `width` display columns.
+        private string fit (string text, int width) {
+            var sb = new StringBuilder ();
+            int cols = 0;
+            unichar c;
+            for (int i = 0; text.get_next_char (ref i, out c);) {
+                int cw = int.max (PosixExtras.wcwidth ((int) c), 0);
+                if (cols + cw > width) {
+                    break;
+                }
+                sb.append_unichar (c);
+                cols += cw;
+            }
+            for (int i = cols; i < width; i++) {
                 sb.append_c (' ');
             }
             return sb.str;
