@@ -56,7 +56,7 @@ namespace Receiver {
                 case "hi": return "हिन्दी";
                 case "hr": return "Hrvatski";
                 case "hu": return "Magyar";
-                case "hy": return "Հայերેն";
+                case "hy": return "Հայերեն";
                 case "id": return "Bahasa Indonesia";
                 case "ig": return "Igbo";
                 case "is": return "Íslenska";

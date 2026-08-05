@@ -45,18 +45,28 @@ namespace Receiver {
         private string fix_encoding(string text) {
             if (!text.validate()) {
                 // Raw non-UTF-8 bytes: try East Asian charsets first (they're
-                // more distinctive), then fall back to Western European ones.
+                // more distinctive), then Cyrillic and Western European ones.
+                // Among the conversions that succeed, keep the most plausible.
                 string[] charsets = {
                     "EUC-KR", "CP949", "EUC-JP", "SHIFT_JIS", "GB18030",
+                    "WINDOWS-1251",
                     "WINDOWS-1250", "ISO-8859-2", "WINDOWS-1252", "ISO-8859-1"
                 };
+                string? best = null;
+                double best_score = 0;
                 foreach (var charset in charsets) {
                     try {
-                        return GLib.convert(text, (ssize_t) text.length,
-                                            "UTF-8", charset);
+                        var candidate = GLib.convert(text, (ssize_t) text.length,
+                                                     "UTF-8", charset);
+                        if (!candidate.validate()) continue;
+                        var score = script_plausibility(candidate);
+                        if (best == null || score > best_score) {
+                            best = candidate;
+                            best_score = score;
+                        }
                     } catch {}
                 }
-                return text;
+                return best ?? text;
             }
 
             // Valid UTF-8 but possibly Latin-1 mis-interpretation of a legacy
@@ -69,16 +79,21 @@ namespace Receiver {
                                        "ISO-8859-1", "UTF-8");
 
                 // East Asian charsets: EUC-KR/CP949 (Korean), EUC-JP/Shift-JIS (Japanese),
-                // GB18030 (Chinese). Accept if result contains CJK/Hangul characters.
-                string[] ea_charsets = { "EUC-KR", "CP949", "EUC-JP", "SHIFT_JIS", "GB18030" };
-                foreach (var charset in ea_charsets) {
-                    try {
-                        var fixed = GLib.convert(raw, (ssize_t) raw.length,
-                                                 "UTF-8", charset);
-                        if (fixed.validate() && has_cjk(fixed)) {
-                            return fixed;
-                        }
-                    } catch {}
+                // GB18030 (Chinese). Accept if result contains CJK/Hangul characters
+                // from one dominant script. Real East Asian mojibake is a run of
+                // high bytes; a couple of adjacent accented letters ("SÄÄ") is not.
+                if (has_high_run(text, 4)) {
+                    string[] ea_charsets = { "EUC-KR", "CP949", "EUC-JP", "SHIFT_JIS", "GB18030" };
+                    foreach (var charset in ea_charsets) {
+                        try {
+                            var fixed = GLib.convert(raw, (ssize_t) raw.length,
+                                                     "UTF-8", charset);
+                            if (fixed.validate() && has_cjk(fixed)
+                                && script_plausibility(fixed) >= MIN_SCRIPT_DOMINANCE) {
+                                return fixed;
+                            }
+                        } catch {}
+                    }
                 }
 
                 // Central/Eastern European: Windows-1250 is a superset of ISO-8859-2
@@ -89,7 +104,8 @@ namespace Receiver {
                     try {
                         var fixed = GLib.convert(raw, (ssize_t) raw.length,
                                                  "UTF-8", charset);
-                        if (fixed.validate() && has_extended_latin(fixed)) {
+                        if (fixed.validate() && has_extended_latin(fixed)
+                            && script_plausibility(fixed) >= MIN_SCRIPT_DOMINANCE) {
                             return fixed;
                         }
                     } catch {}
@@ -97,6 +113,56 @@ namespace Receiver {
             } catch {}
 
             return text;
+        }
+
+        // Minimum fraction of non-ASCII letters that must belong to a single
+        // script for a converted candidate to be considered plausible.
+        private const double MIN_SCRIPT_DOMINANCE = 0.8;
+
+        // Fraction (0-1) of non-ASCII letters belonging to the dominant
+        // script. Real text is dominated by one script; a mixed-script
+        // salad signals a wrong charset guess.
+        private double script_plausibility(string text) {
+            // Han, Hiragana/Katakana, Hangul, Cyrillic, Latin-1/Extended.
+            int[] counts = new int[5];
+            int total = 0;
+            unichar c;
+            for (int i = 0; text.get_next_char(ref i, out c);) {
+                if (c < 0x80 || !c.isalpha()) continue;
+                total++;
+                if ((c >= 0x4E00 && c <= 0x9FFF) || (c >= 0x3400 && c <= 0x4DBF)) {
+                    counts[0]++;
+                } else if (c >= 0x3040 && c <= 0x30FF) {
+                    counts[1]++;
+                } else if ((c >= 0xAC00 && c <= 0xD7A3) || (c >= 0x1100 && c <= 0x11FF)) {
+                    counts[2]++;
+                } else if (c >= 0x0400 && c <= 0x04FF) {
+                    counts[3]++;
+                } else if (c >= 0x00C0 && c <= 0x024F) {
+                    counts[4]++;
+                }
+            }
+            if (total == 0) return 1.0;
+            int best = 0;
+            foreach (var n in counts) {
+                best = int.max(best, n);
+            }
+            return (double) best / total;
+        }
+
+        // True if text contains `n` or more consecutive chars in U+0080–U+00FF.
+        private bool has_high_run(string text, int n) {
+            int run = 0;
+            unichar c;
+            for (int i = 0; text.get_next_char(ref i, out c);) {
+                if (c >= 0x80 && c <= 0xFF) {
+                    run++;
+                    if (run >= n) return true;
+                } else {
+                    run = 0;
+                }
+            }
+            return false;
         }
 
         private bool has_latin1_supplement(string text) {
@@ -136,26 +202,44 @@ namespace Receiver {
         // from Windows-1250 bytes 0xDD 0xAF). Strip such artifacts when
         // the text is predominantly Latin.
         private string strip_script_artifacts(string text) {
-            int latin = 0;
-            int foreign = 0;
+            unichar[] chars = {};
             unichar c;
             for (int i = 0; text.get_next_char(ref i, out c);) {
-                if (is_latin_letter(c)) {
+                chars += c;
+            }
+
+            int latin = 0;
+            bool[] foreign = new bool[chars.length];
+            for (int i = 0; i < chars.length; i++) {
+                if (is_latin_letter(chars[i])) {
                     latin++;
-                } else if (c > 0x024F && c.isalpha()) {
-                    foreign++;
+                } else if (chars[i] > 0x024F && chars[i].isalpha()) {
+                    foreign[i] = true;
+                }
+            }
+
+            // Runs of 2+ foreign chars are real text (e.g. a kana span in a
+            // Latin title); only isolated single stray chars are artifacts.
+            int isolated = 0;
+            bool[] strip = new bool[chars.length];
+            for (int i = 0; i < chars.length; i++) {
+                if (foreign[i]
+                    && !(i > 0 && foreign[i - 1])
+                    && !(i + 1 < chars.length && foreign[i + 1])) {
+                    strip[i] = true;
+                    isolated++;
                 }
             }
 
             // Only strip when text is clearly Latin with a few stray chars
-            if (latin < 3 || foreign == 0 || foreign * 4 > latin) {
+            if (latin < 3 || isolated == 0 || isolated * 4 > latin) {
                 return text;
             }
 
             var sb = new StringBuilder.sized(text.length);
-            for (int i = 0; text.get_next_char(ref i, out c);) {
-                if (!(c > 0x024F && c.isalpha())) {
-                    sb.append_unichar(c);
+            for (int i = 0; i < chars.length; i++) {
+                if (!strip[i]) {
+                    sb.append_unichar(chars[i]);
                 }
             }
             return sb.str;
@@ -204,19 +288,21 @@ namespace Receiver {
                 return text;
             }
 
-            // Decode named HTML entities
-            var result = text.replace("&amp;", "&")
-                             .replace("&apos;", "'")
+            // Decode named HTML entities; &amp; last so double-escaped
+            // input ("&amp;quot;") doesn't double-unescape.
+            var result = text.replace("&apos;", "'")
                              .replace("&quot;", "\"")
                              .replace("&lt;", "<")
-                             .replace("&gt;", ">");
+                             .replace("&gt;", ">")
+                             .replace("&amp;", "&");
 
             // Decode numeric entities
             if (result.contains("&#") && decimal_regex != null) {
                 try {
                     result = decimal_regex.replace_eval(result, -1, 0, 0, (m, b) => {
                         var code = int.parse(m.fetch(1));
-                        if (code > 0 && code <= 0x10FFFF) {
+                        if (code > 0 && code <= 0x10FFFF
+                            && !(code >= 0xD800 && code <= 0xDFFF)) {
                             b.append(((unichar)code).to_string());
                         } else {
                             b.append(m.fetch(0));
@@ -227,7 +313,8 @@ namespace Receiver {
                     if (hex_regex != null) {
                         result = hex_regex.replace_eval(result, -1, 0, 0, (m, b) => {
                             uint64 code;
-                            if (uint64.try_parse("0x" + m.fetch(1), out code) && code <= 0x10FFFF) {
+                            if (uint64.try_parse("0x" + m.fetch(1), out code) && code <= 0x10FFFF
+                                && !(code >= 0xD800 && code <= 0xDFFF)) {
                                 b.append(((unichar)code).to_string());
                             } else {
                                 b.append(m.fetch(0));

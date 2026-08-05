@@ -28,6 +28,7 @@ namespace Receiver {
         private Regex track_num_re;
         private Regex freq_prefix_re;
         private Regex multi_spaces_re;
+        private Regex amp_re;
         // Artist/title splitting
         private Regex semicolon_re;
         private Regex slash_re;
@@ -59,7 +60,7 @@ namespace Receiver {
             try {
                 init_patterns();
             } catch (RegexError e) {
-                warning("MetadataExtractor: failed to compile regex: %s", e.message);
+                error("MetadataExtractor: failed to compile regex: %s", e.message);
             }
         }
 
@@ -125,6 +126,7 @@ namespace Receiver {
             track_num_re = new Regex("^\\d{1,3}\\s*[-\\.]\\s*");
             freq_prefix_re = new Regex("^\\d+\\.\\d+\\s*(?:FM|MHz)\\s*\\|\\s*", RegexCompileFlags.CASELESS);
             multi_spaces_re = new Regex("\\s{2,}");
+            amp_re = new Regex("\\b([A-Z0-9][^ ]*) amp ([A-Z0-9])");
 
             // Tilde-delimited metadata
             tilde_re = new Regex("^(.+?)~(.+?)~~");
@@ -202,8 +204,9 @@ namespace Receiver {
             // Replace underscores with spaces (URL-encoded metadata)
             text = text.replace("_", " ");
 
-            // Replace bare HTML entity names (e.g. " amp " → " & ")
-            text = text.replace(" amp ", " & ");
+            // Replace a bare HTML entity name between title-like tokens
+            // (e.g. "Rock amp Roll" → "Rock & Roll")
+            try { text = amp_re.replace(text, -1, 0, "\\1 & \\2"); } catch {}
 
             // Insert space before parenthesis: "Felicita(Remix)" → "Felicita (Remix)"
             try {
@@ -259,8 +262,12 @@ namespace Receiver {
             try { text = trailing_paren_domain_re.replace(text, -1, 0, ""); } catch {}
             try { text = next_re.replace(text, -1, 0, ""); } catch {}
 
-            // Strip trailing DJ metadata (Camelot key + BPM): "- 3A - 100"
-            try { text = dj_suffix_re.replace(text, -1, 0, ""); } catch {}
+            // Strip trailing DJ metadata (Camelot key + BPM): "- 3A - 100".
+            // Only in "Artist - Title - 100" forms; in "U2 - 40" the
+            // trailing number is the title itself.
+            if (dash_separator_count(text) >= 2) {
+                try { text = dj_suffix_re.replace(text, -1, 0, ""); } catch {}
+            }
 
             // Strip leading ". - " or "- "
             if (text.has_prefix(". - ")) {
@@ -380,8 +387,9 @@ namespace Receiver {
                 }
             }
 
-            // Tight dash: "Danny Romero-Peligrosa"
-            if (tight_dash_re.match(cleaned, 0, out m)) {
+            // Tight dash, only for space-free "Artist-Title" forms so
+            // hyphenated names ("Jay-Z Empire State of Mind") stay intact
+            if (!cleaned.contains(" ") && tight_dash_re.match(cleaned, 0, out m)) {
                 var left = m.fetch(1).strip();
                 var right = m.fetch(2).strip();
                 if (left.length >= 2 && right.length >= 2) {
@@ -421,6 +429,17 @@ namespace Receiver {
             return false;
         }
 
+        // Number of " - " separators in the text.
+        private static int dash_separator_count(string text) {
+            int count = 0;
+            int pos = text.index_of(" - ");
+            while (pos >= 0) {
+                count++;
+                pos = text.index_of(" - ", pos + 3);
+            }
+            return count;
+        }
+
         private bool looks_like_non_song_title(string text) {
             foreach (var pat in non_song_title_only_patterns) {
                 if (pat.match(text, 0, null)) return true;
@@ -446,7 +465,9 @@ namespace Receiver {
         private string clean_title(string title) {
             try {
                 var cleaned = title_suffix_re.replace(title, -1, 0, "").strip();
-                cleaned = dj_suffix_re.replace(cleaned, -1, 0, "").strip();
+                if (dash_separator_count(cleaned) >= 2) {
+                    cleaned = dj_suffix_re.replace(cleaned, -1, 0, "").strip();
+                }
                 return cleaned != "" ? cleaned : title;
             } catch {
                 return title;
