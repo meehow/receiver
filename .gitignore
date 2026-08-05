@@ -11,6 +11,9 @@ repo/
 # Compiled schemas
 gschemas.compiled
 
+# Compiled gettext catalogs
+*.mo
+
 # Debian build artifacts
 debian/.debhelper/
 debian/receiver/

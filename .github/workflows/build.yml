@@ -3,7 +3,7 @@ name: Build & Package
 on:
   workflow_dispatch:
   push:
-    branches: ['**']
+    branches: [master]
     tags: ['v*']
   pull_request:
 
@@ -32,7 +32,6 @@ jobs:
             libgstreamer1.0-dev \
             libsoup-3.0-dev \
             libjson-glib-dev \
-            libjavascriptcoregtk-6.0-dev \
             libsqlite3-dev \
             libncurses-dev
 
@@ -69,7 +68,6 @@ jobs:
             libgstreamer1.0-dev \
             libsoup-3.0-dev \
             libjson-glib-dev \
-            libjavascriptcoregtk-6.0-dev \
             libsqlite3-dev \
             libncurses-dev \
             gstreamer1.0-plugins-good \
@@ -117,4 +115,3 @@ jobs:
           receiver_*.deb
           Receiver-*.AppImage
           --generate-notes
-          --prerelease

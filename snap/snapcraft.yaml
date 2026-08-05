@@ -34,9 +34,11 @@ slots:
 apps:
   receiver:
     command: usr/bin/receiver
+    desktop: usr/share/applications/io.github.meehow.Receiver.desktop
     extensions: [gnome]
     environment:
       GIO_USE_PROXY_RESOLVER: gnome
+      LOCALEDIR: $SNAP/usr/share/locale
     plugs:
       - network
       - audio-playback
@@ -48,9 +50,12 @@ apps:
     extensions: [gnome]
     environment:
       GIO_USE_PROXY_RESOLVER: gnome
+      LOCALEDIR: $SNAP/usr/share/locale
     plugs:
       - network
       - audio-playback
+    slots:
+      - receiver-mpris
 
 layout:
   /usr/share/receiver:

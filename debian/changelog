@@ -1,4 +1,4 @@
-receiver (0.8.0-1) unstable; urgency=medium
+receiver (0.8.0) unstable; urgency=medium
 
   * Redesign the app icon
   * Adapt the interface for phone-sized screens, so the window works

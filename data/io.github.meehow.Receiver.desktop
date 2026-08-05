@@ -6,6 +6,6 @@ Keywords=radio;streaming;internet;music;
 Exec=receiver
 Icon=io.github.meehow.Receiver
 Terminal=false
-Categories=Audio;Music;Player;GTK;
+Categories=AudioVideo;Audio;Music;Player;GTK;
 StartupNotify=true
 DBusActivatable=true

@@ -10,8 +10,8 @@ GST_SCANNER = /usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-plugin-sc
 VERSION = $(shell grep "version:" meson.build | head -1 | sed "s/.*'\(.*\)'.*/\1/")
 
 .PHONY: build install uninstall clean deb run run-tui appimage \
-        flatpak-build flatpak-run flatpak-lint-manifest flatpak-lint-repo flatpak-submit \
-        translations-check translations-update
+        flatpak-build flatpak-run flatpak-lint \
+        translations-check translations-update translations-prune
 
 _build:
 	meson setup _build --prefix=/usr --buildtype=release
@@ -26,6 +26,7 @@ install: build
 # same _build the install came from (a fresh `make clean` discards the log).
 uninstall:
 	ninja -C _build uninstall
+	glib-compile-schemas /usr/share/glib-2.0/schemas
 
 clean:
 	rm -rf _build
