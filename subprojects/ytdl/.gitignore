@@ -1,3 +1,5 @@
 builddir/
 ejs/
 yt-dlp/
+*.m4a
+*.mp4

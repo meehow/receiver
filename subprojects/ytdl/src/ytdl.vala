@@ -38,7 +38,7 @@ namespace Ytdl {
         if (msg.status_code != 200)
             throw new IOError.FAILED ("Search returned HTTP %u", msg.status_code);
 
-        string html = (string) bytes.get_data ();
+        string html = bytes_to_string (bytes);
 
         // Extract ytInitialData JSON
         string? json_str = null;
@@ -65,40 +65,36 @@ namespace Ytdl {
 
         if (!root.has_member ("contents")) return new SearchResult[0];
         var c1 = root.get_object_member ("contents");
-        if (!c1.has_member ("twoColumnSearchResultsRenderer")) return new SearchResult[0];
+        if (c1 == null || !c1.has_member ("twoColumnSearchResultsRenderer")) return new SearchResult[0];
         var c2 = c1.get_object_member ("twoColumnSearchResultsRenderer");
-        if (!c2.has_member ("primaryContents")) return new SearchResult[0];
+        if (c2 == null || !c2.has_member ("primaryContents")) return new SearchResult[0];
         var c3 = c2.get_object_member ("primaryContents");
-        if (!c3.has_member ("sectionListRenderer")) return new SearchResult[0];
-        var sections = c3.get_object_member ("sectionListRenderer").get_array_member ("contents");
+        if (c3 == null || !c3.has_member ("sectionListRenderer")) return new SearchResult[0];
+        var slr = c3.get_object_member ("sectionListRenderer");
+        if (slr == null || !slr.has_member ("contents")) return new SearchResult[0];
+        var sections = slr.get_array_member ("contents");
+        if (sections == null) return new SearchResult[0];
 
         for (uint si = 0; si < sections.get_length () && results.length < max_results; si++) {
             var section = sections.get_object_element (si);
-            if (!section.has_member ("itemSectionRenderer")) continue;
-            var items = section.get_object_member ("itemSectionRenderer").get_array_member ("contents");
+            if (section == null || !section.has_member ("itemSectionRenderer")) continue;
+            var isr = section.get_object_member ("itemSectionRenderer");
+            if (isr == null || !isr.has_member ("contents")) continue;
+            var items = isr.get_array_member ("contents");
+            if (items == null) continue;
 
             for (uint ii = 0; ii < items.get_length () && results.length < max_results; ii++) {
                 var item = items.get_object_element (ii);
-                if (!item.has_member ("videoRenderer")) continue;
+                if (item == null || !item.has_member ("videoRenderer")) continue;
                 var vr = item.get_object_member ("videoRenderer");
+                if (vr == null) continue;
 
                 var r = SearchResult ();
                 r.video_id = vr.get_string_member_with_default ("videoId", "");
                 if (r.video_id == "") continue;
 
-                // Title from title.runs[0].text
-                if (vr.has_member ("title")) {
-                    var runs = vr.get_object_member ("title").get_array_member ("runs");
-                    if (runs.get_length () > 0)
-                        r.title = runs.get_object_element (0).get_string_member_with_default ("text", "");
-                }
-
-                // Channel from ownerText.runs[0].text
-                if (vr.has_member ("ownerText")) {
-                    var runs = vr.get_object_member ("ownerText").get_array_member ("runs");
-                    if (runs.get_length () > 0)
-                        r.channel = runs.get_object_element (0).get_string_member_with_default ("text", "");
-                }
+                r.title = runs_text (vr, "title");
+                r.channel = runs_text (vr, "ownerText");
 
                 results.add (r);
             }
@@ -130,6 +126,31 @@ namespace Ytdl {
         return null;
     }
 
+    /**
+     * Copy a Bytes buffer into a bounded string (the buffer itself is not
+     * NUL-terminated).
+     */
+    private string bytes_to_string (Bytes bytes) {
+        unowned uint8[] data = bytes.get_data ();
+        if (data == null || data.length == 0) return "";
+        return ((string) data).substring (0, (long) data.length);
+    }
+
+    /**
+     * Read member.runs[0].text from obj, or "" if any level is missing
+     * or has an unexpected shape.
+     */
+    private string runs_text (Json.Object obj, string member) {
+        if (!obj.has_member (member)) return "";
+        var o = obj.get_object_member (member);
+        if (o == null || !o.has_member ("runs")) return "";
+        var runs = o.get_array_member ("runs");
+        if (runs == null || runs.get_length () == 0) return "";
+        var run = runs.get_object_element (0);
+        if (run == null) return "";
+        return run.get_string_member_with_default ("text", "");
+    }
+
     private const string UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
 
     /**
@@ -151,8 +172,13 @@ namespace Ytdl {
         // the clients are rejected with a "confirm you're not a bot" check.
         string? visitor_data = null;
         var re_vd = new Regex ("\"visitorData\"\\s*:\\s*\"([^\"]+)\"");
-        if (re_vd.match (page, 0, out mi))
-            visitor_data = mi.fetch (1).replace ("\\u003d", "=");
+        if (re_vd.match (page, 0, out mi)) {
+            string vd = mi.fetch (1).replace ("\\u003d", "=").replace ("\\u0026", "&");
+            // A leftover backslash would corrupt the hand-built JSON body
+            // and the visitor header; proceed without visitorData instead.
+            if (!vd.contains ("\\"))
+                visitor_data = vd;
+        }
 
         // 2. Try API clients in order until one yields a usable format.
         //    Only non-web clients: they return direct URLs without sig/n JS
@@ -186,6 +212,7 @@ namespace Ytdl {
             // formats from most videos, leaving only separate audio/video.
             if (!root.has_member ("streamingData")) continue;
             var sd = root.get_object_member ("streamingData");
+            if (sd == null) continue;
             if (!audio_only && sd.has_member ("formats")
                 && (url = pick_itag (sd.get_array_member ("formats"), 18)) != null) {
                 ext = "mp4";
@@ -196,10 +223,10 @@ namespace Ytdl {
                 continue;  // response has no usable direct URLs
             }
 
-            if (root.has_member ("videoDetails")) {
-                title = root.get_object_member ("videoDetails")
-                    .get_string_member_with_default ("title", "video");
-            }
+            var vd = root.has_member ("videoDetails")
+                ? root.get_object_member ("videoDetails") : null;
+            if (vd != null)
+                title = vd.get_string_member_with_default ("title", "video");
             break;
         }
 
@@ -232,33 +259,53 @@ namespace Ytdl {
             msg.request_headers.set_range (received, received + CHUNK - 1);
 
             var stream = session.send (msg, cancellable);
+
+            // 416 after reading data from an unknown-size file just means
+            // we've requested past the end.
+            if (msg.status_code == 416 && total < 0 && received > 0) {
+                stream.close (cancellable);
+                break;
+            }
+            if (msg.status_code == 200 && received > 0)
+                throw new IOError.FAILED ("Server ignored Range request");
             if (msg.status_code != 206 && msg.status_code != 200)
                 throw new IOError.FAILED ("HTTP %u", msg.status_code);
 
             if (total < 0) {
-                int64 rs, re;
-                if (msg.status_code == 206
-                    && msg.response_headers.get_content_range (out rs, out re, out total)) {
-                    // total set from Content-Range
+                if (msg.status_code == 206) {
+                    int64 rs, re, t;
+                    if (msg.response_headers.get_content_range (out rs, out re, out t))
+                        total = t;
                 } else {
-                    total = msg.response_headers.get_content_length ();
+                    int64 len = msg.response_headers.get_content_length ();
+                    if (len > 0) total = len;
                 }
             }
 
             int64 chunk_got = 0;
             ssize_t n;
             while ((n = stream.read (buffer, cancellable)) > 0) {
-                out_stream.write (buffer[0:n], cancellable);
+                out_stream.write_all (buffer[0:n], null, cancellable);
                 received += n;
                 chunk_got += n;
                 if (progress != null) progress (received, total);
             }
             stream.close (cancellable);
 
-            // 200 means the server sent the whole file; empty chunk means
-            // the size was unknown and we've read past the end.
-            if (msg.status_code == 200 || chunk_got == 0) break;
+            // 200 means the server sent the whole file; an empty chunk is
+            // the end of an unknown-size file, otherwise the connection
+            // closed before the promised total arrived.
+            if (msg.status_code == 200) break;
+            if (chunk_got == 0) {
+                if (total < 0) break;
+                throw new IOError.FAILED ("Connection closed early (%s of %s bytes)",
+                    received.to_string (), total.to_string ());
+            }
         }
+
+        if (total >= 0 && received != total)
+            throw new IOError.FAILED ("Incomplete download (%s of %s bytes)",
+                received.to_string (), total.to_string ());
     }
 
     /**
@@ -287,9 +334,11 @@ namespace Ytdl {
         string device_json;  // extra fields inside context.client
     }
 
-    private string? pick_itag (Json.Array formats, int itag) {
+    private string? pick_itag (Json.Array? formats, int itag) {
+        if (formats == null) return null;
         for (uint i = 0; i < formats.get_length (); i++) {
             var f = formats.get_object_element (i);
+            if (f == null) continue;
             if ((int) f.get_int_member_with_default ("itag", 0) == itag)
                 return f.has_member ("url") ? f.get_string_member ("url") : null;
         }
@@ -327,15 +376,18 @@ namespace Ytdl {
             throw new IOError.FAILED ("%s: HTTP %u", client.name, msg.status_code);
 
         var parser = new Json.Parser ();
-        parser.load_from_data ((string) resp_bytes.get_data ());
-        var root = parser.get_root ().get_object ();
+        parser.load_from_data ((string) resp_bytes.get_data (), (ssize_t) resp_bytes.get_size ());
+        var root_node = parser.get_root ();
+        if (root_node == null || root_node.get_node_type () != Json.NodeType.OBJECT)
+            throw new IOError.FAILED ("%s: malformed API response", client.name);
+        var root = root_node.get_object ();
 
-        if (root.has_member ("playabilityStatus")) {
-            string status = root.get_object_member ("playabilityStatus")
-                .get_string_member_with_default ("status", "");
+        var ps = root.has_member ("playabilityStatus")
+            ? root.get_object_member ("playabilityStatus") : null;
+        if (ps != null) {
+            string status = ps.get_string_member_with_default ("status", "");
             if (status != "OK") {
-                string reason = root.get_object_member ("playabilityStatus")
-                    .get_string_member_with_default ("reason", "unknown");
+                string reason = ps.get_string_member_with_default ("reason", "unknown");
                 throw new IOError.FAILED ("%s: %s", status, reason);
             }
         }
@@ -348,7 +400,7 @@ namespace Ytdl {
         msg.request_headers.append ("User-Agent", UA);
         try {
             var bytes = session.send_and_read (msg, null);
-            if (msg.status_code == 200) return (string) bytes.get_data ();
+            if (msg.status_code == 200) return bytes_to_string (bytes);
         } catch {}
         return null;
     }

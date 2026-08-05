@@ -51,15 +51,22 @@ int main (string[] args) {
         print ("Downloading: %s\n", info.title);
         print ("File: %s\n\n", filename);
 
-        var fos = File.new_for_path (filename)
-            .replace (null, false, FileCreateFlags.REPLACE_DESTINATION, null);
+        var part = File.new_for_path (filename + ".part");
+        var fos = part.replace (null, false, FileCreateFlags.REPLACE_DESTINATION, null);
 
-        Ytdl.download (session, info.url, fos, null, (done, total) => {
-            if (total > 0)
-                print ("\r  %.0f%%  %.1f / %.1f MB",
-                    (double) done / total * 100, done / 1048576.0, total / 1048576.0);
-        });
-        fos.close (null);
+        try {
+            Ytdl.download (session, info.url, fos, null, (done, total) => {
+                if (total > 0)
+                    print ("\r  %.0f%%  %.1f / %.1f MB",
+                        (double) done / total * 100, done / 1048576.0, total / 1048576.0);
+            });
+            fos.close (null);
+        } catch (Error e) {
+            try { fos.close (null); } catch {}
+            try { part.delete (null); } catch {}
+            throw e;
+        }
+        part.move (File.new_for_path (filename), FileCopyFlags.OVERWRITE, null, null);
 
         print ("\n✓ %s\n", filename);
         return 0;
@@ -75,10 +82,21 @@ string sanitize (string name) {
     unichar c; int i = 0;
     while (name.get_next_char (ref i, out c)) {
         if (c == '/' || c == '\\' || c == ':' || c == '"' ||
-            c == '<' || c == '>' || c == '|' || c == '?' || c == '*')
+            c == '<' || c == '>' || c == '|' || c == '?' || c == '*' ||
+            c < 32 || c == 127)
             sb.append_unichar ('_');
         else
             sb.append_unichar (c);
     }
-    return sb.str.strip ();
+    string result = sb.str.strip ();
+    if (result == "" || result == "." || result == "..")
+        return "download";
+    if (result.length >= 200) {
+        int end = 0, pos = 0;
+        unichar u;
+        while (result.get_next_char (ref pos, out u) && pos < 200)
+            end = pos;
+        result = result.substring (0, end);
+    }
+    return result;
 }
