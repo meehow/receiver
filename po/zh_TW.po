@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "瀏覽時為電台加星標以新增至此"
 msgid "Play %s"
 msgstr "播放 %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "流行"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "K-pop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "搖滾"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "爵士"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "古典"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "電子"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "舞曲"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "熱門"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70年代"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80年代"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90年代"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "老歌"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "輕鬆"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "新聞"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "談話"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "體育"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "另類"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "獨立"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "金屬"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "龐克"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "浩室"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "嘻哈"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "拉丁"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "靈魂樂"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "藍調"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "民謠"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "鄉村"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "雷鬼"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "迪斯可"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "位元率"
 msgid "Stream URL"
 msgstr "串流 URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "已暫停"
 msgid "Reconnecting…"
 msgstr "正在重新連線…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "沒有可用的串流 URL"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "無法建立播放器"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "擷取播放清單失敗：HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "播放清單中沒有串流 URL"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "播放清單錯誤：%s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "所有結果均不可用"
 msgid "Downloading: %s"
 msgstr "正在下載: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "已取消"
@@ -327,8 +472,8 @@ msgstr "剛剛"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "%d 分鐘前"
 
 #: src/widgets/history_page.vala

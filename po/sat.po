@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: sat\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "ᱱᱚᱶᱟ ᱨᱮ ᱥᱮᱞᱮᱫ ᱞᱟᱹᱜᱤᱫ ᱵᱽᱨᱟᱣ�
 msgid "Play %s"
 msgstr "%s ᱵᱟᱡᱟᱣ ᱢᱮ"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "ᱯᱚᱯ"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "ᱠᱮ-ᱯᱚᱯ"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "ᱨᱚᱠ"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "ᱡᱮᱡ"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "ᱠᱞᱟᱥᱤᱠᱟᱞ"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "ᱤᱞᱮᱠᱴᱨᱚᱱᱤᱠ"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "ᱰᱟᱱᱥ"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "ᱦᱤᱴᱥ"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "ᱢᱟᱨᱮ ᱥᱮᱨᱮᱧ"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "ᱪᱤᱞ"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "ᱠᱷᱚᱵᱚᱨ"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "ᱜᱟᱞᱢᱟᱨᱟᱣ"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "ᱠᱷᱮᱞ"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "ᱚᱞᱴᱚᱨᱱᱮᱴᱤᱵᱷ"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "ᱤᱱᱰᱤ"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "ᱢᱮᱴᱟᱞ"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "ᱯᱟᱝᱠ"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "ᱦᱟᱩᱥ"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "ᱦᱤᱯ-ᱦᱚᱯ"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "ᱞᱟᱴᱤᱱ"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "ᱥᱚᱞ"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "ᱵᱞᱩᱡ"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "ᱯᱷᱚᱞᱠ"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "ᱠᱟᱱᱴᱨᱤ"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "ᱨᱮᱜᱮ"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "ᱰᱤᱥᱠᱚ"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "ᱵᱤᱴᱨᱮᱴ"
 msgid "Stream URL"
 msgstr "ᱥᱴᱨᱤᱢ URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "ᱛᱟᱦᱮᱸᱱ ᱟᱠᱟᱱᱟ"
 msgid "Reconnecting…"
 msgstr "ᱟᱨᱩ ᱡᱩᱲᱟᱜ…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "ᱥᱴᱨᱤᱢ URL ᱵᱟᱹᱱᱩᱜ-ᱟ"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "ᱯᱞᱮᱭᱟᱨ ᱵᱮᱱᱟᱣ ᱵᱟᱝ ᱦᱩᱭ ᱞᱮᱱᱟ"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "ᱯᱞᱮᱞᱤᱥᱴ ᱧᱟᱢ ᱵᱟᱝ ᱦᱩᱭ ᱞᱮᱱᱟ: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "ᱯᱞᱮᱞᱤᱥᱴ ᱨᱮ ᱥᱴᱨᱤᱢ URL ᱵᱟᱹᱱᱩᱜ-ᱟ"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "ᱯᱞᱮᱞᱤᱥᱴ ᱵᱷᱩᱞ: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "ᱡᱷᱚᱛᱚ ᱱᱟᱛᱤᱡᱟ ᱵᱟᱹᱱᱩᱜ"
 msgid "Downloading: %s"
 msgstr "ᱰᱟᱣᱱᱞᱚᱰ ᱦᱚᱪᱚᱜ: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "ᱵᱚᱸᱫ ᱟᱠᱟᱱᱟ"
@@ -327,8 +472,8 @@ msgstr "ᱱᱤᱛ ᱠᱷᱚᱱ"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "%d ᱢᱤᱱᱤᱴ ᱢᱟᱲᱟᱝ"
 msgstr[1] "%d ᱢᱤᱱᱤᱴ ᱢᱟᱲᱟᱝ"
 

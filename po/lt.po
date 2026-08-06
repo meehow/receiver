@@ -3,12 +3,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
 "(n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/application.vala
@@ -128,6 +132,124 @@ msgstr "Naršydami pažymėkite stotis žvaigždute, kad pridėtumėte jas čia"
 msgid "Play %s"
 msgstr "Groti %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "kpop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "jazz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "klasika"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "elektroninė"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "šokių"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "hitai"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "senoji"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "ramus"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "naujienos"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "pokalbiai"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "sportas"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "alternatyva"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hiphop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "lotynų"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "folkas"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "country"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disco"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -227,6 +349,11 @@ msgstr "Pralaidumas"
 msgid "Stream URL"
 msgstr "Srauto URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -268,6 +395,28 @@ msgstr "Pristabdyta"
 msgid "Reconnecting…"
 msgstr "Jungiamasi iš naujo…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Nėra srauto URL"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Nepavyko sukurti grotuvo"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Nepavyko gauti grojaraščio: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Grojaraštyje nėra srauto URL"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Grojaraščio klaida: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -291,7 +440,7 @@ msgstr "Visi rezultatai nepasiekiami"
 msgid "Downloading: %s"
 msgstr "Atsisiunčiama: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Atšaukta"
@@ -328,11 +477,11 @@ msgstr "Ką tik"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
-msgstr[0] "prieš %d min."
-msgstr[1] "prieš %d min."
-msgstr[2] "prieš %d min."
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "prieš %d minutę"
+msgstr[1] "prieš %d minutes"
+msgstr[2] "prieš %d minučių"
 
 #: src/widgets/history_page.vala
 #, c-format

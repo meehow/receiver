@@ -52,7 +52,8 @@ namespace Receiver {
                 for (int i = 0; i < results.length; i++) {
                     message("ytdl: trying '%s' (%s)", results[i].title, results[i].video_id);
                     try {
-                        info = Ytdl.extract(session, results[i].video_id);
+                        // The GUI always saves the audio track (m4a); video is CLI-only
+                        info = Ytdl.extract(session, results[i].video_id, true);
                         break;
                     } catch (Error e) {
                         message("ytdl: result %d skipped: %s", i, e.message);
@@ -78,11 +79,16 @@ namespace Receiver {
             // Show save dialog
             var dialog = new Gtk.FileDialog();
             dialog.initial_name = filename;
+            // Fall back to Music, otherwise the dialog picks a folder from the
+            // file type and audio downloads land in Videos.
             var saved_dir = AppState.get_default().settings.get_string("download-dir");
-            if (saved_dir != "") {
+            if (saved_dir == "") {
+                saved_dir = Environment.get_user_special_dir(UserDirectory.MUSIC)
+                            ?? Environment.get_home_dir();
+            }
+            if (saved_dir != null) {
                 dialog.initial_folder = File.new_for_path(saved_dir);
             }
-
 
             try {
                 var file = yield dialog.save(parent_window, null);

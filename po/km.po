@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "ដាក់ផ្កាយលើស្ថានីយខណៈពេល
 msgid "Play %s"
 msgstr "ចាក់ %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "ប៉ុប"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "ខេ-ប៉ុប"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "រ៉ុក"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "ហ្សាស"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "ក្លាស៊ិក"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "អេឡិចត្រូនិច"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "រាំ"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "បទល្បី"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "បទចាស់"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "ស្ងប់"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "ព័ត៌មាន"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "សន្ទនា"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "កីឡា"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "ជម្រើស"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "អាំឌី"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "មេតាល់"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "ផាំ"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "ហៅស៍"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "ហ៸បហប"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "ឡាតាំ"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "សូល"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "ប្លូស៍"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "ប្រជាប្រិយ"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "ខាន់ធ្រី"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "រ៉េហ្គេ"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "ឌីស្កូ"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "អត្រាប៊ីត"
 msgid "Stream URL"
 msgstr "URL ស្ទ្រីម"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "ផ្អាក"
 msgid "Reconnecting…"
 msgstr "កំពុងភ្ជាប់ឡើងវិញ…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "គ្មាន URL ស្ទ្រីមទេ"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "មិនអាចបង្កើតកម្មវិធីចាក់បានទេ"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "ការទាញយកបញ្ជីចាក់បរាជ័យ: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "គ្មាន URL ស្ទ្រីមក្នុងបញ្ជីចាក់ទេ"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "កំហុសបញ្ជីចាក់: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "លទ្ធផលទាំងអស់មិនអាចប្រើប
 msgid "Downloading: %s"
 msgstr "កំពុងទាញយក: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "បានបោះបង់"
@@ -327,8 +472,8 @@ msgstr "ឥឡូវ​នេះ"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "%d នាទីមុន"
 
 #: src/widgets/history_page.vala

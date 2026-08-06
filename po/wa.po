@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: wa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "Metoz des steûles so lesståcions tot foyant po lès radjouter chal"
 msgid "Play %s"
 msgstr "Djouwer %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "kpop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "jazz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "classike"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "eletronike"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "danse"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "sucès"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "vîs airs"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "cool"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "noveles"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "cåzaedje"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "spôrts"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "alternatif"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hiphop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "latino"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "folk"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "country"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disco"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "Bitrate"
 msgid "Stream URL"
 msgstr "URL do flux"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "A l' påze"
 msgid "Reconnecting…"
 msgstr "Riconecsion…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Nou URL di flus disponibe"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Dji n' a savou ahiver l' djouweu"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Li tcherdjaedje del djîve di djouwaedje a fwait berwete: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Nou URL di flus el djîve di djouwaedje"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Aroke el djîve di djouwaedje: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "Tos les rezultats nén disponibes"
 msgid "Downloading: %s"
 msgstr "Distcherdjaedje: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Disfwait"
@@ -328,10 +473,10 @@ msgstr "Ossu"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
-msgstr[0] "i gn a %d min."
-msgstr[1] "i gn a %d min."
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "i gn a %d munute"
+msgstr[1] "i gn a %d munutes"
 
 #: src/widgets/history_page.vala
 #, c-format

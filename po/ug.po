@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "بۇ يەرگە قوشۇش ئۈچۈن كۆرۈش جەريانىدا ست
 msgid "Play %s"
 msgstr "%s نى قويۇش"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "پوپ"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "ك-پوپ"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "روك"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "جاز"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "كلاسسىك"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "ئېلېكترونلۇق"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "ئۇسسۇل"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "داڭلىق ناخشىلار"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70-يىللار"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80-يىللار"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90-يىللار"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "كونا ناخشىلار"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "چىل"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "خەۋەر"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "سۆھبەت"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "تەنھەرىكەت"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "ئالتېرناتىپ"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "ئىندى"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "مېتال"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "پانك"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "ھاۋس"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "ھىپھوپ"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "لاتىن"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "سوئۇل"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "بلۇز"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "خەلق ناخشىلىرى"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "كانترى"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "رېگگى"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "دىسكو"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "بىت سۈرئىتى"
 msgid "Stream URL"
 msgstr "ئېقىم URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "توختىتىلدى"
 msgid "Reconnecting…"
 msgstr "قايتا ئۇلىنىۋاتىدۇ…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "ئىشلەتكىلى بولىدىغان ئېقىم URL يوق"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "قويغۇچ قۇرۇش مەغلۇب بولدى"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "قويۇش تىزىملىكىنى ئېلىش مەغلۇب بولدى: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "قويۇش تىزىملىكىدە ئېقىم URL يوق"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "قويۇش تىزىملىكى خاتالىقى: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "بارلىق نەتىجىلەر ئىشلەتكىلى بولمايدۇ"
 msgid "Downloading: %s"
 msgstr "چۈشۈرۈۋاتىدۇ: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "بىكار قىلىندى"
@@ -327,8 +472,8 @@ msgstr "ھازىر"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "%d مىنۇت ئىلگىرى"
 msgstr[1] "%d مىنۇت ئىلگىرى"
 

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: am\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "እዚህ ለማከል ሲያስሱ ጣቢያዎችን በኮከብ ም�
 msgid "Play %s"
 msgstr "%s አጫውት"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "ፖፕ"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "ኬ-ፖፕ"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "ሮክ"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "ጃዝ"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "ክላሲካል"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "ኤሌክትሮኒክ"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "ዳንስ"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "ተወዳጅ ዘፈኖች"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70ዎቹ"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80ዎቹ"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90ዎቹ"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "የድሮ ዘፈኖች"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "ቺል"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "ዜና"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "ውይይት"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "ስፖርት"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "አማራጭ"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "ኢንዲ"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "ሜታል"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "ፓንክ"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "ሃውስ"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "ሂፕ ሆፕ"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "ላቲን"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "ሶል"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "ብሉስ"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "ፎክ"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "ካንትሪ"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "ሬጌ"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "ዲስኮ"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "ቢትሬት"
 msgid "Stream URL"
 msgstr "ዥረት URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "ቆሟል"
 msgid "Reconnecting…"
 msgstr "እንደገና በመገናኘት ላይ…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "ምንም የዥረት URL የለም"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "ማጫወቻ መፍጠር አልተቻለም"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "የማጫወቻ ዝርዝር ማምጣት አልተሳካም: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "በማጫወቻ ዝርዝር ውስጥ የዥረት URL የለም"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "የማጫወቻ ዝርዝር ስህተት: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "ሁሉም ውጤቶች አይገኙም"
 msgid "Downloading: %s"
 msgstr "በማውረድ ላይ: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "ተሰርዟል"
@@ -327,8 +472,8 @@ msgstr "አሁን"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "ከ%d ደቂቃ በፊት"
 msgstr[1] "ከ%d ደቂቃዎች በፊት"
 

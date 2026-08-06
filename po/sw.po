@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: sw\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,6 +128,124 @@ msgstr "Weka nyota kwenye vituo unapovinjari ili kuviongeza hapa"
 msgid "Play %s"
 msgstr "Cheza %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "kpop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "jazz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "klasiki"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "kielektroniki"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "dansi"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "vibao"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "za zamani"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "tulivu"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "habari"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "mazungumzo"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "michezo"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "mbadala"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hiphop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "latini"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "asili"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "country"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disco"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -227,6 +345,11 @@ msgstr "Kiwango cha biti"
 msgid "Stream URL"
 msgstr "URL ya utiririshaji"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -268,6 +391,28 @@ msgstr "Imesimamishwa"
 msgid "Reconnecting…"
 msgstr "Inaunganisha tena…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Hakuna URL ya mtiririko inayopatikana"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Imeshindwa kutengeneza kicheza"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Kupata orodha ya nyimbo kumeshindwa: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Hakuna URL ya mtiririko katika orodha ya nyimbo"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Hitilafu ya orodha ya nyimbo: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -291,7 +436,7 @@ msgstr "Matokeo yote hayapatikani"
 msgid "Downloading: %s"
 msgstr "Inapakua: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Imeghairiwa"
@@ -328,10 +473,10 @@ msgstr "Sasa hivi"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
-msgstr[0] "dakika %d zilizopita"
-msgstr[1] "dakika %d zilizopita"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "Dakika %d iliyopita"
+msgstr[1] "Dakika %d zilizopita"
 
 #: src/widgets/history_page.vala
 #, c-format

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "ติดดาวสถานีขณะเรียกดูเพื
 msgid "Play %s"
 msgstr "เล่น %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "ป็อป"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "เคป็อป"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "ร็อก"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "แจ๊ส"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "คลาสสิก"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "อิเล็กทรอนิกส์"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "แดนซ์"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "เพลงฮิต"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "ยุค 70"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "ยุค 80"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "ยุค 90"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "เพลงเก่า"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "ชิล"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "ข่าว"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "พูดคุย"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "กีฬา"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "อัลเทอร์เนทีฟ"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "อินดี้"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "เมทัล"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "พังก์"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "เฮาส์"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "ฮิปฮอป"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "ละติน"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "โซล"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "บลูส์"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "โฟล์ก"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "คันทรี"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "เร็กเก้"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "ดิสโก้"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "บิตเรต"
 msgid "Stream URL"
 msgstr "URL สตรีม"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "หยุดชั่วคราว"
 msgid "Reconnecting…"
 msgstr "กำลังเชื่อมต่อใหม่…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "ไม่มี URL สตรีมที่ใช้งานได้"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "สร้างเครื่องเล่นไม่สำเร็จ"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "ดึงเพลย์ลิสต์ไม่สำเร็จ: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "ไม่มี URL สตรีมในเพลย์ลิสต์"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "ข้อผิดพลาดของเพลย์ลิสต์: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "ผลลัพธ์ทั้งหมดไม่พร้อมใช
 msgid "Downloading: %s"
 msgstr "กำลังดาวน์โหลด: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "ยกเลิกแล้ว"
@@ -327,8 +472,8 @@ msgstr "เมื่อสักครู่"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "%d นาทีที่แล้ว"
 
 #: src/widgets/history_page.vala

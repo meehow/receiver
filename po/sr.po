@@ -3,12 +3,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/application.vala
@@ -128,6 +131,124 @@ msgstr "Означите станице звездицом током прегл
 msgid "Play %s"
 msgstr "Пусти %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "поп"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "кеј-поп"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "рок"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "џез"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "класика"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "електронска"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "плес"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "хитови"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "стари хитови"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "опуштање"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "вести"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "разговор"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "спорт"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "алтернатива"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "инди"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "метал"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "панк"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "хаус"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "хип-хоп"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "латино"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "соул"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "блуз"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "народна"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "кантри"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "реге"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "диско"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -227,6 +348,11 @@ msgstr "Битрејт"
 msgid "Stream URL"
 msgstr "URL стрима"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -268,6 +394,28 @@ msgstr "Паузирано"
 msgid "Reconnecting…"
 msgstr "Поновно повезивање…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Нема доступног URL-а тока"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Неуспешно креирање плејера"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Неуспешно преузимање листе нумера: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Нема URL-а тока на листи нумера"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Грешка листе нумера: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -291,7 +439,7 @@ msgstr "Сви резултати недоступни"
 msgid "Downloading: %s"
 msgstr "Преузимање: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Отказано"
@@ -328,8 +476,8 @@ msgstr "Управо сада"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "пре %d минут"
 msgstr[1] "пре %d минута"
 msgstr[2] "пре %d минута"

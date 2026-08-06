@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: ff\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -125,7 +125,125 @@ msgstr "Hokku hoodere e nokkuuje nde njiya-ɗaa ngam ɓeydude ɗum ɗoo"
 #: src/widgets/favourites_page.vala
 #, c-format
 msgid "Play %s"
-msgstr ""
+msgstr "Fija %s"
+
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "kpop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "jazz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "classical"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "electronic"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "dance"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "hits"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "oldies"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "chill"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "kabaruuji"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "yeewtere"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "sports"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "alternative"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hiphop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "latin"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "folk"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "Leydi"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disco"
 
 #. Search entry
 #: src/widgets/station_list.vala
@@ -196,7 +314,7 @@ msgstr "Ittu e cuɓaaɗi"
 
 #: src/widgets/station_list.vala
 msgid "Station unavailable"
-msgstr ""
+msgstr "Istaasiyoŋ ngalaa"
 
 #: src/widgets/station_info_page.vala
 msgid "Station"
@@ -226,6 +344,11 @@ msgstr "Bitreyt"
 msgid "Stream URL"
 msgstr "URL maajango"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -233,7 +356,7 @@ msgstr "Nanngaaka"
 
 #: src/widgets/player_bar.vala
 msgid "Play"
-msgstr ""
+msgstr "Fija"
 
 #: src/widgets/player_bar.vala
 msgid "Stop"
@@ -241,7 +364,7 @@ msgstr "Dartin"
 
 #: src/widgets/player_bar.vala
 msgid "Volume"
-msgstr ""
+msgstr "Volume"
 
 #: src/widgets/player_bar.vala
 msgid "Select a station"
@@ -257,7 +380,7 @@ msgstr "Ina nanga jooni"
 
 #: src/widgets/player_bar.vala
 msgid "Pause"
-msgstr ""
+msgstr "Dartin"
 
 #: src/widgets/player_bar.vala
 msgid "Paused"
@@ -266,6 +389,28 @@ msgstr "Dartaama"
 #: src/widgets/player_bar.vala
 msgid "Reconnecting…"
 msgstr "Ina jokkitoo…"
+
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Alaa URL stream"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Ronkii sompude player"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Ronkii ƴettude playlist: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Alaa URL stream e playlist"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Juumre nanngol: %s"
 
 #. indeterminate while searching
 #: src/services/song_downloader.vala
@@ -290,7 +435,7 @@ msgstr "Njaltudi fof ngalaa"
 msgid "Downloading: %s"
 msgstr "Ina aawta: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Haɗaama"
@@ -327,8 +472,8 @@ msgstr "Jooni"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "%d hojom battane"
 msgstr[1] "%d hojomaaji battane"
 

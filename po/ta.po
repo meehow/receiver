@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: ta\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "இங்கே சேர்க்க உலாவும்போது 
 msgid "Play %s"
 msgstr "%s ஐ இயக்கு"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "பாப்"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "கே-பாப்"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "ராக்"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "ஜாஸ்"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "செவ்வியல்"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "மின்னணு"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "நடனம்"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "வெற்றிகள்"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "பழையவை"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "அமைதி"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "செய்திகள்"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "உரையாடல்"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "விளையாட்டு"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "மாற்று"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "இண்டி"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "மெட்டல்"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "பங்க்"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "ஹவுஸ்"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "ஹிப்ஹாப்"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "லத்தீன்"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "சோல்"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "புளூஸ்"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "நாட்டுப்புற"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "கன்ட்ரி"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "ரெக்கே"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "டிஸ்கோ"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "பிட்ரேட்"
 msgid "Stream URL"
 msgstr "ஸ்ட்ரீம் URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "இடைநிறுத்தம்"
 msgid "Reconnecting…"
 msgstr "மீண்டும் இணைகிறது…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "ஸ்ட்ரீம் URL எதுவும் இல்லை"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "பிளேயரை உருவாக்க முடியவில்லை"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "பிளேலிஸ்ட்டைப் பெறுவதில் தோல்வி: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "பிளேலிஸ்ட்டில் ஸ்ட்ரீம் URL இல்லை"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "பிளேலிஸ்ட் பிழை: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "அனைத்து முடிவுகளும் கிடைக�
 msgid "Downloading: %s"
 msgstr "பதிவிறக்குகிறது: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "ரத்து செய்யப்பட்டது"
@@ -327,10 +472,10 @@ msgstr "இப்போது"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
-msgstr[0] "%d நிமிடம் முன்"
-msgstr[1] "%d நிமிடங்கள் முன்"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d நிமிடத்திற்கு முன்பு"
+msgstr[1] "%d நிமிடங்களுக்கு முன்பு"
 
 #: src/widgets/history_page.vala
 #, c-format

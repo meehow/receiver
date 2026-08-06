@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
 
 #: src/application.vala
@@ -116,7 +116,8 @@ msgstr "Last.fm'e bağlandı"
 
 #: src/widgets/window.vala
 msgid "Discover 30,000+ verified radio stations from around the world"
-msgstr "Dünya genelinden 30.000'den fazla doğrulanmış radyo istasyonunu keşfedin"
+msgstr ""
+"Dünya genelinden 30.000'den fazla doğrulanmış radyo istasyonunu keşfedin"
 
 #: src/widgets/favourites_page.vala
 msgid "No Favourites"
@@ -130,6 +131,124 @@ msgstr "Buraya eklemek için göz atarken istasyonları yıldızlayın"
 #, c-format
 msgid "Play %s"
 msgstr "%s oynat"
+
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "k-pop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "caz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "klasik"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "elektronik"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "dans"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "hit şarkılar"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70'ler"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80'ler"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90'lar"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "nostalji"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "chill"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "haberler"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "sohbet"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "spor"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "alternatif"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hip hop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "latin"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "folk"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "country"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disko"
 
 #. Search entry
 #: src/widgets/station_list.vala
@@ -230,6 +349,11 @@ msgstr "Bit hızı"
 msgid "Stream URL"
 msgstr "Yayın Bağlantısı"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -271,6 +395,28 @@ msgstr "Duraklatıldı"
 msgid "Reconnecting…"
 msgstr "Yeniden bağlanılıyor…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Kullanılabilir yayın bağlantısı yok"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Oynatıcı oluşturulamadı"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Çalma listesi alınamadı: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Çalma listesinde yayın bağlantısı yok"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Çalma listesi hatası: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -294,7 +440,7 @@ msgstr "Tüm sonuçlar kullanılamıyor"
 msgid "Downloading: %s"
 msgstr "İndiriliyor: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "İptal edildi"
@@ -331,10 +477,10 @@ msgstr "Az önce"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
-msgstr[0] "%d dk önce"
-msgstr[1] "%d dk önce"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d dakika önce"
+msgstr[1] "%d dakika önce"
 
 #: src/widgets/history_page.vala
 #, c-format

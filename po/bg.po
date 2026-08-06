@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: bg\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,6 +128,124 @@ msgstr ""
 msgid "Play %s"
 msgstr "Изпълнение на %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "поп"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "K-pop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "рок"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "джаз"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "класика"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "електронна"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "денс"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "хитове"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "ретро"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "чил"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "новини"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "разговори"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "спорт"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "алтернативна"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "инди"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "метъл"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "пънк"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "хаус"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "хип-хоп"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "латино"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "соул"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "блус"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "фолк"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "кънтри"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "реге"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "диско"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -227,6 +345,11 @@ msgstr "Битрейт"
 msgid "Stream URL"
 msgstr "URL на потока"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -268,6 +391,28 @@ msgstr "На пауза"
 msgid "Reconnecting…"
 msgstr "Повторно свързване…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Няма наличен URL на потока"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Неуспешно създаване на плейър"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Неуспешно изтегляне на плейлиста: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "В плейлиста няма URL на потока"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Грешка в плейлиста: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -291,7 +436,7 @@ msgstr "Всички резултати са недостъпни"
 msgid "Downloading: %s"
 msgstr "Изтегляне: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Отменено"
@@ -328,8 +473,8 @@ msgstr "Току-що"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "преди %d минута"
 msgstr[1] "преди %d минути"
 

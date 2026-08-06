@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: crh\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "Burağa qoşmaq içün közden keçirgende stansiyelerni yıldızla işa
 msgid "Play %s"
 msgstr "%s oynat"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "k-pop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "caz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "klassik"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "elektronik"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "dans"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "hits"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70-ler"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80-ler"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90-lar"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "eskiler"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "chill"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "haberler"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "subet"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "sport"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "alternativ"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hip-hop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "latin"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "folk"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "country"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disko"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "Bitreyt"
 msgid "Stream URL"
 msgstr "Aqın URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "Toqtatıldı"
 msgid "Reconnecting…"
 msgstr "Yañıdan bağlana…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Aqın URL-si yoq"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Oynatıcı yaratılıp olamadı"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Oynav listesini almaq başarısız: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Oynav listesinde aqın URL-si yoq"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Oynav listesi hatası: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "Bütün neticeler irişilmez"
 msgid "Downloading: %s"
 msgstr "Yüklene: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Bekar etildi"
@@ -327,9 +472,9 @@ msgstr "Şimdi"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
-msgstr[0] "%d daq evel"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d daqiqa evel"
 
 #: src/widgets/history_page.vala
 #, c-format

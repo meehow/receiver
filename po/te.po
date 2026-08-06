@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "ఇక్కడ జోడించడానికి బ్రౌజ్ 
 msgid "Play %s"
 msgstr "%s ప్లే చేయి"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "పాప్"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "కే-పాప్"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "రాక్"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "జాజ్"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "శాస్త్రీయ"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "ఎలక్ట్రానిక్"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "నృత్యం"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "హిట్లు"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "పాతవి"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "ప్రశాంతం"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "వార్తలు"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "చర్చ"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "క్రీడలు"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "ప్రత్యామ్నాయ"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "ఇండీ"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "మెటల్"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "పంక్"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "హౌస్"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "హిప్‌హాప్"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "లాటిన్"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "సోల్"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "బ్లూస్"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "జానపద"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "కంట్రీ"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "రెగ్గే"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "డిస్కో"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "బిట్‌రేట్"
 msgid "Stream URL"
 msgstr "స్ట్రీమ్ URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "విరామం"
 msgid "Reconnecting…"
 msgstr "మళ్ళీ కనెక్ట్ అవుతోంది…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "స్ట్రీమ్ URL అందుబాటులో లేదు"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "ప్లేయర్‌ను సృష్టించడంలో విఫలమైంది"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "ప్లేజాబితాను పొందడంలో విఫలమైంది: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "ప్లేజాబితాలో స్ట్రీమ్ URL లేదు"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "ప్లేజాబితా లోపం: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "అన్ని ఫలితాలు అందుబాటులో ల
 msgid "Downloading: %s"
 msgstr "డౌన్‌లోడ్ అవుతోంది: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "రద్దు చేయబడింది"
@@ -327,8 +472,8 @@ msgstr "ఇప్పుడే"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "%d నిమిషం క్రితం"
 msgstr[1] "%d నిమిషాల క్రితం"
 

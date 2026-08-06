@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: fil\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -129,6 +129,124 @@ msgstr ""
 msgid "Play %s"
 msgstr "I-play ang %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "k-pop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "jazz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "klasikal"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "electronic"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "dance"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "hits"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "oldies"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "chill"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "balita"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "talakayan"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "sports"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "alternative"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hiphop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "latin"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "folk"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "country"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disco"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -228,6 +346,11 @@ msgstr "Bitrate"
 msgid "Stream URL"
 msgstr "Stream URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -269,6 +392,28 @@ msgstr "Naka-pause"
 msgid "Reconnecting…"
 msgstr "Muling kumokonekta…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Walang available na stream URL"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Hindi magawa ang player"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Nabigo ang pagkuha ng playlist: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Walang stream URL sa playlist"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Error sa playlist: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -292,7 +437,7 @@ msgstr "Lahat ng resulta ay hindi available"
 msgid "Downloading: %s"
 msgstr "Dina-download: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Nakansela"
@@ -330,10 +475,10 @@ msgstr "Ngayon lang"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
-msgstr[0] "%d min ang nakalipas"
-msgstr[1] "%d min ang nakalipas"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d minuto ang nakalipas"
+msgstr[1] "%d minuto ang nakalipas"
 
 #: src/widgets/history_page.vala
 #, c-format

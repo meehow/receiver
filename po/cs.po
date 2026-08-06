@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -127,6 +127,124 @@ msgstr "Při procházení označte stanice hvězdičkou a přidejte je sem"
 msgid "Play %s"
 msgstr "Přehrát %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "k-pop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "jazz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "klasika"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "elektronika"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "dance"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "hity"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70. léta"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80. léta"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90. léta"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "oldies"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "chill"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "zprávy"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "mluvené slovo"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "sport"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "alternativa"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hip hop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "latino"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "folk"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "country"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disco"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -226,6 +344,11 @@ msgstr "Datový tok"
 msgid "Stream URL"
 msgstr "URL streamu"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kb/s"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -267,6 +390,28 @@ msgstr "Pozastaveno"
 msgid "Reconnecting…"
 msgstr "Opětovné připojování…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Není k dispozici žádná URL streamu"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Nepodařilo se vytvořit přehrávač"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Stažení seznamu skladeb selhalo: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "V seznamu skladeb není žádná URL streamu"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Chyba seznamu skladeb: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -290,7 +435,7 @@ msgstr "Všechny výsledky jsou nedostupné"
 msgid "Downloading: %s"
 msgstr "Stahování: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Zrušeno"
@@ -327,8 +472,8 @@ msgstr "Právě teď"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
 msgstr[0] "před %d minutou"
 msgstr[1] "před %d minutami"
 msgstr[2] "před %d minutami"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "PO-Revision-Date: 2026-02-06 22:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
@@ -15,6 +15,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"|| n%100>=20) ? 1 : 2);\n"
 "|| n%100>=20) ? 1 : 2);\n"
 
 #: src/application.vala
@@ -134,6 +136,124 @@ msgstr "Oznacz stacje gwiazdką podczas przeglądania, aby dodać je tutaj"
 msgid "Play %s"
 msgstr "Odtwórz %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "k-pop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "jazz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "klasyczna"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "elektroniczna"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "dance"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "przeboje"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "lata 70."
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "lata 80."
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "lata 90."
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "stare przeboje"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "chillout"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "wiadomości"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "rozmowy"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "sport"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "alternatywna"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hip-hop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "latynoska"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "folk"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "country"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disco"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -233,6 +353,11 @@ msgstr "Przepływność"
 msgid "Stream URL"
 msgstr "URL strumienia"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kb/s"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -274,6 +399,28 @@ msgstr "Wstrzymano"
 msgid "Reconnecting…"
 msgstr "Ponowne łączenie…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Brak adresu URL strumienia"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Nie udało się utworzyć odtwarzacza"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Pobieranie listy odtwarzania nie powiodło się: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Brak adresu URL strumienia na liście odtwarzania"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Błąd listy odtwarzania: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -297,7 +444,7 @@ msgstr "Wszystkie wyniki niedostępne"
 msgid "Downloading: %s"
 msgstr "Pobieranie: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Anulowano"
@@ -334,11 +481,11 @@ msgstr "Właśnie teraz"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
-msgstr[0] "%d min temu"
-msgstr[1] "%d min temu"
-msgstr[2] "%d min temu"
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d minutę temu"
+msgstr[1] "%d minuty temu"
+msgstr[2] "%d minut temu"
 
 #: src/widgets/history_page.vala
 #, c-format

@@ -3,12 +3,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: receiver\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-09 11:36+0200\n"
+"POT-Creation-Date: 2026-08-04 08:19+0200\n"
 "Language: lv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==0 || (n%100>=11 && n%100<=19) ? 0 : "
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+"2);\n"
+"2);\n"
+"2);\n"
 "n%10==1 && n%100!=11 ? 1 : 2);\n"
 
 #: src/application.vala
@@ -128,6 +132,124 @@ msgstr "Pārlūkojot atzīmējiet stacijas ar zvaigznīti, lai pievienotu tās �
 msgid "Play %s"
 msgstr "Atskaņot %s"
 
+#. Each genre doubles as the search query fed to the station database,
+#. so only the pill labels are translated, never the query itself.
+#: src/widgets/station_list.vala
+msgid "pop"
+msgstr "pop"
+
+#: src/widgets/station_list.vala
+msgid "kpop"
+msgstr "kpop"
+
+#: src/widgets/station_list.vala
+msgid "rock"
+msgstr "rock"
+
+#: src/widgets/station_list.vala
+msgid "jazz"
+msgstr "jazz"
+
+#: src/widgets/station_list.vala
+msgid "classical"
+msgstr "klasika"
+
+#: src/widgets/station_list.vala
+msgid "electronic"
+msgstr "elektroniskā"
+
+#: src/widgets/station_list.vala
+msgid "dance"
+msgstr "deju"
+
+#: src/widgets/station_list.vala
+msgid "hits"
+msgstr "hiti"
+
+#: src/widgets/station_list.vala
+msgid "70s"
+msgstr "70s"
+
+#: src/widgets/station_list.vala
+msgid "80s"
+msgstr "80s"
+
+#: src/widgets/station_list.vala
+msgid "90s"
+msgstr "90s"
+
+#: src/widgets/station_list.vala
+msgid "oldies"
+msgstr "senie"
+
+#: src/widgets/station_list.vala
+msgid "chill"
+msgstr "mierīgā"
+
+#: src/widgets/station_list.vala
+msgid "news"
+msgstr "ziņas"
+
+#: src/widgets/station_list.vala
+msgid "talk"
+msgstr "sarunas"
+
+#: src/widgets/station_list.vala
+msgid "sports"
+msgstr "sports"
+
+#: src/widgets/station_list.vala
+msgid "alternative"
+msgstr "alternatīvā"
+
+#: src/widgets/station_list.vala
+msgid "indie"
+msgstr "indie"
+
+#: src/widgets/station_list.vala
+msgid "metal"
+msgstr "metal"
+
+#: src/widgets/station_list.vala
+msgid "punk"
+msgstr "punk"
+
+#: src/widgets/station_list.vala
+msgid "house"
+msgstr "house"
+
+#: src/widgets/station_list.vala
+msgid "hiphop"
+msgstr "hiphop"
+
+#: src/widgets/station_list.vala
+msgid "latin"
+msgstr "latīņu"
+
+#: src/widgets/station_list.vala
+msgid "soul"
+msgstr "soul"
+
+#: src/widgets/station_list.vala
+msgid "blues"
+msgstr "blues"
+
+#: src/widgets/station_list.vala
+msgid "folk"
+msgstr "folk"
+
+#: src/widgets/station_list.vala
+msgid "country"
+msgstr "country"
+
+#: src/widgets/station_list.vala
+msgid "reggae"
+msgstr "reggae"
+
+#: src/widgets/station_list.vala
+msgid "disco"
+msgstr "disco"
+
 #. Search entry
 #: src/widgets/station_list.vala
 msgid "Search stations…"
@@ -227,6 +349,11 @@ msgstr "Bitu pārraides ātrums"
 msgid "Stream URL"
 msgstr "Straumes URL"
 
+#: src/widgets/station_info_page.vala
+#, c-format
+msgid "%u kbps"
+msgstr "%u kbps"
+
 #. Controls row
 #: src/widgets/player_bar.vala
 msgid "Not Playing"
@@ -268,6 +395,28 @@ msgstr "Apturēts"
 msgid "Reconnecting…"
 msgstr "Atkārtoti savienojas…"
 
+#: src/services/player.vala
+msgid "No stream URL available"
+msgstr "Straumes URL nav pieejams"
+
+#: src/services/player.vala
+msgid "Failed to create player"
+msgstr "Neizdevās izveidot atskaņotāju"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist fetch failed: HTTP %u"
+msgstr "Neizdevās ielādēt atskaņošanas sarakstu: HTTP %u"
+
+#: src/services/player.vala
+msgid "No stream URL in playlist"
+msgstr "Atskaņošanas sarakstā nav straumes URL"
+
+#: src/services/player.vala
+#, c-format
+msgid "Playlist error: %s"
+msgstr "Atskaņošanas saraksta kļūda: %s"
+
 #. indeterminate while searching
 #: src/services/song_downloader.vala
 msgid "Searching YouTube…"
@@ -291,7 +440,7 @@ msgstr "Visi rezultāti nav pieejami"
 msgid "Downloading: %s"
 msgstr "Lejupielādē: %s"
 
-#. Clean up partial file
+#. Don't leave a partial/empty file behind
 #: src/services/song_downloader.vala
 msgid "Cancelled"
 msgstr "Atcelts"
@@ -328,11 +477,11 @@ msgstr "Tikko"
 
 #: src/widgets/history_page.vala
 #, c-format
-msgid "%d min ago"
-msgid_plural "%d min ago"
-msgstr[0] "pirms %d min."
-msgstr[1] "pirms %d min."
-msgstr[2] "pirms %d min."
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "pirms %d minūtes"
+msgstr[1] "pirms %d minūtēm"
+msgstr[2] "pirms %d minūtēm"
 
 #: src/widgets/history_page.vala
 #, c-format
