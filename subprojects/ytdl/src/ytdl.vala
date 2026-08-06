@@ -61,32 +61,22 @@ namespace Ytdl {
 
         // Navigate: contents → twoColumnSearchResultsRenderer → primaryContents
         //   → sectionListRenderer → contents[] → itemSectionRenderer → contents[]
-        var results = new GenericArray<SearchResult?> ();
+        SearchResult[] results = {};
 
-        if (!root.has_member ("contents")) return new SearchResult[0];
-        var c1 = root.get_object_member ("contents");
-        if (c1 == null || !c1.has_member ("twoColumnSearchResultsRenderer")) return new SearchResult[0];
-        var c2 = c1.get_object_member ("twoColumnSearchResultsRenderer");
-        if (c2 == null || !c2.has_member ("primaryContents")) return new SearchResult[0];
-        var c3 = c2.get_object_member ("primaryContents");
-        if (c3 == null || !c3.has_member ("sectionListRenderer")) return new SearchResult[0];
-        var slr = c3.get_object_member ("sectionListRenderer");
-        if (slr == null || !slr.has_member ("contents")) return new SearchResult[0];
+        var slr = get_obj (get_obj (get_obj (get_obj (root,
+            "contents"), "twoColumnSearchResultsRenderer"), "primaryContents"), "sectionListRenderer");
+        if (slr == null || !slr.has_member ("contents")) return results;
         var sections = slr.get_array_member ("contents");
-        if (sections == null) return new SearchResult[0];
+        if (sections == null) return results;
 
         for (uint si = 0; si < sections.get_length () && results.length < max_results; si++) {
-            var section = sections.get_object_element (si);
-            if (section == null || !section.has_member ("itemSectionRenderer")) continue;
-            var isr = section.get_object_member ("itemSectionRenderer");
+            var isr = get_obj (sections.get_object_element (si), "itemSectionRenderer");
             if (isr == null || !isr.has_member ("contents")) continue;
             var items = isr.get_array_member ("contents");
             if (items == null) continue;
 
             for (uint ii = 0; ii < items.get_length () && results.length < max_results; ii++) {
-                var item = items.get_object_element (ii);
-                if (item == null || !item.has_member ("videoRenderer")) continue;
-                var vr = item.get_object_member ("videoRenderer");
+                var vr = get_obj (items.get_object_element (ii), "videoRenderer");
                 if (vr == null) continue;
 
                 var r = SearchResult ();
@@ -96,13 +86,20 @@ namespace Ytdl {
                 r.title = runs_text (vr, "title");
                 r.channel = runs_text (vr, "ownerText");
 
-                results.add (r);
+                results += r;
             }
         }
 
-        var arr = new SearchResult[results.length];
-        for (int i = 0; i < results.length; i++) arr[i] = results[i];
-        return arr;
+        return results;
+    }
+
+    /**
+     * Read an object-valued member from obj, or null if obj is null or
+     * the member is missing.
+     */
+    private Json.Object? get_obj (Json.Object? obj, string member) {
+        if (obj == null || !obj.has_member (member)) return null;
+        return obj.get_object_member (member);
     }
 
     /**
@@ -174,8 +171,9 @@ namespace Ytdl {
         var re_vd = new Regex ("\"visitorData\"\\s*:\\s*\"([^\"]+)\"");
         if (re_vd.match (page, 0, out mi)) {
             string vd = mi.fetch (1).replace ("\\u003d", "=").replace ("\\u0026", "&");
-            // A leftover backslash would corrupt the hand-built JSON body
-            // and the visitor header; proceed without visitorData instead.
+            // A leftover backslash means an unhandled JSON escape, so the
+            // value would be sent garbled in the X-Goog-Visitor-Id header;
+            // proceed without visitorData instead.
             if (!vd.contains ("\\"))
                 visitor_data = vd;
         }
@@ -187,9 +185,9 @@ namespace Ytdl {
         //    IOS — direct adaptive URLs (downloads may be range-restricted)
         ApiClient[] clients = {
             { "ANDROID_VR", "1.65.10", "28", ANDROID_VR_UA,
-              ",\"deviceMake\": \"Oculus\",\"deviceModel\": \"Quest 3\",\"androidSdkVersion\": 32,\"userAgent\": \"" + ANDROID_VR_UA + "\",\"osName\": \"Android\",\"osVersion\": \"12L\"" },
+              "Oculus", "Quest 3", 32, "Android", "12L" },
             { "IOS", "21.02.3", "5", IOS_UA,
-              ",\"deviceMake\": \"Apple\",\"deviceModel\": \"iPhone16,2\",\"userAgent\": \"" + IOS_UA + "\",\"osName\": \"iPhone\",\"osVersion\": \"18.3.2.22D82\"" },
+              "Apple", "iPhone16,2", 0, "iPhone", "18.3.2.22D82" },
         };
 
         string title = "video";
@@ -331,7 +329,12 @@ namespace Ytdl {
         string version;
         string id;
         string user_agent;
-        string device_json;  // extra fields inside context.client
+        // Device fields inside context.client
+        string device_make;
+        string device_model;
+        int android_sdk_version;  // 0 = not sent
+        string os_name;
+        string os_version;
     }
 
     private string? pick_itag (Json.Array? formats, int itag) {
@@ -351,15 +354,43 @@ namespace Ytdl {
     private Json.Object call_player_api (Soup.Session session, string video_id,
                                           string? visitor_data,
                                           ApiClient client) throws Error {
-        var client_obj = new StringBuilder ();
-        client_obj.append_printf ("\"clientName\": \"%s\",\"clientVersion\": \"%s\"",
-                                  client.name, client.version);
-        client_obj.append (client.device_json);
-        if (visitor_data != null)
-            client_obj.append_printf (",\"visitorData\": \"%s\"", visitor_data);
+        var builder = new Json.Builder ();
+        builder.begin_object ();
+        builder.set_member_name ("context");
+        builder.begin_object ();
+        builder.set_member_name ("client");
+        builder.begin_object ();
+        builder.set_member_name ("clientName");
+        builder.add_string_value (client.name);
+        builder.set_member_name ("clientVersion");
+        builder.add_string_value (client.version);
+        builder.set_member_name ("deviceMake");
+        builder.add_string_value (client.device_make);
+        builder.set_member_name ("deviceModel");
+        builder.add_string_value (client.device_model);
+        if (client.android_sdk_version > 0) {
+            builder.set_member_name ("androidSdkVersion");
+            builder.add_int_value (client.android_sdk_version);
+        }
+        builder.set_member_name ("userAgent");
+        builder.add_string_value (client.user_agent);
+        builder.set_member_name ("osName");
+        builder.add_string_value (client.os_name);
+        builder.set_member_name ("osVersion");
+        builder.add_string_value (client.os_version);
+        if (visitor_data != null) {
+            builder.set_member_name ("visitorData");
+            builder.add_string_value (visitor_data);
+        }
+        builder.end_object ();
+        builder.end_object ();
+        builder.set_member_name ("videoId");
+        builder.add_string_value (video_id);
+        builder.end_object ();
 
-        string api_body = "{\"context\": {\"client\": {%s}},\"videoId\": \"%s\"}".printf (
-            client_obj.str, video_id);
+        var generator = new Json.Generator ();
+        generator.set_root (builder.get_root ());
+        string api_body = generator.to_data (null);
 
         var msg = new Soup.Message ("POST",
             "https://www.youtube.com/youtubei/v1/player?prettyPrint=false");

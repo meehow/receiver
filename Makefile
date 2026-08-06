@@ -31,19 +31,14 @@ uninstall:
 clean:
 	rm -rf _build
 
-run: build
+run: RUN_BIN = receiver
+run-tui: RUN_BIN = receiver-tui
+run run-tui: build
 	glib-compile-schemas data/
 	GSETTINGS_SCHEMA_DIR=$(CURDIR)/data \
 	XDG_DATA_DIRS=$(CURDIR)/data:/usr/share \
 	LOCALEDIR=$(CURDIR)/_build/po \
-	./_build/receiver
-
-run-tui: build
-	glib-compile-schemas data/
-	GSETTINGS_SCHEMA_DIR=$(CURDIR)/data \
-	XDG_DATA_DIRS=$(CURDIR)/data:/usr/share \
-	LOCALEDIR=$(CURDIR)/_build/po \
-	./_build/receiver-tui
+	./_build/$(RUN_BIN)
 
 deb:
 	dpkg-buildpackage -us -uc -b

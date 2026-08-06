@@ -71,7 +71,7 @@ namespace Receiver {
 
             // Valid UTF-8 but possibly Latin-1 mis-interpretation of a legacy
             // encoding. Check: does the string have chars in U+0080–U+00FF?
-            if (!has_latin1_supplement(text)) return text;
+            if (!has_high_run(text, 1)) return text;
 
             // Round-trip: UTF-8 → Latin-1 raw bytes → re-decode as candidate charsets.
             try {
@@ -161,14 +161,6 @@ namespace Receiver {
                 } else {
                     run = 0;
                 }
-            }
-            return false;
-        }
-
-        private bool has_latin1_supplement(string text) {
-            unichar c;
-            for (int i = 0; text.get_next_char(ref i, out c);) {
-                if (c >= 0x80 && c <= 0xFF) return true;
             }
             return false;
         }

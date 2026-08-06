@@ -45,10 +45,11 @@ namespace Receiver {
         // Bring the main window to the front, re-showing it if it was hidden by
         // background mode; only build a fresh window when there genuinely
         // isn't one.
-        private void present_main_window() {
+        private MainWindow present_main_window() {
             var win = ensure_main_window();
             win.set_visible(true);
             win.present();
+            return win;
         }
 
         // Find the existing window, hidden or not. active_window is null while
@@ -128,19 +129,17 @@ namespace Receiver {
                 }
             });
             
-            // Clear failed status when stream plays successfully
+            // Clear failed status when stream plays successfully. When running
+            // in the background (window hidden), Stop means "done": tear the
+            // process down. Pause keeps it alive.
             player.state_changed.connect((new_state) => {
                 if (new_state == PlayerState.PLAYING && player.current_station != null) {
                     store.clear_station_failed(player.current_station.id);
-                }
-            });
-
-            // When running in the background (window hidden), Stop means "done":
-            // tear the process down. Pause keeps it alive.
-            player.state_changed.connect((new_state) => {
-                var win = find_window();
-                if (new_state == PlayerState.STOPPED && win != null && !win.visible) {
-                    this.quit();
+                } else if (new_state == PlayerState.STOPPED) {
+                    var win = find_window();
+                    if (win != null && !win.visible) {
+                        this.quit();
+                    }
                 }
             });
 
@@ -285,10 +284,7 @@ namespace Receiver {
         }
 
         public void open_with_search(string query) {
-            var win = ensure_main_window();
-            win.set_visible(true);
-            win.present();
-            win.show_search(query);
+            present_main_window().show_search(query);
         }
     }
 }

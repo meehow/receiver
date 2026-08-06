@@ -161,9 +161,7 @@ namespace Receiver {
             if (db == null || query.strip() == "") {
                 return results;
             }
-            var sql = "SELECT s." + COLS.replace(", ", ", s.")
-                + " FROM stations s JOIN stations_fts f ON s.rowid = f.rowid"
-                + " WHERE stations_fts MATCH ?"
+            var sql = fts_select_sql()
                 + " ORDER BY CASE WHEN s.image_hash != 0 THEN 0 ELSE 1 END, length(s.name)"
                 + " LIMIT ?";
             Sqlite.Statement stmt;
@@ -176,6 +174,14 @@ namespace Receiver {
                 results.add(parse(stmt));
             }
             return results;
+        }
+
+        // SELECT through the FTS index; the caller appends further conditions
+        // and ordering, and binds the MATCH pattern as the first parameter.
+        private string fts_select_sql() {
+            return "SELECT s." + COLS.replace(", ", ", s.")
+                + " FROM stations s JOIN stations_fts f ON s.rowid = f.rowid"
+                + " WHERE stations_fts MATCH ?";
         }
 
         // Build an FTS5 MATCH pattern: prefix-match each whitespace token.
@@ -333,8 +339,7 @@ namespace Receiver {
 
             var prefix = use_fts ? "s." : "";
             if (use_fts) {
-                sql.append("SELECT s.").append(COLS.replace(", ", ", s."));
-                sql.append(" FROM stations s JOIN stations_fts f ON s.rowid = f.rowid WHERE stations_fts MATCH ?");
+                sql.append(fts_select_sql());
             } else {
                 sql.append("SELECT ").append(COLS).append(" FROM stations WHERE 1=1");
             }

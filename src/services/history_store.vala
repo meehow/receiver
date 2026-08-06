@@ -12,7 +12,7 @@ namespace Receiver {
         private static HistoryStore? _instance;
         private GenericArray<HistoryEntry> entries;
         private string file_path;
-        private uint save_timeout = 0;
+        private DebouncedSaver saver;
         private const int MAX_ENTRIES = 500;
 
         public static HistoryStore get_default() {
@@ -45,6 +45,7 @@ namespace Receiver {
                 warning("Failed to create config dir: %s", e.message);
             }
             file_path = Path.build_filename(app_dir, "history.json");
+            saver = new DebouncedSaver(file_path, 1000, serialize, "history");
             load();
         }
 
@@ -124,27 +125,12 @@ namespace Receiver {
         }
 
         private void schedule_save() {
-            if (save_timeout != 0) return;
-            save_timeout = Timeout.add(1000, () => {
-                save_timeout = 0;
-                do_save.begin();
-                return false;
-            });
+            saver.schedule();
         }
 
         // Synchronous write for shutdown, when the main loop may not run again
         public void flush() {
-            if (save_timeout != 0) {
-                Source.remove(save_timeout);
-                save_timeout = 0;
-                try {
-                    File.new_for_path(file_path).replace_contents(
-                        serialize().data, null, false,
-                        FileCreateFlags.REPLACE_DESTINATION, null, null);
-                } catch (Error e) {
-                    warning("Failed to save history: %s", e.message);
-                }
-            }
+            saver.flush();
         }
 
         private string serialize() {
@@ -165,17 +151,6 @@ namespace Receiver {
             gen.set_root(b.get_root());
             gen.pretty = true;
             return gen.to_data(null);
-        }
-
-        private async void do_save() {
-            try {
-                // replace_contents_async does not copy the buffer, so keep it
-                // alive in a Bytes for the duration of the call
-                yield File.new_for_path(file_path).replace_contents_bytes_async(
-                    new Bytes(serialize().data), null, false, FileCreateFlags.REPLACE_DESTINATION, null, null);
-            } catch (Error e) {
-                warning("Failed to save history: %s", e.message);
-            }
         }
     }
 }

@@ -37,6 +37,7 @@ core_sources = files(
   'src/utils/metadata_parser.vala',
   'src/utils/metadata_extractor.vala',
   'src/utils/languages.vala',
+  'src/utils/debounced_saver.vala',
   'src/services/app_state.vala',
   'src/services/station_store.vala',
   'src/services/player.vala',

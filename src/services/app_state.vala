@@ -6,7 +6,7 @@ namespace Receiver {
         private static AppState? _instance;
         public Settings settings { get; private set; }
         private string favourites_file;
-        private uint save_timeout = 0;
+        private DebouncedSaver saver;
         private GenericArray<Station> _favourite_stations;
 
         public signal void favourites_changed();
@@ -32,6 +32,7 @@ namespace Receiver {
             }
 
             favourites_file = Path.build_filename(app_dir, "favourites.json");
+            saver = new DebouncedSaver(favourites_file, 500, serialize_favourites, "favourites");
             _favourite_stations = new GenericArray<Station>();
             load_favourites();
         }
@@ -120,27 +121,12 @@ namespace Receiver {
 
 
         public void save_favourites() {
-            if (save_timeout != 0) return;
-            save_timeout = Timeout.add(500, () => {
-                save_timeout = 0;
-                do_save_favourites.begin();
-                return false;
-            });
+            saver.schedule();
         }
 
         // Synchronous write for shutdown, when the main loop may not run again
         public void flush() {
-            if (save_timeout != 0) {
-                Source.remove(save_timeout);
-                save_timeout = 0;
-                try {
-                    File.new_for_path(favourites_file).replace_contents(
-                        serialize_favourites().data, null, false,
-                        FileCreateFlags.REPLACE_DESTINATION, null, null);
-                } catch (Error e) {
-                    warning("Failed to save favourites: %s", e.message);
-                }
-            }
+            saver.flush();
         }
 
         private string serialize_favourites() {
@@ -155,17 +141,6 @@ namespace Receiver {
             gen.set_root(b.get_root());
             gen.pretty = true;
             return gen.to_data(null);
-        }
-
-        private async void do_save_favourites() {
-            try {
-                // replace_contents_async does not copy the buffer, so keep it
-                // alive in a Bytes for the duration of the call
-                yield File.new_for_path(favourites_file).replace_contents_bytes_async(
-                    new Bytes(serialize_favourites().data), null, false, FileCreateFlags.REPLACE_DESTINATION, null, null);
-            } catch (Error e) {
-                warning("Failed to save favourites: %s", e.message);
-            }
         }
     }
 }

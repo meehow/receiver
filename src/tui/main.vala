@@ -481,8 +481,7 @@ namespace Receiver {
                 case 127:
                 case 8:
                     if (search_text.length > 0) {
-                        search_text = search_text[0 : search_text.index_of_nth_char (
-                            search_text.char_count () - 1)];
+                        search_text = chop_last_char (search_text);
                         schedule_search_apply ();
                     }
                     needs_redraw = true;
@@ -491,9 +490,7 @@ namespace Receiver {
                     needs_redraw = true;
                     break;
                 default:
-                    var typed = read_input_char (ch);
-                    if (typed != null) {
-                        search_text += typed;
+                    if (append_input_char (ref search_text, ch)) {
                         schedule_search_apply ();
                         needs_redraw = true;
                     }
@@ -531,6 +528,21 @@ namespace Receiver {
                 sb.append_c ((char) ch);
             }
             return sb.str.validate () ? sb.str : null;
+        }
+
+        // Append the typed character (if any) to `text`; true when it changed.
+        private bool append_input_char (ref string text, int ch) {
+            var typed = read_input_char (ch);
+            if (typed == null) {
+                return false;
+            }
+            text += typed;
+            return true;
+        }
+
+        // Drop the last (possibly multi-byte) character.
+        private string chop_last_char (string s) {
+            return s[0 : s.index_of_nth_char (s.char_count () - 1)];
         }
 
         // Applying the query re-filters the whole station store, so debounce
@@ -633,8 +645,7 @@ namespace Receiver {
                 case 127:
                 case 8:
                     if (picker_query.length > 0) {
-                        picker_query = picker_query[0 : picker_query.index_of_nth_char (
-                            picker_query.char_count () - 1)];
+                        picker_query = chop_last_char (picker_query);
                         picker_sel = 0;
                         picker_off = 0;
                     }
@@ -644,9 +655,7 @@ namespace Receiver {
                     needs_redraw = true;
                     break;
                 default:
-                    var typed = read_input_char (ch);
-                    if (typed != null) {
-                        picker_query += typed;
+                    if (append_input_char (ref picker_query, ch)) {
                         picker_sel = 0;
                         picker_off = 0;
                         needs_redraw = true;

@@ -125,6 +125,7 @@ namespace Receiver {
                 case PlayerState.ERROR:
                     current_artist = null;
                     current_title = null;
+                    track_start_time = 0;
                     cancel_scrobble_timer();
                     break;
                 case PlayerState.PAUSED:

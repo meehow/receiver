@@ -194,7 +194,7 @@ namespace Receiver {
                     if (code_str != null) {
                         result.error_code = int.parse(code_str);
                     }
-                    result.error_message = extract_error_message(result.body);
+                    result.error_message = extract_xml_value(result.body, "error");
                     warning("Last.fm %s failed (code %d): %s", label, result.error_code,
                             result.error_message ?? "unknown");
                 }
@@ -205,26 +205,27 @@ namespace Receiver {
             return result;
         }
 
+        // Accepts a plain opening tag or one carrying attributes, e.g. both
+        // <key>xxx</key> and <error code="6">message</error>. A longer tag
+        // name sharing the prefix (e.g. <names> when looking for <name>) is
+        // skipped, since it is not followed by '>' or a space.
         private string? extract_xml_value(string xml, string tag) {
-            var open = "<%s>".printf(tag);
+            var open = "<" + tag;
             var close = "</%s>".printf(tag);
             var start = xml.index_of(open);
-            var end = xml.index_of(close);
-            if (start >= 0 && end > start) {
-                return xml.substring(start + open.length, end - start - open.length);
+            while (start >= 0) {
+                var after = start + open.length;
+                var next = xml[after];
+                if (next == '>' || next == ' ') {
+                    var open_end = next == '>' ? after : xml.index_of(">", after);
+                    if (open_end < 0) return null;
+                    var end = xml.index_of(close, open_end);
+                    if (end <= open_end) return null;
+                    return xml.substring(open_end + 1, end - open_end - 1);
+                }
+                start = xml.index_of(open, after);
             }
             return null;
-        }
-
-        // The error tag carries attributes: <error code="6">message</error>
-        private string? extract_error_message(string xml) {
-            var start = xml.index_of("<error");
-            if (start < 0) return null;
-            var open_end = xml.index_of(">", start);
-            if (open_end < 0) return null;
-            var close = xml.index_of("</error>", open_end);
-            if (close <= open_end) return null;
-            return xml.substring(open_end + 1, close - open_end - 1);
         }
 
         private string? extract_xml_attr(string xml, string tag, string attr) {

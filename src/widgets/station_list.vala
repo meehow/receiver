@@ -399,8 +399,6 @@ namespace Receiver {
         private ulong failed_id;
         private ulong cleared_id;
         private ulong fav_id;
-        private ulong scroll_id;
-        private Gtk.Adjustment? scroll_adjustment;
         private uint load_timeout;
 
         public StationRow() {
@@ -408,6 +406,57 @@ namespace Receiver {
             margin_top = margin_bottom = 8;
             margin_start = margin_end = 4;
             build_ui();
+
+            // Named methods (not closures) so the handlers hold no strong
+            // reference to the row and dispose can actually run.
+            var app = GLib.Application.get_default() as Application;
+            if (app != null) {
+                failed_id = app.store.station_failed.connect(on_station_failed);
+                cleared_id = app.store.station_cleared.connect(on_station_cleared);
+                fav_id = app.store.favourites_changed.connect(on_favourites_changed);
+            }
+        }
+
+        private void on_station_failed(int64 id) {
+            if (station != null && station.id == id) {
+                update_status(true);
+            }
+        }
+
+        private void on_station_cleared(int64 id) {
+            if (station != null && station.id == id) {
+                update_status(false);
+            }
+        }
+
+        private void on_favourites_changed() {
+            if (station != null) {
+                var app = GLib.Application.get_default() as Application;
+                if (app != null) {
+                    update_fav(app.store.is_favourite(station.id));
+                }
+            }
+        }
+
+        // The StationStore lives for the whole app; drop our handlers when the
+        // row is discarded so the store does not keep dead rows alive.
+        public override void dispose() {
+            var app = GLib.Application.get_default() as Application;
+            if (app != null) {
+                if (failed_id > 0) {
+                    app.store.disconnect(failed_id);
+                    failed_id = 0;
+                }
+                if (cleared_id > 0) {
+                    app.store.disconnect(cleared_id);
+                    cleared_id = 0;
+                }
+                if (fav_id > 0) {
+                    app.store.disconnect(fav_id);
+                    fav_id = 0;
+                }
+            }
+            base.dispose();
         }
 
         private void build_ui() {
@@ -478,25 +527,7 @@ namespace Receiver {
             var app = GLib.Application.get_default() as Application;
             if (app != null) {
                 update_status(app.store.is_station_failed(s.id));
-
-                failed_id = app.store.station_failed.connect((id) => {
-                    if (station != null && station.id == id) {
-                        update_status(true);
-                    }
-                });
-
-                cleared_id = app.store.station_cleared.connect((id) => {
-                    if (station != null && station.id == id) {
-                        update_status(false);
-                    }
-                });
-
                 update_fav(app.store.is_favourite(s.id));
-                fav_id = app.store.favourites_changed.connect(() => {
-                    if (station != null) {
-                        update_fav(app.store.is_favourite(station.id));
-                    }
-                });
             }
 
             if (s.image_hash != 0) {
@@ -514,7 +545,7 @@ namespace Receiver {
                     if (load_timeout > 0) Source.remove(load_timeout);
                     load_timeout = Timeout.add(150, () => {
                         load_timeout = 0;
-                        if (station == s) maybe_load_artwork(s);
+                        if (station == s) load_artwork.begin(s);
                         return false;
                     });
                 }
@@ -527,22 +558,6 @@ namespace Receiver {
             if (load_timeout > 0) {
                 Source.remove(load_timeout);
                 load_timeout = 0;
-            }
-            disconnect_scroll();
-            var app = GLib.Application.get_default() as Application;
-            if (app != null) {
-                if (failed_id > 0) {
-                    app.store.disconnect(failed_id);
-                    failed_id = 0;
-                }
-                if (cleared_id > 0) {
-                    app.store.disconnect(cleared_id);
-                    cleared_id = 0;
-                }
-                if (fav_id > 0) {
-                    app.store.disconnect(fav_id);
-                    fav_id = 0;
-                }
             }
             station = null;
             artwork.paintable = null;
@@ -566,50 +581,6 @@ namespace Receiver {
                 status_icon.remove_css_class("warning");
                 status_icon.add_css_class("dim-label");
             }
-        }
-
-        private void maybe_load_artwork(Station s) {
-            if (station != s) return;
-
-            if (get_height() > 0) {
-                load_artwork.begin(s);
-                return;
-            }
-
-            // Not yet laid out: wait for scroll to trigger layout
-            var sw = get_ancestor(typeof(Gtk.ScrolledWindow)) as Gtk.ScrolledWindow;
-            if (sw != null && scroll_id == 0 && sw.vadjustment != null) {
-                scroll_adjustment = sw.vadjustment;
-                scroll_id = scroll_adjustment.value_changed.connect(() => {
-                    if (station != s) {
-                        disconnect_scroll();
-                        return;
-                    }
-                    if (get_height() > 0) {
-                        disconnect_scroll();
-                        load_artwork.begin(s);
-                    }
-                });
-            }
-
-            // Fallback: if the list is too short to scroll (e.g. single result),
-            // the scroll signal will never fire. Re-check after layout completes.
-            Idle.add(() => {
-                if (station != s) return false;
-                if (get_height() > 0) {
-                    disconnect_scroll();
-                    load_artwork.begin(s);
-                }
-                return false;
-            });
-        }
-
-        private void disconnect_scroll() {
-            if (scroll_id > 0 && scroll_adjustment != null) {
-                scroll_adjustment.disconnect(scroll_id);
-                scroll_id = 0;
-            }
-            scroll_adjustment = null;
         }
 
         private async void load_artwork(Station s) {

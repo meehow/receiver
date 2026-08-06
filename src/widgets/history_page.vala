@@ -160,13 +160,15 @@ namespace Receiver {
 
             var now = new DateTime.now_local();
             var diff = now.difference(dt);
-            var minutes = (int)(diff / TimeSpan.MINUTE);
-            var hours = (int)(diff / TimeSpan.HOUR);
-            var days = (int)(diff / TimeSpan.DAY);
 
+            var minutes = (int)(diff / TimeSpan.MINUTE);
             if (minutes < 1) return _("Just now");
             if (minutes < 60) return ngettext("%d minute ago", "%d minutes ago", minutes).printf(minutes);
+
+            var hours = (int)(diff / TimeSpan.HOUR);
             if (hours < 24) return ngettext("%d hour ago", "%d hours ago", hours).printf(hours);
+
+            var days = (int)(diff / TimeSpan.DAY);
             if (days < 7) return ngettext("%d day ago", "%d days ago", days).printf(days);
 
             // Older than a week: show date
