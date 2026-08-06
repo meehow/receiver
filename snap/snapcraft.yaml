@@ -79,16 +79,15 @@ parts:
       - libncurses-dev
       - gettext
     stage-packages:
-      - gstreamer1.0-plugins-base
-      - gstreamer1.0-plugins-good
-      - gstreamer1.0-plugins-bad
-      - libsoup-3.0-0
-      - libjson-glib-1.0-0
-      - libsqlite3-0
       - libncursesw6
-      - webp-pixbuf-loader
+
+  # gnome-46-2404 provides every GStreamer plugin we need except an AAC
+  # decoder. Stage only faad rather than all of plugins-bad, which drags in
+  # ~55 MB of video encoders and ~26 MB of speech-synthesis voices.
+  gst-aac:
+    plugin: nil
+    stage-packages:
+      - gstreamer1.0-plugins-bad
     stage:
-      - -usr/lib/*/libdirect*
-      - -usr/lib/*/libharfbuzz*
-      - -usr/lib/*/libpango*
-      - -usr/lib/*/librsvg*
+      - usr/lib/*/gstreamer-1.0/libgstfaad.so
+      - usr/lib/*/libfaad.so*
