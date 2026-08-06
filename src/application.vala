@@ -10,9 +10,16 @@ namespace Receiver {
         private uint search_provider_reg = 0;
 
         public Application() {
+            // Strict snap confinement denies owning the reverse-DNS bus name,
+            // so g_application_register() fails and the app exits. Fall back to
+            // NON_UNIQUE there, at the cost of single-instance behaviour, until
+            // the dbus slot gets a snap declaration. Same detection as
+            // MprisService uses for its bus name.
             Object(
                 application_id: "io.github.meehow.Receiver",
-                flags: ApplicationFlags.DEFAULT_FLAGS
+                flags: Environment.get_variable("SNAP_NAME") != null
+                    ? (ApplicationFlags.DEFAULT_FLAGS | ApplicationFlags.NON_UNIQUE)
+                    : ApplicationFlags.DEFAULT_FLAGS
             );
         }
 
